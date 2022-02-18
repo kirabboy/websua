@@ -10,7 +10,8 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="{{ asset('/public/vendor/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/boostrap/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
+    <!-- <link href="{{ asset('/public/vendor/css/sb-admin-2.min.css') }}" rel="stylesheet"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,6 +19,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="{{ asset('css/sidebar.css')}}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/table.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/document.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/products.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/cart.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/list-partner.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/order-history.css')}}" rel="stylesheet" type="text/css">
+</head>
+</head>
 </head>
 <body id="page-top">
     @include('layouts.header')
@@ -25,6 +33,7 @@
     @yield('content')
 
     @include('layouts.footer')
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <!-- Popper.JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
@@ -37,6 +46,71 @@
                 $('#sidebar').toggleClass('active');
             });
         });
+      </script>
+    <script src="{{ asset('/public/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('/public/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+    
+    <script src="{{ asset('/public/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+   
+    <script src="{{ asset('/public/vendor/js/sb-admin-2.min.js') }}"></script>
+
+    <!-- Page level plugins -->
+    <script src="{{ asset('/public//vendor/chart.js/Chart.min.js') }}"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="{{ asset('/public/vendor/js/demo/chart-area-demo.js') }}"></script>
+    <script src="{{ asset('/public/vendor/js/demo/chart-pie-demo.js') }}"></script>
+    
+    <script>
+                                            String.prototype.replaceAll = function(find, replace) {
+                                                var str = this;
+                                                return str.replace(new RegExp(find.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'g'), replace);
+                                            };
+
+                                            google.charts.load('current', {
+                                                packages: ['corechart', 'bar']
+                                            });
+                                            google.charts.setOnLoadCallback(drawBasic);
+                                            var data1 = ('[["Element", "Doanh số (₫)"],[&quot;12&quot;, 0],[&quot;01&quot;, 0],[&quot;02&quot;, 0]]').replaceAll('&quot;', '"');
+                                            var dataView = JSON.parse(data1);
+
+                                            function drawBasic() {
+
+                                                var data = google.visualization.arrayToDataTable(dataView);
+
+                                                var options = {
+                                                    title: '',
+                                                    colors: ['#0596d8'],
+                                                    legend: {
+                                                        position: 'top',
+                                                        alignment: 'center'
+                                                    },
+
+                                                };
+
+                                                var chart = new google.visualization.ColumnChart(
+                                                    document.getElementById('chart_div'));
+
+                                                chart.draw(data, options);
+                                            }
+
+                                            $(function() {
+                                                $(".resetChart").click(function() {
+                                                    var year = $(this).data("year");
+                                                    var datas = $("#chart_" + year).val();
+                                                    datas = ('[["Element", "Doanh số (₫)"],' + datas + ']').replaceAll('&quot;', '"');
+                                                    var data = JSON.parse(datas);
+                                                    resetChart(data);
+                                                });
+
+                                                function resetChart(data) {
+                                                    dataView = data;
+                                                    drawBasic();
+                                                }
+                                            });
+                                        </script>
     </script>
 </body>
 </html>

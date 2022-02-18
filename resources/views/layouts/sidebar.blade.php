@@ -18,18 +18,28 @@
 	</div>
 	<ul class="side-nav">
 		<li class="menu-item">
-			<a href="/dashboard">
+			<a href="{{url('/')}}">
 				<span><i class="fa-solid fa-table"></i>Bảng điều khiển</span>
 			</a>
 		</li>
 		<li class="menu-item">
-			<a href="/dashboard">
-				<span><i class="fa-solid fa-table"></i>Bảng điều khiển</span>
+			<a href="{{url('/document')}}">
+				<span><i class="fa-solid fa-table"></i>Tài liệu</span>
 			</a>
 		</li>
 		<li class="menu-item">
-			<a href="/dashboard">
-				<span><i class="fa-solid fa-table"></i>Bảng điều khiển</span>
+			<a href="{{url('/products')}}">
+				<span><i class="fa-solid fa-table"></i>Đặt hàng</span>
+			</a>
+		</li>
+		<li class="menu-item">
+			<a href="{{url('/list-partner')}}">
+				<span><i class="fa-solid fa-table"></i>Lịch sử đặt hàng</span>
+			</a>
+		</li>
+		<li class="menu-item">
+			<a href="{{url('/order-history')}}">
+				<span><i class="fa-solid fa-table"></i>Danh sách đối tác</span>
 			</a>
 		</li>
 		<!-- <li><hr></li>
@@ -44,4 +54,3 @@
 		</li>
 	</ul>
 </nav>
-

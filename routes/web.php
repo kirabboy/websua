@@ -16,4 +16,9 @@ use App\Http\Controllers\HomeController;
 Route::get('/', function () {
     return view('user.index');
 });
-// Route::get('/', [HomeController::class, 'home']);
+Route::get('/document', [HomeController::class, 'document']);
+Route::get('/products', [HomeController::class, 'products']);
+Route::get('/list-partner', [HomeController::class, 'list_partner']);
+Route::get('/product-detail', [HomeController::class, 'product_detail']);
+Route::get('/cart', [HomeController::class, 'cart']);
+Route::get('/order-history', [HomeController::class, 'order_history']);
