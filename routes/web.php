@@ -18,3 +18,9 @@ use App\Http\Controllers\HomeController;
 // });
 
 Route::get('/', [HomeController::class, 'getHome']);
+Route::get('/login', [HomeController::class, 'getLogin']);
+Route::get('/forgot-password', [HomeController::class, 'getForgotpw']);
+Route::get('/register', [HomeController::class, 'getRegister']);
+Route::get('/profile', [HomeController::class, 'getProfile']);
+Route::get('/transactions', [HomeController::class, 'getTransactions']);
+Route::get('/statistic', [HomeController::class, 'getStatistic']);

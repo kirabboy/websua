@@ -1,0 +1,116 @@
+/* widget */
+.register-content.widget {
+    border: 1px solid #f5b80c;
+    box-shadow: 0px 0px 15px 0px rgb(0 0 0 / 20%);
+    border-radius: 5px;
+}
+.register-content.widget .widget-head{
+    border-bottom: 1px solid #4f4f4f;
+    position: relative;
+    padding: 14px 15px 11px;
+    background: linear-gradient(to left, #91EAE4, #86A8E7, #7F7FD5);
+}
+.register-content.widget .widget-head .heading {
+    color: white;
+    font-size: 20px;
+    margin: 0;
+    line-height: 22px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+.register-content.widget .widget-body{
+    padding: 15px;
+}
+.register-content.widget .widget-body .form-content label{
+    font-size: 13px;
+    font-weight: bold;
+}
+.register-content.widget .widget-body .form-content input{
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+}
+.register-content.widget .widget-body .form-row .form-group{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.text-right .btn-primary:disabled {
+    cursor: not-allowed;
+}
+.text-right .btn-primary{
+    margin-top: 35px;
+}
+span.ast{
+    font-size: 11px;
+    color: #DB6464;
+}
+
+
+/* form content 1 */
+.form-content div.cmt {
+    height: 70px;
+}
+.form-content div.cmt input,
+.form-content div.cmt img {
+    height: 70px;
+    width: 70px;
+    position: absolute;
+}
+.form-content div.cmt input {
+    z-index: 1;
+    opacity: 0;
+}
+.form-content div.cmt img {
+    border-radius: 4px;
+    padding: 4px;
+    border: 1px solid #ddd;
+    object-fit: cover;
+    transition: opacity .25s ease-in-out;
+    opacity: 1;
+}
+
+/* form content 2 */
+.form-content2 {
+    -webkit-box-shadow: 0 1px 6px 1px rgb(69 65 78 / 10%);
+    -moz-box-shadow: 0 1px 6px 1px rgba(69,65,78,0.1);
+    box-shadow: 0 1px 6px 1px rgb(69 65 78 / 10%);
+}
+.form-content2 .ms-panel-head {
+    text-transform: uppercase;
+    padding: 15px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+.form-content2 .ms-panel-head h6{
+    margin: 0;
+    font-size: 13px !important;
+    font-weight: bold;
+}
+.form-content2 .ms-panel-body .rule-content {
+    background: #f0f0fa;
+    padding: 20px;
+    border-radius: 5px;
+    max-height: 400px;
+    overflow-y: scroll;
+}
+.form-content2 .rule-content ul{
+    list-style: none;
+    padding: 0;
+}
+.form-content2 ul.rule > li {
+    font-weight: bold;
+}
+.form-content2 ul.rule > li > ul > li {
+    margin: 10px 0 20px 20px;
+    font-weight: bold;
+}
+.form-content2 ul.rule > li > ul > li > ul > li {
+    font-weight: normal;
+    margin: 10px 10px 10px 30px;
+}
+.form-content2 *{
+    font-size: 15.4px !important;
+}
+.form-content2 .ms-panel-body{
+    padding: 15px;
+}
