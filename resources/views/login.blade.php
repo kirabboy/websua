@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng nhập</title>
     <!-- bootstrap 4 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -11,8 +12,8 @@
 
 <body>
     <div class="row login-content">
-        <div class="col-6 left"></div>
-        <div class="col-6 right">
+        <div class="col-lg-6 d-none d-lg-block left"></div>
+        <div class="col-lg-6 right">
             <div class="login-form">
                 <div class="text-center">
                     <img src="{{ asset('/img/logo.png') }}" height="135px">

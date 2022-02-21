@@ -105,3 +105,27 @@
 .transactions-content.widget .pagination .next0:hover{
     background: url('../img/icon.png') no-repeat scroll left -207px transparent;
 }
+
+/* Responsive một chút */
+@media (max-width: 768px) {
+    .transactions-content.widget .bangtimkiem td{
+        display: block;
+        line-height: 20px;
+    }
+    .transactions-content.widget .bangthuong td:before {
+        content: attr(data-label);
+        display: inline-block;
+        margin-left: -100%;
+        width: 100%;
+    }
+    .transactions-content.widget .bangthuong td{
+        padding-left: 50%;
+        text-align: left;
+    }
+    .transactions-content.widget .bangthuong td, .transactions-content.widget .bangthuong tr{
+        display: block;
+    }
+    .transactions-content.widget .pagination{
+        flex-wrap: wrap;
+    }
+}

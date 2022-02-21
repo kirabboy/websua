@@ -1,14 +1,14 @@
 .login-content.row{
     margin: 0;
 }
-.login-content .col-6.left{
+.login-content .left{
     background-image: url('../img/login1.png');
 }
-.login-content .col-6.right{
+.login-content .right{
     background-image: url('../img/login2.png');
     padding-top: 60px;
 }
-.login-content>.col-6{
+.login-content>div{
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;

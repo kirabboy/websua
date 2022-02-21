@@ -1,21 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.master')
 
-<head>
-    <meta charset="UTF-8">
-    <title>Trợ giúp</title>
-    <!-- bootstrap 4 -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ asset('/css/support.css') }}">
-    <link href="{{ asset('/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-    <script src="https://cdn.ckeditor.com/4.17.2/standard/ckeditor.js"></script>
+@section('title', 'Trợ giúp')
 
-</head>
+@push('css')
+<link rel="stylesheet" href="{{ asset('/css/support.css') }}">
+<script src="https://cdn.ckeditor.com/4.17.2/standard/ckeditor.js"></script>
+@endpush
 
-<body>
+@section('content')
     <div class="row support-page">
         <!-- Nav pills -->
-        <ul class="nav nav-pills col-3 list-group" role="tablist">
+        <ul class="nav nav-pills col-lg-3 col-sm-12 list-group" role="tablist">
             <li class="nav-item list-group-item">
                 <a class="nav-link active" data-toggle="pill" href="#thuden"><i class="fas fa-inbox"></i> Hộp thư đến</a>
             </li>
@@ -27,7 +22,7 @@
             </li>
         </ul>
         <!-- Tab panes -->
-        <div class="tab-content col-9">
+        <div class="tab-content col-lg-9 col-sm-12">
             <div id="thuden" class="tab-pane active">
                 <div class="support-content widget">
                     <div class="widget-head">
@@ -117,11 +112,4 @@
             </div>
         </div>
     </div>
-
-    <!-- bootstrap 4 -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</body>
-
-</html>
+@endsection

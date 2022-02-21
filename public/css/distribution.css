@@ -100,3 +100,14 @@
 .distribution-content.widget .widget-footer .nav-pills p{
     margin-bottom: 10px;
 }
+
+/* Responsive một tí */
+@media (max-width: 768px) {
+    .distribution-content.widget .bangtimkiem td{
+        display: block;
+        line-height: 20px;
+    }
+    .distribution-content.widget .widget-footer.row .tab-content{
+        max-width: 100%;
+    }
+}

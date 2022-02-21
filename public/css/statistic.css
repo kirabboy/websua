@@ -108,3 +108,27 @@
 .statistic-content.widget .pagination .next0:hover{
     background: url('../img/icon.png') no-repeat scroll left -207px transparent;
 }
+
+/* Responsive một tí */
+@media (max-width: 768px) {
+    .statistic-content.widget .bangtimkiem td{
+        display: block;
+        line-height: 20px;
+    }
+    .statistic-content.widget .bangthuong td:before {
+        content: attr(data-label);
+        display: inline-block;
+        margin-left: -100%;
+        width: 100%;
+    }
+    .statistic-content.widget .bangthuong td{
+        padding-left: 50%;
+        text-align: left;
+    }
+    .statistic-content.widget .bangthuong td, .statistic-content.widget .bangthuong tr{
+        display: block;
+    }
+    .statistic-content.widget .pagination{
+        flex-wrap: wrap;
+    }
+}
