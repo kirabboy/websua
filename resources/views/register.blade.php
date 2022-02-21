@@ -225,5 +225,5 @@
 </div>
 @endsection
 @push('scripts')
-<link rel="stylesheet" href="{{ asset('/js/register.js') }}">
+<script src="{{ asset('/js/register.js') }}"></script>
 @endpush

@@ -163,5 +163,5 @@
 </div>
 @endsection
 @push('scripts')
-<link rel="stylesheet" href="{{ asset('/js/profile.js') }}">
+<script src="{{ asset('/js/profile.js') }}"></script>
 @endpush
