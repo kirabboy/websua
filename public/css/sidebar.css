@@ -228,6 +228,10 @@ a.article:hover {
   #sidebar {
     margin-left: -250px;
 }
+#wrapper #content-wrapper {
+  overflow: visible;
+  width:auto !important;
+}
 }
 .topbar{
   height: 3.5rem;

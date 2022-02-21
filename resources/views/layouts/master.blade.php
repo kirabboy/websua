@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset=UTF-8>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>@yield('title')</title>
     <!-- Custom fonts for this template-->
     <link href="{{ asset('/public/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -48,22 +49,13 @@
         });
       </script>
     <script src="{{ asset('/public/vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('/public/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <!-- <script src="{{ asset('/public/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script> -->
+    <script src="{{ asset('js/bootstrap/bootstrap.bundle.min.js') }}"></script>
+
 
     
-    <script src="{{ asset('/public/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
-   
-    <script src="{{ asset('/public/vendor/js/sb-admin-2.min.js') }}"></script>
-
-    <!-- Page level plugins -->
-    <script src="{{ asset('/public//vendor/chart.js/Chart.min.js') }}"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="{{ asset('/public/vendor/js/demo/chart-area-demo.js') }}"></script>
-    <script src="{{ asset('/public/vendor/js/demo/chart-pie-demo.js') }}"></script>
-    
-    <script>
+    <!-- <script>
                                             String.prototype.replaceAll = function(find, replace) {
                                                 var str = this;
                                                 return str.replace(new RegExp(find.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'g'), replace);
@@ -111,6 +103,6 @@
                                                 }
                                             });
                                         </script>
-    </script>
+    </script> -->
 </body>
 </html>
