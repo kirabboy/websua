@@ -1,0 +1,81 @@
+/* page */
+.support-page.row{
+    margin: 0;
+}
+/* widget */
+.support-content.widget {
+    border: 1px solid #f5b80c;
+    box-shadow: 0px 0px 15px 0px rgb(0 0 0 / 20%);
+    border-radius: 5px;
+}
+.support-content.widget .widget-head{
+    border-bottom: 1px solid #4f4f4f;
+    position: relative;
+    padding: 14px 15px 11px;
+    background: linear-gradient(to left, #91EAE4, #86A8E7, #7F7FD5);
+}
+.support-content.widget .widget-head .heading {
+    color: white;
+    font-size: 20px;
+    margin: 0;
+    line-height: 22px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+.support-content.widget .widget-body{
+    padding: 15px;
+}
+.support-content.widget .form-content *{
+    font-size: 13px;
+}
+.support-content.widget .form-content label{
+    font-weight: bold;
+}
+.support-content.widget .form-content input{
+    color: #000;
+}
+
+/* tables */
+.support-content.widget .table{
+    font-size: 14px;
+}
+.support-content.widget .table .thead-light th {
+    color: #fff;
+    background-color: #296e29;
+    border: 1px solid;
+    padding: 8px;
+}
+.support-page.row ul{
+    padding-left: 15px;
+}
+.support-page.row ul li{
+    font-size: 13px;
+    padding: 0;
+}
+.support-page.row ul li a{
+    padding: 10px 15px;
+    color: #34334a;
+}
+.support-page.row ul li a:hover{
+    color: #007bff;
+}
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #007bff;
+    background-color: #fff;
+}
+
+/* button */
+.support-page.row #soanthu .btn{
+    font-size: 14px;
+    padding: 6px 10px
+}
+.support-page.row #soanthu a.btn{
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+.support-page.row #soanthu a.btn:hover{
+    color: #fff;
+    background-color: #ccc;
+    border-color: #bbb;
+}

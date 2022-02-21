@@ -31,4 +31,10 @@ class HomeController extends Controller
     public function getStatistic(){
         return view('statistic');
     }
+    public function getDistribution(){
+        return view('distribution');
+    }
+    public function getSupport(){
+        return view('support');
+    }
 }

@@ -24,3 +24,5 @@ Route::get('/register', [HomeController::class, 'getRegister']);
 Route::get('/profile', [HomeController::class, 'getProfile']);
 Route::get('/transactions', [HomeController::class, 'getTransactions']);
 Route::get('/statistic', [HomeController::class, 'getStatistic']);
+Route::get('/distribution', [HomeController::class, 'getDistribution']);
+Route::get('/support', [HomeController::class, 'getSupport']);

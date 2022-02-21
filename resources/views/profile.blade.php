@@ -65,9 +65,9 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label" for="inputState">Tên ngân hàng</label>
+                        <label class="col-sm-2 col-form-label">Tên ngân hàng</label>
                         <div class="col-sm-4">
-                            <select id="inputState" class="form-control">
+                            <select class="form-control">
                                 <option selected>--- Chọn ngân hàng ---</option>
                                 <option>ACB</option>
                                 <option>Vietcombank</option>
