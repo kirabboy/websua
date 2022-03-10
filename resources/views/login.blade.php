@@ -18,16 +18,29 @@
                 <div class="text-center">
                     <img src="{{ asset('/img/logo.png') }}" height="135px">
                 </div>
-                <form>
+                <form method="post" action="login">
+                    @csrf
                     <div class="form-box">
                         <h5>Tên đăng nhập</h5>
-                        <input type="text" placeholder="Tên đăng nhập" class="form-control">
+                        @if ($errors->any())
+                        <div class="alert alert-danger">
+                            @foreach ($errors->all() as $e)
+                            <div>{{ $e }}</div>
+                            @endforeach
+                        </div>
+                        @endif
+                        @if (session('statusfail'))
+                        <div class="alert alert-danger form-control">
+                            {{ session('statusfail') }}
+                        </div>
+                        @endif
+                        <input type="text" name="username" placeholder="Tên đăng nhập" class="form-control">
                         <h5>Mật khẩu</h5>
-                        <input type="password" placeholder="Mật khẩu" class="form-control">
+                        <input type="password" name="password" placeholder="Mật khẩu" class="form-control">
                         <input type="submit" class="form-control" value="Đăng nhập" style="font-size: 14px;">
                         <div class="form-group row">
                             <label class="col-6">
-                                <input type="checkbox" checked=""/>
+                                <input type="checkbox" checked="" name="remember" />
                                 <span>Remember me</span>
                             </label>
                             <a class="col-6" href="#">Forgot password?</a>

@@ -13,9 +13,6 @@ class HomeController extends Controller
     public function getHome(){
         return view('home');
     }
-    public function getLogin(){
-        return view('login');
-    }
     public function getForgotpw(){
         return view('forgotpassword');
     }

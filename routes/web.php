@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Users\LoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,10 +19,13 @@ use App\Http\Controllers\HomeController;
 // });
 
 Route::get('/', [HomeController::class, 'getHome']);
-Route::get('/login', [HomeController::class, 'getLogin']);
+
+Route::get('/login', [LoginController::class, 'getLogin']);
+Route::post('/login', [LoginController::class, 'checkLogin']);
+
 Route::get('/forgot-password', [HomeController::class, 'getForgotpw']);
 Route::get('/register', [HomeController::class, 'getRegister']);
-Route::get('/profile', [HomeController::class, 'getProfile']);
+Route::get('/profile', [HomeController::class, 'getProfile'])->name('profile');
 Route::get('/transactions', [HomeController::class, 'getTransactions']);
 Route::get('/statistic', [HomeController::class, 'getStatistic']);
 Route::get('/distribution', [HomeController::class, 'getDistribution']);

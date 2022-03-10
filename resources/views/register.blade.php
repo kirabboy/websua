@@ -12,12 +12,13 @@
         <h4 class="heading">Đăng ký</h4>
     </div>
     <div class="widget-body">
-        <form>
+        <form method="post" action="register">
+            @csrf
             <div class="form-content">
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label>Tên đăng nhập <span class="ast">*</span></label>
-                        <input class="form-control">
+                        <input class="form-control" name="username">
                     </div>
                     <div class="form-group col-md-6">
                         <label>Người giới thiệu</label>
@@ -27,17 +28,17 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label>Mật khẩu <span class="ast">*</span></label>
-                        <input type="password" class="form-control">
+                        <input type="password" name="password" class="form-control">
                     </div>
                     <div class="form-group col-md-6">
                         <label>Nhập lại mật khẩu <span class="ast">*</span></label>
-                        <input type="password" class="form-control">
+                        <input type="password" name="password" class="form-control">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label>Họ và tên <span class="ast">*</span></label>
-                        <input type="text" class="form-control">
+                        <input type="text" name="name" class="form-control">
                     </div>
                     <div class="form-group col-md-6">
                         <label>Email <span class="ast">*</span></label>
