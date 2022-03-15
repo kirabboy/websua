@@ -20,14 +20,16 @@ use App\Http\Controllers\Users\UserController;
 
 Route::get('/', [HomeController::class, 'getHome']);
 Route::get('/forgot-password', [HomeController::class, 'getForgotpw']);
-Route::get('/profile', [HomeController::class, 'getProfile'])->name('profile');
-Route::get('/transactions', [HomeController::class, 'getTransactions']);
-Route::get('/statistic', [HomeController::class, 'getStatistic']);
-Route::get('/distribution', [HomeController::class, 'getDistribution']);
-Route::get('/support', [HomeController::class, 'getSupport']);
+Route::get('/profile', [HomeController::class, 'getProfile'])->name('profile')->middleware('auth');
+Route::get('/transactions', [HomeController::class, 'getTransactions'])->middleware('auth');
+Route::get('/statistic', [HomeController::class, 'getStatistic'])->middleware('auth');
+Route::get('/distribution', [HomeController::class, 'getDistribution'])->middleware('auth');
+Route::get('/support', [HomeController::class, 'getSupport'])->middleware('auth');
 
-Route::get('/login', [UserController::class, 'getLogin']);
+Route::get('/login', [UserController::class, 'getLogin'])->name('login');
 Route::post('/login', [UserController::class, 'checkLogin']);
 Route::get('/logout', [UserController::class, 'getLogout']);
-Route::get('/register', [UserController::class, 'getRegister']);
+Route::get('/register', [UserController::class, 'getRegister'])->middleware('auth');
 Route::post('/register', [UserController::class, 'checkRegister']);
+
+Route::middleware(['auth'])->group()

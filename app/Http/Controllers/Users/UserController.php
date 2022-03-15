@@ -20,10 +20,10 @@ class UserController extends Controller
             'password.required'=>'Nhập mật khẩu!',
         ];
         $credentials = $request->validate([
-            'username' => ['required'],
-            'password' => ['required'],
+            'username' => 'required',
+            'password' => 'required',
         ], $error);
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt($credentials, $request->input('remember'))) {
             $request->session()->regenerate();
             return redirect()->intended('profile');
         }
