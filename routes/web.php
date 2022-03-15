@@ -2,11 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-<<<<<<< HEAD
-use App\Http\Controllers\Users\UserController;
-=======
 use App\Http\Controllers\ProductController;
->>>>>>> origin/hieu
+use App\Http\Controllers\Users\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,7 +15,6 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-<<<<<<< HEAD
 // Route::get('/', function () {
 //     return view('user.index');
 // });
@@ -36,7 +32,6 @@ Route::post('/login', [UserController::class, 'checkLogin']);
 Route::get('/logout', [UserController::class, 'getLogout']);
 Route::get('/register', [UserController::class, 'getRegister']);
 Route::post('/register', [UserController::class, 'checkRegister']);
-=======
 Route::get('/', function () {
     return view('user.index');
 });
@@ -47,4 +42,3 @@ Route::get('/product-detail', [HomeController::class, 'product_detail']);
 Route::get('/cart', [HomeController::class, 'cart']);
 Route::get('/order-history', [HomeController::class, 'order_history']);
 Route::resource('products',ProductController::class);
->>>>>>> origin/hieu
