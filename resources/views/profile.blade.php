@@ -24,7 +24,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Tên đăng nhập</label>
                     <div class="col-sm-4">
-                        <h3 class="heading">ngocdiep1</h3>
+                        <h3 class="heading">{{Auth::user()->username}}</h3>
                     </div>
                     <label class="col-sm-2 col-form-label">Cấp bậc</label>
                     <div class="col-sm-4">
@@ -34,11 +34,11 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Họ và tên</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" value="Doan Thi Ngoc Diep">
+                        <input type="text" class="form-control" value="{{Auth::user()->name}}">
                     </div>
                     <label class="col-sm-2 col-form-label">Email</label>
                     <div class="col-sm-4">
-                        <input type="email" class="form-control" value="ngocdiep@gmail.com">
+                        <input type="email" class="form-control" value="{{Auth::user()->email}}">
                     </div>
                 </div>
                 <div class="form-group row">

@@ -21,19 +21,15 @@
                 <form method="post" action="login">
                     @csrf
                     <div class="form-box">
-                        <h5>Tên đăng nhập</h5>
-                        @if ($errors->any())
+                        @if ($errors->any() or session('mess'))
                         <div class="alert alert-danger">
                             @foreach ($errors->all() as $e)
                             <div>{{ $e }}</div>
                             @endforeach
+                            {{ session('mess') }}
                         </div>
                         @endif
-                        @if (session('statusfail'))
-                        <div class="alert alert-danger form-control">
-                            {{ session('statusfail') }}
-                        </div>
-                        @endif
+                        <h5>Tên đăng nhập</h5>
                         <input type="text" name="username" placeholder="Tên đăng nhập" class="form-control">
                         <h5>Mật khẩu</h5>
                         <input type="password" name="password" placeholder="Mật khẩu" class="form-control">

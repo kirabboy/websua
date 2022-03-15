@@ -16,9 +16,6 @@ class HomeController extends Controller
     public function getForgotpw(){
         return view('forgotpassword');
     }
-    public function getRegister(){
-        return view('register');
-    }
     public function getProfile(){
         return view('profile');
     }

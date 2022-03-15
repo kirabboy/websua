@@ -12,6 +12,19 @@
         <h4 class="heading">Đăng ký</h4>
     </div>
     <div class="widget-body">
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            @foreach ($errors->all() as $e)
+            <div>{{ $e }}</div>
+            @endforeach
+        </div>
+        @endif
+        @if (session('mess'))
+        <div class="alert alert-success">
+            {{ session('mess') }}
+            <a href="login">Đi tới trang đăng nhập!</a>
+        </div>
+        @endif
         <form method="post" action="register">
             @csrf
             <div class="form-content">
@@ -22,7 +35,7 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label>Người giới thiệu</label>
-                        <input class="form-control" disabled value="NGOCDIEP1 - DOAN THI NGOC DIEP">
+                        <input class="form-control" disabled value="{{Auth::user()->name}}">
                     </div>
                 </div>
                 <div class="form-row">
@@ -32,7 +45,7 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label>Nhập lại mật khẩu <span class="ast">*</span></label>
-                        <input type="password" name="password" class="form-control">
+                        <input type="password" name="re_password" class="form-control">
                     </div>
                 </div>
                 <div class="form-row">
@@ -219,7 +232,7 @@
                 </div>
             </div>
             <div class="text-right">
-                <button type="button" id="btn_dk" class="btn btn-primary btn" disabled="">Đăng ký</button>
+                <button type="submit" id="btn_dk" class="btn btn-primary btn" disabled="">Đăng ký</button>
             </div>
         </form>
     </div>
