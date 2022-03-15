@@ -1,763 +1,463 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.master')
 
-<head>
+@section('title', 'SB Admin 2')
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+@section('content')
+<!-- Begin Page Content -->
+<div class="container-fluid">
 
-    <!-- Custom fonts for this template-->
-    <link href="{{ asset('/public/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <!-- Page Heading -->
+    <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+        </div> -->
 
-    <!-- Custom styles for this template-->
-    <link href="{{ asset('/public/vendor/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <!-- Content Row -->
+    <div class="row ">
 
-</head>
-
-<body id="page-top">
-
-    <!-- Page Wrapper -->
-    <div id="wrapper">
-
-        <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Interface
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Components</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Utilities</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Addons
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.html">Login</a>
-                        <a class="collapse-item" href="register.html">Register</a>
-                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item" href="blank.html">Blank Page</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span></a>
-            </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-            <!-- Sidebar Message -->
-            <div class="sidebar-card d-none d-lg-flex">
-                <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="...">
-                <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components,
-                    and more!</p>
-                <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to
-                    Pro!</a>
-            </div>
-
-        </ul>
-        <!-- End of Sidebar -->
-
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
-
-            <!-- Main Content -->
-            <div id="content">
-
-                <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
-
-                    <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-4  col-12 mb-4 card-table ">
+            <div class="card  shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">
+                                <h5>Liên kết giới thiệu của bạn</h5>
                             </div>
+                            <form method="post" class="clearfix">
+                                <div class="form-group mb-4">
+                                    <button type="button" style="text-align: left;overflow:hidden" data-toggle="tooltip" data-placement="bottom" data-trigger="manual" title="Đã sao chép" id="referrer-link" data-clipboard-text="http://forvietvn.com/sign-up?ref=ngocdiep1" class="form-control" onclick="select_all_and_copy(document.getElementById('referrer-link'))" value="http://forvietvn.com/sign-up?ref=ngocdiep1">http://forvietvn.com/sign-up?ref=ngocdiep1</button>
+                                </div>
+                            </form>
                         </div>
-                    </form>
 
-                    <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
-
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
-
-                        <!-- Nav Item - Alerts -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-bell fa-fw"></i>
-                                <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">3+</span>
-                            </a>
-                            <!-- Dropdown - Alerts -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown">
-                                <h6 class="dropdown-header">
-                                    Alerts Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-file-alt text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 12, 2019</div>
-                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-success">
-                                            <i class="fas fa-donate text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 7, 2019</div>
-                                        $290.29 has been deposited into your account!
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 2, 2019</div>
-                                        Spending Alert: We've noticed unusually high spending for your account.
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                            </div>
-                        </li>
-
-                        <!-- Nav Item - Messages -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-envelope fa-fw"></i>
-                                <!-- Counter - Messages -->
-                                <span class="badge badge-danger badge-counter">7</span>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="messagesDropdown">
-                                <h6 class="dropdown-header">
-                                    Message Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_1.svg" alt="...">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div class="font-weight-bold">
-                                        <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                                            problem I've been having.</div>
-                                        <div class="small text-gray-500">Emily Fowler · 58m</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg" alt="...">
-                                        <div class="status-indicator"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">I have the photos that you ordered last month, how
-                                            would you like them sent to you?</div>
-                                        <div class="small text-gray-500">Jae Chun · 1d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_3.svg" alt="...">
-                                        <div class="status-indicator bg-warning"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Last month's report looks great, I am very happy
-                                            with
-                                            the progress so far, keep up the good work!</div>
-                                        <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                                            alt="...">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Am I a good boy? The reason I ask is because
-                                            someone
-                                            told me that people say this to all dogs, even if they aren't good...</div>
-                                        <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Read More
-                                    Messages</a>
-                            </div>
-                        </li>
-
-                        <div class="topbar-divider d-none d-sm-block"></div>
-
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
-                            </div>
-                        </li>
-
-                    </ul>
-
-                </nav>
-                <!-- End of Topbar -->
-
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
-
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
+                </div>
+            </div>
+        </div>
 
-                    <!-- Content Row -->
-                    <div class="row">
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-4  col-12 mb-4 card-table ">
+            <div class="card card-gradient-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class=" font-weight-bold text-white text-uppercase mb-1">
+                                <h5> DOANH SỐ HỆ THỐNG</h5>
+                                <p class="ms-card-change">45,824,000</p>
+                            </div>
 
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Earnings (Monthly)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                        </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fa-solid fa-globe fa-2x text-light"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-4 col-12 mb-4 card-table ">
+            <div class="card card-gradient-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class=" font-weight-bold text-white text-uppercase mb-1">
+                                <h5> DOANH SỐ HỆ THỐNG</h5>
+                                <p class="ms-card-change">45,824,000</p>
+                            </div>
+
+                        </div>
+                        <div class="col-auto">
+                            <i class="fa-solid fa-globe fa-2x text-light"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Content Row -->
+
+    <div class="row">
+
+        <!-- Area Chart -->
+        <div class="col-xl-8 col-lg-7">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+                    <div class="dropdown no-arrow">
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                            <div class="dropdown-header">Dropdown Header:</div>
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <div class="panel-body">
+                        <ul class="nav nav-tabs tabs-bordered d-flex nav-justified justify-content-between px-3" role="tablist">
+                            <li role="presentation" class="fs-12">
+                                <a href="#level-ctv" class="active show" role="tab" data-toggle="tab" style="color: #b2c74d;" aria-selected="true"> Cộng tác viên </a>
+                            </li>
+                            <li role="presentation" class="fs-12">
+                                <a href="#level-dlbl" class="" role="tab" data-toggle="tab" style="color: #75bb6f;" aria-selected="false"> Đại lý bán lẻ </a>
+                            </li>
+                            <li role="presentation" class="fs-12">
+                                <a href="#level-dlbb" class="" role="tab" data-toggle="tab" style="color: #299421;" aria-selected="false"> Đại lý bán buôn </a>
+                            </li>
+                            <li role="presentation" class="fs-12">
+                                <a href="#level-dlc1" class="" role="tab" data-toggle="tab" style="color: #bf9235;" aria-selected="false"> Đại lý cấp 1 </a>
+                            </li>
+                            <li role="presentation" class="fs-12">
+                                <a href="#level-tdl" class="" role="tab" data-toggle="tab" style="color: #ff6666;" aria-selected="false"> Tổng đại lý </a>
+                            </li>
+                            <li role="presentation" class="fs-12">
+                                <a href="#level-npp" class="" role="tab" data-toggle="tab" style="color: #bf4d35;" aria-selected="false"> Nhà phân phối </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade in active show" id="level-ctv" style="padding: 20px;">
+                                <div class="reward" style="color:#b2c74d">
+                                    <div class="reward-icon">
+                                        <img src="https://forvietvn.com/Content/Forviet/img/ctv.png ">
+                                    </div>
+                                    <div class="reward-content">Cộng tác viên</div>
+                                    <div class="reward-content fullName"> doan thi ngoc diep </div>
+                                    <div class="reward-amount">
+                                        Doanh số 3 tháng hiện tại
+                                        <b class="total3Month">0</b>₫
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                                <span class="progress-label">0%</span>
+                                <span class="progress-status">100%</span>
 
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Earnings (Annual)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                        </div>
+                                <div class="progress">
+                                    <div class="progress-bar bg-success" role="progressbar" style="background: #b2c74d!important;width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
+                                </div>
+                                <span class="progress-label">0₫</span>
+                                <span class="progress-status">2,000,000₫</span>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade in" id="level-dlbl" style="padding: 20px;">
+                                <div class="reward" style="color:#75bb6f">
+                                    <div class="reward-icon">
+                                        <img src="https://forvietvn.com/Content/Forviet/img/dlbl.png">
+                                    </div>
+                                    <div class="reward-content">Đại lý bán lẻ</div>
+                                    <div class="reward-content fullName"> doan thi ngoc diep </div>
+                                    <div class="reward-amount">
+                                        Doanh số 3 tháng hiện tại
+                                        <b class="total3Month">0</b>₫
                                     </div>
                                 </div>
+                                <span class="progress-label">0%</span>
+                                <span class="progress-status">100%</span>
+
+                                <div class="progress">
+                                    <div class="progress-bar bg-success" role="progressbar" style="background: #75bb6f!important;width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
+                                </div>
+                                <span class="progress-label">2,000,000₫</span>
+                                <span class="progress-status">40,000,000₫</span>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="level-dlbb" style="padding: 20px;">
+                                <div class="reward" style="color:#299421">
+                                    <div class="reward-icon">
+                                        <img src="https://forvietvn.com/Content/Forviet/img/dlbb.png">
+                                    </div>
+                                    <div class="reward-content">Đại lý bán buôn</div>
+                                    <div class="reward-content fullName"> doan thi ngoc diep </div>
+                                    <div class="reward-amount">
+                                        Doanh số 3 tháng hiện tại
+                                        <b class="total3Month">0</b>₫
+                                    </div>
+                                </div>
+                                <span class="progress-label">0%</span>
+                                <span class="progress-status">100%</span>
+
+                                <div class="progress">
+                                    <div class="progress-bar bg-success" role="progressbar" style="background: #299421!important;width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                                </div>
+                                <span class="progress-label">40,000,000₫</span>
+                                <span class="progress-status">200,000,000₫</span>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade in" id="level-dlc1" style="padding: 20px;">
+                                <div class="reward" style="color:#bf9235">
+                                    <div class="reward-icon">
+                                        <img src="https://forvietvn.com/Content/Forviet/img/dlc1.png">
+                                    </div>
+                                    <div class="reward-content">Đại lý cấp 1</div>
+                                    <div class="reward-content fullName"> doan thi ngoc diep </div>
+                                    <div class="reward-amount">
+                                        Doanh số 3 tháng hiện tại
+                                        <b class="total3Month">0</b>₫
+                                    </div>
+                                </div>
+                                <span class="progress-label">0%</span>
+                                <span class="progress-status">100%</span>
+
+                                <div class="progress">
+                                    <div class="progress-bar bg-success" role="progressbar" style="background: #bf9235!important;width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                                </div>
+                                <span class="progress-label">200,000,000₫</span>
+                                <span class="progress-status">400,000,000₫</span>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade in" id="level-tdl" style="padding: 20px;">
+                                <div class="reward" style="color:#ff6666">
+                                    <div class="reward-icon">
+                                        <img src="https://forvietvn.com/Content/Forviet/img/dlc1.png">
+                                    </div>
+                                    <div class="reward-content">Tổng đại lý</div>
+                                    <div class="reward-content fullName"> doan thi ngoc diep </div>
+                                    <div class="reward-amount">
+                                        Số TĐL cấp dưới:
+                                        <b>0</b>
+                                    </div>
+                                </div>
+                                <span class="progress-label">0%</span>
+                                <span class="progress-status">100%</span>
+
+                                <div class="progress">
+                                    <div class="progress-bar bg-success" role="progressbar" style="background: #ff6666!important;width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                                </div>
+                                <span class="progress-label">0 TĐL</span>
+                                <span class="progress-status">4 TĐL</span>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade in" id="level-npp" style="padding: 20px;">
+                                <div class="reward" style="color:#bf4d35">
+                                    <div class="reward-icon">
+
+                                        <img src="https://forvietvn.com/Content/Forviet/img/dlc1.png">
+                                    </div>
+                                    <div class="reward-content">Nhà phân phối</div>
+                                    <div class="reward-content fullName"> doan thi ngoc diep </div>
+                                    <div class="reward-amount">
+                                        Số TĐL cấp dưới:
+                                        <b>0</b>
+                                    </div>
+                                </div>
+                                <span class="progress-label">0%</span>
+                                <span class="progress-status">100%</span>
+
+                                <div class="progress">
+                                    <div class="progress-bar bg-success" role="progressbar" style="background: #bf4d35!important;width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                                </div>
+                                <span class="progress-label">0 TĐL</span>
+                                <span class="progress-status">4 TĐL</span>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
-                                            </div>
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="progress progress-sm mr-2">
-                                                        <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
+        <div class="col-xl-4 col-lg-5 col-12">
+
+            <div class="ms-panel ms-crypto-orders">
+                <div class="ms-panel-header">
+                    <div class="d-flex justify-content-between">
+                        <div class="ms-header-text">
+                            <h6>Hoa hồng gần đây</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="ms-panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover hide-thead">
+                            <thead>
+                                <tr class="table-items">
+                                    <th scope="col">Nội dung</th>
+                                    <th scope="col">Số tiền (₫)</th>
+                                    <th scope="col">Thời gian</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Thưởng trực tiếp 3% t? nhathuy</td>
+                                    <td>117,120 ₫</td>
+                                    <td>30/04/2021 06:56</td>
+                                </tr>
+                                <tr>
+                                    <td>Hoa hồng chênh lệch cấp đại lý</td>
+                                    <td>95,200 ₫</td>
+                                    <td>30/04/2021 06:38</td>
+                                </tr>
+                                <tr>
+                                    <td>Hoa hồng chênh lệch cấp đại lý</td>
+                                    <td>200,000 ₫</td>
+                                    <td>30/04/2021 06:38</td>
+                                </tr>
+                                <tr>
+                                    <td>Hoa hồng đồng danh hiệu tầng 1: 0.5%</td>
+                                    <td>19,520 ₫</td>
+                                    <td>30/04/2021 06:38</td>
+                                </tr>
+                                <tr>
+                                    <td>Hoa hồng doanh số cá nhân 10%</td>
+                                    <td>192,000 ₫</td>
+                                    <td>27/04/2021 22:04</td>
+                                </tr>
+                                <tr>
+                                    <td>Hoa hồng doanh số cá nhân 5%</td>
+                                    <td>1,900,000 ₫</td>
+                                    <td>27/04/2021 22:04</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content Row -->
+    <div class="row">
+
+        <!-- Content Column -->
+        <div class="col-lg-8 mb-4">
+
+            <!-- Project Card Example -->
+            <div class="card shadow mb-4">
+                <div class="card-body">
+                    <div class=" ms-widget ms-panel-fh">
+
+                        <div class="ms-panel-body">
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="w_chartper">
+                                        <link href="/Content/Publishing/css/view_trades.css" rel="stylesheet">
+                                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+                                        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                                        <div id="chart_div">
+                                            <div style="position: relative;">
+                                                <div dir="ltr" style="position: relative; width: 762px; height: 400px;">
+                                                    <div style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%;" aria-label="A chart."><svg width="762" height="400" aria-label="A chart." style="overflow: hidden;">
+                                                            <defs id="_ABSTRACT_RENDERER_ID_0">
+                                                                <clipPath id="_ABSTRACT_RENDERER_ID_1">
+                                                                    <rect x="131" y="77" width="500" height="247"></rect>
+                                                                </clipPath>
+                                                            </defs>
+                                                            <rect x="0" y="0" width="762" height="400" stroke="none" stroke-width="0" fill="#ffffff"></rect>
+                                                            <g>
+                                                                <rect x="328" y="43" width="105" height="13" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect>
+                                                                <g>
+                                                                    <rect x="328" y="43" width="105" height="13" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect>
+                                                                    <g><text text-anchor="start" x="359" y="54.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">Doanh số (₫)</text></g>
+                                                                    <rect x="328" y="43" width="26" height="13" stroke="none" stroke-width="0" fill="#0596d8"></rect>
+                                                                </g>
+                                                            </g>
+                                                            <g>
+                                                                <rect x="131" y="77" width="500" height="247" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect>
+                                                                <g clip-path="url(https://forvietvn.com/dashboard#_ABSTRACT_RENDERER_ID_1)">
+                                                                    <g>
+                                                                        <rect x="131" y="323" width="500" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect>
+                                                                        <rect x="131" y="262" width="500" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect>
+                                                                        <rect x="131" y="200" width="500" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect>
+                                                                        <rect x="131" y="139" width="500" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect>
+                                                                        <rect x="131" y="77" width="500" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect>
+                                                                        <rect x="131" y="292" width="500" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect>
+                                                                        <rect x="131" y="231" width="500" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect>
+                                                                        <rect x="131" y="169" width="500" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect>
+                                                                        <rect x="131" y="108" width="500" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect>
+                                                                    </g>
+                                                                    <g>
+                                                                        <rect x="163" y="200" width="103" height="0.5" stroke="none" stroke-width="0" fill="#0596d8"></rect>
+                                                                        <rect x="330" y="200" width="102" height="0.5" stroke="none" stroke-width="0" fill="#0596d8"></rect>
+                                                                        <rect x="496" y="200" width="103" height="0.5" stroke="none" stroke-width="0" fill="#0596d8"></rect>
+                                                                    </g>
+                                                                    <g>
+                                                                        <rect x="131" y="200" width="500" height="1" stroke="none" stroke-width="0" fill="#333333"></rect>
+                                                                    </g>
+                                                                </g>
+                                                                <g></g>
+                                                                <g>
+                                                                    <g><text text-anchor="middle" x="214.66666666666669" y="343.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">12</text></g>
+                                                                    <g><text text-anchor="middle" x="381" y="343.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">01</text></g>
+                                                                    <g><text text-anchor="middle" x="547.3333333333334" y="343.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#222222">02</text></g>
+                                                                    <g><text text-anchor="end" x="118" y="328.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#444444">-1.0</text></g>
+                                                                    <g><text text-anchor="end" x="118" y="266.55" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#444444">-0.5</text></g>
+                                                                    <g><text text-anchor="end" x="118" y="205.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#444444">0.0</text></g>
+                                                                    <g><text text-anchor="end" x="118" y="143.55" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#444444">0.5</text></g>
+                                                                    <g><text text-anchor="end" x="118" y="82.05" font-family="Arial" font-size="13" stroke="none" stroke-width="0" fill="#444444">1.0</text></g>
+                                                                </g>
+                                                            </g>
+                                                            <g></g>
+                                                        </svg>
+                                                        <div aria-label="A tabular representation of the data in the chart." style="position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden;">
+                                                            <table>
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Element</th>
+                                                                        <th>Doanh số (₫)</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>12</td>
+                                                                        <td>0</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>01</td>
+                                                                        <td>0</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>02</td>
+                                                                        <td>0</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
                                                     </div>
                                                 </div>
+                                                <div aria-hidden="true" style="display: none; position: absolute; top: 410px; left: 772px; white-space: nowrap; font-family: Arial; font-size: 13px;">Doanh số (₫)</div>
+                                                <div></div>
                                             </div>
                                         </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                    </div>
+                                    <div class="per-detail">
+                                        <div class="year-header related d-flex">
+                                            <div class="m">Tháng</div>
+
+                                            <div class="m">12</div>
+                                            <div class="m">01</div>
+                                            <div class="m">02</div>
+
+                                            <div class="m">Tổng</div>
+                                        </div>
+                                        <div class="per-item ">
+                                            <div class="year resetChart d-flex">
+                                                <div class="m text-primary">Số tiền</div>
+
+                                                <div class="m text-success">0</div>
+                                                <div class="m text-success">0</div>
+                                                <div class="m text-success">0</div>
+
+                                                <div class="m text-success">0</div>
+                                            </div>
+
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pending Requests Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Pending Requests</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Content Row -->
-
-                    <div class="row">
-
-                        <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-area">
-                                        <canvas id="myAreaChart"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pie Chart -->
-                        <div class="col-xl-4 col-lg-5">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-pie pt-4 pb-2">
-                                        <canvas id="myPieChart"></canvas>
-                                    </div>
-                                    <div class="mt-4 text-center small">
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> Direct
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> Social
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> Referral
-                                        </span>
-                                    </div>
+                                    <script>
+                                        $(".total3Month").text('0');
+                                    </script>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Content Row -->
-                    <div class="row">
-
-                        <!-- Content Column -->
-                        <div class="col-lg-6 mb-4">
-
-                            <!-- Project Card Example -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Projects</h6>
-                                </div>
-                                <div class="card-body">
-                                    <h4 class="small font-weight-bold">Server Migration <span
-                                            class="float-right">20%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 20%"
-                                            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Sales Tracking <span
-                                            class="float-right">40%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"
-                                            aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Customer Database <span
-                                            class="float-right">60%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar" role="progressbar" style="width: 60%"
-                                            aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Payout Details <span
-                                            class="float-right">80%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 80%"
-                                            aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Account Setup <span
-                                            class="float-right">Complete!</span></h4>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
-                                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Color System -->
-                            <div class="row">
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-primary text-white shadow">
-                                        <div class="card-body">
-                                            Primary
-                                            <div class="text-white-50 small">#4e73df</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-success text-white shadow">
-                                        <div class="card-body">
-                                            Success
-                                            <div class="text-white-50 small">#1cc88a</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-info text-white shadow">
-                                        <div class="card-body">
-                                            Info
-                                            <div class="text-white-50 small">#36b9cc</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-warning text-white shadow">
-                                        <div class="card-body">
-                                            Warning
-                                            <div class="text-white-50 small">#f6c23e</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-danger text-white shadow">
-                                        <div class="card-body">
-                                            Danger
-                                            <div class="text-white-50 small">#e74a3b</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-secondary text-white shadow">
-                                        <div class="card-body">
-                                            Secondary
-                                            <div class="text-white-50 small">#858796</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-light text-black shadow">
-                                        <div class="card-body">
-                                            Light
-                                            <div class="text-black-50 small">#f8f9fc</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-dark text-white shadow">
-                                        <div class="card-body">
-                                            Dark
-                                            <div class="text-white-50 small">#5a5c69</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="col-lg-6 mb-4">
-
-                            <!-- Illustrations -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="text-center">
-                                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                                            src="img/undraw_posting_photo.svg" alt="...">
-                                    </div>
-                                    <p>Add some quality, svg illustrations to your project courtesy of <a
-                                            target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a
-                                        constantly updated collection of beautiful svg images that you can use
-                                        completely free and without attribution!</p>
-                                    <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on
-                                        unDraw &rarr;</a>
-                                </div>
-                            </div>
-
-                            <!-- Approach -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
-                                </div>
-                                <div class="card-body">
-                                    <p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce
-                                        CSS bloat and poor page performance. Custom CSS classes are used to create
-                                        custom components and custom utility classes.</p>
-                                    <p class="mb-0">Before working with this theme, you should become
-                                        familiar with the
-                                        Bootstrap framework, especially the utility classes.</p>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-                <!-- /.container-fluid -->
-
-            </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
-
-        </div>
-        <!-- End of Content Wrapper -->
-
-    </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
                 </div>
             </div>
+
         </div>
     </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="{{ asset('/public/vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('/public/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="{{ asset('/public/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="{{ asset('/public/vendor/js/sb-admin-2.min.js') }}"></script>
-
-    <!-- Page level plugins -->
-    <script src="{{ asset('/public//vendor/chart.js/Chart.min.js') }}"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="{{ asset('/public/vendor/js/demo/chart-area-demo.js') }}"></script>
-    <script src="{{ asset('/public/vendor/js/demo/chart-pie-demo.js') }}"></script>
-
-</body>
-
-</html>
+</div>
+<!-- /.container-fluid -->
+@endsection
