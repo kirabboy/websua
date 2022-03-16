@@ -29,7 +29,17 @@
 		</li>
 		<li class="menu-item">
 			<a href="{{url('/products')}}">
+				<span><i class="fa-solid fa-table"></i>Sản phẩm</span>
+			</a>
+		</li>
+		<li class="menu-item">
+			<a href="{{url('/order')}}">
 				<span><i class="fa-solid fa-table"></i>Đặt hàng</span>
+			</a>
+		</li>
+		<li class="menu-item">
+			<a href="{{url('/promotion')}}">
+				<span><i class="fa-solid fa-table"></i>Đổ điểm </span>
 			</a>
 		</li>
 		<li class="menu-item">

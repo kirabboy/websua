@@ -2,7 +2,6 @@
 
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -17,9 +16,13 @@ class HomeController extends Controller
     {
         return view('document');
     }
-    public function products()
-    {
-        return view('products');
+    public function order()
+    { $products = DB::table('products')->where('price','>',0)->latest()->get();
+        return view('order', ['product' => $products]);
+    }
+    public function promotion()
+    {$point= DB::table('promotion')->where('points','>',0)->latest()->get();
+        return view('promotion', ['points' => $point]);
     }
     public function list_partner()
     {
@@ -38,5 +41,8 @@ class HomeController extends Controller
     public function cart()
     {
         return view('cart');
+    }
+    public function index(){
+       
     }
 }
