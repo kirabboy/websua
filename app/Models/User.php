@@ -47,4 +47,8 @@ class User extends Authenticatable
     public function getParent() {
         return $this->hasOne(User::class, 'id', 'id_dad')->with('getPoint');
     }
+
+    public function getChild() {
+        return $this->hasMany(User::class, 'id_dad', 'id')->with('getChild.getPoint');
+    }
 }

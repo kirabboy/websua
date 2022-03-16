@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\DB;
 class CongThucController extends Controller
 {
     public function hoahong() {
-        $this->hoahongtructiep(4,1000000,2);
+        //$this->hoahongtructiep(4,1000000,2);
+        // $this->gift();
         return view('hoahong');
     }
 
@@ -24,7 +25,6 @@ class CongThucController extends Controller
         $point = $id_dad->getPoint->point;
         $setting = SettingHoaHong::first();
         $doanhso += $amount;
-
         
         if($count == 2) {
             if($amount >= $setting->moc0 && $amount < $setting->moc1) {
@@ -39,6 +39,7 @@ class CongThucController extends Controller
         } elseif ($count == 0) {
             $point += $amount*0.02;
         }
+
         $id_dad->getPoint->point = $point;
         $id_dad->getPoint->doanhso = $doanhso;
         $id_dad->getPoint->save();
@@ -48,5 +49,6 @@ class CongThucController extends Controller
             self::hoahongtructiep($id_dad->id, $amount, $count);
         }
     }
+
 
 }
