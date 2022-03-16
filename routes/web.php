@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Users\UserController;
+use App\Http\Controllers\CongThucController;
+use App\Http\Controllers\SettingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,3 +44,12 @@ Route::get('/product-detail', [HomeController::class, 'product_detail']);
 Route::get('/cart', [HomeController::class, 'cart']);
 Route::get('/order-history', [HomeController::class, 'order_history']);
 Route::resource('products',ProductController::class);
+
+Route::get('/hoahong', [CongThucController::class, 'hoahong']);
+
+Route::get('/setting-hoa-hong-truc-tiep', [SettingController::class, 'hoahongtructiep'])->name('setHoahongtructiep');
+Route::post('/setting-hoa-hong-truc-tiep', [SettingController::class, 'postHoahongtructiep']);
+
+Route::get('/setting-banner', [SettingController::class, 'uploadBanner'])->name('setBannerAds');
+Route::get('/setting-banner', [SettingController::class, 'postBanner']);
+
