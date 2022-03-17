@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Users\UserController;
 use App\Http\Controllers\CongThucController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\ShippingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,10 +17,6 @@ use App\Http\Controllers\SettingController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-// Route::get('/', function () {
-//     return view('user.index');
-// });
 
 Route::get('/', [HomeController::class, 'getHome']);
 Route::get('/forgot-password', [HomeController::class, 'getForgotpw']);
@@ -38,7 +35,7 @@ Route::get('/', function () {
     return view('user.index');
 });
 Route::get('/document', [HomeController::class, 'document']);
-Route::get('/order', [HomeController::class, 'products']);
+Route::get('/order', [HomeController::class, 'order']);
 Route::get('/list-partner', [HomeController::class, 'list_partner']);
 Route::get('/product-detail', [HomeController::class, 'product_detail']);
 Route::get('/cart', [HomeController::class, 'cart']);
@@ -53,3 +50,10 @@ Route::post('/setting-hoa-hong-truc-tiep', [SettingController::class, 'postHoaho
 Route::get('/setting-banner', [SettingController::class, 'uploadBanner'])->name('setBannerAds');
 Route::get('/setting-banner', [SettingController::class, 'postBanner']);
 
+Route::get('/promotion', [HomeController::class, 'promotion']);
+Route::resource('products',ProductController::class);
+
+
+Route::get('/lay-quan-huyen-theo-tinh-thanh', [ShippingController::class, 'districtOfProvince']);
+
+Route::get('/lay-phuong-xa-theo-quan-huyen', [ShippingController::class, 'wardOfDistrict']);

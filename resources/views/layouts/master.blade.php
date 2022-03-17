@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset=UTF-8>
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>@yield('title')</title>
+    <meta charset=UTF-8>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@yield('title')</title>
     <!-- Custom fonts for this template-->
     <link href="{{ asset('/public/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <meta name="url-home" content="{{ URL::to('/') }}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Custom styles for this template-->
     <link href="{{ asset('css/boostrap/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
     <!-- <link href="{{ asset('/public/vendor/css/sb-admin-2.min.css') }}" rel="stylesheet"> -->
@@ -24,9 +25,9 @@
     <link href="{{ asset('css/cart.css')}}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/list-partner.css')}}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/order-history.css')}}" rel="stylesheet" type="text/css">
+    
 </head>
-</head>
-</head>
+
 <body id="page-top">
     @include('layouts.header')
 
@@ -35,15 +36,17 @@
     @include('layouts.footer')
 
     <script type="text/javascript">
-        $(document).ready(function () {
-            $('#sidebarCollapse').on('click', function () {
+        $(document).ready(function() {
+            $('#sidebarCollapse').on('click', function() {
                 $('#sidebar').toggleClass('active');
             });
         });
-      </script>
+    </script>
     <script src="{{ asset('/public/vendor/jquery/jquery.min.js') }}"></script>
     <!-- <script src="{{ asset('/public/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script> -->
     <script src="{{ asset('js/bootstrap/bootstrap.bundle.min.js') }}"></script>
-
-</body>
-</html>
+    <script src="//cdn.ckeditor.com/4.17.2/standard/ckeditor.js"></script>
+    <script type="text/javascript">
+        CKEDITOR.replace('ckeditor_des');
+        CKEDITOR.replace('ckeditor_short_des');
+    </script>

@@ -4,6 +4,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\SettingHoaHong;
+use App\Models\Province;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -14,7 +15,7 @@ class SettingController extends Controller
         $setting = SettingHoaHong::first();
         return view('setting.hoahongtructiep', compact('setting'));
     }
-
+ 
     public function postHoahongtructiep(Request $request) {
         $setting = SettingHoaHong::first();
         $setting->moc0 = $request->moc0;

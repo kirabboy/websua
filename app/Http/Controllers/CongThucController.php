@@ -4,6 +4,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Province;
+use App\Models\District;
+use App\Models\Ward;
 use App\Models\SettingHoaHong;
 
 use Illuminate\Http\Request;
@@ -14,7 +17,10 @@ class CongThucController extends Controller
     public function hoahong() {
         //$this->hoahongtructiep(4,1000000,2);
         // $this->gift();
-        return view('hoahong');
+        $province = Province::select('matinhthanh', 'tentinhthanh')->get();
+        $district = District::select('maquanhuyen', 'tenquanhuyen')->get();
+        $ward = Ward::select('maphuongxa', 'tenphuongxa')->get();
+        return view('hoahong',compact('province','district','ward'));
     }
 
     public function hoahongtructiep($id, $amount, $count) {
