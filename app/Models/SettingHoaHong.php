@@ -5,10 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class SettingHoaHong extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        
-    ];
+    protected $table = 'setting_hoahong';
+    protected $guarded = [];
 }

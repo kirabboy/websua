@@ -6,27 +6,27 @@
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content-wrapper" class="d-flex flex-column">
 
-        <!-- Main Content -->
-        <div id="content">
+            <!-- Main Content -->
+            <div id="content">
 
-            <!-- Topbar -->
-            <nav class="navbar navbar-expand navbar-light topbar mb-4 static-top shadow">
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light topbar mb-4 static-top shadow">
 
-                <!-- Sidebar Toggle (Topbar) -->
-                <button type="button" id="sidebarCollapse" class="btn btn-info">
-                    <i class="fas fa-align-left"></i>
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-left"></i>
 
-                </button>
+                    </button>
 
-                <!-- Topbar Search -->
-                <div class="col-xs-6 col-sm-4 c-none ml-auto">
-                    <div class="timewx setTime text-light">
-                        17.02.2022 14:22:03</div>
-                </div>
-                <!-- Topbar Navbar -->
-                <ul class="navbar-nav ml-auto">
+                    <!-- Topbar Search -->
+                    <div class="col-xs-6 col-sm-4 c-none ml-auto">
+                        <div class="timewx setTime text-light">
+                            17.02.2022 14:22:03</div>
+                    </div>
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
                     <!-- Nav Item - Alerts -->
                     <!-- <li class="nav-item dropdown no-arrow mx-1">
                         <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

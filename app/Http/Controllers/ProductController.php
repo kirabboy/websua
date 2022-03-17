@@ -39,18 +39,18 @@ class ProductController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'image' => 'required',
             'price' => 'required',
-            'content'=>'required'
+            'description'=>'required'
         ]);
-        $input = $request->all();
+        // $input = $request->all();
   
-        if ($image = $request->file('image')) {
-            $destinationPath = 'image/';
-            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $profileImage);
-            $input['image'] = "$profileImage";
+        if ($request->has('file_upload')) {
+            $file = $request->file_upload;
+            $ext=$request->file_upload->extension();
+            $file_name =time().'-'.'product.'.$ext;
+            $file->move(public_path('image'), $file_name);
         }
+        $request->merge(['image' => $file_name]);
 
         Product::create($request->all());
         return redirect()->route('products.index')
@@ -90,18 +90,16 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required',
             'price' => 'required',
-            'content'=>'required'
+            'description'=>'required'
         ]);
-        $input = $request->all();
-  
-        if ($image = $request->file('image')) {
-            $destinationPath = 'image/';
-            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $profileImage);
-            $input['image'] = "$profileImage";
-        }else{
-            unset($input['image']);
+        if ($request->has('file_upload')) {
+            $file = $request->file_upload;
+            $ext=$request->file_upload->extension();
+            $file_name =time().'-'.'product.'.$ext;
+            $file->move(public_path('image'), $file_name);
         }
+        $request->merge(['image' => $file_name]);
+
         $product->update($request->all());
 
         return redirect()->route('products.index')

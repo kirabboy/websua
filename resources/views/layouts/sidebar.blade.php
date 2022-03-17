@@ -42,7 +42,17 @@
 		</li>
 		<li class="menu-item">
 			<a href="{{url('/products')}}">
+				<span><i class="fa-solid fa-table"></i>Sản phẩm</span>
+			</a>
+		</li>
+		<li class="menu-item">
+			<a href="{{url('/order')}}">
 				<span><i class="fa-solid fa-table"></i>Đặt hàng</span>
+			</a>
+		</li>
+		<li class="menu-item">
+			<a href="{{url('/promotion')}}">
+				<span><i class="fa-solid fa-table"></i>Đổ điểm </span>
 			</a>
 		</li>
 		<li class="menu-item">
@@ -94,6 +104,19 @@
 		<li>
 			<hr>
 		</li> -->
+
+		<li class="menu-item">
+			<a href="{{url('/setting-hoa-hong-truc-tiep')}}">
+				<span><i class="fa-solid fa-table"></i>Cài đặt hoa hồng trực tiếp</span>
+			</a>
+		</li>
+
+		<li class="menu-item">
+			<a href="{{url('/setting-banner')}}">
+				<span><i class="fa-solid fa-table"></i>Cài đặt ảnh banner</span>
+			</a>
+		</li>
+
 		<li>
 			<div class="support">
 				<p><i class="fa-solid fa-envelope"></i>: 0969979400</p>
