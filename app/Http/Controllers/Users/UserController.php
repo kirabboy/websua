@@ -8,11 +8,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class UserController extends Controller
 {
     public function getLogin(){
-        return view('login');
+        return view('user.login');
     }
     public function checkLogin(Request $request){
         $error = [
@@ -25,7 +27,7 @@ class UserController extends Controller
         ], $error);
         if (Auth::attempt($credentials, $request->input('remember'))) {
             $request->session()->regenerate();
-            return redirect()->intended('profile');
+            return redirect()->intended('/');
         }
         return back()->with('mess','Tài khoản hoặc mật khẩu không đúng!',);
     }
@@ -33,11 +35,11 @@ class UserController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('login');
+        return redirect('/login');
     }
 
     public function getRegister(){
-        return view('register');
+        return view('user.register');
     }
     public function checkRegister(Request $request){
         $error = [
@@ -60,5 +62,8 @@ class UserController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
         return back()->with('mess','Đăng ký thành công!');
+    }
+    public function getForgotpw(){
+        return view('user.forgotpassword');
     }
 }

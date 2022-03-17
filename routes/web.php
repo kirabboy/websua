@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Users\UserController;
+use App\Http\Controllers\Admin\AdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,18 +20,33 @@ use App\Http\Controllers\Users\UserController;
 //     return view('user.index');
 // });
 
-Route::get('/', [HomeController::class, 'getHome']);
-Route::get('/forgot-password', [HomeController::class, 'getForgotpw']);
-Route::get('/profile', [HomeController::class, 'getProfile'])->name('profile')->middleware('auth');
-Route::get('/transactions', [HomeController::class, 'getTransactions'])->middleware('auth');
-Route::get('/statistic', [HomeController::class, 'getStatistic'])->middleware('auth');
-Route::get('/distribution', [HomeController::class, 'getDistribution'])->middleware('auth');
-Route::get('/support', [HomeController::class, 'getSupport'])->middleware('auth');
 
-Route::get('/login', [UserController::class, 'getLogin'])->name('login');
 Route::post('/login', [UserController::class, 'checkLogin']);
-Route::get('/logout', [UserController::class, 'getLogout']);
-Route::get('/register', [UserController::class, 'getRegister'])->middleware('auth');
 Route::post('/register', [UserController::class, 'checkRegister']);
 
-Route::middleware(['auth'])->group()
+Route::group(['middleware' => ['checklogin']], function(){
+    Route::get('/login', [UserController::class, 'getLogin'])->name('login');
+    Route::get('/forgot-password', [UserController::class, 'getForgotpw']);
+});
+
+Route::group(['middleware' => ['auth']], function(){
+    Route::group(['middleware' => ['role:admin']], function () {
+        Route::get('/user-management', [AdminController::class, 'getUserManagement']);
+    });
+
+    Route::get('/logout', [UserController::class, 'getLogout']);
+    Route::get('/register', [UserController::class, 'getRegister']);
+    Route::get('/support', [HomeController::class, 'getSupport']);
+    Route::get('/distribution', [HomeController::class, 'getDistribution']);
+    Route::get('/statistic', [HomeController::class, 'getStatistic']);
+    Route::get('/transactions', [HomeController::class, 'getTransactions']);
+    Route::get('/profile', [HomeController::class, 'getProfile'])->name('profile');
+    Route::get('/', [HomeController::class, 'getHome']);
+    Route::get('/document', [HomeController::class, 'document']);
+    Route::get('/order', [HomeController::class, 'products']);
+    Route::get('/list-partner', [HomeController::class, 'list_partner']);
+    Route::get('/product-detail', [HomeController::class, 'product_detail']);
+    Route::get('/cart', [HomeController::class, 'cart']);
+    Route::get('/order-history', [HomeController::class, 'order_history']);
+    Route::resource('products',ProductController::class);
+});
