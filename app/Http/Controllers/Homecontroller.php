@@ -24,10 +24,6 @@ class HomeController extends Controller
     {$point= DB::table('promotion')->where('points','>',0)->latest()->get();
         return view('promotion', ['points' => $point]);
     }
-    public function list_partner()
-    {
-        return view('list-partner');
-    }
 
     public function order_history()
     {

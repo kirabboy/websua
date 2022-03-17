@@ -7,16 +7,7 @@ use App\Http\Controllers\Users\UserController;
 use App\Http\Controllers\CongThucController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\ShippingController;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Http\Controllers\PartnerController;
 
 Route::get('/', [HomeController::class, 'getHome']);
 Route::get('/forgot-password', [HomeController::class, 'getForgotpw']);
@@ -36,7 +27,7 @@ Route::get('/', function () {
 });
 Route::get('/document', [HomeController::class, 'document']);
 Route::get('/order', [HomeController::class, 'order']);
-Route::get('/list-partner', [HomeController::class, 'list_partner']);
+
 Route::get('/product-detail', [HomeController::class, 'product_detail']);
 Route::get('/cart', [HomeController::class, 'cart']);
 Route::get('/order-history', [HomeController::class, 'order_history']);
@@ -57,3 +48,8 @@ Route::resource('products',ProductController::class);
 Route::get('/lay-quan-huyen-theo-tinh-thanh', [ShippingController::class, 'districtOfProvince']);
 
 Route::get('/lay-phuong-xa-theo-quan-huyen', [ShippingController::class, 'wardOfDistrict']);
+
+//Doi Nhom Controllers
+Route::get('/list-partner', [PartnerController::class, 'list_partner']);
+
+

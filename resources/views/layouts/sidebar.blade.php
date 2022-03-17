@@ -1,5 +1,3 @@
-<!-- Sidebar -->
-<!-- Sidebar  -->
 <nav id="sidebar" class="navbar-nav sidebar-main sidebar-dark accordion" >
 	<div class="logo-brand">
 		<div class="sidebar-logo d-flex flex-column text-center " href="{{url('/')}}">
@@ -43,12 +41,12 @@
 			</a>
 		</li>
 		<li class="menu-item">
-			<a href="{{url('/list-partner')}}">
+			<a href="{{url('/order-history')}}">
 				<span><i class="fa-solid fa-table"></i>Lịch sử đặt hàng</span>
 			</a>
 		</li>
 		<li class="menu-item">
-			<a href="{{url('/order-history')}}">
+			<a href="{{url('/list-partner')}}">
 				<span><i class="fa-solid fa-table"></i>Danh sách đối tác</span>
 			</a>
 		</li>

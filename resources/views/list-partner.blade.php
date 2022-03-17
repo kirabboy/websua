@@ -74,7 +74,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row tab-pane   active" id="menu1">
+            <div class="row tab-pane active" id="menu1">
                 <div class="col-sm-12">
                     <div>
                         <form id="frmSearch">
@@ -160,6 +160,7 @@
 
 
                                             </thead>
+<!-- Data user here -->
                                             <tbody>
                                                 <tr>
                                                     <td>1</td>
@@ -224,6 +225,7 @@
 
                                             </tbody>
                                         </table>
+<!-- End Data user -->
                                         <div class="bottom-pager">
                                             <div class="left">
                                                 <a class="first-disable" title="First page"></a>
@@ -266,12 +268,7 @@
                                         </div>
                                         <script></script>
                                     </div>
-                                    <!-- <style>
-                                        .c-label {
-                                            min-width: 120px;
-                                            display: block;
-                                        }
-                                    </style> -->
+                                    
                                 </div>
 
                             </div>
