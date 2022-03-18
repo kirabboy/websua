@@ -39,7 +39,7 @@
                                 <input type="checkbox" checked="" name="remember" />
                                 <span>Remember me</span>
                             </label>
-                            <a class="col-6" href="#">Forgot password?</a>
+                            <a class="col-6" href="{{url('/forgot-password')}}">Forgot password?</a>
                         </div>
                     </div>
                 </form>

@@ -152,11 +152,11 @@
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                             <a class="dropdown-menu-header">
                                 <h6 class="dropdown-header ms-inline m-0">
-                                    <span class="text-disabled">Xin chào, doan thi ngoc diep </span>
+                                    <span class="text-disabled">Xin chào, {{Auth::user()->name}}</span>
                                 </h6>
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="profile">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Thông tin cá nhân
                             </a>

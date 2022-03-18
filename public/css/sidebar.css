@@ -15,6 +15,17 @@
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
   overflow-y: auto;
 }
+.sidebar-main::-webkit-scrollbar-track{
+  background-color: pink;
+}
+.sidebar-main::-webkit-scrollbar{
+  width: 5px;
+  background-color: #F5F5F5;
+}
+.sidebar-main::-webkit-scrollbar-thumb{
+  border-radius: 10px;
+  background-color: #D62929;
+}
 .sidebar-main .side-nav {
   padding-top: 10px;
   list-style-type: none;

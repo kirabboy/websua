@@ -1,13 +1,19 @@
-<nav id="sidebar" class="navbar-nav sidebar-main sidebar-dark accordion" >
+<nav id="sidebar" class="navbar-nav sidebar-main sidebar-dark accordion">
 	<div class="logo-brand">
-		<div class="sidebar-logo d-flex flex-column text-center " href="{{url('/')}}">
+		<div class="sidebar-logo d-flex flex-column text-center">
 
-			<a href="#" class="sidebar-brand-icon">
-				<img src="https://forvietvn.com/Images/logo.png?v2" alt="" width="80px">
+			<a href="{{url('/')}}" class="sidebar-brand-icon">
+				<img src="{{ asset('image/logo.png') }}" alt="" width="80px">
 			</a>
 			<div class="box-text">
-				<h2> user name </h2>
-				<span class="label-color">Đại lý Bán Buôn</span>
+				<h2>{{Auth::user()->name}}</h2>
+				<span class="label-color">
+					@if (Auth::user()->hasRole('admin')) Quản trị
+					@elseif (Auth::user()->hasRole('distribution')) Trung tâm phân phối
+					@elseif (Auth::user()->hasRole('agent')) Đại lý bán buôn
+					@else Cộng tác viên
+					@endif
+				</span>
 			</div>
 			<!-- 	
 	<div class="sidebar-brand-text mx-3">SB Adminss <sup>2</sup></div> -->
@@ -15,6 +21,13 @@
 		</div>
 	</div>
 	<ul class="side-nav">
+		@role('admin')
+		<li class="menu-item">
+			<a href="{{url('/user-management')}}">
+				<span><i class="fa-solid fa-table"></i>Quản lý Users</span>
+			</a>
+		</li>
+		@endrole
 		<li class="menu-item">
 			<a href="{{url('/')}}">
 				<span><i class="fa-solid fa-table"></i>Bảng điều khiển</span>
@@ -50,6 +63,45 @@
 				<span><i class="fa-solid fa-table"></i>Danh sách đối tác</span>
 			</a>
 		</li>
+		<li class="menu-item">
+			<a href="{{url('/register')}}">
+				<span><i class="fa-solid fa-table"></i>Đăng ký</span>
+			</a>
+		</li>
+		<li class="menu-item">
+			<a href="{{url('/distribution')}}">
+				<span><i class="fa-solid fa-table"></i>Trung tâm phân phối</span>
+			</a>
+		</li>
+		<li class="menu-item">
+			<a href="{{url('/profile')}}">
+				<span><i class="fa-solid fa-table"></i>Thông tin cá nhân</span>
+			</a>
+		</li>
+		<li class="menu-item">
+			<a href="{{url('/transactions')}}">
+				<span><i class="fa-solid fa-table"></i>Hoa hồng được hưởng</span>
+			</a>
+		</li>
+		<li class="menu-item">
+			<a href="{{url('/statistic')}}">
+				<span><i class="fa-solid fa-table"></i>Lịch sử mua hàng hệ thống</span>
+			</a>
+		</li>
+		<li class="menu-item">
+			<a href="{{url('/support')}}">
+				<span><i class="fa-solid fa-table"></i>Trợ giúp</span>
+			</a>
+		</li>
+		<li class="menu-item">
+			<a href="logout">
+				<span><i class="fa-solid fa-arrow-right-from-bracket"></i>Đăng xuất</span>
+			</a>
+		</li>
+		<!-- <li><hr></li>
+		<li>
+			<hr>
+		</li> -->
 
 		<li class="menu-item">
 			<a href="{{url('/setting-hoa-hong-truc-tiep')}}">

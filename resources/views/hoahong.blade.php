@@ -1,7 +1,3 @@
-<meta name="csrf-token" content="{{ csrf_token() }}" />
-<meta name="url-home" content="{{ URL::to('/') }}" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 @extends('layouts.master')
 
 @section('title', 'SB Admin 2 - Dashboard')
@@ -9,7 +5,9 @@
 @section('content')
 
 
-<div class="col-md-12 pb-3">
+
+
+<!-- <div class="col-md-12 pb-3">
     <select name="sel_province" class="form-control select2" data-placeholder=" Cấp tỉnh " required>
         <option value=""> Cấp tỉnh </option>
             @foreach ($province as $value)
@@ -27,7 +25,7 @@
     <select class="form-control select2" name="sel_ward" data-placeholder=" Cấp xã " required>
         <option value=""> Cấp xã </option>
     </select>
-</div>
+</div> -->
 
 @endsection
 

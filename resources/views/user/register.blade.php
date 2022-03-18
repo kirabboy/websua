@@ -22,7 +22,7 @@
         @if (session('mess'))
         <div class="alert alert-success">
             {{ session('mess') }}
-            <a href="login">Đi tới trang đăng nhập!</a>
+            <a href="{{url('/login')}}">Đi tới trang đăng nhập!</a>
         </div>
         @endif
         <form method="post" action="register">
