@@ -1,0 +1,131 @@
+/* widget */
+.transactions-content.widget {
+    border: 1px solid #f5b80c;
+    box-shadow: 0px 0px 15px 0px rgb(0 0 0 / 20%);
+    border-radius: 5px;
+}
+.transactions-content.widget .widget-head{
+    border-bottom: 1px solid #4f4f4f;
+    position: relative;
+    padding: 14px 15px 11px;
+    background: linear-gradient(to left, #91EAE4, #86A8E7, #7F7FD5);
+}
+.transactions-content.widget .widget-head .heading {
+    color: white;
+    font-size: 20px;
+    margin: 0;
+    line-height: 22px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+.transactions-content.widget .widget-body{
+    padding: 15px;
+}
+
+/* Bảng thưởng */
+.transactions-content.widget .bangthuong i.fas.fa-eye{
+    padding: 4.5px;
+    border: 1px solid #ccc;
+    width: 25px;
+    height: 25px;
+    line-height: 1.2;
+    font-size: 12px;
+    color: #004781;
+}
+.transactions-content.widget .bangthuong i.fas.fa-eye:hover{
+    color: black !important;
+}
+.transactions-content.widget .bangthuong{
+    font-weight: 500;
+    margin: 0;
+}
+
+/* Bảng tìm kiếm */
+.transactions-content.widget table{
+    font-size: 14px;
+}
+.transactions-content.widget .bangtimkiem td{
+    padding: 8px;
+    line-height: 34px;
+}
+.transactions-content.widget .bangtimkiem input{
+    height: 34px;
+}
+.transactions-content.widget .bangtimkiem a.btn{
+    color: #fff;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/* Pagination */
+.transactions-content.widget .pagination{
+    justify-content: space-between;
+    background: #ddd;
+    border: 1px solid #dedede;
+    border-radius: 0;
+    padding: 3px;
+    font-size: 11px;
+    font-weight: bold;
+    color: #878793;
+}
+.transactions-content.widget .pagination .left a{
+    width: 21px;
+    height: 21px;
+}
+.transactions-content.widget .pagination .left *{
+    float: left;
+    margin-right: 5px;
+}
+.transactions-content.widget .pagination .left input{
+    width: 16px;
+    height: 14px;
+    border: 1px solid #dedede;
+    outline: none;
+    margin-top: 2px;
+}
+.transactions-content.widget .pagination select{
+    border: 1px solid #dedede;
+    outline: none;
+}
+.transactions-content.widget .pagination .back0{
+    background: url('../img/icon.png') no-repeat scroll left -128px transparent;
+}
+.transactions-content.widget .pagination .back1{
+    background: url('../img/icon.png') no-repeat scroll left -446px transparent;
+}
+.transactions-content.widget .pagination .next1{
+    background: url('../img/icon.png') no-repeat scroll left -340px transparent;
+}
+.transactions-content.widget .pagination .next1:hover{
+    background: url('../img/icon.png') no-repeat scroll left -313px transparent;
+}
+.transactions-content.widget .pagination .next0{
+    background: url('../img/icon.png') no-repeat scroll left -234px transparent;
+}
+.transactions-content.widget .pagination .next0:hover{
+    background: url('../img/icon.png') no-repeat scroll left -207px transparent;
+}
+
+/* Responsive một chút */
+@media (max-width: 768px) {
+    .transactions-content.widget .bangtimkiem td{
+        display: block;
+        line-height: 20px;
+    }
+    .transactions-content.widget .bangthuong td:before {
+        content: attr(data-label);
+        display: inline-block;
+        margin-left: -100%;
+        width: 100%;
+    }
+    .transactions-content.widget .bangthuong td{
+        padding-left: 50%;
+        text-align: left;
+    }
+    .transactions-content.widget .bangthuong td, .transactions-content.widget .bangthuong tr{
+        display: block;
+    }
+    .transactions-content.widget .pagination{
+        flex-wrap: wrap;
+    }
+}

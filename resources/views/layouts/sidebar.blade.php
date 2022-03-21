@@ -52,10 +52,19 @@
 				<span><i class="fa-solid fa-table"></i>Danh sách đối tác</span>
 			</a>
 		</li>
-		<!-- <li><hr></li>
-		<li>
-			<hr>
-		</li> -->
+
+		<li class="menu-item">
+			<a href="{{url('/setting-hoa-hong-truc-tiep')}}">
+				<span><i class="fa-solid fa-table"></i>Cài đặt hoa hồng trực tiếp</span>
+			</a>
+		</li>
+
+		<li class="menu-item">
+			<a href="{{url('/setting-banner')}}">
+				<span><i class="fa-solid fa-table"></i>Cài đặt ảnh banner</span>
+			</a>
+		</li>
+
 		<li>
 			<div class="support">
 				<p><i class="fa-solid fa-envelope"></i>: 0969979400</p>

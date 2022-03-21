@@ -1,0 +1,113 @@
+/* widget */
+.distribution-content.widget {
+    border: 1px solid #f5b80c;
+    box-shadow: 0px 0px 15px 0px rgb(0 0 0 / 20%);
+    border-radius: 5px;
+}
+.distribution-content.widget .widget-head{
+    border-bottom: 1px solid #4f4f4f;
+    position: relative;
+    padding: 14px 15px 11px;
+    background: linear-gradient(to left, #91EAE4, #86A8E7, #7F7FD5);
+}
+.distribution-content.widget .widget-head .heading {
+    color: white;
+    font-size: 20px;
+    margin: 0;
+    line-height: 22px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+.distribution-content.widget .widget-body{
+    padding: 15px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+.distribution-content.widget .widget-footer{
+    padding: 15px;
+}
+
+/* Bảng tìm kiếm */
+.distribution-content.widget table{
+    font-size: 14px;
+}
+.distribution-content.widget .bangtimkiem td{
+    padding: 8px;
+    line-height: 34px;
+}
+.distribution-content.widget .bangtimkiem input{
+    height: 34px;
+}
+.distribution-content.widget .bangtimkiem a.btn{
+    color: #fff;
+    font-size: 14px;
+}
+.distribution-content.widget .bangtimkiem ::placeholder {
+    color: #ddd;
+}
+
+/* nav pills */
+.distribution-content.widget .nav-pills.row{
+    margin: 0;
+    justify-content: space-between;
+}
+.distribution-content.widget .nav-pills.row .nav-item{
+    padding: 0;
+    max-width: 33.1%;
+}
+.distribution-content.widget .nav-pills.row .nav-item a{
+    text-align: center;
+    text-transform: uppercase;
+    color: #34334a;
+    background-color: #e4e3e8;
+    border-radius: 3px 3px 0 0;
+    font-size: 14px;
+    padding: 10px;
+    line-height: 28px;
+}
+.distribution-content.widget .nav-pills.row .nav-item a:hover{
+    background-color: #ececec;
+}
+.distribution-content.widget .nav-pills.row .nav-item a.active{
+    background-color: #73a8dc;
+    color: #fff;
+}
+
+/* FOOTER */
+.distribution-content.widget .widget-footer.row{
+    margin: 0;
+    justify-content: space-between;
+}
+.distribution-content.widget .widget-footer.row .tab-content{
+    padding: 0;
+    max-width: 49%;
+}
+/* bản đồ */
+.distribution-content.widget .widget-footer iframe{
+    width: 100%;
+}
+
+/* các trung tâm phân phối */
+.distribution-content.widget .widget-footer .nav-pills .nav-link.active{
+    background: #dddddd59;
+}
+.distribution-content.widget .widget-footer .nav-pills .nav-item{
+    width: 100%;
+}
+.distribution-content.widget .widget-footer .nav-pills *{
+    color: #878793;
+    font-size: 14px;
+}
+.distribution-content.widget .widget-footer .nav-pills p{
+    margin-bottom: 10px;
+}
+
+/* Responsive một tí */
+@media (max-width: 768px) {
+    .distribution-content.widget .bangtimkiem td{
+        display: block;
+        line-height: 20px;
+    }
+    .distribution-content.widget .widget-footer.row .tab-content{
+        max-width: 100%;
+    }
+}
