@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use App\Models\Banner;
 
 class HomeController extends Controller
 {
     //
     public function document()
     {
-        return view('document');
+        $banner = Banner::all();
+        return view('document', compact('banner'));
     }
     
     public function order()

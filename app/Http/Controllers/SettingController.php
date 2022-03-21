@@ -4,8 +4,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\SettingHoaHong;
-use App\Models\Province;
 use App\Models\Product;
+use App\Models\Banner;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -40,5 +40,32 @@ class SettingController extends Controller
 
         dd($product);
         return view('test');
+    }
+
+    public function getBanner() {
+        $banner = Banner::all();
+        return view('setting.bannerAds', compact('banner'));
+    }
+
+    public function postBanner(Request $request) {
+        $banner = new Banner();
+        $banner->title = $request->title;
+
+        if($request->hasFile('image')) {
+            $file = $request->image;
+            $file_name = time().'.'.$file->getClientOriginalExtension();
+            $destinationPath = public_path('/banner');
+            $file->move($destinationPath, $file_name);
+            $banner->image = $file_name;
+        }
+
+        $banner->save();
+        return redirect()->back();
+    }
+
+    public function deleteBanner($id) {
+        $banner = Banner::find($id);
+        $banner->delete();
+        return redirect()->back();
     }
 }

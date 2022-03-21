@@ -15,6 +15,8 @@ class PartnerController extends Controller
         $user_id = $user->id;
         $listChild = [];
         $this->getAllChild($listChild, $user_id);
+        $listChild = collect($listChild)->sortBy('id');
+        
         return view('list-partner', compact('listChild'));
     }
 

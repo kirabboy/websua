@@ -52,8 +52,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/setting-hoa-hong-truc-tiep', [SettingController::class, 'hoahongtructiep'])->name('setHoahongtructiep');
     Route::post('/setting-hoa-hong-truc-tiep', [SettingController::class, 'postHoahongtructiep']);
 
-    Route::get('/setting-banner', [SettingController::class, 'uploadBanner'])->name('setBannerAds');
-    Route::get('/setting-banner', [SettingController::class, 'postBanner']);
+    Route::get('/setting-banner', [SettingController::class, 'getBanner'])->name('setBannerAds');
+    Route::post('/setting-banner', [SettingController::class, 'postBanner']);
+    Route::get('/setting-banner/delete/{id}', [SettingController::class, 'deleteBanner']);
 
     Route::get('/promotion', [HomeController::class, 'promotion']);
     Route::resource('products', ProductController::class);
