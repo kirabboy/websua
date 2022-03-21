@@ -28,7 +28,13 @@
                     </div>
                     <label class="col-sm-2 col-form-label">Cấp bậc</label>
                     <div class="col-sm-4">
-                        <h3 class="heading">Đại lý bán buôn</h3>
+                        <h3 class="heading">
+                            @if (Auth::user()->hasRole('admin')) Quản trị
+                            @elseif (Auth::user()->hasRole('distribution')) Trung tâm phân phối
+                            @elseif (Auth::user()->hasRole('agent')) Đại lý bán buôn
+                            @else Cộng tác viên
+                            @endif
+                        </h3>
                     </div>
                 </div>
                 <div class="form-group row">

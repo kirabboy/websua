@@ -4,6 +4,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\SettingHoaHong;
+use App\Models\Province;
+use App\Models\Product;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -14,7 +16,7 @@ class SettingController extends Controller
         $setting = SettingHoaHong::first();
         return view('setting.hoahongtructiep', compact('setting'));
     }
-
+ 
     public function postHoahongtructiep(Request $request) {
         $setting = SettingHoaHong::first();
         $setting->moc0 = $request->moc0;
@@ -31,5 +33,12 @@ class SettingController extends Controller
 
     public function uploadBanner () {
         return view('setting.bannerAds');
+    }
+
+    public function test($id) {
+        $product = Product::where('id', $id)->first();
+
+        dd($product);
+        return view('test');
     }
 }

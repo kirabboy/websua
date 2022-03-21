@@ -23,7 +23,7 @@
                         <h5>Tên đăng nhập</h5>
                         <input type="text" placeholder="Tên đăng nhập" class="form-control">
                         <input type="submit" class="form-control" value="Gửi" style="font-size: 14px;">
-                        <a href="#">Đăng nhập</a>
+                        <a href="{{url('/login')}}">Về trang đăng nhập</a>
                     </div>
                 </form>
             </div>

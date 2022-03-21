@@ -1,40 +1,15 @@
-
-
 var urlHome = jQuery('meta[name="url-home"]').attr('content');
 
 var token = jQuery('meta[name="csrf-token"]').attr('content');
 
-// function sendAjax(){
-//     $(".content-checkout").prepend('<div class="submit-overlay"><div class="spinner-border text-primary"></div></div>');
-//     $('select[name="sel_ward"]').html('<option value="">--- Cấp phường xã---</option>');
-//     $(".order-total .amount").text(formatNumber(order_total) + 'đ');
-//     $('.checkout-shipping-method').remove();
-//     $('.checkout-shipping-label td').css("opacity", "1");
-// }
-
-// function RecieveAjax(){
-//     $(".submit-overlay").remove();
-// }
-
-// $(document).ready(function() {
-//     $('.select2').select2({
-//         allowClear: true,
-//         theme: "classic",
-//         width: '100%'
-//     });
-// });
 $(document).on('change', 'select[name="sel_province"]', function(event) {
     event.preventDefault();
-    /* Act on the event */
+    
     flag = false;
     $('select[name="sel_district"]').html('<option value="">Cấp quận</option>');
-    // sendAjax();
-    // if($(this).val() == ''){
-    //     RecieveAjax();
-    //     return;
-    // }
+    
     $.ajax({
-        url: urlHome+'/lay-quan-huyen-theo-tinh-thanh',
+        url: urlHome + '/lay-quan-huyen-theo-tinh-thanh',
         type: 'GET',
         dataType: 'json',
         data: {id: $(this).val()},

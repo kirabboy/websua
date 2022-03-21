@@ -6,27 +6,27 @@
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content-wrapper" class="d-flex flex-column">
 
-        <!-- Main Content -->
-        <div id="content">
+            <!-- Main Content -->
+            <div id="content">
 
-            <!-- Topbar -->
-            <nav class="navbar navbar-expand navbar-light topbar mb-4 static-top shadow">
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light topbar mb-4 static-top shadow">
 
-                <!-- Sidebar Toggle (Topbar) -->
-                <button type="button" id="sidebarCollapse" class="btn btn-info">
-                    <i class="fas fa-align-left"></i>
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-left"></i>
 
-                </button>
+                    </button>
 
-                <!-- Topbar Search -->
-                <div class="col-xs-6 col-sm-4 c-none ml-auto">
-                    <div class="timewx setTime text-light">
-                        17.02.2022 14:22:03</div>
-                </div>
-                <!-- Topbar Navbar -->
-                <ul class="navbar-nav ml-auto">
+                    <!-- Topbar Search -->
+                    <div class="col-xs-6 col-sm-4 c-none ml-auto">
+                        <div class="timewx setTime text-light">
+                            17.02.2022 14:22:03</div>
+                    </div>
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
                     <!-- Nav Item - Alerts -->
                     <!-- <li class="nav-item dropdown no-arrow mx-1">
                         <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -152,11 +152,11 @@
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                             <a class="dropdown-menu-header">
                                 <h6 class="dropdown-header ms-inline m-0">
-                                    <span class="text-disabled">Xin chào, doan thi ngoc diep </span>
+                                    <span class="text-disabled">Xin chào, {{Auth::user()->name}}</span>
                                 </h6>
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="profile">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Thông tin cá nhân
                             </a>
