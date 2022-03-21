@@ -4,8 +4,6 @@
 <head>
     <meta charset=UTF-8>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <meta name="url-home" content="{{ URL::to('/') }}" />
     <title>@yield('title')</title>
     <!-- Custom fonts for this template-->
     <link href="{{ asset('/public/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -33,7 +31,7 @@
     @yield('content')
 
     @include('layouts.footer')
-
+    
     <script type="text/javascript">
         $(document).ready(function() {
             $('#sidebarCollapse').on('click', function() {
@@ -41,7 +39,6 @@
             });
         });
     </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{{ asset('/public/vendor/jquery/jquery.min.js') }}"></script>
     <!-- <script src="{{ asset('/public/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script> -->
     <script src="{{ asset('js/bootstrap/bootstrap.bundle.min.js') }}"></script>

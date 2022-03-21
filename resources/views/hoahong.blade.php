@@ -1,8 +1,11 @@
-
-
 @extends('layouts.master')
 
 @section('title', 'SB Admin 2 - Dashboard')
+
+@push('css')
+<meta name="csrf-token" content="{{ csrf_token() }}" />
+<meta name="url-home" content="{{ URL::to('/') }}" />
+@endpush
 
 @section('content')
 
@@ -26,7 +29,9 @@
         <option value=""> Cấp xã </option>
     </select>
 </div>
-
 @endsection
 
+@push('scripts')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="{{ asset('public/js/shipping.js') }}"></script>
+@endpush

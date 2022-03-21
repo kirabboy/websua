@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use App\Models\Province;
 
 class HomeController extends Controller
 {
@@ -43,8 +44,8 @@ class HomeController extends Controller
         return view('user.index');
     }
     public function getProfile(){
-        $user = User::find(auth()->user())->fist();
-        return view('user.profile');
+        $province = Province::select('matinhthanh', 'tentinhthanh')->get();
+        return view('user.profile',compact('province'));
     }
     public function getTransactions(){
         return view('transactions');

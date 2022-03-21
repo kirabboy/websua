@@ -15,7 +15,7 @@ $(document).on('change', 'select[name="sel_province"]', function(event) {
         data: {id: $(this).val()},
     })
     .done(function(data) {
-        var html = '<option value="">Cấp 123 huyện</option>';
+        var html = '<option value="">Cấp huyện</option>';
         $.each(data, function( index, value ) {
             html += '<option value="'+value.maquanhuyen+'">'+value.tenquanhuyen+'</option>';
         });
