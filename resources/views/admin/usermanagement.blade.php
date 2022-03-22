@@ -14,7 +14,8 @@
     <div class="widget-body">
         <table class="table table-bordered table-striped">
             <thead>
-                <tr>
+                <tr class="text-center">
+                    <th>STT</th>
                     <th>Tài khoản</th>
                     <th>Tên</th>
                     <th>Chức vụ</th>
@@ -22,15 +23,17 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($users as $u)
+                @foreach($users as $key => $u)
                 <tr>
-                    <td>{{$u->name}}</td>
+                    <td class="text-center">{{$key+1}}</td>
                     <td>{{$u->username}}</td>
+                    <td>{{$u->name}}</td>
                     <td>
                         @if ($u->hasRole('admin')) Quản trị
                         @elseif ($u->hasRole('distribution')) Trung tâm phân phối
                         @elseif ($u->hasRole('agent')) Đại lý bán buôn
-                        @else Cộng tác viên
+                        @elseif ($u->hasRole('collaborators')) Cộng tác viên
+                        @else Chưa cấp quyền
                         @endif
                     </td>
                     <td class="text-center">

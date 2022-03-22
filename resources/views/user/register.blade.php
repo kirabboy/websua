@@ -14,9 +14,13 @@
     <div class="widget-body">
         @if ($errors->any())
         <div class="alert alert-danger">
-            @foreach ($errors->all() as $e)
-            <div>{{ $e }}</div>
-            @endforeach
+            @if ($errors->count() == 1)
+                @foreach ($errors->all() as $e)
+                    <div>{{ $e }}</div>
+                @endforeach
+            @else
+                <div>Điền đầy đủ và đúng thông tin vào các ô có đánh dấu (<span class="ast">*</span>)</div>
+            @endif
         </div>
         @endif
         @if (session('mess'))
@@ -35,7 +39,7 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label>Người giới thiệu</label>
-                        <input class="form-control" disabled value="{{Auth::user()->name}}">
+                        <input class="form-control" disabled value="">
                     </div>
                 </div>
                 <div class="form-row">
@@ -54,34 +58,61 @@
                         <input type="text" name="name" class="form-control">
                     </div>
                     <div class="form-group col-md-6">
-                        <label>Email <span class="ast">*</span></label>
-                        <input type="email" class="form-control">
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
                         <label>Điện thoại <span class="ast">*</span></label>
-                        <input type="text" class="form-control">
+                        <input type="text" name="phone" class="form-control">
                     </div>
+                </div>
+                <!-- Địa chỉ -->
+                <div class="form-row">
+                    <div class="form-group col-md-12 mb-0"><label>Địa chỉ <span class="ast">*</span></label></div>
+                </div>
+                <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label>Ngày sinh</label>
-                        <input type="text" class="form-control" placeholder="dd/MM/yyyy">
+                        <select name="sel_province" class="form-control select2" data-placeholder=" Cấp tỉnh " required>
+                            <option value=""> Cấp tỉnh </option>
+                            @foreach ($province as $value)
+                            <option value="{{ $value->matinhthanh }}">{{ $value->tentinhthanh }}
+                            </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <select class="form-control select2" name="sel_district" data-placeholder=" Cấp huyện " required>
+                            <option value=""> Cấp huyện </option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <select class="form-control select2" name="sel_ward" data-placeholder=" Cấp xã " required>
+                            <option value=""> Cấp xã </option>
+                        </select>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label>Số CMT</label>
-                        <input type="text" class="form-control">
+                        <label>Số nhà <span class="ast">*</span></label>
+                        <input type="text" name="address" class="form-control">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Email</label>
+                        <input type="email" name="email" class="form-control">
+                    </div>
+                </div>
+                <!-- thông tin cmnd -->
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>Số CMND/CCCD</label>
+                        <input type="text" name="cmnd" class="form-control">
                     </div>
                     <div class="form-group col-md-3">
                         <label>Ngày cấp</label>
-                        <input type="text" class="form-control" placeholder="dd/MM/yyyy">
+                        <input type="date" class="form-control" name="ngaycmnd" value="2020-01-01">
                     </div>
                     <div class="form-group col-md-3">
                         <label>Nơi cấp</label>
-                        <input type="text" class="form-control">
+                        <input type="text" name="noicmnd" class="form-control">
                     </div>
                 </div>
+                <!-- ảnh cmnd -->
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label>Ảnh CMT mặt trước</label>
@@ -98,36 +129,29 @@
                         </div>
                     </div>
                 </div>
+                <!-- thông tin ngân hàng -->
                 <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label>Địa chỉ</label>
-                        <input type="text" class="form-control">
-                    </div>
                     <div class="form-group col-md-6">
                         <label for="inputState">Tên ngân hàng</label>
-                        <select id="inputState" class="form-control">
-                            <option selected>--- Chọn ngân hàng ---</option>
-                            <option>ACB</option>
-                            <option>Vietcombank</option>
-                            <option>Sacombank</option>
-                        </select>
+                        <input type="text" class="form-control" placeholder="Vd: Sacombank">
                     </div>
-                </div>
-                <div class="form-row">
                     <div class="form-group col-md-6">
                         <label>Tài khoản ngân hàng</label>
                         <input type="text" class="form-control">
                     </div>
+                </div>
+                <div class="form-row">
                     <div class="form-group col-md-6">
                         <label>Chủ thẻ</label>
                         <input type="text" class="form-control">
                     </div>
-                </div>
-                <div class="form-row">
                     <div class="form-group col-md-6">
                         <label>Chi nhánh</label>
                         <input type="text" class="form-control">
                     </div>
+                </div>
+                <!-- ảnh đại diện -->
+                <div class="form-row">
                     <div class="form-group col-md-6">
                         <label>Ảnh đại diện</label>
                         <div class="cmt">
@@ -239,5 +263,7 @@
 </div>
 @endsection
 @push('scripts')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{{ asset('/js/shipping.js') }}"></script>
 <script src="{{ asset('/js/register.js') }}"></script>
 @endpush

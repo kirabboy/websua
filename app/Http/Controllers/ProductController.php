@@ -78,6 +78,12 @@ class ProductController extends Controller
     {
         return view('products.edit', compact('product'));
     }
+
+
+    public function getDetailProduct($id)
+    {
+        return view('test');
+    }
     /**
      * Update the specified resource in storage.
      *

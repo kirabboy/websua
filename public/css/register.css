@@ -25,6 +25,7 @@
 .register-content.widget .widget-body .form-content label{
     font-size: 13px;
     font-weight: bold;
+    margin-bottom: 0;
 }
 .register-content.widget .widget-body .form-content input{
     padding: 6px 12px;
@@ -35,6 +36,7 @@
 .register-content.widget .widget-body .form-row .form-group{
     padding-left: 15px;
     padding-right: 15px;
+    margin-bottom: 0.5rem;
 }
 .text-right .btn-primary:disabled {
     cursor: not-allowed;

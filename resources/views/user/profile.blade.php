@@ -3,8 +3,6 @@
 @section('title', 'Thông tin cá nhân')
 
 @push('css')
-<meta name="csrf-token" content="{{ csrf_token() }}" />
-<meta name="url-home" content="{{ URL::to('/') }}" />
 <link rel="stylesheet" href="{{ asset('/css/profile.css') }}">
 @endpush
 
@@ -14,27 +12,9 @@
         <h4 class="heading">Thông tin cá nhân</h4>
     </div>
     <div class="widget-body">
-        <div class="col-md-12 pb-3">
-            <select name="sel_province" class="form-control select2" data-placeholder=" Cấp tỉnh " required>
-                <option value=""> Cấp tỉnh </option>
-                @foreach ($province as $value)
-                <option value="{{ $value->matinhthanh }}">{{ $value->tentinhthanh }}
-                </option>
-                @endforeach
-            </select>
-        </div>
-        <div class="col-md-12 pb-3">
-            <select class="form-control select2" name="sel_district" data-placeholder=" Cấp huyện " required>
-                <option value=""> Cấp huyện </option>
-            </select>
-        </div>
-        <div class="col-md-12 pb-3">
-            <select class="form-control select2" name="sel_ward" data-placeholder=" Cấp xã " required>
-                <option value=""> Cấp xã </option>
-            </select>
-        </div>
         <form>
             <div class="form-content">
+                <!-- avatar -->
                 <div class="form-group text-center">
                     <img src="{{ asset('/img/user_male2.png') }}" id="anhdaidien" alt="doan thi ngoc diep" height="100" width="100">
                     <label class="btn-sm btn-danger btn-avt">
@@ -42,6 +22,7 @@
                     </label>
                 </div>
                 <hr>
+                <!-- form thông tin -->
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Tên đăng nhập</label>
                     <div class="col-sm-4">
@@ -63,40 +44,47 @@
                     <div class="col-sm-4">
                         <input type="text" class="form-control" value="{{Auth::user()->name}}">
                     </div>
+                    <label class="col-sm-2 col-form-label">Điện thoại</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" value="{{Auth::user()->phone}}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Địa chỉ</label>
+                    <div class="col-sm-4">
+                        <select name="sel_province" class="form-control select2" data-placeholder=" Cấp tỉnh " required>
+                            <option value=""> Cấp tỉnh </option>
+                            @foreach ($province as $value)
+                            <option value="{{ $value->matinhthanh }} " @if($value->matinhthanh == Auth::user()->tinh) selected @endif>{{ $value->tentinhthanh }}
+                            </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <select class="form-control select2" name="sel_district" data-placeholder=" Cấp huyện " required>
+                            <option value=""> Cấp huyện </option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <select class="form-control select2" name="sel_ward" data-placeholder=" Cấp xã " required>
+                            <option value=""> Cấp xã </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Số nhà</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" value="{{Auth::user()->address}}">
+                    </div>
                     <label class="col-sm-2 col-form-label">Email</label>
                     <div class="col-sm-4">
                         <input type="email" class="form-control" value="{{Auth::user()->email}}">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Địa chỉ</label>
-                    <div class="col-sm-4">
-                        <input type="text" class="form-control" value="Ap 6 Thanh Duc Ben Luc Long An">
-                    </div>
-                    <label class="col-sm-2 col-form-label">Ngày sinh</label>
-                    <div class="col-sm-4">
-                        <input type="text" class="form-control" value="01/01/1977">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Điện thoại</label>
-                    <div class="col-sm-4">
-                        <input type="text" class="form-control" value="0373066558">
-                    </div>
-                    <label class="col-sm-2 col-form-label">Người kế thừa</label>
-                    <div class="col-sm-4">
-                        <input type="text" class="form-control" value="">
-                    </div>
-                </div>
-                <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Tên ngân hàng</label>
                     <div class="col-sm-4">
-                        <select class="form-control">
-                            <option selected>--- Chọn ngân hàng ---</option>
-                            <option>ACB</option>
-                            <option>Vietcombank</option>
-                            <option>Sacombank</option>
-                        </select>
+                        <input type="text" class="form-control" placeholder="Vd: Sacombank">
                     </div>
                     <label class="col-sm-2 col-form-label">Tài khoản NH</label>
                     <div class="col-sm-4">
@@ -120,7 +108,7 @@
                     </div>
                     <label class="col-sm-2 col-form-label">Ngày cấp</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" value="16/10/2018">
+                        <input type="date" class="form-control" value="2020-01-01">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -191,6 +179,6 @@
 @endsection
 @push('scripts')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="{{ asset('public/js/shipping.js') }}"></script>
+<script src="{{ asset('/js/shipping.js') }}"></script>
 <script src="{{ asset('/js/profile.js') }}"></script>
 @endpush

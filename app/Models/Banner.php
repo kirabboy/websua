@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SettingHoaHong extends Model
+class Banner extends Model
 {
     use HasFactory;
-    protected $table = 'setting_hoahong';
-    protected $guarded = [];
+    protected $table = 'banner';
+
 }

@@ -10,10 +10,13 @@ use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use App\Models\Province;
 
 class UserController extends Controller
 {
     public function getLogin(){
+        $user = User::find(9);
+        $this->phanvaitro($user->id,$user->level);
         return view('user.login');
     }
     public function checkLogin(Request $request){
@@ -39,29 +42,76 @@ class UserController extends Controller
     }
 
     public function getRegister(){
-        return view('user.register');
+        $province = Province::select('matinhthanh', 'tentinhthanh')->get();
+        return view('user.register', compact('province'));
     }
-    public function checkRegister(Request $request){
+    public function checkRegister(Request $request){  
         $error = [
             'username.required'=>'Nhập tài khoản!',
             'username.unique'=>'Tài khoản đã tồn tại!',
-            'name.required'=>'Nhập họ tên!',
             'password.required'=>'Nhập mật khẩu!',
             're_password.required'=>'Nhập lại mật khẩu không đúng!',
             're_password.same'=>'Nhập lại mật khẩu không đúng!',
+            'name.required'=>'Nhập họ tên!',
+            'phone.max'=>'Số điện thoại nhập chưa đúng!',
+            'phone.min'=>'Số điện thoại nhập chưa đúng!',
+            'address.required'=>'Nhập số nhà!',
+            // 'cmnd.max'=>'Nhập sai số CMND/CCCD!',
+            // 'cmnd.min'=>'Nhập sai số CMND/CCCD!',
         ];
         $request->validate([
             'username' => 'required|unique:users,username',
             'password' => 'required',
-            'name' => 'required',
             're_password' => 'required|same:password',
+            'name' => 'required',
+            'phone' => 'max:10|min:10',
+            'address' => 'required',
+            //'cmnd' => 'max:12|min:9',
         ], $error);
+        $ma = $this->getMa();
+        if($ma == false){
+            return back()->withErrors(['msg' => 'Số người dùng vượt quá định mức!']);
+        }
         $user = new User();
-        $user->name = $request->name;
         $user->username = $request->username;
         $user->password = Hash::make($request->password);
+        $user->name = $request->name;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->email = $request->email;
+        $user->cmnd = $request->cmnd;
+        $user->ngaycmnd = $request->ngaycmnd;
+        $user->noicmnd = $request->noicmnd;
+        $user->magioithieu = $ma;
+        $user->level = 4;
+        $user->tinh = $request->sel_province;
+        $user->huyen = $request->sel_district;
+        $user->xa = $request->sel_ward;
+        // dd($user);
         $user->save();
+        $this->phanvaitro($user->id,$user->level);
         return back()->with('mess','Đăng ký thành công!');
+    }
+    public function getMa(){
+        $ma = "milk00001";
+        $users = User::all();
+        if($users->count() == 0){
+            return $ma;
+        }
+        $user = $users[$users->count()-1];
+        $id = $user->id+1;
+        if ($id < 100000){
+            $ma = substr($ma,0,9-strlen($id));
+            $ma = $ma."$id";
+            return $ma;
+        }
+        return false;
+    }
+    public function phanvaitro($userID,$roleId){
+        //add model_has_roles
+        $role = Role::find($roleId);
+        $user = User::find($userID);
+        $user->syncRoles($role);
     }
     public function getForgotpw(){
         return view('user.forgotpassword');

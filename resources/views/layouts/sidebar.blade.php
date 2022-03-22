@@ -1,5 +1,3 @@
-<!-- Sidebar -->
-<!-- Sidebar  -->
 <nav id="sidebar" class="navbar-nav sidebar-main sidebar-dark accordion">
 	<div class="logo-brand">
 		<div class="sidebar-logo d-flex flex-column text-center">
@@ -25,79 +23,64 @@
 	<ul class="side-nav">
 		@role('admin')
 		<li class="menu-item">
-			<a href="{{url('/user-management')}}">
+			<a href="{{url('/user-management')}}" class="@if(\Request::is('user-management') ) active  @endif">
 				<span><i class="fa-solid fa-table"></i>Quản lý Users</span>
 			</a>
 		</li>
 		@endrole
 		<li class="menu-item">
-			<a href="{{url('/')}}">
+			<a href="{{url('/')}}" class="@if(\Request::is('/') ) active  @endif">
 				<span><i class="fa-solid fa-table"></i>Bảng điều khiển</span>
 			</a>
 		</li>
 		<li class="menu-item">
-			<a href="{{url('/document')}}">
+			<a href="{{url('/document')}}" class="@if(\Request::is('document') ) active  @endif">
 				<span><i class="fa-solid fa-table"></i>Tài liệu</span>
 			</a>
 		</li>
 		<li class="menu-item">
-			<a href="{{url('/products')}}">
+			<a href="{{url('/products')}}" class="@if(\Request::is('products') ) active  @endif">
 				<span><i class="fa-solid fa-table"></i>Sản phẩm</span>
 			</a>
 		</li>
 		<li class="menu-item">
-			<a href="{{url('/order')}}">
+			<a href="{{url('/order')}}" class="@if(\Request::is('order') ) active  @endif">
 				<span><i class="fa-solid fa-table"></i>Đặt hàng</span>
 			</a>
 		</li>
 		<li class="menu-item">
-			<a href="{{url('/promotion')}}">
+			<a href="{{url('/promotion')}}" class="@if(\Request::is('promotion') ) active  @endif">
 				<span><i class="fa-solid fa-table"></i>Đổ điểm </span>
 			</a>
 		</li>
 		<li class="menu-item">
-			<a href="{{url('/list-partner')}}">
+			<a href="{{url('/order-history')}}" class="@if(\Request::is('order-history') ) active  @endif">
 				<span><i class="fa-solid fa-table"></i>Lịch sử đặt hàng</span>
 			</a>
 		</li>
 		<li class="menu-item">
-			<a href="{{url('/order-history')}}">
+			<a href="{{url('/list-partner')}}" class="@if(\Request::is('list-partner') ) active  @endif">
 				<span><i class="fa-solid fa-table"></i>Danh sách đối tác</span>
 			</a>
 		</li>
 		<li class="menu-item">
-			<a href="{{url('/register')}}">
+			<a href="{{url('/register')}}" class="@if(\Request::is('register') ) active  @endif">
 				<span><i class="fa-solid fa-table"></i>Đăng ký</span>
 			</a>
 		</li>
 		<li class="menu-item">
-			<a href="{{url('/distribution')}}">
+			<a href="{{url('/distribution')}}" class="@if(\Request::is('distribution') ) active  @endif">
 				<span><i class="fa-solid fa-table"></i>Trung tâm phân phối</span>
 			</a>
 		</li>
 		<li class="menu-item">
-			<a href="{{url('/profile')}}">
-				<span><i class="fa-solid fa-table"></i>Thông tin cá nhân</span>
-			</a>
-		</li>
-		<li class="menu-item">
-			<a href="{{url('/transactions')}}">
+			<a href="{{url('/transactions')}}" class="@if(\Request::is('transactions') ) active  @endif">
 				<span><i class="fa-solid fa-table"></i>Hoa hồng được hưởng</span>
 			</a>
 		</li>
 		<li class="menu-item">
-			<a href="{{url('/statistic')}}">
+			<a href="{{url('/statistic')}}" class="@if(\Request::is('statistic') ) active  @endif">
 				<span><i class="fa-solid fa-table"></i>Lịch sử mua hàng hệ thống</span>
-			</a>
-		</li>
-		<li class="menu-item">
-			<a href="{{url('/support')}}">
-				<span><i class="fa-solid fa-table"></i>Trợ giúp</span>
-			</a>
-		</li>
-		<li class="menu-item">
-			<a href="logout">
-				<span><i class="fa-solid fa-arrow-right-from-bracket"></i>Đăng xuất</span>
 			</a>
 		</li>
 		<!-- <li><hr></li>
@@ -106,13 +89,13 @@
 		</li> -->
 
 		<li class="menu-item">
-			<a href="{{url('/setting-hoa-hong-truc-tiep')}}">
+			<a href="{{url('/setting-hoa-hong-truc-tiep')}}" class="@if(\Request::is('setting-hoa-hong-truc-tiep') ) active  @endif">
 				<span><i class="fa-solid fa-table"></i>Cài đặt hoa hồng trực tiếp</span>
 			</a>
 		</li>
 
 		<li class="menu-item">
-			<a href="{{url('/setting-banner')}}">
+			<a href="{{url('/setting-banner')}}" class="@if(\Request::is('setting-banner') ) active  @endif">
 				<span><i class="fa-solid fa-table"></i>Cài đặt ảnh banner</span>
 			</a>
 		</li>

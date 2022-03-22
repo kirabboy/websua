@@ -8,16 +8,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CongThucController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\ShippingController;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Http\Controllers\PartnerController;
 
 
 Route::post('/login', [UserController::class, 'checkLogin']);
@@ -61,13 +52,18 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/setting-hoa-hong-truc-tiep', [SettingController::class, 'hoahongtructiep'])->name('setHoahongtructiep');
     Route::post('/setting-hoa-hong-truc-tiep', [SettingController::class, 'postHoahongtructiep']);
 
-    Route::get('/setting-banner', [SettingController::class, 'uploadBanner'])->name('setBannerAds');
-    Route::get('/setting-banner', [SettingController::class, 'postBanner']);
+    Route::get('/setting-banner', [SettingController::class, 'getBanner'])->name('setBannerAds');
+    Route::post('/setting-banner', [SettingController::class, 'postBanner']);
+    Route::get('/setting-banner/delete/{id}', [SettingController::class, 'deleteBanner']);
 
     Route::get('/promotion', [HomeController::class, 'promotion']);
     Route::resource('products', ProductController::class);
 
 
+    Route::get('/lay-phuong-xa-theo-quan-huyen', [ShippingController::class, 'wardOfDistrict']);
+
+    //Doi Nhom Controllers
+    Route::get('/list-partner', [PartnerController::class, 'list_partner']);
     Route::get('/lay-quan-huyen-theo-tinh-thanh', [ShippingController::class, 'districtOfProvince']);
 
     Route::get('/lay-phuong-xa-theo-quan-huyen', [ShippingController::class, 'wardOfDistrict']);

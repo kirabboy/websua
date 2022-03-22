@@ -6,25 +6,27 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Province;
+use App\Models\Banner;
 
 class HomeController extends Controller
 {
     //
     public function document()
     {
-        return view('document');
+        $banner = Banner::all();
+        return view('document', compact('banner'));
     }
+    
     public function order()
-    { $products = DB::table('products')->where('price','>',0)->latest()->get();
+    { 
+        $products = DB::table('products')->where('price','>',0)->latest()->get();
         return view('order', ['product' => $products]);
     }
+
     public function promotion()
-    {$point= DB::table('promotion')->where('points','>',0)->latest()->get();
-        return view('promotion', ['points' => $point]);
-    }
-    public function list_partner()
     {
-        return view('list-partner');
+        $point= DB::table('promotion')->where('points','>',0)->latest()->get();
+        return view('promotion', ['points' => $point]);
     }
 
     public function order_history()

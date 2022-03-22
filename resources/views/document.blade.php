@@ -33,57 +33,25 @@
                     </form>
                     <div class="document-items">
                         <div class="row">
-                            <div class=" col-lg-4 col-12 col-sm-12">
+                            @foreach($banner as $value)
+                            <div class=" col-lg-4 pb-2 col-12 col-sm-12">
                                 <div class="box-document-item">
                                     <div class="document-img">
-                                        <a title="ảnh sản phẩm sữa non colostrum" href="https://forvietvn.com/Uploads/Mediums/2020/6/17//20200617162706_colostrum.jpg" class="img-thumbnail">
-                                            <img alt="ảnh sản phẩm sữa non colostrum" src="https://forvietvn.com/Uploads/Mediums/2020/6/17//20200617162706_colostrum.jpg"></a>
+                                        <a title="{{$value->title}}" href="{{asset('public/banner')}}/{{$value->image}}" class="img-thumbnail">
+                                            <img alt="{{$value->title}}" src="{{asset('public/banner')}}/{{$value->image}}"></a>
                                     </div>
                                     <div class="document-text">
                                             <h3>
-                                                    <a title="ảnh sản phẩm sữa non colostrum" href="//Uploads/Client/Member86/file/20200617162755colostrum.jpg">ảnh sản phẩm sữa non colostrum </a>
+                                                    <a title="{{$value->title}}" href="//Uploads/Client/Member86/file/20200617162755colostrum.jpg">{{$value->title}}</a>
                                             </h3>
                                             <p>
                                                 
                                             </p>
-                                                <a href="/Uploads/Client/Member86/file/20200617162755colostrum.jpg" target="_blank" class="btn btn-success btn-sm">Download</a>
+                                                <a href="{{asset('public/banner')}}/{{$value->image}}" target="_blank" class="btn btn-success btn-sm">Download</a>
                                         </div>
                                 </div>
                             </div>
-                            <div class=" col-lg-4 col-12 col-sm-12">
-                                <div class="box-document-item">
-                                    <div class="document-img">
-                                        <a title="ảnh sản phẩm sữa non colostrum" href="https://forvietvn.com/Uploads/Mediums/2020/6/17//20200617162706_colostrum.jpg" class="img-thumbnail">
-                                            <img alt="ảnh sản phẩm sữa non colostrum" src="https://forvietvn.com/Uploads/Mediums/2020/6/17//20200617162706_colostrum.jpg"></a>
-                                    </div>
-                                    <div class="document-text">
-                                            <h3>
-                                                    <a title="ảnh sản phẩm sữa non colostrum" href="//Uploads/Client/Member86/file/20200617162755colostrum.jpg">ảnh sản phẩm sữa non colostrum </a>
-                                            </h3>
-                                            <p>
-                                                
-                                            </p>
-                                                <a href="/Uploads/Client/Member86/file/20200617162755colostrum.jpg" target="_blank" class="btn btn-success btn-sm">Download</a>
-                                        </div>
-                                </div>
-                            </div>
-                            <div class=" col-lg-4  col-12 col-sm-12">
-                                <div class="box-document-item">
-                                    <div class="document-img">
-                                        <a title="ảnh sản phẩm sữa non colostrum" href="https://forvietvn.com/Uploads/Mediums/2020/6/17//20200617162706_colostrum.jpg" class="img-thumbnail">
-                                            <img alt="ảnh sản phẩm sữa non colostrum" src="https://forvietvn.com/Uploads/Mediums/2020/6/17//20200617163100_pedia.jpg"></a>
-                                    </div>
-                                    <div class="document-text">
-                                            <h3>
-                                                    <a title="ảnh sản phẩm sữa non colostrum" href="//Uploads/Client/Member86/file/20200617162755colostrum.jpg">ảnh sản phẩm sữa non colostrum </a>
-                                            </h3>
-                                            <p>
-                                                
-                                            </p>
-                                                <a href="/Uploads/Client/Member86/file/20200617162755colostrum.jpg" target="_blank" class="btn btn-success btn-sm">Download</a>
-                                        </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>

@@ -24,13 +24,15 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($banner as $value)
                     <tr>
-                        <td>27/04/2021 22:04</td>
-                        <td>41,920,000 ₫</td>
+                        <td>{{$value->title}}</td>
+                        <td><img src="{{asset('public/banner')}}/{{$value->image}}" style="border-radius: 0; max-width: 400px; max-height: 150px"></td>
                         <td>
-                            <a href="#"><i class="fas fa-eye"></i></a>
+                            <a href="{{asset('setting-banner/delete')}}/{{$value->id}}"><i class="fas fa-trash"></i></a>
                         </td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -39,7 +41,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="modelThemImage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <form method="post" action="">
+    <form action="{{route('setBannerAds')}}" method="POST" enctype="multipart/form-data">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -50,10 +52,10 @@
             </div>
             <div class="modal-body">
                 <label>Tiêu đề</label>
-                <input class="form-control" placeholder="Nhập tiêu đề ảnh">
+                <input class="form-control" name="title" placeholder="Nhập tiêu đề ảnh">
 
                 <label class="pt-2">Upload ảnh</label>
-                <input class="form-control" type="file" id="img" name="img" accept="image/*">
+                <input class="form-control" type="file" id="img" name="image" accept="image/*">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
