@@ -105,3 +105,8 @@
 .transactions-content.widget .pagination .next0:hover{
     background: url('../img/icon.png') no-repeat scroll left -207px transparent;
 }
+.box-footer {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}

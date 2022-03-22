@@ -98,11 +98,15 @@ class ProductController extends Controller
             'price' => 'required',
             'description'=>'required'
         ]);
+        // $product= Product::find($id);
         if ($request->has('file_upload')) {
             $file = $request->file_upload;
             $ext=$request->file_upload->extension();
             $file_name =time().'-'.'product.'.$ext;
             $file->move(public_path('image'), $file_name);
+        }
+        else{
+              $file_name= $product->image;
         }
         $request->merge(['image' => $file_name]);
 

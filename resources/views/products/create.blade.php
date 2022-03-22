@@ -35,16 +35,17 @@
                     <input type="text" name="name" class="form-control" placeholder="Nhập tên sản phẩm">
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <!-- <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Thương hiệu:</strong>
                     <input type="text" name="brand" class="form-control" placeholder="Nhập thương hiệu">
                 </div>
-            </div>
+            </div> -->
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Ảnh sản phẩm:</strong>
-                    <input type="file" name="file_upload" class="form-control" placeholder="Chọn ảnh sản phẩm">
+                    <input type="file" name="file_upload" onchange="readURL(this);" class="form-control" placeholder="Chọn ảnh sản phẩm">
+                    <img id="blah" src="{{asset('/public/image/no-image-800x600.png')}}" alt="your image" style="width:200px;height:200px" />
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -56,7 +57,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
              
                     <strong>Mô tả :</strong>
-                    <textarea type="text" name="description" class="form-control"  placeholder="Nhập mô tả:"></textarea>
+                    <textarea type="text" name="description" class="form-control"  id="ckeditor_des"   placeholder="Nhập mô tả:"></textarea>
                
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">

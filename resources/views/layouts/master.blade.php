@@ -40,16 +40,27 @@
                 $('#sidebar').toggleClass('active');
             });
         });
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#blah')
+                        .attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
     </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{{ asset('/public/vendor/jquery/jquery.min.js') }}"></script>
-    <!-- <script src="{{ asset('/public/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script> -->
-    <script src="{{ asset('js/bootstrap/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('/public/js/bootstrap/bootstrap.bundle.min.js') }}"></script>
     @stack('scripts')
-</body>
-</html>
     <script src="//cdn.ckeditor.com/4.17.2/standard/ckeditor.js"></script>
     <script type="text/javascript">
         CKEDITOR.replace('ckeditor_des');
         CKEDITOR.replace('ckeditor_short_des');
     </script>
+</body>
+</html>
+

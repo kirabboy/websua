@@ -31,6 +31,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/statistic', [HomeController::class, 'getStatistic']);
     Route::get('/transactions', [HomeController::class, 'getTransactions']);
     Route::get('/profile', [HomeController::class, 'getProfile'])->name('profile');
+    // Route::get('/',function (){
+    //     return \App\Models\Product::find(10)->product_brand;
+    // });
     Route::get('/', [HomeController::class, 'getHome']);
     Route::get('/document', [HomeController::class, 'document']);
     Route::get('/order', [HomeController::class, 'products']);
@@ -67,7 +70,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/lay-phuong-xa-theo-quan-huyen', [ShippingController::class, 'wardOfDistrict']);
 });
-<<<<<<< HEAD
+
 Route::get('/document', [HomeController::class, 'document']);
 Route::get('/order', [HomeController::class, 'order']);
 Route::get('/list-partner', [HomeController::class, 'list_partner']);
@@ -81,7 +84,8 @@ Route::get('lay-quan-huyen-theo-tinh-thanh', [ShippingController::class, 'distri
 Route::get('lay-phuong-xa-theo-quan-huyen', [ShippingController::class, 'wardOfDistrict']);
 
 Route::resource('products',ProductController::class);
-
+Route::get('/sales_manager',[HomeController::class,'getSales_manager']);
+Route::get('/list_manager',[HomeController::class,'getList_manager']);
 Route::get('/hoahong', [CongThucController::class, 'hoahong']);
 
 Route::get('/setting-hoa-hong-truc-tiep', [SettingController::class, 'hoahongtructiep'])->name('setHoahongtructiep');
@@ -90,5 +94,3 @@ Route::post('/setting-hoa-hong-truc-tiep', [SettingController::class, 'postHoaho
 Route::get('/setting-banner', [SettingController::class, 'uploadBanner'])->name('setBannerAds');
 Route::get('/setting-banner', [SettingController::class, 'postBanner']);
 
-=======
->>>>>>> origin/riddler
