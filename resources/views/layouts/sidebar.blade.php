@@ -99,6 +99,23 @@
 				<span><i class="fa-solid fa-table"></i>Cài đặt ảnh banner</span>
 			</a>
 		</li>
+		<li class="menu-item">
+		<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Components</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="py-2 pl-4 collapse-inner rounded">
+            <a class="collapse-item" href="{{url('/sales_manager')}}">Quản lý bán hàng</a>
+            <a class="collapse-item" href="{{url('/list_manager')}}">Danh sách quản lý</a>
+          </div>
+        </div>
+		</li>
+		
+
+		<li class="nav-item">
+      
+      </li>
 
 		<li>
 			<div class="support">

@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Order_address extends Model
 {
     use HasFactory;
-    protected $table = 'post';
     protected $guarded = [];
-
+    protected $table = 'order_address';
+    protected $primaryKey='id';
 }
