@@ -54,7 +54,7 @@
 
                                             <div class="mg-30">
                                                 <p><b>Giá: {{$products->price}} ₫</b></p>
-                                                <p><b>Thương hiệu: {{$products->brand}}</b></p>
+                                               
                                                 <b>Mô tả:{{$products->description}}</b>
 
                                             </div>

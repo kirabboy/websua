@@ -4,6 +4,7 @@
 
 
 @section('content')
+<section class="edit_product p-4">
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
@@ -27,7 +28,7 @@
 </div>
 @endif
 
-<form action="" method="POST" enctype="multipart/form-data" style="padding:10px" >
+<form action="{{ route('products.update',$product->id)}}" method="POST" enctype="multipart/form-data" style="padding:10px" >
     @csrf
     @method('PUT')
 
@@ -70,10 +71,11 @@
             <textarea type="text" name="short_description"class="form-control" id="ckeditor_short_des" placeholder="Nhập mô tả ngắn:">{{$product->short_description}}</textarea>
 
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-            <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="col-xs-12 col-sm-12 col-md-12 text-center pt-3">
+            <button type="submit" class="btn btn-primary">Sửa</button>
         </div>
     </div>
 
 </form>
+</section>
 @endsection
