@@ -39,7 +39,7 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label>Người giới thiệu</label>
-                        <input class="form-control" disabled value="">
+                        <input class="form-control" disabled value="{{Auth::user()->name}}">
                     </div>
                 </div>
                 <div class="form-row">

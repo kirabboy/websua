@@ -53,20 +53,16 @@ class UserController extends Controller
             're_password.required'=>'Nhập lại mật khẩu không đúng!',
             're_password.same'=>'Nhập lại mật khẩu không đúng!',
             'name.required'=>'Nhập họ tên!',
-            'phone.max'=>'Số điện thoại nhập chưa đúng!',
-            'phone.min'=>'Số điện thoại nhập chưa đúng!',
+            'phone.digits'=>'Số điện thoại chưa đúng!',
             'address.required'=>'Nhập số nhà!',
-            // 'cmnd.max'=>'Nhập sai số CMND/CCCD!',
-            // 'cmnd.min'=>'Nhập sai số CMND/CCCD!',
         ];
         $request->validate([
             'username' => 'required|unique:users,username',
             'password' => 'required',
             're_password' => 'required|same:password',
             'name' => 'required',
-            'phone' => 'max:10|min:10',
-            'address' => 'required',
-            //'cmnd' => 'max:12|min:9',
+            'phone' => 'digits:10',
+            'address' => 'required'
         ], $error);
         $ma = $this->getMa();
         if($ma == false){
@@ -87,9 +83,9 @@ class UserController extends Controller
         $user->tinh = $request->sel_province;
         $user->huyen = $request->sel_district;
         $user->xa = $request->sel_ward;
-        // dd($user);
-        $user->save();
-        $this->phanvaitro($user->id,$user->level);
+        dd($user);
+        // $user->save();
+        // $this->phanvaitro($user->id,$user->level);
         return back()->with('mess','Đăng ký thành công!');
     }
     public function getMa(){
