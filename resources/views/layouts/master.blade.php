@@ -34,7 +34,8 @@
     @yield('content')
 
     @include('layouts.footer')
-
+    <script src="{{ asset('/public/vendor/jquery/jquery.min.js') }}"></script>
+    
     <script type="text/javascript">
         $(document).ready(function() {
             $('#sidebarCollapse').on('click', function() {
@@ -95,8 +96,6 @@
             })
         }
     </script>
-
-
     <script src="{{ asset('/public/js/bootstrap/bootstrap.bundle.min.js') }}"></script>
     @stack('scripts')
     <script src="//cdn.ckeditor.com/4.17.2/standard/ckeditor.js"></script>

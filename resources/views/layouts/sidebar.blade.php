@@ -6,7 +6,7 @@
 				<img src="{{ asset('image/logo.png') }}" alt="" width="80px">
 			</a>
 			<div class="box-text">
-				<h2>{{Auth::user()->name}}</h2>
+				<h2> <a href="thong-tin-ca-nhan">{{Auth::user()->name}}</a></h2>
 				<span class="label-color">
 					@if (Auth::user()->hasRole('admin')) Quản trị
 					@elseif (Auth::user()->hasRole('distribution')) Trung tâm phân phối
@@ -23,8 +23,8 @@
 	<ul class="side-nav">
 		@role('admin')
 		<li class="menu-item">
-			<a href="{{url('/user-management')}}" class="@if(\Request::is('user-management') ) active  @endif">
-				<span><i class="fa-solid fa-table"></i>Quản lý Users</span>
+			<a href="{{url('/quan-ly-nguoi-dung')}}" class="@if(\Request::is('user-management') ) active  @endif">
+				<span><i class="fa-solid fa-user"></i>Quản lý Users</span>
 			</a>
 		</li>
 		@endrole
@@ -50,7 +50,7 @@
 		</li>
 		<li class="menu-item">
 			<a href="{{url('/promotion')}}" class="@if(\Request::is('promotion') ) active  @endif">
-				<span><i class="fa-solid fa-table"></i>Đổ điểm </span>
+				<span><i class="fa-solid fa-gift"></i>Đổi điểm </span>
 			</a>
 		</li>
 		<li class="menu-item">
@@ -64,23 +64,23 @@
 			</a>
 		</li>
 		<li class="menu-item">
-			<a href="{{url('/register')}}" class="@if(\Request::is('register') ) active  @endif">
-				<span><i class="fa-solid fa-table"></i>Đăng ký</span>
+			<a href="{{url('/dang-ky')}}" class="@if(\Request::is('dang-ky') ) active  @endif">
+				<span><i class="fa-solid fa-circle-plus"></i>Đăng ký</span>
 			</a>
 		</li>
 		<li class="menu-item">
-			<a href="{{url('/distribution')}}" class="@if(\Request::is('distribution') ) active  @endif">
-				<span><i class="fa-solid fa-table"></i>Trung tâm phân phối</span>
+			<a href="{{url('/trung-tam-phan-phoi')}}" class="@if(\Request::is('trung-tam-phan-phoi') ) active  @endif">
+				<span><i class="fa-solid fa-building"></i>Trung tâm phân phối</span>
 			</a>
 		</li>
 		<li class="menu-item">
-			<a href="{{url('/transactions')}}" class="@if(\Request::is('transactions') ) active  @endif">
-				<span><i class="fa-solid fa-table"></i>Hoa hồng được hưởng</span>
+			<a href="{{url('/hoa-hong-duoc-huong')}}" class="@if(\Request::is('hoa-hong-duoc-huong') ) active  @endif">
+				<span><i class="fa-solid fa-percent"></i>Hoa hồng được hưởng</span>
 			</a>
 		</li>
 		<li class="menu-item">
-			<a href="{{url('/statistic')}}" class="@if(\Request::is('statistic') ) active  @endif">
-				<span><i class="fa-solid fa-table"></i>Lịch sử mua hàng hệ thống</span>
+			<a href="{{url('/lich-su-mua-hang')}}" class="@if(\Request::is('lich-su-mua-hang') ) active  @endif">
+				<span><i class="fa-solid fa-clock-rotate-left"></i>Lịch sử mua hàng hệ thống</span>
 			</a>
 		</li>
 		<!-- <li><hr></li>
@@ -90,32 +90,32 @@
 
 		<li class="menu-item">
 			<a href="{{url('/setting-hoa-hong-truc-tiep')}}" class="@if(\Request::is('setting-hoa-hong-truc-tiep') ) active  @endif">
-				<span><i class="fa-solid fa-table"></i>Cài đặt hoa hồng trực tiếp</span>
+				<span><i class="fa-solid fa-fire"></i>Cài đặt hoa hồng trực tiếp</span>
 			</a>
 		</li>
 
 		<li class="menu-item">
 			<a href="{{url('/setting-banner')}}" class="@if(\Request::is('setting-banner') ) active  @endif">
-				<span><i class="fa-solid fa-table"></i>Cài đặt ảnh banner</span>
+				<span><i class="fa-solid fa-image"></i>Cài đặt ảnh banner</span>
 			</a>
 		</li>
 		<li class="menu-item">
-		<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Components</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="py-2 pl-4 collapse-inner rounded">
-            <a class="collapse-item" href="{{url('/sales_manager')}}">Quản lý bán hàng</a>
-            <a class="collapse-item" href="{{url('/list_manager')}}">Danh sách quản lý</a>
-          </div>
-        </div>
+			<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+				<i class="fas fa-fw fa-cog"></i>
+				<span>Components</span>
+			</a>
+			<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+				<div class="py-2 pl-4 collapse-inner rounded">
+					<a class="collapse-item @if(\Request::is('sales_manager') ) active  @endif" href="{{url('/sales_manager')}}">Quản lý bán hàng</a>
+					<a class="collapse-item @if(\Request::is('list_manager') ) active  @endif" href="{{url('/list_manager')}}">Danh sách quản lý</a>
+				</div>
+			</div>
 		</li>
-		
+
 
 		<li class="nav-item">
-      
-      </li>
+
+		</li>
 
 		<li>
 			<div class="support">

@@ -4,6 +4,7 @@
 
 @push('css')
 <link rel="stylesheet" href="{{ asset('/css/profile.css') }}">
+<link rel="stylesheet" href="{{ asset('/css/user.css') }}">
 @endpush
 
 @section('content')
@@ -14,7 +15,7 @@
     <div class="widget-body">
         <table class="table table-bordered table-striped">
             <thead>
-                <tr class="text-center">
+                <tr class="text-center d-none d-md-table-row">
                     <th>STT</th>
                     <th>Tài khoản</th>
                     <th>Tên</th>
@@ -25,20 +26,18 @@
             <tbody>
                 @foreach($users as $key => $u)
                 <tr>
-                    <td class="text-center">{{$key+1}}</td>
-                    <td>{{$u->username}}</td>
-                    <td>{{$u->name}}</td>
-                    <td>
-                        @if ($u->hasRole('admin')) Quản trị
-                        @elseif ($u->hasRole('distribution')) Trung tâm phân phối
-                        @elseif ($u->hasRole('agent')) Đại lý bán buôn
-                        @elseif ($u->hasRole('collaborators')) Cộng tác viên
-                        @else Chưa cấp quyền
-                        @endif
-                    </td>
-                    <td class="text-center">
+                    <td class="text-center" data-label="STT">{{$key+1}}</td>
+                    <td data-label="Tài khoản">{{$u->username}}</td>
+                    <td data-label="Tên">{{$u->name}}</td>
+                    @if ($u->hasRole('admin')) <td data-label="Chức vụ">Quản trị</td>
+                    @elseif ($u->hasRole('distribution')) <td data-label="Chức vụ">Trung tâm phân phối</td>
+                    @elseif ($u->hasRole('agent')) <td data-label="Chức vụ">Đại lý bán buôn</td>
+                    @elseif ($u->hasRole('collaborators')) <td data-label="Chức vụ">Cộng tác viên</td>
+                    @else <td data-label="Chức vụ">Chưa cấp quyền</td>
+                    @endif
+                    <th class="text-center">
                         <a href="#" class="btn btn-danger" role="button">Sửa</a>
-                    </td>
+                    </th>
                 </tr>
                 @endforeach
             </tbody>

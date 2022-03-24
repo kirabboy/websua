@@ -46,7 +46,7 @@
                     </div>
                     <label class="col-sm-2 col-form-label">Điện thoại</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" value="{{Auth::user()->phone}}">
+                        <input type="text" class="form-control" value="0{{Auth::user()->phone}}">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -62,12 +62,20 @@
                     </div>
                     <div class="col-md-2">
                         <select class="form-control select2" name="sel_district" data-placeholder=" Cấp huyện " required>
-                            <option value=""> Cấp huyện </option>
+                            <option value=""> 
+                                @foreach ($quanhuyen as $value)
+                                @if($value->maquanhuyen == Auth::user()->huyen) {{$value->tenquanhuyen}} @endif 
+                                @endforeach 
+                            </option>
                         </select>
                     </div>
                     <div class="col-md-4">
                         <select class="form-control select2" name="sel_ward" data-placeholder=" Cấp xã " required>
-                            <option value=""> Cấp xã </option>
+                            <option value=""> 
+                                @foreach ($phuongxa as $value) 
+                                @if($value->maphuongxa == Auth::user()->xa) {{$value->tenphuongxa}} @endif 
+                                @endforeach 
+                            </option>
                         </select>
                     </div>
                 </div>
@@ -102,19 +110,19 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">CMT</label>
+                    <label class="col-sm-2 col-form-label">CMND/CCCD</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" value="300872666">
+                        <input type="text" class="form-control" value="{{Auth::user()->cmnd}}">
                     </div>
                     <label class="col-sm-2 col-form-label">Ngày cấp</label>
                     <div class="col-sm-4">
-                        <input type="date" class="form-control" value="2020-01-01">
+                        <input type="date" class="form-control" value="{{Auth::user()->ngaycmnd}}">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Nơi cấp</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" value="C.A. Long An">
+                        <input type="text" class="form-control" value="{{Auth::user()->noicmnd}}">
                     </div>
                 </div>
                 <div class="form-group row">
