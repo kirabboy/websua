@@ -66,3 +66,6 @@ h3 {
 .hidden{
   display:none
 }
+.box-product img{
+max-height: 200px;
+}

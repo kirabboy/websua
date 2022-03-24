@@ -4,11 +4,8 @@
 @section('content')
 <div class="container-fluid">
     <div class="row">
-
-
-
+        @if(Cart::count() > 0)
         <div class="col-lg-12">
-
             <table class="table table-bordered tb-c text-center">
                 <thead class="">
                     <tr>
@@ -21,17 +18,17 @@
                     </tr>
                 </thead>
                 <tbody class="c-tbody">
-
+                    @foreach ($carts as $cart)
                     <tr>
                         <td class="cart-item clearfix">
                             <div class="img">
-                                <a href="/phoi-mam-dau-nanh-soygerm-60-vien" title="Phôi Mầm Đậu Nành SOYGERM 60 viên" class="img-cover">
-                                    <img src="https://forvietvn.com/Uploads/Mediums/2020/8/14/20200814110650_soy.jpg" alt="Phôi Mầm Đậu Nành SOYGERM 60 viên" title="Phôi Mầm Đậu Nành SOYGERM 60 viên">
+                                <a href="/phoi-mam-dau-nanh-soygerm-60-vien" title="" class="img-cover">
+                                    <img src="{{url('/public/image')}}/{{$cart->options->image}}"></a>
                                 </a>
                             </div>
                             <div class="desc">
                                 <h3 class="name">
-                                    <a href="/phoi-mam-dau-nanh-soygerm-60-vien" title="Phôi Mầm Đậu Nành SOYGERM 60 viên">Phôi Mầm Đậu Nành SOYGERM 60 viên</a>
+                                    <a href="#" title="{{$cart->name}}">{{$cart->name}}</a>
                                 </h3>
                             </div>
                         </td>
@@ -40,21 +37,34 @@
                                 <span>Giá</span>
                             </div>
                             <div class="wrap price right-mobile">
-                                200,000 ₫
+                                {{$cart->price}}₫
                             </div>
 
                         </td>
                         <td class="td-responsive text-center" data-title="Số lượng:">
                             <div class="wrap price right-mobile visible-xs">
-                                200,000 ₫
+                                {{$cart->price}} ₫
                             </div>
                             <div class="tlt_left">
                                 <span>Số lượng</span>
                             </div>
                             <div class="wrap number wan-spinner wan-spinner-detail-pro right-mobile">
-                                <a href="#" class="minus">-</a>
-                                <input type="text" data-quantity="1" id="item_15" onchange="updateCart('15','1','Phôi Mầm Đậu Nành SOYGERM 60 viên')" data-price="200000" data-namesub="soy - Phôi Mầm Đậu Nành SOYGERM 60 viên" data-idsub="15" value="1" class="total-mask form-control bfh-number">
-                                <a href="#" class="plus">+</a>
+                                <!-- <div class="buttons_added">
+                                    <input class="minus is-form" type="button" value="-">
+                                    <input aria-label="quantity" class="input-qty" max="100" min="1" name="" type="text" value="{{$cart->qty}}" data-rowid={{$cart->rowId}}>
+                                    <input class="plus is-form" type="button" value="+">
+                                </div> -->
+                                <div class="quantity">
+                                    <div class="pro-qty">
+                                    <input aria-label="quantity" class="input-qty"  name="" type="text" value="{{$cart->qty}}" data-rowId={{$cart->rowId}}>
+                                    </div>
+                                </div>
+
+
+                                <!-- onchange="updateCart('15','1','Phôi Mầm Đậu Nành SOYGERM 60 viên')" data-price="200000" data-namesub="soy - Phôi Mầm Đậu Nành SOYGERM 60 viên"  -->
+                                <!-- <a href="#" class="minus">-</a>
+                                <input aria-label="quantity" class="input-qty" name="" type="text" value="{{$cart->qty}}" data-class="total-mask form-control bfh-number">
+                                <a href="#" class="plus">+</a> -->
 
                             </div>
                         </td>
@@ -62,22 +72,23 @@
                             <div class="tlt_left hidden-xs">
                                 <span>Thành tiền </span>
                             </div>
-                            <div class="wrap right-mobile">200,000 ₫</div>
+                            <div class="wrap right-mobile"> {{$cart->price*$cart->qty}} ₫</div>
                         </td>
                         <td class="td-responsive price" data-title="Thành tiền:" style="white-space: nowrap;">
-                            <button type="button" class="lnt-product-remove" onclick="deleteFromCartReload(15,1,'Phôi Mầm Đậu Nành SOYGERM 60 viên')">Xóa</button>
+                            <a href="./gio-hang/delete/{{$cart->rowId}}" class="btn btn-danger btn-icon-split">Xóa</a>
                         </td>
                     </tr>
+                    @endforeach
                     <tr style="background-color: #f9f9fa" class="tr_total c-bg">
                         <td class="">
                             <b style="font-size: 16px; font-weight: 700" class="">Tổng (DS)</b><br>
                         </td>
-                        <td> Số lượng: 1</td>
+                        <td> Số lượng: {{Cart::count()}}</td>
                         <td class="hidden-xs"></td>
 
                         <td style="vertical-align: middle">
                             <b class="right-mobile" style="font-size: 17px; white-space: nowrap">
-                                200,000 ₫
+                                {{$total}}₫
                             </b>
                         </td>
                         <td class=""></td>
@@ -108,7 +119,7 @@
 
                         <td class="color-red" style="vertical-align: middle">
                             <b class="" style="font-size: 17px; white-space: nowrap">
-                                210,000 ₫
+                                {{$subtotal}} ₫
                             </b>
                         </td>
                         <td class=""></td>
@@ -117,6 +128,9 @@
 
                 </tbody>
             </table>
+            <div>
+                <a href="{{url('/thanh-toan')}}" id="btnPay" class="btn btn-primary" style="font-size: 16px; font-weight: 500; padding: 8px 15px ;margin:10px auto;display:block;width: 200px;color:white">THANH TOÁN</a>
+            </div>
             <div style="margin: 10px 0" class="c-txt">
                 <textarea rows="5" name="content" class="form-control" placeholder="ghi chú"></textarea>
             </div>
@@ -164,9 +178,16 @@
             <div>
                 <a href="#" id="btnPay" class="btn btn-danger" style="font-size: 16px; font-weight: 500; padding: 8px 15px ;margin:10px auto;display:block;width: 200px;color:yellow">Gửi đơn hàng</a>
             </div>
-       
+
+
         </div>
+        @else
+        <div class="col-12">
+            <h3>Giỏ hàng trống</h3>
+        </div>
+        @endif
     </div>
 </div>
+
 
 @endsection

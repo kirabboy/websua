@@ -333,9 +333,7 @@
                             <div class="row">
                                 <div class="col-xs-12 col-md-12">
                                     <div class="w_chartper">
-                                        <link href="/Content/Publishing/css/view_trades.css" rel="stylesheet">
-                                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-                                        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                                     
                                         <div id="chart_div">
                                             <div style="position: relative;">
                                                 <div dir="ltr" style="position: relative; width: 762px; height: 400px;">

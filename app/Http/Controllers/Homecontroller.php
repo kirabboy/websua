@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Province;
 use App\Models\Banner;
 use App\Models\Point;
+use App\Models\Product;
 
 class HomeController extends Controller
 {
@@ -20,8 +21,8 @@ class HomeController extends Controller
     
     public function order()
     { 
-        $products = DB::table('products')->where('price','>',0)->latest()->get();
-        return view('order', ['product' => $products]);
+        $products =Product::where('price','>',0)->latest()->get();
+        return view('products.order', ['product' => $products]);
     }
 
     public function promotion()
@@ -33,16 +34,17 @@ class HomeController extends Controller
 
     public function order_history()
     {
-        return view('order-history');
+        return view('products.order-history');
     }
 
     public function product_detail()
     {
-        return view('product-detail');
+        return view('products.product-detail');
     }
+    
     public function cart()
     {
-        return view('cart');
+        return view('products.cart');
     }
     public function getHome(){
         return view('user.index');

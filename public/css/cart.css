@@ -95,3 +95,10 @@ table.table.table-bordered.tb-c.text-center .name, table.table.table-bordered.tb
         max-width: 63px;
     }
 }
+.pro-qty{
+    
+}
+.pro-qty span{
+    cursor: pointer;
+    padding:5px;
+}
