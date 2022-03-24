@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Province;
 use App\Models\Order_products;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class CheckOutController extends Controller
       $carts= Cart::content();
       $total=Cart::total();
       $subtotal=Cart::subtotal();
-      return view('checkout.index',compact('carts','total','subtotal'));
+      $province = Province::select('matinhthanh', 'tentinhthanh')->get();
+      return view('checkout.index',compact('carts','total','subtotal','province'));
     }
     public function addOrder(Request $request){
        $order=Order::create($request->all());

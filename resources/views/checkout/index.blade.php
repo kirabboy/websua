@@ -34,7 +34,7 @@
 
                 <div class="md-form ">
                   <label for="firstName" class="">Tên</label>
-                  <input type="text" id="firstName" class="form-control" name="first_name" placeholder="">
+                  <input type="text" id="firstName" class="form-control" name="full_name" placeholder="">
 
                 </div>
 
@@ -42,16 +42,7 @@
               <!--Grid column-->
 
               <!--Grid column-->
-              <div class="col-md-6 mb-2">
-
-                <!--lastName-->
-                <div class="md-form">
-                  <label for="lastName" class="">Họ</label>
-                  <input type="text" id="lastName" class="form-control" name="last_name" placeholder="">
-
-                </div>
-
-              </div>
+          
               <!--Grid column-->
 
             </div>
@@ -78,41 +69,33 @@
               </div> -->
 
             <!--Grid row-->
+            <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <select name="sel_province" class="form-control select2" data-placeholder=" Cấp tỉnh " required>
+                            <option value=""> Cấp tỉnh </option>
+                            @foreach ($province as $value)
+                            <option value="{{ $value->matinhthanh }}">{{ $value->tentinhthanh }}
+                            </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <select class="form-control select2" name="sel_district" data-placeholder=" Cấp huyện " required>
+                            <option value=""> Cấp huyện </option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <select class="form-control select2" name="sel_ward" data-placeholder=" Cấp xã " required>
+                            <option value=""> Cấp xã </option>
+                        </select>
+                    </div>
+                </div>
             <div class="row">
 
               <!--Grid column-->
-              <div class="col-lg-6 col-md-12 mb-4">
-
-                <label for="country">Quốc gia</label>
-                <!-- <select class="custom-select d-block w-100" id="country" required>
-                  <option value="">Choose...</option>
-                  <option>United States</option>
-                </select> -->
-               
-              <input type="text" id="address" class="form-control" placeholder="" name="country">
-
-            </div>
-                <!-- <div class="invalid-feedback">
-                  Please select a valid country.
-                </div> -->
-
-           
-              <!--Grid column-->
-
-              <!--Grid column-->
-              <div class="col-lg-6 col-md-6 mb-4">
-
-                <label for="state">Tỉnh</label>
-                <input type="text" id="province" class="form-control" placeholder="" name="province">
-                <!-- <select class="custom-select d-block w-100" id="state" required>
-                  <option value="">Choose...</option>
-                  <option>California</option>
-                </select>
-                <div class="invalid-feedback">
-                  Please provide a valid state.
-                </div> -->
-
-              </div>
+          
+                
+         
               <!--Grid column-->
 
               <!--Grid column-->
@@ -230,3 +213,8 @@
 <!--Main layout-->
 
 @endsection
+@push('scripts')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{{ asset('/js/shipping.js') }}"></script>
+<script src="{{ asset('/js/register.js') }}"></script>
+@endpush
