@@ -62,12 +62,12 @@
                     </div>
                     <div class="col-md-2">
                         <select class="form-control select2" name="sel_district" data-placeholder=" Cấp huyện " required>
-                            <option value=""> Cấp huyện </option>
+                            <option value=""> {{Auth::user()->huyen}} </option>
                         </select>
                     </div>
                     <div class="col-md-4">
                         <select class="form-control select2" name="sel_ward" data-placeholder=" Cấp xã " required>
-                            <option value=""> Cấp xã </option>
+                            <option value=""> {{Auth::user()->xa}} </option>
                         </select>
                     </div>
                 </div>

@@ -80,7 +80,7 @@
                     <li class="nav-item dropdown no-arrow mx-1">
                         <!-- <a class="nav-link dropdown-toggle" href="{{url('/cart')}}" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
                         <a class="nav-link dropdown-toggle" href="{{url('/cart')}}">
-                            <i class="fas fa-envelope fa-fw"></i>
+                            <i class="fa-solid fa-cart-shopping"></i>
                             <!-- Counter - Messages -->
                             <span class="badge badge-danger badge-counter">7</span>
                         </a>
@@ -156,7 +156,7 @@
                                 </h6>
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="profile">
+                            <a class="dropdown-item" href="thong-tin-ca-nhan">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Thông tin cá nhân
                             </a>

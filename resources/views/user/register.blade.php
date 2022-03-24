@@ -26,10 +26,10 @@
         @if (session('mess'))
         <div class="alert alert-success">
             {{ session('mess') }}
-            <a href="{{url('/login')}}">Đi tới trang đăng nhập!</a>
+            <a href="{{url('/dang-nhap')}}">Đi tới trang đăng nhập!</a>
         </div>
         @endif
-        <form method="post" action="register">
+        <form method="post" action="dang-ky" enctype="multipart/form-data">
             @csrf
             <div class="form-content">
                 <div class="form-row">
@@ -93,7 +93,7 @@
                         <input type="text" name="address" class="form-control">
                     </div>
                     <div class="form-group col-md-6">
-                        <label>Email</label>
+                        <label>Email <span class="ast">*</span></label>
                         <input type="email" name="email" class="form-control">
                     </div>
                 </div>
@@ -117,14 +117,14 @@
                     <div class="form-group col-md-6">
                         <label>Ảnh CMT mặt trước</label>
                         <div class="cmt">
-                            <input id="cmttruoc" type="file" class="form-control">
+                            <input id="cmttruoc" type="file" name="cmttruoc" class="form-control">
                             <img id="anhcmttruoc" src="{{ asset('/img/img_nogr.jpg') }}" alt="">
                         </div>
                     </div>
                     <div class="form-group col-md-6">
                         <label>Ảnh CMT mặt sau</label>
                         <div class="cmt">
-                            <input id="cmtsau" type="file" class="form-control">
+                            <input id="cmtsau" type="file" name="cmtsau" class="form-control">
                             <img id="anhcmtsau" src="{{ asset('/img/img_nogr.jpg') }}" alt="">
                         </div>
                     </div>
@@ -143,7 +143,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label>Chủ thẻ</label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control text-uppercase">
                     </div>
                     <div class="form-group col-md-6">
                         <label>Chi nhánh</label>
@@ -155,7 +155,7 @@
                     <div class="form-group col-md-6">
                         <label>Ảnh đại diện</label>
                         <div class="cmt">
-                            <input id="daidien" type="file" class="form-control">
+                            <input id="daidien" type="file" name="daidien" class="form-control">
                             <img id="anhdaidien" src="{{ asset('/img/img_nogr.jpg') }}" alt="">
                         </div>
                     </div>

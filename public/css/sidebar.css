@@ -295,15 +295,15 @@ a.article:hover {
 .dropdown-toggle::after {display:none !important
   ;}
 
-  .nav-link[data-toggle].collapsed:after {
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    content: "\f107";
-   float:right
-}
-.nav-link[data-toggle]:not(.collapsed):after {
+#sidebar .nav-link[data-toggle].collapsed:after {
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   content: "\f105";
+  float:right
+}
+#sidebar .nav-link[data-toggle]:not(.collapsed):after {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f107";
   float:right;
 }

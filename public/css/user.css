@@ -1,0 +1,20 @@
+@media screen and (max-width: 768px) {
+    .profile-content table{
+    overflow-x: auto;
+    }
+    .profile-content table td:before {
+        content: attr(data-label);
+        display: inline-block;
+        margin-left: -100%;
+        width: 100%;
+        font-weight: 400;
+    }
+    .profile-content table td{
+        padding-left: 50%;
+        text-align: left !important;
+        font-weight: 500;
+    }
+    .profile-content table td, .profile-content table tr, .profile-content table th{
+        display: block;
+    }
+}

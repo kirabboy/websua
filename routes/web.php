@@ -11,26 +11,26 @@ use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\PartnerController;
 
 
-Route::post('/login', [UserController::class, 'checkLogin']);
-Route::post('/register', [UserController::class, 'checkRegister']);
+Route::post('/dang-nhap', [UserController::class, 'checkLogin']);
+Route::post('/dang-ky', [UserController::class, 'checkRegister']);
 
 Route::group(['middleware' => ['checklogin']], function () {
-    Route::get('/login', [UserController::class, 'getLogin'])->name('login');
+    Route::get('/dang-nhap', [UserController::class, 'getLogin'])->name('dangnhap');
     Route::get('/forgot-password', [UserController::class, 'getForgotpw']);
 });
 
 Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => ['role:admin']], function () {
-        Route::get('/user-management', [AdminController::class, 'getUserManagement']);
+        Route::get('/quan-ly-nguoi-dung', [AdminController::class, 'getUserManagement']);
     });
 
     Route::get('/logout', [UserController::class, 'getLogout']);
-    Route::get('/register', [UserController::class, 'getRegister']);
+    Route::get('/dang-ky', [UserController::class, 'getRegister']);
     Route::get('/support', [HomeController::class, 'getSupport']);
-    Route::get('/distribution', [HomeController::class, 'getDistribution']);
-    Route::get('/statistic', [HomeController::class, 'getStatistic']);
-    Route::get('/transactions', [HomeController::class, 'getTransactions']);
-    Route::get('/profile', [HomeController::class, 'getProfile'])->name('profile');
+    Route::get('/trung-tam-phan-phoi', [HomeController::class, 'getDistribution']);
+    Route::get('/lich-su-mua-hang', [HomeController::class, 'getStatistic']);
+    Route::get('/hoa-hong-duoc-huong', [HomeController::class, 'getTransactions']);
+    Route::get('/thong-tin-ca-nhan', [HomeController::class, 'getProfile'])->name('profile');
     // Route::get('/',function (){
     //     return \App\Models\Product::find(10)->product_brand;
     // });
@@ -70,28 +70,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/lay-quan-huyen-theo-tinh-thanh', [ShippingController::class, 'districtOfProvince']);
 
     Route::get('/lay-phuong-xa-theo-quan-huyen', [ShippingController::class, 'wardOfDistrict']);
+    Route::get('/sales_manager',[HomeController::class,'getSales_manager']);
+    Route::get('/list_manager',[HomeController::class,'getList_manager']);
 });
 
-Route::get('/document', [HomeController::class, 'document']);
-Route::get('/order', [HomeController::class, 'order']);
-Route::get('/list-partner', [HomeController::class, 'list_partner']);
-Route::get('/product-detail', [HomeController::class, 'product_detail']);
-Route::get('/cart', [HomeController::class, 'cart']);
-Route::get('/order-history', [HomeController::class, 'order_history']);
-
-Route::get('/promotion', [HomeController::class, 'promotion']);
-Route::resource('products',ProductController::class);
-Route::get('lay-quan-huyen-theo-tinh-thanh', [ShippingController::class, 'districtOfProvince']);
-Route::get('lay-phuong-xa-theo-quan-huyen', [ShippingController::class, 'wardOfDistrict']);
-
-Route::resource('products',ProductController::class);
-Route::get('/sales_manager',[HomeController::class,'getSales_manager']);
-Route::get('/list_manager',[HomeController::class,'getList_manager']);
-Route::get('/hoahong', [CongThucController::class, 'hoahong']);
-
-Route::get('/setting-hoa-hong-truc-tiep', [SettingController::class, 'hoahongtructiep'])->name('setHoahongtructiep');
-Route::post('/setting-hoa-hong-truc-tiep', [SettingController::class, 'postHoahongtructiep']);
-
-Route::get('/setting-banner', [SettingController::class, 'uploadBanner'])->name('setBannerAds');
-Route::get('/setting-banner', [SettingController::class, 'postBanner']);
 
