@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Province;
+use App\Models\District;
+use App\Models\Ward;
 use App\Models\Banner;
 
 class HomeController extends Controller
@@ -47,7 +49,10 @@ class HomeController extends Controller
     }
     public function getProfile(){
         $province = Province::select('matinhthanh', 'tentinhthanh')->get();
-        return view('user.profile',compact('province'));
+        $quanhuyen = District::select('maquanhuyen', 'tenquanhuyen')->get();
+        $phuongxa = Ward::select('maphuongxa', 'tenphuongxa')->get();
+
+        return view('user.profile',compact('province','quanhuyen','phuongxa'));
     }
     public function getTransactions(){
         return view('transactions');
