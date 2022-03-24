@@ -34,17 +34,17 @@
 			</a>
 		</li>
 		<li class="menu-item">
-			<a href="{{url('/document')}}" class="@if(\Request::is('document') ) active  @endif">
+			<a href="{{url('/tai-lieu')}}" class="@if(\Request::is('document') ) active  @endif">
 				<span><i class="fa-solid fa-table"></i>Tài liệu</span>
 			</a>
 		</li>
 		<li class="menu-item">
-			<a href="{{url('/products')}}" class="@if(\Request::is('products') ) active  @endif">
+			<a href="{{url('/san-pham')}}" class="@if(\Request::is('products') ) active  @endif">
 				<span><i class="fa-solid fa-table"></i>Sản phẩm</span>
 			</a>
 		</li>
 		<li class="menu-item">
-			<a href="{{url('/order')}}" class="@if(\Request::is('order') ) active  @endif">
+			<a href="{{url('/dat-hang')}}" class="@if(\Request::is('order') ) active  @endif">
 				<span><i class="fa-solid fa-table"></i>Đặt hàng</span>
 			</a>
 		</li>
@@ -54,12 +54,12 @@
 			</a>
 		</li>
 		<li class="menu-item">
-			<a href="{{url('/order-history')}}" class="@if(\Request::is('order-history') ) active  @endif">
+			<a href="{{url('/lich-su-dat-hang')}}" class="@if(\Request::is('order-history') ) active  @endif">
 				<span><i class="fa-solid fa-table"></i>Lịch sử đặt hàng</span>
 			</a>
 		</li>
 		<li class="menu-item">
-			<a href="{{url('/list-partner')}}" class="@if(\Request::is('list-partner') ) active  @endif">
+			<a href="{{url('/danh-sach-doi-tac')}}" class="@if(\Request::is('list-partner') ) active  @endif">
 				<span><i class="fa-solid fa-table"></i>Danh sách đối tác</span>
 			</a>
 		</li>

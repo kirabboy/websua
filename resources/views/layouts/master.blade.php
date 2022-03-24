@@ -24,6 +24,7 @@
     <link href="{{ asset('css/cart.css')}}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/list-partner.css')}}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/order-history.css')}}" rel="stylesheet" type="text/css">
+    <script src="{{ asset('/public/vendor/jquery/jquery.min.js') }}"></script>
     @stack('css')
 </head>
 
@@ -33,18 +34,19 @@
     @yield('content')
 
     @include('layouts.footer')
-    
+
     <script type="text/javascript">
         $(document).ready(function() {
             $('#sidebarCollapse').on('click', function() {
                 $('#sidebar').toggleClass('active');
             });
         });
+
         function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
 
-                reader.onload = function (e) {
+                reader.onload = function(e) {
                     $('#blah')
                         .attr('src', e.target.result);
                 };
@@ -52,8 +54,49 @@
                 reader.readAsDataURL(input.files[0]);
             }
         }
+        var proQty = $('.pro-qty');
+        proQty.prepend('<span class="dec qtybtn">-</span>');
+        proQty.append('<span class="inc qtybtn">+</span>');
+        proQty.on('click', '.qtybtn', function() {
+            var $button = $(this);
+            var oldValue = $button.parent().find('input').val();
+            if ($button.hasClass('inc')) {
+                var newVal = parseFloat(oldValue) + 1;
+            } else {
+                if (oldValue > 0) {
+                    var newVal = parseFloat(oldValue) - 1;
+                } else {
+                    newVal = 0;
+                }
+            }
+            $button.parent().find('input').val(newVal)
+            const rowId = $button.parent().find('input').data('rowid');
+            updateCart(rowId, newVal);
+        })
+        //<![CDATA[
+        function updateCart(rowId, qty) {
+            $.ajax({
+                type: "GET",
+                url: "gio-hang/update",
+                data: {
+                    rowId: rowId,
+                    qty: qty
+                },
+                success: function(response) {
+               
+                    console.log(response);
+                    location.reload();
+                },
+                error: function(error) {
+                    alert('Lỗi')
+                    console.log(error);
+                }
+
+            })
+        }
     </script>
-    <script src="{{ asset('/public/vendor/jquery/jquery.min.js') }}"></script>
+
+
     <script src="{{ asset('/public/js/bootstrap/bootstrap.bundle.min.js') }}"></script>
     @stack('scripts')
     <script src="//cdn.ckeditor.com/4.17.2/standard/ckeditor.js"></script>
@@ -61,6 +104,9 @@
         CKEDITOR.replace('ckeditor_des');
         CKEDITOR.replace('ckeditor_short_des');
     </script>
+    <script>
+        //]]>
+    </script>
 </body>
-</html>
 
+</html>

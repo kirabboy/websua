@@ -9,7 +9,9 @@ use App\Http\Controllers\CongThucController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\PartnerController;
-
+use App\Http\Controllers\ShopController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckOutController;
 
 Route::post('/login', [UserController::class, 'checkLogin']);
 Route::post('/register', [UserController::class, 'checkRegister']);
@@ -23,7 +25,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => ['role:admin']], function () {
         Route::get('/user-management', [AdminController::class, 'getUserManagement']);
     });
-
+    Route::get('/dat-hang/{id}', [ShopController::class, 'show']);
     Route::get('/logout', [UserController::class, 'getLogout']);
     Route::get('/register', [UserController::class, 'getRegister']);
     Route::get('/support', [HomeController::class, 'getSupport']);
@@ -35,20 +37,43 @@ Route::group(['middleware' => ['auth']], function () {
     //     return \App\Models\Product::find(10)->product_brand;
     // });
     Route::get('/', [HomeController::class, 'getHome']);
-    Route::get('/document', [HomeController::class, 'document']);
-    Route::get('/order', [HomeController::class, 'products']);
-    Route::get('/list-partner', [HomeController::class, 'list_partner']);
-    Route::get('/product-detail', [HomeController::class, 'product_detail']);
-    Route::get('/cart', [HomeController::class, 'cart']);
-    Route::get('/order-history', [HomeController::class, 'order_history']);
-    Route::resource('products', ProductController::class);
-    Route::get('/document', [HomeController::class, 'document']);
-    Route::get('/order', [HomeController::class, 'order']);
-    Route::get('/list-partner', [HomeController::class, 'list_partner']);
-    Route::get('/product-detail', [HomeController::class, 'product_detail']);
-    Route::get('/cart', [HomeController::class, 'cart']);
-    Route::get('/order-history', [HomeController::class, 'order_history']);
-    Route::resource('products', ProductController::class);
+    Route::get('/tai-lieu', [HomeController::class, 'document']);
+    // Route::get('/dat-hang', [HomeController::class, 'products']);
+    Route::get('/danh-sach-doi-tac', [HomeController::class, 'list_partner']);
+    Route::get('/chi-tiet-san-pham', [HomeController::class, 'product_detail']);
+    // Route::get('/gio-hang', [HomeController::class, 'cart']);
+    Route::get('/lich-su-dat-hang', [HomeController::class, 'order_history']);
+    Route::get('/dat-hang', [HomeController::class, 'order']);
+    Route::resource('san-pham', ProductController::class);
+    Route::prefix('gio-hang')->group(
+        function () {
+            Route::get('add/{id}', [CartController::class, 'add']);
+            Route::get('/', [CartController::class, 'index']);
+            Route::get('delete/{rowId}', [CartController::class, 'delete']);
+            Route::get('destroy', [CartController::class, 'destroy']);
+            Route::get('/update', [CartController::class, 'update']);
+        }
+    );
+    Route::prefix('thanh-toan')->group(
+        function () {
+            Route::get('/', [CheckOutController::class, 'index']);
+            Route::post('/', [CheckOutController::class, 'addOrder']);
+        }
+    );
+    // Route::get('t',function(){
+    //     Cart::add('293ad','Product 1', 1, 9.99, 550, ['size' => 'large']);
+    // });
+    // Route::get('test',function(){
+    //     return Cart::content();
+    // });
+    // Route::resource('san-pham', ProductController::class);
+    // Route::get('/document', [HomeController::class, 'document']);
+
+    // Route::get('/list-partner', [HomeController::class, 'list_partner']);
+    // Route::get('/product-detail', [HomeController::class, 'product_detail']);
+    // Route::get('/cart', [HomeController::class, 'cart']);
+    // Route::get('/order-history', [HomeController::class, 'order_history']);
+
 
     Route::get('/hoahong', [CongThucController::class, 'hoahong']);
 
@@ -71,27 +96,3 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/lay-phuong-xa-theo-quan-huyen', [ShippingController::class, 'wardOfDistrict']);
 });
-
-Route::get('/document', [HomeController::class, 'document']);
-Route::get('/order', [HomeController::class, 'order']);
-Route::get('/list-partner', [HomeController::class, 'list_partner']);
-Route::get('/product-detail', [HomeController::class, 'product_detail']);
-Route::get('/cart', [HomeController::class, 'cart']);
-Route::get('/order-history', [HomeController::class, 'order_history']);
-
-Route::get('/promotion', [HomeController::class, 'promotion']);
-Route::resource('products',ProductController::class);
-Route::get('lay-quan-huyen-theo-tinh-thanh', [ShippingController::class, 'districtOfProvince']);
-Route::get('lay-phuong-xa-theo-quan-huyen', [ShippingController::class, 'wardOfDistrict']);
-
-Route::resource('products',ProductController::class);
-Route::get('/sales_manager',[HomeController::class,'getSales_manager']);
-Route::get('/list_manager',[HomeController::class,'getList_manager']);
-Route::get('/hoahong', [CongThucController::class, 'hoahong']);
-
-Route::get('/setting-hoa-hong-truc-tiep', [SettingController::class, 'hoahongtructiep'])->name('setHoahongtructiep');
-Route::post('/setting-hoa-hong-truc-tiep', [SettingController::class, 'postHoahongtructiep']);
-
-Route::get('/setting-banner', [SettingController::class, 'uploadBanner'])->name('setBannerAds');
-Route::get('/setting-banner', [SettingController::class, 'postBanner']);
-

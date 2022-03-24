@@ -27,7 +27,7 @@
         <tr>
             <th>Mã sản phẩm</th>
             <th>Name</th>
-            <th>Brand</th>
+            
             <th>Image</th>
             <th>Price</th>
             <th>Description</th>
@@ -38,11 +38,10 @@
             <tr>
                 <td>{{++$i}}</td>
                 <td>{{$product->name}}</td>
-                <td>{{$product->brand}}</td>
                 <td><img src="{{url('/public/image')}}/{{$product->image}}" width="100%"style=" height:100px"></td>
                 <!-- <td><img src="{{asset('/public/image/2572dd3a018ccdd2949d.jpg')}}" width="100px"></td> -->
                 <td>{{$product->price}}</td>
-                <td>{{$product->description}}</td>
+                <td>{{strip_tags($product->description)}}</td>
                 <!-- <td></td> -->
                 <td>
                     <form action="{{route('products.destroy', $product->id)}}" method="POST">

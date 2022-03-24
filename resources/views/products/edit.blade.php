@@ -48,8 +48,8 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Ảnh sản phẩm:</strong>
-                <input type="file" name="file_upload" class="form-control" placeholder="image">
-                <img src="{{url('/public/image')}}/{{$product->image}}" width="100px">
+                <input type="file" name="file_upload" onchange="readURL(this);"  class="form-control" placeholder="image">
+                <img id="blah" src="{{url('/public/image')}}/{{$product->image}}" width="100px">
             </div>
         </div>
 
