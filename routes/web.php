@@ -9,6 +9,7 @@ use App\Http\Controllers\CongThucController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\PartnerController;
+use App\Http\Controllers\PromotionController;
 
 
 Route::post('/login', [UserController::class, 'checkLogin']);
@@ -44,7 +45,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('products', ProductController::class);
     Route::get('/document', [HomeController::class, 'document']);
     Route::get('/order', [HomeController::class, 'order']);
-    Route::get('/list-partner', [HomeController::class, 'list_partner']);
+    
+    
     Route::get('/product-detail', [HomeController::class, 'product_detail']);
     Route::get('/cart', [HomeController::class, 'cart']);
     Route::get('/order-history', [HomeController::class, 'order_history']);
@@ -59,7 +61,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/setting-banner', [SettingController::class, 'postBanner']);
     Route::get('/setting-banner/delete/{id}', [SettingController::class, 'deleteBanner']);
 
-    Route::get('/promotion', [HomeController::class, 'promotion']);
+    Route::get('/promotion', [PromotionController::class, 'promotion'])->name('promotion');
+    Route::get('/promotion/{point}', [PromotionController::class, 'postPromotion']);
+    
     Route::resource('products', ProductController::class);
 
 
@@ -71,27 +75,3 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/lay-phuong-xa-theo-quan-huyen', [ShippingController::class, 'wardOfDistrict']);
 });
-
-Route::get('/document', [HomeController::class, 'document']);
-Route::get('/order', [HomeController::class, 'order']);
-Route::get('/list-partner', [HomeController::class, 'list_partner']);
-Route::get('/product-detail', [HomeController::class, 'product_detail']);
-Route::get('/cart', [HomeController::class, 'cart']);
-Route::get('/order-history', [HomeController::class, 'order_history']);
-
-Route::get('/promotion', [HomeController::class, 'promotion']);
-Route::resource('products',ProductController::class);
-Route::get('lay-quan-huyen-theo-tinh-thanh', [ShippingController::class, 'districtOfProvince']);
-Route::get('lay-phuong-xa-theo-quan-huyen', [ShippingController::class, 'wardOfDistrict']);
-
-Route::resource('products',ProductController::class);
-Route::get('/sales_manager',[HomeController::class,'getSales_manager']);
-Route::get('/list_manager',[HomeController::class,'getList_manager']);
-Route::get('/hoahong', [CongThucController::class, 'hoahong']);
-
-Route::get('/setting-hoa-hong-truc-tiep', [SettingController::class, 'hoahongtructiep'])->name('setHoahongtructiep');
-Route::post('/setting-hoa-hong-truc-tiep', [SettingController::class, 'postHoahongtructiep']);
-
-Route::get('/setting-banner', [SettingController::class, 'uploadBanner'])->name('setBannerAds');
-Route::get('/setting-banner', [SettingController::class, 'postBanner']);
-

@@ -42,7 +42,7 @@
                 <td><img src="{{url('/public/image')}}/{{$product->image}}" width="100%"style=" height:100px"></td>
                 <!-- <td><img src="{{asset('/public/image/2572dd3a018ccdd2949d.jpg')}}" width="100px"></td> -->
                 <td>{{$product->price}}</td>
-                <td>{{$product->description}}</td>
+                <td>{{strip_tags($product->description)}}</td>
                 <!-- <td></td> -->
                 <td>
                     <form action="{{route('products.destroy', $product->id)}}" method="POST">
@@ -69,5 +69,5 @@
 
     {!! $products->links() !!}
     </section>
-
+    
 @endsection

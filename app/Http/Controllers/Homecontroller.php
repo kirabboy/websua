@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Province;
 use App\Models\Banner;
+use App\Models\Point;
 
 class HomeController extends Controller
 {
@@ -26,7 +27,8 @@ class HomeController extends Controller
     public function promotion()
     {
         $point= DB::table('promotion')->where('points','>',0)->latest()->get();
-        return view('promotion', ['points' => $point]);
+        $diem_user = Point::find(auth()->user()->id);
+        return view('promotion', ['points' => $point, 'diem_user' => $diem_user]);
     }
 
     public function order_history()
