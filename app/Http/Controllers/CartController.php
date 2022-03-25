@@ -28,6 +28,25 @@ class CartController extends Controller
         // dd(Cart::content());
         return back();
     }
+    public function buynow($id)
+    {
+        $product = Product::findOrFail($id);
+        Cart::add(
+            [
+                'id' => $id,
+                'name' => $product->name,
+                'qty' => 1,
+                'price' => $product->price,
+                'weight' => $product->weight ?? 0,
+                'options' => [
+                    'image' => $product->image,
+                ],
+
+            ]
+        );
+        // dd(Cart::content());
+        return redirect('/gio-hang');
+    }
     public function index()
     {
         $carts = Cart::content();

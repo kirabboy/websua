@@ -12,6 +12,7 @@ use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckOutController;
+use App\Http\Controllers\PromotionController;
 
 Route::post('/dang-nhap', [UserController::class, 'checkLogin']);
 Route::post('/dang-ky', [UserController::class, 'checkRegister']);
@@ -39,7 +40,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/', [HomeController::class, 'getHome']);
     Route::get('/tai-lieu', [HomeController::class, 'document']);
     // Route::get('/dat-hang', [HomeController::class, 'products']);
-    Route::get('/danh-sach-doi-tac', [HomeController::class, 'list_partner']);
+    Route::get('/danh-sach-doi-tac', [PartnerController::class, 'list_partner']);
     Route::get('/chi-tiet-san-pham', [HomeController::class, 'product_detail']);
     // Route::get('/gio-hang', [HomeController::class, 'cart']);
     Route::get('/lich-su-dat-hang', [HomeController::class, 'order_history']);
@@ -48,6 +49,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::prefix('gio-hang')->group(
         function () {
             Route::get('add/{id}', [CartController::class, 'add']);
+            Route::get('buynow/{id}', [CartController::class, 'buynow']);
             Route::get('/', [CartController::class, 'index']);
             Route::get('delete/{rowId}', [CartController::class, 'delete']);
             Route::get('destroy', [CartController::class, 'destroy']);

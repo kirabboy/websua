@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Order;
 use App\Models\Province;
 use App\Models\Order_products;

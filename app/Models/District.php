@@ -18,4 +18,7 @@ class District extends Model
     public function getProvinceFromDistrict() {
         return $this->hasOne(Province::class, 'matinhthanh', 'matinhthanh');
     }
+    public function orders() {
+        return $this->hasMany(Order::class,'sel_district','id');
+    }
 }

@@ -58,7 +58,7 @@
                         @method('DELETE')
 
                         <a class="btn btn-danger btn-icon-split" title="delete">
-                            <i class="fas fa-trash fa-lg text-danger"  style="color:#fff !important"></i>
+                            <i class="fas fa-trash fa-lg text-danger" style="color:#fff !important"></i>
                         </a>
                     </form>
                 </td>
