@@ -11,6 +11,7 @@ use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\CheckOutController;
 
 Route::post('/dang-nhap', [UserController::class, 'checkLogin']);
@@ -39,7 +40,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/', [HomeController::class, 'getHome']);
     Route::get('/tai-lieu', [HomeController::class, 'document']);
     // Route::get('/dat-hang', [HomeController::class, 'products']);
-    Route::get('/danh-sach-doi-tac', [HomeController::class, 'list_partner']);
+    Route::get('/danh-sach-doi-tac', [PartnerController::class, 'list_partner']);
     Route::get('/chi-tiet-san-pham', [HomeController::class, 'product_detail']);
     // Route::get('/gio-hang', [HomeController::class, 'cart']);
     Route::get('/lich-su-dat-hang', [HomeController::class, 'order_history']);
