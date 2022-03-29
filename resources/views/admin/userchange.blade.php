@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Thông tin cá nhân')
+@section('title', 'Chỉnh sửa thông tin')
 
 @push('css')
 <link rel="stylesheet" href="{{ asset('/css/profile.css') }}">
@@ -25,15 +25,15 @@
 @endif
 <div class="profile-content widget">
     <div class="widget-head">
-        <h4 class="heading">Thông tin cá nhân</h4>
+        <h4 class="heading">Người dùng: {{$userchange->username}}</h4>
     </div>
     <div class="widget-body">
-        <form method="post" action="thong-tin-ca-nhan/{{Auth::user()->id}}" enctype="multipart/form-data">
+        <form method="post" action="{{$userchange->id}}" enctype="multipart/form-data">
             @csrf
             <div class="form-content">
                 <!-- avatar -->
                 <div class="form-group text-center">
-                    <img src="{{ asset('/img_avt') }}/{{Auth::user()->avatar}}" id="anhdaidien" alt="{{Auth::user()->avatar}}" height="100" width="100">
+                    <img src="{{ asset('/img_avt') }}/{{$userchange->avatar}}" id="anhdaidien" alt="{{$userchange->avatar}}" height="100" width="100">
                     <label class="btn-sm btn-danger btn-avt">
                         Sửa Ảnh <input type="file" name="daidien" id="daidien" style="display: none">
                     </label>
@@ -43,27 +43,33 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Tên đăng nhập</label>
                     <div class="col-sm-4">
-                        <h3 class="heading">{{Auth::user()->username}}</h3>
+                        <h3 class="heading">{{$userchange->username}}</h3>
                     </div>
                     <label class="col-sm-2 col-form-label">Cấp bậc</label>
                     <div class="col-sm-4">
-                        <h3 class="heading">
-                            @if (Auth::user()->level == 1) Quản trị
-                            @elseif (Auth::user()->level == 2) Trung tâm phân phối
-                            @elseif (Auth::user()->level == 3) Đại lý bán buôn
+                        <!-- <h3 class="heading">
+                            @if ($userchange->hasRole('admin')) Quản trị
+                            @elseif ($userchange->hasRole('distribution')) Trung tâm phân phối
+                            @elseif ($userchange->hasRole('agent')) Đại lý bán buôn
                             @else Cộng tác viên
                             @endif
-                        </h3>
+                        </h3> -->
+                        <select name="level" id="" class="form-control">
+                            <option value="1" @if($userchange->level == 1) selected @endif>Quản trị</option>
+                            <option value="2" @if($userchange->level == 2) selected @endif>Trung tâm phân phối</option>
+                            <option value="3" @if($userchange->level == 3) selected @endif>Đại lý bán buôn</option>
+                            <option value="4" @if($userchange->level == 4) selected @endif>Cộng tác viên</option>
+                        </select>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Họ và tên</label>
                     <div class="col-sm-4">
-                        <input type="text" name="name" class="form-control" value="{{Auth::user()->name}}">
+                        <input type="text" name="name" class="form-control" value="{{$userchange->name}}">
                     </div>
                     <label class="col-sm-2 col-form-label">Điện thoại</label>
                     <div class="col-sm-4">
-                        <input type="text" name="phone" class="form-control" value="0{{Auth::user()->phone}}">
+                        <input type="text" name="phone" class="form-control" value="0{{$userchange->phone}}">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -72,22 +78,22 @@
                         <select name="sel_province" class="form-control select2" data-placeholder=" Cấp tỉnh " required>
                             <option value=""> Cấp tỉnh </option>
                             @foreach ($province as $value)
-                            <option value="{{ $value->matinhthanh }} " @if($value->matinhthanh == Auth::user()->tinh) selected @endif>{{ $value->tentinhthanh }}
+                            <option value="{{ $value->matinhthanh }} " @if($value->matinhthanh == $userchange->tinh) selected @endif>{{ $value->tentinhthanh }}
                             </option>
                             @endforeach
                         </select>
                     </div>
                     <div class="col-sm-2 form-group">
                         <select class="form-control select2" name="sel_district" data-placeholder=" Cấp huyện " required>
-                            <option value="{{Auth::user()->huyen}}">
-                                {{DB::table('district')->where('maquanhuyen',Auth::user()->huyen)->first()->tenquanhuyen}}
+                            <option value="{{$userchange->huyen}}">
+                                {{DB::table('district')->where('maquanhuyen',$userchange->huyen)->first()->tenquanhuyen}}
                             </option>
                         </select>
                     </div>
                     <div class="col-sm-4 form-group">
                         <select class="form-control select2" name="sel_ward" data-placeholder=" Cấp xã " required>
-                            <option value="{{Auth::user()->xa}}">
-                                {{DB::table('ward')->where('maphuongxa',Auth::user()->xa)->first()->tenphuongxa}}
+                            <option value="{{$userchange->xa}}">
+                                {{DB::table('ward')->where('maphuongxa',$userchange->xa)->first()->tenphuongxa}}
                             </option>
                         </select>
                     </div>
@@ -95,53 +101,53 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Số nhà</label>
                     <div class="col-sm-4">
-                        <input type="text" name="address" class="form-control" value="{{Auth::user()->address}}">
+                        <input type="text" name="address" class="form-control" value="{{$userchange->address}}">
                     </div>
                     <label class="col-sm-2 col-form-label">Email</label>
                     <div class="col-sm-4">
-                        <input type="email" name="email" class="form-control" value="{{Auth::user()->email}}">
+                        <input type="email" name="email" class="form-control" value="{{$userchange->email}}">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Tên ngân hàng</label>
                     <div class="col-sm-4">
-                        <input type="text" name="nganhang" class="form-control text-capitalize" placeholder="Vd: Sacombank" value="{{Auth::user()->nganhang}}">
+                        <input type="text" name="nganhang" class="form-control text-capitalize" placeholder="Vd: Sacombank" value="{{$userchange->nganhang}}">
                     </div>
                     <label class="col-sm-2 col-form-label">Tài khoản NH</label>
                     <div class="col-sm-4">
-                        <input type="text" name="taikhoannh" class="form-control" value="{{Auth::user()->taikhoannh}}">
+                        <input type="text" name="taikhoannh" class="form-control" value="{{$userchange->taikhoannh}}">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Chủ thẻ</label>
                     <div class="col-sm-4">
-                        <input type="text" name="chuthe" class="form-control text-uppercase" value="{{Auth::user()->chuthe}}">
+                        <input type="text" name="chuthe" class="form-control text-uppercase" value="{{$userchange->chuthe}}">
                     </div>
                     <label class="col-sm-2 col-form-label">Chi nhánh</label>
                     <div class="col-sm-4">
-                        <input type="text" name="chinhanh" class="form-control" value="{{Auth::user()->chinhanh}}">
+                        <input type="text" name="chinhanh" class="form-control" value="{{$userchange->chinhanh}}">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">CMND/CCCD</label>
                     <div class="col-sm-4">
-                        <input type="text" name="cmnd" class="form-control" value="{{Auth::user()->cmnd}}">
+                        <input type="text" name="cmnd" class="form-control" value="{{$userchange->cmnd}}">
                     </div>
                     <label class="col-sm-2 col-form-label">Ngày cấp</label>
                     <div class="col-sm-4">
-                        <input type="date" name="ngaycmnd" class="form-control" value="{{Auth::user()->ngaycmnd}}">
+                        <input type="date" name="ngaycmnd" class="form-control" value="{{$userchange->ngaycmnd}}">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Nơi cấp</label>
                     <div class="col-sm-4">
-                        <input type="text" name="noicmnd" class="form-control" value="{{Auth::user()->noicmnd}}">
+                        <input type="text" name="noicmnd" class="form-control" value="{{$userchange->noicmnd}}">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">CMT mặt trước</label>
                     <div class="col-sm-4">
-                        <img class="anhcmt" src="{{ asset('/img_cmnd') }}/{{Auth::user()->cmttruoc}}" id="anhcmttruoc" alt="{{Auth::user()->cmttruoc}}">
+                        <img class="anhcmt" src="{{ asset('/img_cmnd') }}/{{$userchange->cmttruoc}}" id="anhcmttruoc" alt="{{$userchange->cmttruoc}}">
                         <br />
                         <label class="btn-sm btn-danger">
                             Sửa Ảnh <input type="file" name="cmttruoc" id="cmttruoc" style="display: none">
@@ -149,7 +155,7 @@
                     </div>
                     <label class="col-sm-2 col-form-label">CMT mặt sau</label>
                     <div class="col-sm-4">
-                        <img class="anhcmt" src="{{ asset('/img_cmnd') }}/{{Auth::user()->cmtsau}}" id="anhcmtsau" alt="{{Auth::user()->cmtsau}}">
+                        <img class="anhcmt" src="{{ asset('/img_cmnd') }}/{{$userchange->cmtsau}}" id="anhcmtsau" alt="{{$userchange->cmtsau}}">
                         <br />
                         <label class="btn-sm btn-danger">
                             Sửa Ảnh <input type="file" name="cmtsau" id="cmtsau" style="display: none">
@@ -169,7 +175,7 @@
         <h4 class="heading">Thay đổi mật khẩu</h4>
     </div>
     <div class="widget-body">
-        <form method="post" action="doi-mat-khau/{{Auth::user()->id}}">
+        <form method="post" action="doi-mat-khau/{{$userchange->id}}">
             @csrf
             <div class="form-content">
                 <div class="form-group row">

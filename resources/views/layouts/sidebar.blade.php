@@ -6,7 +6,7 @@
 				<img src="{{ asset('image/logo.png') }}" alt="" width="80px">
 			</a>
 			<div class="box-text">
-				<h2> <a href="thong-tin-ca-nhan">{{Auth::user()->name}}</a></h2>
+				<h2> <a href="{{url('/thong-tin-ca-nhan')}}">{{Auth::user()->name}}</a></h2>
 				<span class="label-color">
 					@if (Auth::user()->hasRole('admin')) Quản trị
 					@elseif (Auth::user()->hasRole('distribution')) Trung tâm phân phối
@@ -23,7 +23,7 @@
 	<ul class="side-nav">
 		@role('admin')
 		<li class="menu-item">
-			<a href="{{url('/quan-ly-nguoi-dung')}}" class="@if(\Request::is('user-management') ) active  @endif">
+			<a href="{{url('/quan-ly-nguoi-dung')}}" class="@if(\Request::is('quan-ly-nguoi-dung*') ) active  @endif">
 				<span><i class="fa-solid fa-user"></i>Quản lý Users</span>
 			</a>
 		</li>
@@ -34,18 +34,20 @@
 			</a>
 		</li>
 		<li class="menu-item">
-			<a href="{{url('/tai-lieu')}}" class="@if(\Request::is('document') ) active  @endif">
-				<span><i class="fa-solid fa-table"></i>Tài liệu</span>
+			<a href="{{url('/tai-lieu')}}" class="@if(\Request::is('tai-lieu') ) active  @endif">
+				<span><i class="fa-solid fa-file"></i>Tài liệu</span>
 			</a>
 		</li>
+		@role('admin')
 		<li class="menu-item">
-			<a href="{{url('/san-pham')}}" class="@if(\Request::is('products') ) active  @endif">
-				<span><i class="fa-solid fa-table"></i>Sản phẩm</span>
+			<a href="{{url('/san-pham')}}" class="@if(\Request::is('san-pham') ) active  @endif">
+				<span><i class="fa-solid fa-pizza-slice"></i>Sản phẩm</span>
 			</a>
 		</li>
+		@endrole
 		<li class="menu-item">
-			<a href="{{url('/dat-hang')}}" class="@if(\Request::is('order') ) active  @endif">
-				<span><i class="fa-solid fa-table"></i>Đặt hàng</span>
+			<a href="{{url('/dat-hang')}}" class="@if(\Request::is('dat-hang') ) active  @endif">
+				<span><i class="fa-solid fa-clipboard-check"></i>Đặt hàng</span>
 			</a>
 		</li>
 		<li class="menu-item">
@@ -54,51 +56,57 @@
 			</a>
 		</li>
 		<li class="menu-item">
-			<a href="{{url('/lich-su-dat-hang')}}" class="@if(\Request::is('order-history') ) active  @endif">
-				<span><i class="fa-solid fa-table"></i>Lịch sử đặt hàng</span>
+			<a href="{{url('/lich-su-dat-hang')}}" class="@if(\Request::is('lich-su-dat-hang') ) active  @endif">
+				<span><i class="fa-solid fa-clock-rotate-left"></i>Lịch sử đặt hàng</span>
 			</a>
 		</li>
 		<li class="menu-item">
-			<a href="{{url('/danh-sach-doi-tac')}}" class="@if(\Request::is('list-partner') ) active  @endif">
-				<span><i class="fa-solid fa-table"></i>Danh sách đối tác</span>
+			<a href="{{url('/danh-sach-doi-tac')}}" class="@if(\Request::is('danh-sach-doi-tac') ) active  @endif">
+				<span><i class="fa-solid fa-bars"></i>Danh sách đối tác</span>
 			</a>
 		</li>
+		@hasanyrole('admin|agent')
 		<li class="menu-item">
 			<a href="{{url('/dang-ky')}}" class="@if(\Request::is('dang-ky') ) active  @endif">
 				<span><i class="fa-solid fa-circle-plus"></i>Đăng ký</span>
 			</a>
 		</li>
-		<li class="menu-item">
+		@endhasanyrole
+		<!-- <li class="menu-item">
 			<a href="{{url('/trung-tam-phan-phoi')}}" class="@if(\Request::is('trung-tam-phan-phoi') ) active  @endif">
 				<span><i class="fa-solid fa-building"></i>Trung tâm phân phối</span>
 			</a>
-		</li>
+		</li> -->
 		<li class="menu-item">
 			<a href="{{url('/hoa-hong-duoc-huong')}}" class="@if(\Request::is('hoa-hong-duoc-huong') ) active  @endif">
 				<span><i class="fa-solid fa-percent"></i>Hoa hồng được hưởng</span>
 			</a>
 		</li>
+		@role('admin')
 		<li class="menu-item">
 			<a href="{{url('/lich-su-mua-hang')}}" class="@if(\Request::is('lich-su-mua-hang') ) active  @endif">
 				<span><i class="fa-solid fa-clock-rotate-left"></i>Lịch sử mua hàng hệ thống</span>
 			</a>
 		</li>
+		@endrole
 		<!-- <li><hr></li>
 		<li>
 			<hr>
 		</li> -->
-
+		@role('admin')
 		<li class="menu-item">
 			<a href="{{url('/setting-hoa-hong-truc-tiep')}}" class="@if(\Request::is('setting-hoa-hong-truc-tiep') ) active  @endif">
 				<span><i class="fa-solid fa-fire"></i>Cài đặt hoa hồng trực tiếp</span>
 			</a>
 		</li>
-
+		@endrole
+		@role('admin')
 		<li class="menu-item">
 			<a href="{{url('/setting-banner')}}" class="@if(\Request::is('setting-banner') ) active  @endif">
 				<span><i class="fa-solid fa-image"></i>Cài đặt ảnh banner</span>
 			</a>
 		</li>
+		@endrole
 		<li class="menu-item">
 			<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
 				<i class="fas fa-fw fa-cog"></i>

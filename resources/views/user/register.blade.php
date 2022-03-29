@@ -26,7 +26,6 @@
         @if (session('mess'))
         <div class="alert alert-success">
             {{ session('mess') }}
-            <a href="{{url('/dang-nhap')}}">Đi tới trang đăng nhập!</a>
         </div>
         @endif
         <form method="post" action="dang-ky" enctype="multipart/form-data">
@@ -133,21 +132,21 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputState">Tên ngân hàng</label>
-                        <input type="text" class="form-control" placeholder="Vd: Sacombank">
+                        <input type="text" class="form-control text-capitalize" name="nganhang" placeholder="Vd: Sacombank">
                     </div>
                     <div class="form-group col-md-6">
                         <label>Tài khoản ngân hàng</label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="taikhoannh">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label>Chủ thẻ</label>
-                        <input type="text" class="form-control text-uppercase">
+                        <input type="text" class="form-control text-uppercase" name="chuthe">
                     </div>
                     <div class="form-group col-md-6">
                         <label>Chi nhánh</label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="chinhanh">
                     </div>
                 </div>
                 <!-- ảnh đại diện -->
