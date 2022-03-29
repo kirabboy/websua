@@ -29,6 +29,11 @@
                             {{ session('mess') }}
                         </div>
                         @endif
+                        @if (session('matkhau'))
+                        <div class="alert alert-success">
+                            {{ session('matkhau') }}
+                        </div>
+                        @endif
                         <h5>Tên đăng nhập</h5>
                         <input type="text" name="username" placeholder="Tên đăng nhập" class="form-control">
                         <h5>Mật khẩu</h5>
@@ -39,7 +44,7 @@
                                 <input type="checkbox" checked="" name="remember" />
                                 <span>Remember me</span>
                             </label>
-                            <a class="col-6" href="{{url('/forgot-password')}}">Forgot password?</a>
+                            <a class="col-6" href="{{url('/dang-ki')}}">Đăng ký</a>
                         </div>
                     </div>
                 </form>

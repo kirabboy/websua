@@ -51,13 +51,6 @@ class HomeController extends Controller
     public function getHome(){
         return view('user.index');
     }
-    public function getProfile(){
-        $province = Province::select('matinhthanh', 'tentinhthanh')->get();
-        $quanhuyen = District::select('maquanhuyen', 'tenquanhuyen')->get();
-        $phuongxa = Ward::select('maphuongxa', 'tenphuongxa')->get();
-
-        return view('user.profile',compact('province','quanhuyen','phuongxa'));
-    }
     public function getTransactions(){
         return view('transactions');
     }

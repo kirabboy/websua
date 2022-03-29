@@ -15,5 +15,13 @@ $(function () {
             $("#btn_dk").attr("disabled", true);
         }
     });
-    init_form_reg();
+});
+$(function () {
+    $("#btn-gioithieu").change(function () {
+        if($(this).is(":checked")){
+            $("#gioithieu").attr("disabled",false);
+        } else {
+            $("#gioithieu").attr("disabled", true);
+        }
+    });
 });

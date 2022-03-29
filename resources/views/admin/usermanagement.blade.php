@@ -24,24 +24,26 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($users as $key => $u)
+                @foreach($users as $u)
+                @if($u->level != 1)
                 <tr>
-                    <td class="text-center" data-label="STT">{{$key+1}}</td>
+                    <td class="text-center" data-label="STT">{{$u->id}}</td>
                     <td data-label="Tài khoản">{{$u->username}}</td>
                     <td data-label="Tên">{{$u->name}}</td>
-                    @if ($u->hasRole('admin')) <td data-label="Chức vụ">Quản trị</td>
-                    @elseif ($u->hasRole('distribution')) <td data-label="Chức vụ">Trung tâm phân phối</td>
-                    @elseif ($u->hasRole('agent')) <td data-label="Chức vụ">Đại lý bán buôn</td>
-                    @elseif ($u->hasRole('collaborators')) <td data-label="Chức vụ">Cộng tác viên</td>
-                    @else <td data-label="Chức vụ">Chưa cấp quyền</td>
+                    @if ($u->level == 1) <td data-label="Chức vụ">Quản trị</td>
+                    @elseif ($u->level == 2) <td data-label="Chức vụ">Trung tâm phân phối</td>
+                    @elseif ($u->level == 3) <td data-label="Chức vụ">Đại lý bán buôn</td>
+                    @else <td data-label="Chức vụ">Cộng tác viên</td>
                     @endif
                     <th class="text-center">
-                        <a href="#" class="btn btn-danger" role="button">Sửa</a>
+                        <a href="quan-ly-nguoi-dung/{{$u->id}}" class="btn btn-danger" role="button">Sửa</a>
                     </th>
                 </tr>
+                @endif
                 @endforeach
             </tbody>
         </table>
+        {{ $users->links() }}
     </div>
 </div>
 <p></p>

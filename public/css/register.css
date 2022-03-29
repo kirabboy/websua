@@ -117,3 +117,26 @@ span.ast{
 .form-content2 .ms-panel-body{
     padding: 15px;
 }
+
+/* Sign Up */
+#signUp .register-content.widget{
+    width: 768px;
+    margin: 15px auto;
+}
+#signUp .register-content.widget .widget-head{
+    border-radius: 5px 5px 0 0;
+}
+
+@media only screen and (max-width: 768px) {
+    .form-content .form-row:first-child {
+        flex-direction: column-reverse;
+    }
+    #signUp .register-content.widget{
+        width: 100%;
+        margin: 0 !important;
+        border: none;
+    }
+    #signUp .register-content.widget .widget-head{
+        border-radius: 0;
+    }
+}

@@ -26,7 +26,7 @@
                 <div class="modal-body">Bấm "Hủy" nếu bạn không muốn đăng xuất.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Hủy</button>
-                    <a class="btn btn-primary" href="logout">Đăng xuất</a>
+                    <a class="btn btn-primary" href="{{url('/logout')}}">Đăng xuất</a>
                 </div>
             </div>
         </div>
