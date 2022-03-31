@@ -4,6 +4,7 @@
 @section('content')
 <section class="content_list_manager p-4">
 
+ 
     <div class="button-option-top">
         <a class="btn  btn-social btn-success "  href="#" data-toggle="modal" data-target="#create_sales" id="btn_add">
             <i class="fa fa-fw fa-plus-square-o"></i> Thêm mới
@@ -137,38 +138,6 @@
                             </tr>
                         </thead>
                         <tbody>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                             <tr role="row" class="odd">
                                 <td>1</td>
                                 <td>Tổng Công Ty</td>

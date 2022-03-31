@@ -54,11 +54,13 @@
 			</a>
 		</li>
 		<li class="menu-item">
-			<a href="{{url('/lich-su-dat-hang')}}" class="@if(\Request::is('order-history') ) active  @endif">
+			<a href="{{url('/lich-su-dat-hang')}}" class="@if(\Request::is('lich-su-don-hang') ) active  @endif">
 				<span><i class="fa-solid fa-table"></i>Lịch sử đặt hàng</span>
 			</a>
 		</li>
 		<li class="menu-item">
+			<a href="{{url('/lich-su')}}" class="@if(\Request::is('lich-su') ) active  @endif">
+				<span><i class="fa-solid fa-table"></i>Quản lý đơn hàng
 			<a href="{{url('/danh-sach-doi-tac')}}" class="@if(\Request::is('list-partner') ) active  @endif">
 				<span><i class="fa-solid fa-table"></i>Danh sách đối tác</span>
 			</a>

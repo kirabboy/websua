@@ -12,7 +12,7 @@
         <h4 class="heading">Lịch sử mua hàng hệ thống</h4>
     </div>
     <div class="widget-body">
-        <table class="table table-bordered table-striped bangtimkiem">
+        <!-- <table class="table table-bordered table-striped bangtimkiem">
             <tbody>
                 <tr>
                     <td>Từ Khóa</td>
@@ -33,7 +33,7 @@
                     </td>
                 </tr>
             </tbody>
-        </table>
+        </table> -->
         <table class="table table-bordered table-striped table-hover bangthuong text-center ">
             <thead>
                 <tr class="d-none d-md-table-row">

@@ -26,7 +26,7 @@ class CartController extends Controller
             ]
         );
         // dd(Cart::content());
-        return back();
+        return back()->with('success',"Đã thêm vào giỏ");
     }
     public function buynow($id)
     {

@@ -20,5 +20,11 @@ class Order extends Model
     public function ward() {
         return $this->belongsTo(Ward::class,'sel_ward','id');
     }
+    public function order_products() {
+        return $this->hasMany(Order_products::class,'id_order','id');
+    }
+    public function status_product() {
+        return $this->hasMany(Status_product::class,'status','id');
+    }
     
 }
