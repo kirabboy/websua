@@ -60,9 +60,14 @@
 				<span><i class="fa-solid fa-table"></i>Lịch sử đặt hàng</span>
 			</a>
 		</li>
+		@role('admin')
 		<li class="menu-item">
 			<a href="{{url('/lich-su')}}" class="@if(\Request::is('lich-su') ) active  @endif">
-				<span><i class="fa-solid fa-table"></i>Quản lý đơn hàng
+				<span><i class="fa-solid fa-table"></i>Quản lý đơn hàng</span>
+			</a>
+		</li>
+		@endrole
+		<li class="menu-item">
 			<a href="{{url('/danh-sach-doi-tac')}}" class="@if(\Request::is('list-partner') ) active  @endif">
 				<span><i class="fa-solid fa-table"></i>Danh sách đối tác</span>
 			</a>
