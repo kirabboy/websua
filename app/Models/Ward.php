@@ -15,4 +15,7 @@ class Ward extends Model
     public function getDistrictFromWard() {
         return $this->hasOne(District::class, 'maquanhuyen', 'maquanhuyen');
     }
+    public function orders() {
+        return $this->hasMany(Order::class,'sel_ward','id');
+    }
 }

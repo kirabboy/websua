@@ -11,4 +11,11 @@ class Order_products extends Model
     protected $guarded = [];
     protected $table = 'order_products';
     protected $primaryKey='id';
+    public function orders() {
+        return $this->belongsTo(Order::class,'id_order','id');
+    }
+    public function get_products() {
+        return $this->belongsTo(Product::class,'id_product','id');
+    }
+  
 }

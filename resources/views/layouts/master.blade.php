@@ -24,7 +24,9 @@
     <link href="{{ asset('css/cart.css')}}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/list-partner.css')}}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/order-history.css')}}" rel="stylesheet" type="text/css">
-    <script src="{{ asset('/public/vendor/jquery/jquery.min.js') }}"></script>
+
+    <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script> -->
     @stack('css')
 </head>
 
@@ -35,7 +37,7 @@
 
     @include('layouts.footer')
     <script src="{{ asset('/public/vendor/jquery/jquery.min.js') }}"></script>
-    
+
     <script type="text/javascript">
         $(document).ready(function() {
             $('#sidebarCollapse').on('click', function() {
@@ -84,7 +86,7 @@
                     qty: qty
                 },
                 success: function(response) {
-               
+
                     console.log(response);
                     location.reload();
                 },
@@ -95,6 +97,33 @@
 
             })
         }
+        $(document).ready(function() {
+            $(document).on('click', '.editbtn', function() {
+                var od_id = $(this).val();
+                // alert(od_id);
+                // console.log(od_id);
+                $.ajax({
+                    type: "GET",
+                    url: "edit_order/" +od_id,
+                    success: function(response) {
+                        console.log(response.order);
+                        $('#status').val(response.order.status)
+                        $('#full_name').val(response.order.full_name);
+                        $('#od_id').val(od_id);
+                        // $('#full_name').val(response.order.full_name);
+
+                    }
+                });
+            });
+
+            //     $('.xedit').editable({
+            //        url: '{{url("lich-su-dat-hang/update")}}',
+            //        title: 'Update',
+            //        success: function (response, newValue) {
+            //           console.log('Updated', response)
+            //        }
+            //   });
+        })
     </script>
     <script src="{{ asset('/public/js/bootstrap/bootstrap.bundle.min.js') }}"></script>
     @stack('scripts')
