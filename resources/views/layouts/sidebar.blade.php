@@ -90,11 +90,11 @@
 			</a>
 		</li>
 		@role('admin')
-		<li class="menu-item">
+		<!-- <li class="menu-item">
 			<a href="{{url('/lich-su-mua-hang')}}" class="@if(\Request::is('lich-su-mua-hang') ) active  @endif">
 				<span><i class="fa-solid fa-clock-rotate-left"></i>Lịch sử mua hàng hệ thống</span>
 			</a>
-		</li>
+		</li> -->
 		@endrole
 		<!-- <li><hr></li>
 		<li>
