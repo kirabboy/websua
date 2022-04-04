@@ -17,10 +17,13 @@ class Product extends Model
     ];
     protected $primary='id';
     public function product_brand() {
-        return $this->belongsTo(Product_brand::class,'brand_id','id');
+        return $this->hasOne(Product_brand::class,'brand_id','id');
     }
     public function product_category() {
         return $this->belongsTo(Product_category::class,'product_category_id','id');
+    }
+    public function get_products(){
+        return $this->hasMany(Order_products::class,'id_product','id');
     }
 }
 

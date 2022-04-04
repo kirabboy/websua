@@ -43,6 +43,10 @@ class HomeController extends Controller
     {
         return view('products.product-detail');
     }
+    // public function list_partner()
+    // {
+    //     return view('list-partner');
+    // }
     
     public function cart()
     {

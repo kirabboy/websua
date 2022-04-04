@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Order;
 use App\Models\Province;
 use App\Models\Order_products;
@@ -29,11 +28,11 @@ class CheckOutController extends Controller
           'qty'=>$cart->qty,
           'amount'=>$cart->price,
           'total' =>$cart->price*$cart->qty,
-
+        
          ];
          Order_products::create($data);
        }
        Cart::destroy();
-       return "Thanh toán thành công";
+       return redirect('/lich-su-dat-hang')->with('message', 'Thanh toán thành công!');
     }
 }

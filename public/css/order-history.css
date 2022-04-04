@@ -110,3 +110,33 @@
     top: 10px;
     right: 10px;
 }
+.list-ifod {
+    list-style: none;
+    overflow: hidden;
+    margin: 20px 0 10px;
+    padding-right: 30px;
+}
+.modal-content h2 {
+    text-align: center;
+    color: #008a7f;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 24px;
+    position: relative;
+    margin: 25px;
+}
+.list-ifod li {
+    width: 50%;
+    float: left;
+    padding: 2px;
+}
+.list-ifod li p b {
+    margin-right: 5px;
+}
+.list-ifod li p span, .list-ifod li p{
+    color: #878793;
+    font-size: 14px;
+}
+.list-ifod li p{
+    font-weight: 500;
+}

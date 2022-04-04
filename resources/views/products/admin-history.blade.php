@@ -37,11 +37,13 @@
                 <thead>
                     <tr>
                         <th>Thời gian mua hàng</th>
+                        <th>Họ tên</th>
                         <th>Số tiền</th>
                         <th>Trạng thái</th>
                         <th>Tỉnh</th>
                         <th>Huyện</th>
                         <th>Xã</th>
+                        <th>Địa chỉ</th>
                         <th>Hành động</th>
                     </tr>
                 </thead>
@@ -50,6 +52,7 @@
                     <tr>
 
                         <td>{{$order->created_at}}</td>
+                        <td>{{$order->full_name}}
                         <td>{{$order->test}}
                         </td>
                         <td>
@@ -66,9 +69,15 @@
                             {{ DB::table('ward')->where('maphuongxa',$order->sel_ward)->first()->tenphuongxa}}
                         </td>
                         <td>
-                            <a class=" " href="#" data-toggle="modal" data-target="#create_sales_{{$order->id}}" id="btn_add">
+                            {{$order->street_address}}
+                        </td>
+                        <td>
+                            <a class="" href="#" data-toggle="modal" data-target="#create_sales_{{$order->id}}" id="btn_add">
                                 <i class="fas fa-eye"></i>
                             </a>
+                            <button class="editbtn" href="#" value="{{$order->id}}" data-toggle="modal" data-target="#create_{{$order->id}}" id="btn_add">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </button>
 
                         </td>
 
@@ -89,6 +98,7 @@
             <div class="modal fade" id="create_sales_{{$order->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document" style="max-width: none !important">
                     <div class="modal-dialog modal-lg">
+
                         <div id="orderdetailprint" class="modal-content">
                             <h2 style="text-align:center;">Đơn Đặt Hàng</h2>
 
@@ -185,6 +195,65 @@
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+            @foreach ( $orders as $order)
+            <div class="modal fade" id="create_{{$order->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document" style="max-width: none !important">
+                    <div class="modal-dialog modal-lg">
+                        <form action="{{url('update_order')}}" method="POST" style="padding:10px">
+                            @csrf
+                            @method('PUT')
+                            <input type="hidden" name="od_id" id="od_id" value="{{$order->id}}" />
+                            <div id="orderdetailprint" class="modal-content">
+                                <h2 style="text-align:center;">Đơn Đặt Hàng</h2>
+
+                                <ul class="list-ifod clearfix">
+                                    <li>
+                                        <input value="{{$order->full_name}}" type="text" name="full_name" id="full_name" required>
+                                        </input>
+                                    </li>
+                                    <li>
+                                        <p><b>Địa chỉ nhận: {{$order->street_address}}</b><span id="address"></span></p>
+                                    </li>
+                                    <!-- <li>
+                                            <p><b>Email:</b> <span id="email">ngocdep@gmail.com</span></p>
+                                        </li>
+                                        <li>
+                                            <p><b>Số điện thoại:</b><span id="mobile">0373066558.</span></p>
+                                        </li> -->
+
+                                    <li>
+                                        <p><b>Ngày tạo:</b> <span id="date">{{$order->created_at}}</span></p>
+                                    </li>
+                                    <!-- <li>
+                                        <p><b>Ngày tạo:</b> <span id="date">{{$order->created_at}}</span></p>
+                                    </li> -->
+                                    <li>
+                                        <!-- <input type="text" name="status" id="status" required>
+
+                                        </input> -->
+                                        <select id="status" name="status" class="form-control select2" data-placeholder=" Cấp tỉnh " required>
+                                            <option value=""> Trạng thái </option>
+                                            @foreach ($status as $value)
+                                            {{$value->id}}
+                                            <option value="{{ $value->id }}">{{ $value->status_name }}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                    </li>
+                                    <!-- <li>
+                                            <p><b>Ghi chú:</b> <span id="note"></span></p>
+                                        </li> -->
+                                </ul>
+                                <div class="col-xs-12 col-sm-12 col-md-12 text-center pt-3 pb-4">
+                                    <button type="submit" class="btn btn-primary">Sửa</button>
+                                </div>
+                            </div>
+                        </form>
+
                     </div>
                 </div>
             </div>

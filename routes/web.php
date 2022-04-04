@@ -14,6 +14,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\CheckOutController;
 use App\Http\Controllers\SignupController;
+use App\Http\Controllers\OrderController;
 
 Route::post('/dang-nhap', [UserController::class, 'checkLogin']);
 Route::post('/dang-ky', [UserController::class, 'checkRegister']);
@@ -40,6 +41,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/setting-banner', [SettingController::class, 'getBanner'])->name('setBannerAds');
         Route::post('/setting-banner', [SettingController::class, 'postBanner']);
         Route::get('/setting-banner/delete/{id}', [SettingController::class, 'deleteBanner']);
+        Route::get('lich-su', [OrderController::class, 'index']);
+
     });
     Route::group(['middleware' => ['role:admin|agent']], function () {
         Route::get('/dang-ky', [UserController::class, 'getRegister']);
@@ -51,7 +54,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/hoa-hong-duoc-huong', [HomeController::class, 'getTransactions']);
     Route::get('/thong-tin-ca-nhan', [UserController::class, 'getProfile'])->name('profile');
     // Route::get('/',function (){
-    //     return \App\Models\Product::find(10)->product_brand;
+    //     return \App\Models\Product::find(19)->get_products;
     // });
     Route::get('/', [HomeController::class, 'getHome']);
     Route::get('/tai-lieu', [HomeController::class, 'document']);
@@ -59,11 +62,17 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/danh-sach-doi-tac', [PartnerController::class, 'list_partner']);
     Route::get('/chi-tiet-san-pham', [HomeController::class, 'product_detail']);
     // Route::get('/gio-hang', [HomeController::class, 'cart']);
-    Route::get('/lich-su-dat-hang', [HomeController::class, 'order_history']);
+    Route::get('/lich-su-dat-hang', [OrderController::class, 'order_his']);
     Route::get('/dat-hang', [HomeController::class, 'order']);
+    Route::resource('san-pham', ProductController::class);
+    
+    Route::get('edit_order/{id}', [OrderController::class,'edit']);
+    Route::put('update_order', [OrderController::class,'update']);
+    // Route::get('/lich-su-dat-hang', [OrderController::class, 'update'])->name('orders.update');
     Route::prefix('gio-hang')->group(
         function () {
             Route::get('add/{id}', [CartController::class, 'add']);
+            Route::get('buynow/{id}', [CartController::class, 'buynow']);
             Route::get('/', [CartController::class, 'index']);
             Route::get('delete/{rowId}', [CartController::class, 'delete']);
             Route::get('destroy', [CartController::class, 'destroy']);

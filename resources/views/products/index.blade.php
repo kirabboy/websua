@@ -6,6 +6,7 @@
 @section('content')
 <section class="index_product p-4">
     <div class="row">
+  
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
                 <h2>Laravel 8 CRUD Example </h2>
@@ -16,7 +17,7 @@
             </div>
         </div>
     </div>
-
+ 
     @if ($message = Session::get('success'))
         <div class="alert alert-success">
             <p>{{$message}}</p>
@@ -58,7 +59,7 @@
                         @method('DELETE')
 
                         <a class="btn btn-danger btn-icon-split" title="delete">
-                            <i class="fas fa-trash fa-lg text-danger"  style="color:#fff !important"></i>
+                            <i class="fas fa-trash fa-lg text-danger" style="color:#fff !important"></i>
                         </a>
                     </form>
                 </td>
