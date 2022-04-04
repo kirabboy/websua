@@ -56,7 +56,7 @@
 			</a>
 		</li>
 		<li class="menu-item">
-			<a href="{{url('/lich-su-dat-hang')}}" class="@if(\Request::is('lich-su-don-hang') ) active  @endif">
+			<a href="{{url('/lich-su-dat-hang')}}" class="@if(\Request::is('lich-su-dat-hang') ) active  @endif">
 				<span><i class="fa-solid fa-table"></i>Lịch sử đặt hàng</span>
 			</a>
 		</li>
