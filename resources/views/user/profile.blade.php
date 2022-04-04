@@ -63,7 +63,7 @@
                     </div>
                     <label class="col-sm-2 col-form-label">Điện thoại</label>
                     <div class="col-sm-4">
-                        <input type="text" name="phone" class="form-control" value="0{{Auth::user()->phone}}">
+                        <input type="text" name="phone" class="form-control" value="{{Auth::user()->phone}}">
                     </div>
                 </div>
                 <div class="form-group row">

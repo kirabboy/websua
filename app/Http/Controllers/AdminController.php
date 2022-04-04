@@ -61,14 +61,24 @@ class AdminController extends Controller
         if (!$this->ktCmnd($request->cmnd)) {
             return back()->withErrors(['msg' => 'Nhập sai CMND/CCCD!']);
         }
+        if ($request->phone != $user->phone){
+            if (User::where('phone', $request->phone)->first() == null){
+                $user->phone = $request->phone;
+            }
+            else return back()->withErrors(['msg' => 'Số điện thoại đã được sử dụng!']);
+        }
+        if ($request->email != $user->email){
+            if (User::where('email', $request->email)->first() == null){
+                $user->email = $request->email;
+            }
+            else return back()->withErrors(['msg' => 'Email đã được sử dụng!']);
+        }
 
         $user->name = $request->name;
-        $user->phone = $request->phone;
         $user->address = $request->address;
         $user->tinh = $request->sel_province;
         $user->huyen = $request->sel_district;
         $user->xa = $request->sel_ward;
-        $user->email = $request->email;
         $user->cmnd = $request->cmnd;
         $user->ngaycmnd = $request->ngaycmnd;
         $user->noicmnd = $request->noicmnd;

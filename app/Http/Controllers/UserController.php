@@ -63,8 +63,10 @@ class UserController extends Controller
             're_password.same' => 'Nhập lại mật khẩu không đúng!',
             'name.required' => 'Nhập họ tên!',
             'phone.digits' => 'Số điện thoại chưa đúng!',
+            'phone.unique' => 'Số điện thoại đã được sử dụng!',
             'address.required' => 'Nhập số nhà!',
             'email.email' => 'Sai định dạng email!',
+            'email.unique' => 'Email đã được sử dụng!',
             'cmttruoc.image' => 'Nhập sai định dạng hình ảnh!',
             'cmtsau.image' => 'Nhập sai định dạng hình ảnh!',
             'cmtavt.image' => 'Nhập sai định dạng hình ảnh!',
@@ -74,9 +76,9 @@ class UserController extends Controller
             'password' => 'required|min:6',
             're_password' => 'required|same:password',
             'name' => 'required',
-            'phone' => 'digits:10',
+            'phone' => 'digits:10|unique:users,phone',
             'address' => 'required',
-            'email' => 'email',
+            'email' => 'email|unique:users,email',
             'cmttruoc' => 'default|image',
             'cmtsau' => 'image',
             'cmtavt' => 'image',
@@ -172,14 +174,24 @@ class UserController extends Controller
         if (!$this->ktCmnd($request->cmnd)) {
             return back()->withErrors(['msg' => 'Nhập sai CMND/CCCD!']);
         }
+        if ($request->phone != $user->phone){
+            if (User::where('phone', $request->phone)->first() == null){
+                $user->phone = $request->phone;
+            }
+            else return back()->withErrors(['msg' => 'Số điện thoại đã được sử dụng!']);
+        }
+        if ($request->email != $user->email){
+            if (User::where('email', $request->email)->first() == null){
+                $user->email = $request->email;
+            }
+            else return back()->withErrors(['msg' => 'Email đã được sử dụng!']);
+        }
 
         $user->name = $request->name;
-        $user->phone = $request->phone;
         $user->address = $request->address;
         $user->tinh = $request->sel_province;
         $user->huyen = $request->sel_district;
         $user->xa = $request->sel_ward;
-        $user->email = $request->email;
         $user->cmnd = $request->cmnd;
         $user->ngaycmnd = $request->ngaycmnd;
         $user->noicmnd = $request->noicmnd;
