@@ -23,9 +23,9 @@ class SettingController extends Controller
         $setting->moc1 = $request->moc1;
         $setting->moc2 = $request->moc2;
         $setting->moc3 = $request->moc3;
-        $setting->hoahong1 = $request->hoahong1;
-        $setting->hoahong2 = $request->hoahong2;
-        $setting->hoahong3 = $request->hoahong3;
+        $setting->hoahong1 = $request->hoahong1/100;
+        $setting->hoahong2 = $request->hoahong2/100;
+        $setting->hoahong3 = $request->hoahong3/100;
         $setting->save();
         
         return redirect()->back();

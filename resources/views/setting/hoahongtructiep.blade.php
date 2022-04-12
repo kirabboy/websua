@@ -18,7 +18,7 @@
         </div>
         <div class="col-4">
             <label class="control-label">% thưởng:</label>
-            <input class="form-control" name="hoahong1" value="{{$setting->hoahong1}}">
+            <input class="form-control" name="hoahong1" value="{{$setting->hoahong1*100}}">
         </div>
     </div>
     <!-- Phần thưởng mốc 2 -->
@@ -33,7 +33,7 @@
         </div>
         <div class="col-4">
             <label class="control-label">% thưởng:</label>
-            <input class="form-control" name="hoahong2" value="{{$setting->hoahong2}}">
+            <input class="form-control" name="hoahong2" value="{{$setting->hoahong2*100}}">
         </div>
     </div>
     <!-- Phần thưởng mốc 3 -->
@@ -48,7 +48,7 @@
         </div>
         <div class="col-4">
             <label class="control-label">% thưởng:</label>
-            <input class="form-control" name="hoahong3" value="{{$setting->hoahong3}}">
+            <input class="form-control" name="hoahong3" value="{{$setting->hoahong3*100}}">
         </div>
     </div>
     <div class="pt-3">

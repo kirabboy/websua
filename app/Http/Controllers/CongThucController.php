@@ -8,6 +8,8 @@ use App\Models\Province;
 use App\Models\District;
 use App\Models\Ward;
 use App\Models\SettingHoaHong;
+use App\Models\DoanhSoThang;
+use Carbon\Carbon;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -25,6 +27,7 @@ class CongThucController extends Controller
     public function hoahongtructiep($id, $amount, $count) {
         $user = User::where('id', $id)->with('getParent','getPoint')->first();
         $id_dad = $user->getParent;
+        $doanh_so_tuan = DoanhSoThang::where('user_id', $user->id)->first();
         
         if($id_dad != null){
             $doanhso = $id_dad->getPoint->doanhso;
@@ -73,5 +76,25 @@ class CongThucController extends Controller
     //     }
     //     dd($listChild);
     // }
-
+    
+    public function test() {
+        $id = auth()->user()->id;
+        $user = User::with('getPoint')->get();
+        
+        //$this->hoahongtructiep(4, 10000, 2);
+        foreach ($user as $value) {
+            $doanhso_tuan_truoc = DoanhSoThang::where('user_id', $id)->orderBy('id', 'desc')->first();
+            $doanhso = new DoanhSoThang;
+            
+            $doanhso->doanhso = $value->getPoint->doanhso - $doanhso_tuan_truoc->doanhso;
+            $doanhso->point = $value->getPoint->point - $doanhso_tuan_truoc->point;
+            $doanhso->doanhso_canhan = $value->getPoint->doanhso_canhan - $doanhso_tuan_truoc->doanhso_canhan;
+            $doanhso->user_id = $value->id;
+            // $doanhso->save();
+            
+            // $value->getPoint->save();
+            
+        }
+        return view('test');
+    }
 }

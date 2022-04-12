@@ -16,7 +16,7 @@
         <div class="col-lg-6 right">
             <div class="login-form">
                 <div class="text-center">
-                    <img src="{{ asset('/img/logo.png') }}" height="135px">
+                    <img src="{{ asset('public/img/logo.png') }}" height="135px">
                 </div>
                 <form method="post" action="dang-nhap">
                     @csrf

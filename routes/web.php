@@ -15,6 +15,7 @@ use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\CheckOutController;
 use App\Http\Controllers\SignupController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PointController;
 
 Route::post('/dang-nhap', [UserController::class, 'checkLogin']);
 Route::post('/dang-ky', [UserController::class, 'checkRegister']);
@@ -99,6 +100,9 @@ Route::group(['middleware' => ['auth']], function () {
     // Route::get('/cart', [HomeController::class, 'cart']);
     // Route::get('/order-history', [HomeController::class, 'order_history']);
 
+    Route::get('/nap-diem', [PointController::class, 'napDiem'])->name('napDiem');
+    Route::get('/check-nap-diem', [PointController::class, 'checkNapDiem'])->name('checkNapDiem');
+    Route::post('/nap-diem', [PointController::class, 'postNapDiem']);
 
     Route::get('/hoahong', [CongThucController::class, 'hoahong']);
 
@@ -107,13 +111,16 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::resource('products', ProductController::class);
 
-
+    Route::get('/test', [CongThucController::class, 'test']);
 
     //Doi Nhom Controllers
     Route::get('/list-partner', [PartnerController::class, 'list_partner']);
 
     Route::get('/sales_manager', [HomeController::class, 'getSales_manager']);
     Route::get('/list_manager', [HomeController::class, 'getList_manager']);
+
+    Route::get('/doanh-so-ban-hang', [PointController::class, 'doanhSoBanHang'])->name('doanh-so-ban-hang');
+    Route::get('/doanh-so-ban-hang/{id}', [PointController::class, 'doanhSoBanHangCaNhan']);
 });
 
 Route::get('/lay-phuong-xa-theo-quan-huyen', [ShippingController::class, 'wardOfDistrict']);

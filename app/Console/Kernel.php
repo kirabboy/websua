@@ -15,7 +15,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->command('DoanhThuThang:cron')->everyMinute();
+        // $schedule->command('DoanhThuThang:cron')->weeklyOn(7, '23:55');;
     }
 
     /**

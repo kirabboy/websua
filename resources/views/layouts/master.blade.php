@@ -24,7 +24,12 @@
     <link href="{{ asset('css/cart.css')}}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/list-partner.css')}}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/order-history.css')}}" rel="stylesheet" type="text/css">
-
+    <script src="{{ asset('/public/vendor/jquery/jquery.min.js') }}"></script>
+    
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    
     <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet" />
     <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script> -->
     @stack('css')
@@ -36,7 +41,6 @@
     @yield('content')
 
     @include('layouts.footer')
-    <script src="{{ asset('/public/vendor/jquery/jquery.min.js') }}"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {
@@ -115,25 +119,14 @@
                     }
                 });
             });
-
-            //     $('.xedit').editable({
-            //        url: '{{url("lich-su-dat-hang/update")}}',
-            //        title: 'Update',
-            //        success: function (response, newValue) {
-            //           console.log('Updated', response)
-            //        }
-            //   });
         })
     </script>
     <script src="{{ asset('/public/js/bootstrap/bootstrap.bundle.min.js') }}"></script>
-    @stack('scripts')
+    
     <script src="//cdn.ckeditor.com/4.17.2/standard/ckeditor.js"></script>
     <script type="text/javascript">
         CKEDITOR.replace('ckeditor_des');
         CKEDITOR.replace('ckeditor_short_des');
-    </script>
-    <script>
-        //]]>
     </script>
 </body>
 

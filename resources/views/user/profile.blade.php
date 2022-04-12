@@ -3,7 +3,7 @@
 @section('title', 'Thông tin cá nhân')
 
 @push('css')
-<link rel="stylesheet" href="{{ asset('/css/profile.css') }}">
+<link rel="stylesheet" href="{{ asset('/public/css/profile.css') }}">
 @endpush
 
 @section('content')
@@ -201,6 +201,6 @@
 @endsection
 @push('scripts')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="{{ asset('/js/shipping.js') }}"></script>
-<script src="{{ asset('/js/profile.js') }}"></script>
+<script src="{{ asset('/public/js/shipping.js') }}"></script>
+<script src="{{ asset('/public/js/profile.js') }}"></script>
 @endpush

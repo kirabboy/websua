@@ -1,18 +1,7 @@
             </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
-        
-            <!-- End of Footer -->
-
         </div>
-        <!-- End of Content Wrapper -->
-
     </div>
-    <!-- End of Page Wrapper -->
 
-    <!-- Scroll to Top Button-->
-    <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -32,18 +21,4 @@
         </div>
     </div>
 
-    <!-- Bootstrap core JavaScript-->
-  
 
-    <!-- Core plugin JavaScript-->
-    <!-- <script src="{{ asset('/public/vendor/jquery-easing/jquery.easing.min.js') }}"></script> -->
-
-    <!-- Custom scripts for all pages-->
-    <!-- <script src="{{ asset('/public/vendor/js/sb-admin-2.min.js') }}"></script> -->
-
-    <!-- Page level plugins -->
-    <!-- <script src="{{ asset('/public//vendor/chart.js/Chart.min.js') }}"></script> -->
-
-    <!-- Page level custom scripts -->
-    <!-- <script src="{{ asset('/public/vendor/js/demo/chart-area-demo.js') }}"></script>
-    <script src="{{ asset('/public/vendor/js/demo/chart-pie-demo.js') }}"></script> -->
