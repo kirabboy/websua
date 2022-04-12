@@ -101,4 +101,7 @@ select.form-control[name="level"] {
     .form-group>.col-sm-4, .form-group>.form-group {
         margin-bottom: 0.5rem;
     }
+    .modal .btn{
+        margin-top: 15px;
+    }
 }
