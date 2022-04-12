@@ -1,11 +1,13 @@
 /* widget */
 .profile-content.widget {
+    background-color: #fff;
     border: 1px solid #f5b80c;
     box-shadow: 0px 0px 15px 0px rgb(0 0 0 / 20%);
     border-radius: 5px;
     margin: 0 15px 15px;
 }
 .profile-content.widget .widget-head{
+    border-radius: 5px 5px 0 0;
     border-bottom: 1px solid #4f4f4f;
     position: relative;
     padding: 14px 15px 11px;
@@ -26,11 +28,12 @@
     font-size: 13px;
     font-weight: bold;
 }
-.profile-content.widget .form-content input{
+.profile-content.widget .form-content input, .profile-content.widget .form-content select{
     padding: 6px 12px;
     font-size: 14px;
-    line-height: 1.42857143;
+    line-height: 20px;
     color: #555;
+    height: auto;
 }
 
 /* Button Sửa ảnh */
@@ -84,7 +87,7 @@
 /* select name = level */
 select.form-control[name="level"] {
     font-weight: 500;
-    color: blue;
+    color: blue !important;
 }
 
 .form-group>.form-group {

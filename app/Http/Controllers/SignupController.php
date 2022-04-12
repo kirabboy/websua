@@ -17,6 +17,14 @@ class SignupController extends Controller
         $province = Province::select('matinhthanh', 'tentinhthanh')->get();
         return view('signup', compact('province'));
     }
+    public function getRegisterId($id)
+    {
+        $user = User::find($id);
+        if($user == null) return redirect('/dang-nhap')->withErrors(['msg' => 'Mã giới thiệu không tồn tại!']);
+        $magioithieu = $user->magioithieu;
+        $province = Province::select('matinhthanh', 'tentinhthanh')->get();
+        return view('signupwithlink', compact('province','magioithieu'));
+    }
     public function checkRegister(Request $request)
     {
         $error = [
@@ -28,8 +36,10 @@ class SignupController extends Controller
             're_password.same' => 'Nhập lại mật khẩu không đúng!',
             'name.required' => 'Nhập họ tên!',
             'phone.digits' => 'Số điện thoại chưa đúng!',
+            'phone.unique' => 'Số điện thoại đã được sử dụng!',
             'address.required' => 'Nhập số nhà!',
             'email.email' => 'Sai định dạng email!',
+            'email.unique' => 'Email đã được sử dụng!',
             'cmttruoc.image' => 'Nhập sai định dạng hình ảnh!',
             'cmtsau.image' => 'Nhập sai định dạng hình ảnh!',
             'cmtavt.image' => 'Nhập sai định dạng hình ảnh!',
@@ -39,9 +49,9 @@ class SignupController extends Controller
             'password' => 'required|min:6',
             're_password' => 'required|same:password',
             'name' => 'required',
-            'phone' => 'digits:10',
+            'phone' => 'digits:10|unique:users,phone',
             'address' => 'required',
-            'email' => 'email',
+            'email' => 'email|unique:users,email',
             'cmttruoc' => 'image',
             'cmtsau' => 'image',
             'cmtavt' => 'image',
@@ -76,7 +86,7 @@ class SignupController extends Controller
         $user->chuthe = $request->chuthe;
         $user->chinhanh = $request->chinhanh;
         $user->magioithieu = $ma;
-        $user->level = 4;
+        $user->level = 3;
         if ($request->hasFile('cmttruoc')) {
             $cmndfront = $this->xulyanh($request->cmttruoc);
             $user->cmttruoc = $cmndfront;
@@ -89,7 +99,7 @@ class SignupController extends Controller
             $avatar = $this->xulyanhavt($request->daidien);
             $user->avatar = $avatar;
         }
-        // dd($user);
+        dd($user);
         $user->save();
         $this->phanvaitro($user->id, $user->level);
         $point = new Point();

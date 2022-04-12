@@ -12,29 +12,21 @@
         <h4 class="heading">Đăng ký</h4>
     </div>
     <div class="widget-body">
-        @if ($errors->any())
-        <div class="alert alert-danger">
-            @if ($errors->count() == 1)
-                @foreach ($errors->all() as $e)
-                    <div>{{ $e }}</div>
-                @endforeach
-            @else
-                <div>Điền đầy đủ và đúng thông tin vào các ô có đánh dấu (<span class="ast">*</span>)</div>
-            @endif
-        </div>
-        @endif
         @if (session('mess'))
         <div class="alert alert-success">
             {{ session('mess') }}
         </div>
         @endif
-        <form method="post" action="dang-ky" enctype="multipart/form-data">
+        <form method="post" action="{{url('/dang-ky')}}" enctype="multipart/form-data">
             @csrf
             <div class="form-content">
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label>Tên đăng nhập <span class="ast">*</span></label>
-                        <input class="form-control" name="username">
+                        <label>Tên đăng nhập <span class="ast"></span></label>
+                        <input id="username" name="username" onkeyup="HienThi('username')" class="form-control @error('username') border-danger @enderror" value="{{ old('username') }}">
+                        @error('username')
+                        <div class="text-danger username">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group col-md-6">
                         <label>Người giới thiệu</label>
@@ -43,27 +35,39 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label>Mật khẩu <span class="ast">*</span></label>
-                        <input type="password" name="password" class="form-control">
+                        <label>Mật khẩu <span class="ast"></span></label>
+                        <input type="password" id="password" name="password" onkeyup="HienThi('password')" class="form-control @error('password') border-danger @enderror">
+                        @error('password')
+                        <div class="text-danger password">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group col-md-6">
-                        <label>Nhập lại mật khẩu <span class="ast">*</span></label>
-                        <input type="password" name="re_password" class="form-control">
+                        <label>Nhập lại mật khẩu <span class="ast"></span></label>
+                        <input type="password" id="re_password" name="re_password" onkeyup="HienThi('re_password')" class="form-control @error('re_password') border-danger @enderror">
+                        @error('re_password')
+                        <div class="text-danger re_password">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label>Họ và tên <span class="ast">*</span></label>
-                        <input type="text" name="name" class="form-control">
+                        <label>Họ và tên <span class="ast"></span></label>
+                        <input type="text" id="name" name="name" onkeyup="HienThi('name')" class="form-control @error('name') border-danger @enderror" value="{{ old('name') }}">
+                        @error('name')
+                        <div class="text-danger name">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group col-md-6">
-                        <label>Điện thoại <span class="ast">*</span></label>
-                        <input type="text" name="phone" class="form-control">
+                        <label>Điện thoại <span class="ast"></span></label>
+                        <input type="text" id="phone" name="phone" onkeyup="HienThi('phone')" class="form-control @error('phone') border-danger @enderror" value="{{ old('phone') }}">
+                        @error('phone')
+                        <div class="text-danger phone">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
                 <!-- Địa chỉ -->
                 <div class="form-row">
-                    <div class="form-group col-md-12 mb-0"><label>Địa chỉ <span class="ast">*</span></label></div>
+                    <div class="form-group col-md-12 mb-0"><label>Địa chỉ <span class="ast"></span></label></div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
@@ -88,16 +92,21 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label>Số nhà <span class="ast">*</span></label>
-                        <input type="text" name="address" class="form-control">
+                        <label>Số nhà <span class="ast"></span></label>
+                        <input type="text" id="address" name="address" onkeyup="HienThi('address')" class="form-control @error('address') border-danger @enderror" value="{{ old('address') }}">
+                        @error('address')
+                        <div class="text-danger address">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group col-md-6">
-                        <label>Email <span class="ast">*</span></label>
-                        <input type="email" name="email" class="form-control">
+                        <label>Email <span class="ast"></span></label>
+                        <input type="email" id="email" name="email" onkeyup="HienThi('email')" class="form-control @error('email') border-danger @enderror" value="{{ old('email') }}">
+                        @error('email')
+                        <div class="text-danger email">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
-                <!-- thông tin cmnd -->
-                <div class="form-row">
+                <!-- <div class="form-row">
                     <div class="form-group col-md-6">
                         <label>Số CMND/CCCD</label>
                         <input type="text" name="cmnd" class="form-control">
@@ -111,7 +120,6 @@
                         <input type="text" name="noicmnd" class="form-control">
                     </div>
                 </div>
-                <!-- ảnh cmnd -->
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label>Ảnh CMT mặt trước</label>
@@ -128,7 +136,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- thông tin ngân hàng -->
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputState">Tên ngân hàng</label>
@@ -149,7 +156,6 @@
                         <input type="text" class="form-control" name="chinhanh">
                     </div>
                 </div>
-                <!-- ảnh đại diện -->
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label>Ảnh đại diện</label>
@@ -158,7 +164,7 @@
                             <img id="anhdaidien" src="{{ asset('/img/img_nogr.jpg') }}" alt="">
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
 
             <!-- ĐIỀU KHOẢN CỘNG TÁC VIÊN -->

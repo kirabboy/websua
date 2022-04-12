@@ -8,20 +8,23 @@ use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 use App\Models\User;
 use App\Models\Province;
+use App\Models\Nganhang;
 
 class AdminController extends Controller
 {
     //
     public function getUserManagement()
     {
-        $users = User::simplePaginate(8);
+        $users = User::all();
         return view('admin.usermanagement', compact('users'));
     }
     public function getUserChange($id)
     {
         $userchange = User::find($id);
+        if($userchange->level == 1) return redirect('/quan-ly-nguoi-dung');
         $province = Province::select('matinhthanh', 'tentinhthanh')->get();
-        return view('admin.userchange', compact('userchange', 'province'));
+        $nganhang = Nganhang::select('id','tennganhang')->get();
+        return view('admin.userchange', compact('userchange', 'province','nganhang'));
     }
     public function changeUser(Request $request, $id)
     {
@@ -61,14 +64,24 @@ class AdminController extends Controller
         if (!$this->ktCmnd($request->cmnd)) {
             return back()->withErrors(['msg' => 'Nhập sai CMND/CCCD!']);
         }
+        if ($request->phone != $user->phone){
+            if (User::where('phone', $request->phone)->first() == null){
+                $user->phone = $request->phone;
+            }
+            else return back()->withErrors(['msg' => 'Số điện thoại đã được sử dụng!']);
+        }
+        if ($request->email != $user->email){
+            if (User::where('email', $request->email)->first() == null){
+                $user->email = $request->email;
+            }
+            else return back()->withErrors(['msg' => 'Email đã được sử dụng!']);
+        }
 
         $user->name = $request->name;
-        $user->phone = $request->phone;
         $user->address = $request->address;
         $user->tinh = $request->sel_province;
         $user->huyen = $request->sel_district;
         $user->xa = $request->sel_ward;
-        $user->email = $request->email;
         $user->cmnd = $request->cmnd;
         $user->ngaycmnd = $request->ngaycmnd;
         $user->noicmnd = $request->noicmnd;

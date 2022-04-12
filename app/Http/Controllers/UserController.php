@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Models\Province;
+use App\Models\Nganhang;
+use App\Models\Trungtampp;
 use App\Models\District;
 use App\Models\Ward;
 use App\Models\Point;
@@ -63,8 +65,10 @@ class UserController extends Controller
             're_password.same' => 'Nhập lại mật khẩu không đúng!',
             'name.required' => 'Nhập họ tên!',
             'phone.digits' => 'Số điện thoại chưa đúng!',
+            'phone.unique' => 'Số điện thoại đã được sử dụng!',
             'address.required' => 'Nhập số nhà!',
             'email.email' => 'Sai định dạng email!',
+            'email.unique' => 'Email đã được sử dụng!',
             'cmttruoc.image' => 'Nhập sai định dạng hình ảnh!',
             'cmtsau.image' => 'Nhập sai định dạng hình ảnh!',
             'cmtavt.image' => 'Nhập sai định dạng hình ảnh!',
@@ -74,9 +78,9 @@ class UserController extends Controller
             'password' => 'required|min:6',
             're_password' => 'required|same:password',
             'name' => 'required',
-            'phone' => 'digits:10',
+            'phone' => 'digits:10|unique:users,phone',
             'address' => 'required',
-            'email' => 'email',
+            'email' => 'email|unique:users,email',
             'cmttruoc' => 'default|image',
             'cmtsau' => 'image',
             'cmtavt' => 'image',
@@ -108,7 +112,7 @@ class UserController extends Controller
         $user->chuthe = $request->chuthe;
         $user->chinhanh = $request->chinhanh;
         $user->magioithieu = $ma;
-        $user->level = 4;
+        $user->level = 3;
         if ($request->hasFile('cmttruoc')) {
             $cmndfront = $this->xulyanh($request->cmttruoc);
             $user->cmttruoc = $cmndfront;
@@ -132,7 +136,8 @@ class UserController extends Controller
     public function getProfile()
     {
         $province = Province::select('matinhthanh', 'tentinhthanh')->get();
-        return view('user.profile', compact('province'));
+        $nganhang = Nganhang::select('id','tennganhang')->get();
+        return view('user.profile', compact('province','nganhang'));
     }
     public function changeProfile(Request $request, $id)
     {
@@ -172,14 +177,24 @@ class UserController extends Controller
         if (!$this->ktCmnd($request->cmnd)) {
             return back()->withErrors(['msg' => 'Nhập sai CMND/CCCD!']);
         }
+        if ($request->phone != $user->phone){
+            if (User::where('phone', $request->phone)->first() == null){
+                $user->phone = $request->phone;
+            }
+            else return back()->withErrors(['msg' => 'Số điện thoại đã được sử dụng!']);
+        }
+        if ($request->email != $user->email){
+            if (User::where('email', $request->email)->first() == null){
+                $user->email = $request->email;
+            }
+            else return back()->withErrors(['msg' => 'Email đã được sử dụng!']);
+        }
 
         $user->name = $request->name;
-        $user->phone = $request->phone;
         $user->address = $request->address;
         $user->tinh = $request->sel_province;
         $user->huyen = $request->sel_district;
         $user->xa = $request->sel_ward;
-        $user->email = $request->email;
         $user->cmnd = $request->cmnd;
         $user->ngaycmnd = $request->ngaycmnd;
         $user->noicmnd = $request->noicmnd;
@@ -213,6 +228,43 @@ class UserController extends Controller
             return $this->getLogout($request)->with('matkhau', 'Đổi mật khẩu thành công. Hệ thống tự động đăng xuất!');
         }
         return back()->withErrors(['msg' => 'Mật khẩu cũ không đúng!']);
+    }
+    public function getTtpp(){
+        $trungtam = Trungtampp::select('id', 'user_id', 'tentrungtam')->get();
+        $trungtamcanhan = Trungtampp::select('id', 'user_id', 'tentrungtam')->where('user_id', Auth::user()->id)->get();
+        return view('user.trungtamphanphoi', compact('trungtam','trungtamcanhan'));
+    }
+    public function themTtpp(Request $request){
+        $error = [
+            'tenttpp.required' => 'Nhập tên trung tâm!',
+            'tenttpp.unique' => 'Đã tồn tại trung tâm này!',
+        ];
+        $request->validate([
+            'tenttpp' => 'required|unique:trungtampp,tentrungtam',
+        ], $error);
+
+        $trungtam = new Trungtampp();
+        $trungtam->tentrungtam = $request->tenttpp;
+        $trungtam->user_id = Auth::user()->id;
+        $trungtam->save();
+        return back()->with('mess', 'Thêm trung tâm thành công!');
+    }
+    public function suaTtpp(Request $request, $id){
+        $error = [
+            'tenttpp.required' => 'Nhập tên trung tâm!',
+        ];
+        $request->validate([
+            'tenttpp' => 'required',
+        ], $error);
+        $trungtam = Trungtampp::find($id);
+        if ($request->tenttpp != $trungtam->tentrungtam){
+            if (Trungtampp::where('tentrungtam', $request->tenttpp)->first() == null){
+                $trungtam->tentrungtam = $request->tenttpp;
+            }
+            else return back()->withErrors(['msg' => 'Tên trung tâm đã được sử dụng!']);
+        }
+        $trungtam->save();
+        return back()->with('mess', 'Sửa trung tâm thành công!');
     }
     public function getMa()
     {

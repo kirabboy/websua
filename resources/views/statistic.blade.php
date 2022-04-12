@@ -3,7 +3,7 @@
 @section('title', 'Lịch sử mua hàng hệ thống')
 
 @push('css')
-<link rel="stylesheet" href="{{ asset('/css/statistic.css') }}">
+<link rel="stylesheet" href="{{ asset('public/css/statistic.css') }}">
 @endpush
 
 @section('content')

@@ -1,3 +1,6 @@
+.profile-content table.table-bordered{
+    border: none;
+}
 @media screen and (max-width: 768px) {
     .profile-content table{
     overflow-x: auto;
@@ -10,11 +13,16 @@
         font-weight: 400;
     }
     .profile-content table td{
-        padding-left: 50%;
+        padding-left: 50% !important;
         text-align: left !important;
         font-weight: 500;
     }
     .profile-content table td, .profile-content table tr, .profile-content table th{
         display: block;
+    }
+    .profile-content table thead tr:first-child th{
+        border-top: none;
+        border-left: none;
+        border-right: none;
     }
 }

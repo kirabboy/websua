@@ -184,3 +184,7 @@ img {
 
 }
 /*# sourceMappingURL=table.css.map */
+
+.form-click-to-copy-text input{
+  background-color: #fff !important;
+}

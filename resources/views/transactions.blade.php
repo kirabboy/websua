@@ -3,7 +3,7 @@
 @section('title', 'Hoa hồng được hưởng')
 
 @push('css')
-<link rel="stylesheet" href="{{ asset('/css/transactions.css') }}">
+<link rel="stylesheet" href="{{ asset('public/css/transactions.css') }}">
 @endpush
 
 @section('content')
