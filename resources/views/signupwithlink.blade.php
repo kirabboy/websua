@@ -39,8 +39,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label>Mã giới thiệu</label>
-                            <input type="checkbox" id="btn-gioithieu" name="btn_gioithieu">
-                            <input class="form-control" id="gioithieu" name="gioithieu" disabled="" value="">
+                            <input class="form-control" name="gioithieu" value="{{$magioithieu}}" readonly>
                         </div>
                     </div>
                     <div class="form-row">
@@ -277,6 +276,7 @@
             </form>
         </div>
     </div>
+
 
     <script src="{{ asset('public/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('public/js/bootstrap/bootstrap.bundle.min.js') }}"></script>

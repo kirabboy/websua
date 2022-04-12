@@ -3,7 +3,7 @@
 @section('title', 'Thông tin cá nhân')
 
 @push('css')
-<link rel="stylesheet" href="{{ asset('/css/profile.css') }}">
+<link rel="stylesheet" href="{{ asset('public/css/profile.css') }}">
 @endpush
 
 @section('content')
@@ -28,12 +28,12 @@
         <h4 class="heading">Thông tin cá nhân</h4>
     </div>
     <div class="widget-body">
-        <form method="post" action="thong-tin-ca-nhan/{{Auth::user()->id}}" enctype="multipart/form-data">
+        <form method="post" action="{{url('thong-tin-ca-nhan')}}/{{Auth::user()->id}}" enctype="multipart/form-data">
             @csrf
             <div class="form-content">
                 <!-- avatar -->
                 <div class="form-group text-center">
-                    <img src="{{ asset('/img_avt') }}/{{Auth::user()->avatar}}" id="anhdaidien" alt="{{Auth::user()->avatar}}" height="100" width="100">
+                    <img src="{{ asset('public/img_avt') }}/{{Auth::user()->avatar}}" id="anhdaidien" alt="{{Auth::user()->avatar}}" height="100" width="100">
                     <label class="btn-sm btn-danger btn-avt">
                         Sửa Ảnh <input type="file" name="daidien" id="daidien" style="display: none">
                     </label>
@@ -49,8 +49,7 @@
                     <div class="col-sm-4">
                         <h3 class="heading">
                             @if (Auth::user()->level == 1) Quản trị
-                            @elseif (Auth::user()->level == 2) Trung tâm phân phối
-                            @elseif (Auth::user()->level == 3) Đại lý bán buôn
+                            @elseif (Auth::user()->level == 2) Đại lý bán buôn
                             @else Cộng tác viên
                             @endif
                         </h3>
@@ -105,7 +104,14 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Tên ngân hàng</label>
                     <div class="col-sm-4">
-                        <input type="text" name="nganhang" class="form-control text-capitalize" placeholder="Vd: Sacombank" value="{{Auth::user()->nganhang}}">
+                        <select class="form-control" name="nganhang" required>
+                            <option value="0"> -- Chọn ngân hàng -- </option>
+                            @foreach ($nganhang as $value)
+                            <option value="{{ $value->id }} " @if($value->id == Auth::user()->nganhang) selected @endif>{{ $value->tennganhang }}
+                            </option>
+                            @endforeach
+                        </select>
+                        <!-- <input type="text" name="nganhang" class="form-control text-capitalize" placeholder="Vd: Sacombank" value="{{Auth::user()->nganhang}}"> -->
                     </div>
                     <label class="col-sm-2 col-form-label">Tài khoản NH</label>
                     <div class="col-sm-4">
@@ -141,7 +147,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">CMT mặt trước</label>
                     <div class="col-sm-4">
-                        <img class="anhcmt" src="{{ asset('/img_cmnd') }}/{{Auth::user()->cmttruoc}}" id="anhcmttruoc" alt="{{Auth::user()->cmttruoc}}">
+                        <img class="anhcmt" src="{{ asset('public/img_cmnd') }}/{{Auth::user()->cmttruoc}}" id="anhcmttruoc" alt="{{Auth::user()->cmttruoc}}">
                         <br />
                         <label class="btn-sm btn-danger">
                             Sửa Ảnh <input type="file" name="cmttruoc" id="cmttruoc" style="display: none">
@@ -149,7 +155,7 @@
                     </div>
                     <label class="col-sm-2 col-form-label">CMT mặt sau</label>
                     <div class="col-sm-4">
-                        <img class="anhcmt" src="{{ asset('/img_cmnd') }}/{{Auth::user()->cmtsau}}" id="anhcmtsau" alt="{{Auth::user()->cmtsau}}">
+                        <img class="anhcmt" src="{{ asset('public/img_cmnd') }}/{{Auth::user()->cmtsau}}" id="anhcmtsau" alt="{{Auth::user()->cmtsau}}">
                         <br />
                         <label class="btn-sm btn-danger">
                             Sửa Ảnh <input type="file" name="cmtsau" id="cmtsau" style="display: none">
@@ -201,6 +207,6 @@
 @endsection
 @push('scripts')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="{{ asset('/js/shipping.js') }}"></script>
-<script src="{{ asset('/js/profile.js') }}"></script>
+<script src="{{ asset('public/js/shipping.js') }}"></script>
+<script src="{{ asset('public/js/profile.js') }}"></script>
 @endpush

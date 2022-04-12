@@ -17,6 +17,14 @@ class SignupController extends Controller
         $province = Province::select('matinhthanh', 'tentinhthanh')->get();
         return view('signup', compact('province'));
     }
+    public function getRegisterId($id)
+    {
+        $user = User::find($id);
+        if($user == null) return redirect('/dang-nhap')->withErrors(['msg' => 'Mã giới thiệu không tồn tại!']);
+        $magioithieu = $user->magioithieu;
+        $province = Province::select('matinhthanh', 'tentinhthanh')->get();
+        return view('signupwithlink', compact('province','magioithieu'));
+    }
     public function checkRegister(Request $request)
     {
         $error = [
@@ -78,7 +86,7 @@ class SignupController extends Controller
         $user->chuthe = $request->chuthe;
         $user->chinhanh = $request->chinhanh;
         $user->magioithieu = $ma;
-        $user->level = 4;
+        $user->level = 3;
         if ($request->hasFile('cmttruoc')) {
             $cmndfront = $this->xulyanh($request->cmttruoc);
             $user->cmttruoc = $cmndfront;
@@ -91,7 +99,7 @@ class SignupController extends Controller
             $avatar = $this->xulyanhavt($request->daidien);
             $user->avatar = $avatar;
         }
-        // dd($user);
+        dd($user);
         $user->save();
         $this->phanvaitro($user->id, $user->level);
         $point = new Point();

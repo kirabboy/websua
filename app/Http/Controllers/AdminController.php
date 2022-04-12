@@ -8,20 +8,23 @@ use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 use App\Models\User;
 use App\Models\Province;
+use App\Models\Nganhang;
 
 class AdminController extends Controller
 {
     //
     public function getUserManagement()
     {
-        $users = User::simplePaginate(8);
+        $users = User::all();
         return view('admin.usermanagement', compact('users'));
     }
     public function getUserChange($id)
     {
         $userchange = User::find($id);
+        if($userchange->level == 1) return redirect('/quan-ly-nguoi-dung');
         $province = Province::select('matinhthanh', 'tentinhthanh')->get();
-        return view('admin.userchange', compact('userchange', 'province'));
+        $nganhang = Nganhang::select('id','tennganhang')->get();
+        return view('admin.userchange', compact('userchange', 'province','nganhang'));
     }
     public function changeUser(Request $request, $id)
     {

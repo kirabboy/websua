@@ -4,8 +4,10 @@
     box-shadow: 0px 0px 15px 0px rgb(0 0 0 / 20%);
     border-radius: 5px;
     margin: 0 15px 15px;
+    background-color: #fff;
 }
 .register-content.widget .widget-head{
+    border-radius: 5px 5px 0 0;
     border-bottom: 1px solid #4f4f4f;
     position: relative;
     padding: 14px 15px 11px;
@@ -75,6 +77,7 @@ span.ast{
 
 /* form content 2 */
 .form-content2 {
+    margin-top: 20px;
     -webkit-box-shadow: 0 1px 6px 1px rgb(69 65 78 / 10%);
     -moz-box-shadow: 0 1px 6px 1px rgba(69,65,78,0.1);
     box-shadow: 0 1px 6px 1px rgb(69 65 78 / 10%);
@@ -125,6 +128,15 @@ span.ast{
 }
 #signUp .register-content.widget .widget-head{
     border-radius: 5px 5px 0 0;
+}
+#signUp {
+    background: url('../img/bg_forgotpw.jpg') no-repeat;
+    background-size: 100% 100%;
+}
+
+/* error */
+.register-content.widget .text-danger{
+    font-size: 10px;
 }
 
 @media only screen and (max-width: 768px) {

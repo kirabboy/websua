@@ -8,9 +8,8 @@
 			<div class="box-text">
 				<h2> <a href="{{url('/thong-tin-ca-nhan')}}">{{Auth::user()->name}}</a></h2>
 				<span class="label-color">
-					@if (Auth::user()->hasRole('admin')) Quản trị
-					@elseif (Auth::user()->hasRole('distribution')) Trung tâm phân phối
-					@elseif (Auth::user()->hasRole('agent')) Đại lý bán buôn
+					@if (Auth::user()->level == 1) Quản trị
+					@elseif (Auth::user()->level == 2) Đại lý bán buôn
 					@else Cộng tác viên
 					@endif
 				</span>
@@ -21,6 +20,11 @@
 		</div>
 	</div>
 	<ul class="side-nav">
+		<li class="menu-item">
+			<a href="{{url('/')}}" class="@if(\Request::is('/') ) active  @endif">
+				<span><i class="fa-solid fa-table"></i>Bảng điều khiển</span>
+			</a>
+		</li>
 		@role('admin')
 		<li class="menu-item">
 			<a href="{{url('/quan-ly-nguoi-dung')}}" class="@if(\Request::is('quan-ly-nguoi-dung*') ) active  @endif">
@@ -28,11 +32,13 @@
 			</a>
 		</li>
 		@endrole
+		@role('admin|daily')
 		<li class="menu-item">
-			<a href="{{url('/')}}" class="@if(\Request::is('/') ) active  @endif">
-				<span><i class="fa-solid fa-table"></i>Bảng điều khiển</span>
+			<a href="{{url('/trung-tam-phan-phoi')}}" class="@if(\Request::is('trung-tam-phan-phoi')) active  @endif">
+				<span><i class="fa-solid fa-landmark"></i>Trung tâm phân phối</span>
 			</a>
 		</li>
+		@endrole
 		<li class="menu-item">
 			<a href="{{url('/tai-lieu')}}" class="@if(\Request::is('tai-lieu') ) active  @endif">
 				<span><i class="fa-solid fa-file"></i>Tài liệu</span>
@@ -68,11 +74,11 @@
 		</li>
 		@endrole
 		<li class="menu-item">
-			<a href="{{url('/danh-sach-doi-tac')}}" class="@if(\Request::is('list-partner') ) active  @endif">
+			<a href="{{url('/danh-sach-doi-tac')}}" class="@if(\Request::is('danh-sach-doi-tac') ) active  @endif">
 				<span><i class="fa-solid fa-table"></i>Danh sách đối tác</span>
 			</a>
 		</li>
-		@hasanyrole('admin|agent')
+		@hasanyrole('admin|daily')
 		<li class="menu-item">
 			<a href="{{url('/dang-ky')}}" class="@if(\Request::is('dang-ky') ) active  @endif">
 				<span><i class="fa-solid fa-circle-plus"></i>Đăng ký</span>

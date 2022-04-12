@@ -25,11 +25,9 @@
                             <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">
                                 <h5>Liên kết giới thiệu của bạn</h5>
                             </div>
-                            <form method="post" class="clearfix">
-                                <div class="form-group mb-4">
-                                    <button type="button" style="text-align: left;overflow:hidden" data-toggle="tooltip" data-placement="bottom" data-trigger="manual" title="Đã sao chép" id="referrer-link" data-clipboard-text="http://forvietvn.com/sign-up?ref=ngocdiep1" class="form-control" onclick="select_all_and_copy(document.getElementById('referrer-link'))" value="http://forvietvn.com/sign-up?ref=ngocdiep1">http://forvietvn.com/sign-up?ref=ngocdiep1</button>
-                                </div>
-                            </form>
+                            <div class="form-group mb-4 form-click-to-copy-text">
+                                <input id="copyInput" class="form-control" type="text" onclick="copyFunct()" value="{{url('/dang-ki')}}/{{Auth::user()->id}}" readonly>
+                            </div>
                         </div>
 
                     </div>
@@ -333,7 +331,7 @@
                             <div class="row">
                                 <div class="col-xs-12 col-md-12">
                                     <div class="w_chartper">
-                                     
+
                                         <div id="chart_div">
                                             <div style="position: relative;">
                                                 <div dir="ltr" style="position: relative; width: 762px; height: 400px;">
@@ -459,3 +457,22 @@
 </div>
 <!-- /.container-fluid -->
 @endsection
+
+@push('scripts')
+<script>
+    function copyFunct() {
+        /* Get the text field */
+        var copyText = document.getElementById("copyInput");
+
+        /* Select the text field */
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+        /* Copy the text inside the text field */
+        navigator.clipboard.writeText(copyText.value);
+
+        /* Alert the copied text */
+        alert("Đã copy: " + copyText.value);
+    }
+</script>
+@endpush

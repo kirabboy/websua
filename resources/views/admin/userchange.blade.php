@@ -28,7 +28,7 @@
         <h4 class="heading">Người dùng: {{$userchange->username}}</h4>
     </div>
     <div class="widget-body">
-        <form method="post" action="{{$userchange->id}}" enctype="multipart/form-data">
+        <form method="post" action="{{url('quan-ly-nguoi-dung')}}/{{$userchange->id}}" enctype="multipart/form-data">
             @csrf
             <div class="form-content">
                 <!-- avatar -->
@@ -56,9 +56,8 @@
                         </h3> -->
                         <select name="level" id="" class="form-control">
                             <option value="1" @if($userchange->level == 1) selected @endif>Quản trị</option>
-                            <option value="2" @if($userchange->level == 2) selected @endif>Trung tâm phân phối</option>
-                            <option value="3" @if($userchange->level == 3) selected @endif>Đại lý bán buôn</option>
-                            <option value="4" @if($userchange->level == 4) selected @endif>Cộng tác viên</option>
+                            <option value="2" @if($userchange->level == 2) selected @endif>Đại lý bán buôn</option>
+                            <option value="3" @if($userchange->level == 3) selected @endif>Cộng tác viên</option>
                         </select>
                     </div>
                 </div>
@@ -111,7 +110,14 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Tên ngân hàng</label>
                     <div class="col-sm-4">
-                        <input type="text" name="nganhang" class="form-control text-capitalize" placeholder="Vd: Sacombank" value="{{$userchange->nganhang}}">
+                        <select class="form-control" name="nganhang" required>
+                            <option value="0"> -- Chọn ngân hàng -- </option>
+                            @foreach ($nganhang as $value)
+                            <option value="{{ $value->id }} " @if($value->id == $userchange->nganhang) selected @endif>{{ $value->tennganhang }}
+                            </option>
+                            @endforeach
+                        </select>
+                        <!-- <input type="text" name="nganhang" class="form-control text-capitalize" placeholder="Vd: Sacombank" value="{{$userchange->nganhang}}"> -->
                     </div>
                     <label class="col-sm-2 col-form-label">Tài khoản NH</label>
                     <div class="col-sm-4">
