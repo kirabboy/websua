@@ -26,7 +26,6 @@
             </thead>
             <tbody>
                 @foreach($users as $u)
-                @if($u->level != 1)
                 <tr>
                     <td class="text-center" data-label="STT">{{$u->id}}</td>
                     <td data-label="Tài khoản">{{$u->username}}</td>
@@ -39,7 +38,6 @@
                         <a href="{{url('/quan-ly-nguoi-dung')}}/{{$u->id}}" class="btn btn-danger" role="button">Sửa</a>
                     </th>
                 </tr>
-                @endif
                 @endforeach
             </tbody>
         </table>
