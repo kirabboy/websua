@@ -45,7 +45,7 @@ class HomeController extends Controller
     }
     // public function list_partner()
     // {
-    //     return view('list-partner');
+    //     return view('list-partner');asfasfasfasfafs
     // }
     
     public function cart()
