@@ -18,7 +18,7 @@
                 <div class="text-center">
                     <img src="{{ asset('public/img/logo.png') }}" height="135px">
                 </div>
-                <form method="post" action="dang-nhap">
+                <form method="post" action="{{url('/dang-nhap')}}">
                     @csrf
                     <div class="form-box">
                         @if ($errors->any() or session('mess'))

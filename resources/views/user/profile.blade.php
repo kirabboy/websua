@@ -28,7 +28,7 @@
         <h4 class="heading">Thông tin cá nhân</h4>
     </div>
     <div class="widget-body">
-        <form method="post" action="{{url('thong-tin-ca-nhan')}}/{{Auth::user()->id}}" enctype="multipart/form-data">
+        <form method="post" action="{{url('/thong-tin-ca-nhan')}}/{{Auth::user()->id}}" enctype="multipart/form-data">
             @csrf
             <div class="form-content">
                 <!-- avatar -->
@@ -175,7 +175,7 @@
         <h4 class="heading">Thay đổi mật khẩu</h4>
     </div>
     <div class="widget-body">
-        <form method="post" action="doi-mat-khau/{{Auth::user()->id}}">
+        <form method="post" action="{{url('/doi-mat-khau')}}/{{Auth::user()->id}}">
             @csrf
             <div class="form-content">
                 <div class="form-group row">

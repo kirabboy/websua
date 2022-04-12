@@ -3,7 +3,7 @@
 @section('title', 'Chỉnh sửa thông tin')
 
 @push('css')
-<link rel="stylesheet" href="{{ asset('/css/profile.css') }}">
+<link rel="stylesheet" href="{{ asset('public/css/profile.css') }}">
 @endpush
 
 @section('content')
@@ -28,12 +28,12 @@
         <h4 class="heading">Người dùng: {{$userchange->username}}</h4>
     </div>
     <div class="widget-body">
-        <form method="post" action="{{url('quan-ly-nguoi-dung')}}/{{$userchange->id}}" enctype="multipart/form-data">
+        <form method="post" action="{{url('/quan-ly-nguoi-dung')}}/{{$userchange->id}}" enctype="multipart/form-data">
             @csrf
             <div class="form-content">
                 <!-- avatar -->
                 <div class="form-group text-center">
-                    <img src="{{ asset('/img_avt') }}/{{$userchange->avatar}}" id="anhdaidien" alt="{{$userchange->avatar}}" height="100" width="100">
+                    <img src="{{ asset('public/img_avt') }}/{{$userchange->avatar}}" id="anhdaidien" alt="{{$userchange->avatar}}" height="100" width="100">
                     <label class="btn-sm btn-danger btn-avt">
                         Sửa Ảnh <input type="file" name="daidien" id="daidien" style="display: none">
                     </label>
@@ -153,7 +153,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">CMT mặt trước</label>
                     <div class="col-sm-4">
-                        <img class="anhcmt" src="{{ asset('/img_cmnd') }}/{{$userchange->cmttruoc}}" id="anhcmttruoc" alt="{{$userchange->cmttruoc}}">
+                        <img class="anhcmt" src="{{ asset('public/img_cmnd') }}/{{$userchange->cmttruoc}}" id="anhcmttruoc" alt="{{$userchange->cmttruoc}}">
                         <br />
                         <label class="btn-sm btn-danger">
                             Sửa Ảnh <input type="file" name="cmttruoc" id="cmttruoc" style="display: none">
@@ -161,7 +161,7 @@
                     </div>
                     <label class="col-sm-2 col-form-label">CMT mặt sau</label>
                     <div class="col-sm-4">
-                        <img class="anhcmt" src="{{ asset('/img_cmnd') }}/{{$userchange->cmtsau}}" id="anhcmtsau" alt="{{$userchange->cmtsau}}">
+                        <img class="anhcmt" src="{{ asset('public/img_cmnd') }}/{{$userchange->cmtsau}}" id="anhcmtsau" alt="{{$userchange->cmtsau}}">
                         <br />
                         <label class="btn-sm btn-danger">
                             Sửa Ảnh <input type="file" name="cmtsau" id="cmtsau" style="display: none">
@@ -181,7 +181,7 @@
         <h4 class="heading">Thay đổi mật khẩu</h4>
     </div>
     <div class="widget-body">
-        <form method="post" action="doi-mat-khau/{{$userchange->id}}">
+        <form method="post" action="{{url('/doi-mat-khau')}}/{{$userchange->id}}">
             @csrf
             <div class="form-content">
                 <div class="form-group row">
@@ -213,6 +213,6 @@
 @endsection
 @push('scripts')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="{{ asset('/js/shipping.js') }}"></script>
-<script src="{{ asset('/js/profile.js') }}"></script>
+<script src="{{ asset('public/js/shipping.js') }}"></script>
+<script src="{{ asset('public/js/profile.js') }}"></script>
 @endpush

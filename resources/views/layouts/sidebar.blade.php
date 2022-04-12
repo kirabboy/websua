@@ -3,7 +3,7 @@
 		<div class="sidebar-logo d-flex flex-column text-center">
 
 			<a href="{{url('/')}}" class="sidebar-brand-icon">
-				<img src="{{ asset('image/logo.png') }}" alt="" width="80px">
+				<img src="{{ asset('public/image/logo.png') }}" alt="" width="80px">
 			</a>
 			<div class="box-text">
 				<h2> <a href="{{url('/thong-tin-ca-nhan')}}">{{Auth::user()->name}}</a></h2>
