@@ -11,7 +11,7 @@
             <h2>Edit Product</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{route('products.index')}}" title="Go back"> Back <i class="fas fa-backward "></i> </a>
+            <a class="btn btn-primary" href="{{route('products.index')}}" title="Go back">Trở về <i class="fas fa-backward "></i> </a>
         </div>
     </div>
 </div>
@@ -59,6 +59,12 @@
                 <input type="number" name="price" class="form-control" placeholder="" value="{{$product->price}}">
             </div>
         </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Trọng lượng:</strong>
+                    <input type="number" name="weight" class="form-control" placeholder="" value="{{$product->weight}}">
+                </div>
+            </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
 
             <strong>Mô tả :</strong>

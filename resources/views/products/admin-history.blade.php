@@ -39,6 +39,7 @@
                         <th>Thời gian mua hàng</th>
                         <th>Họ tên</th>
                         <th>Số tiền</th>
+                        <th>Thời gian cập nhật trạng thái</th>
                         <th>Trạng thái</th>
                         <th>Tỉnh</th>
                         <th>Huyện</th>
@@ -48,6 +49,7 @@
                     </tr>
                 </thead>
                 <tbody>
+
                     @foreach ( $orders as $order)
                     <tr>
 
@@ -55,8 +57,9 @@
                         <td>{{$order->full_name}}
                         <td>{{$order->test}}
                         </td>
+                        <td>{{$order->updated_at}}</td>
                         <td>
-                            <a href="" class="update_record" data-name="firstname" data-type="text" data-pk="{{ $order->status }}" data-title="Enter Firstname"> {{ DB::table('status_product') ->where('id',$order->status)->first()->status_name}}</a>
+                            <a> {{ DB::table('status_product') ->where('id',$order->status)->first()->status_name}}</a>
 
                         </td>
                         <td>
@@ -75,14 +78,19 @@
                             <a class="" href="#" data-toggle="modal" data-target="#create_sales_{{$order->id}}" id="btn_add">
                                 <i class="fas fa-eye"></i>
                             </a>
+                            @if($order->status==2 or $order->status ==1)
                             <button class="editbtn" href="#" value="{{$order->id}}" data-toggle="modal" data-target="#create_{{$order->id}}" id="btn_add">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </button>
+                            @else
 
+                            @endif
                         </td>
 
                     </tr>
                     @endforeach
+                   
+
                     <!-- <tr>
                         <td class="text-danger">Tổng: </td>
                         <td colspan="1" class="text-danger">
@@ -232,6 +240,7 @@
                                         <p><b>Ngày tạo:</b> <span id="date">{{$order->created_at}}</span></p>
                                     </li> -->
                                     <li>
+
                                         <!-- <input type="text" name="status" id="status" required>
 
                                         </input> -->
@@ -239,8 +248,10 @@
                                             <option value=""> Trạng thái </option>
                                             @foreach ($status as $value)
                                             {{$value->id}}
-                                            <option value="{{ $value->id }}">{{ $value->status_name }}
+                                            <option value="{{ $value->id }}">
+                                                {{ $value->status_name }}
                                             </option>
+
                                             @endforeach
                                         </select>
                                     </li>
@@ -249,7 +260,7 @@
                                         </li> -->
                                 </ul>
                                 <div class="col-xs-12 col-sm-12 col-md-12 text-center pt-3 pb-4">
-                                    <button type="submit" class="btn btn-primary">Sửa</button>
+                                    <button type="submit" class="btn btn-primary test-form">Sửa</button>
                                 </div>
                             </div>
                         </form>

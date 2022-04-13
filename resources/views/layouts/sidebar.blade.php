@@ -55,11 +55,13 @@
 				<span><i class="fa-solid fa-gift"></i>Đổi điểm </span>
 			</a>
 		</li>
+		@if (Auth::user()->level==3)
 		<li class="menu-item">
-			<a href="{{url('/lich-su-dat-hang')}}" class="@if(\Request::is('lich-su-don-hang') ) active  @endif">
+			<a href="{{url('/lich-su-dat-hang')}}" class="@if(\Request::is('lich-su-dat-hang') ) active  @endif">
 				<span><i class="fa-solid fa-table"></i>Lịch sử đặt hàng</span>
 			</a>
 		</li>
+		@endif
 		@role('admin')
 		<li class="menu-item">
 			<a href="{{url('/lich-su')}}" class="@if(\Request::is('lich-su') ) active  @endif">
@@ -72,7 +74,7 @@
 				<span><i class="fa-solid fa-table"></i>Danh sách đối tác</span>
 			</a>
 		</li>
-		@hasanyrole('admin|agent')
+		@hasanyrole('admin|daily')
 		<li class="menu-item">
 			<a href="{{url('/dang-ky')}}" class="@if(\Request::is('dang-ky') ) active  @endif">
 				<span><i class="fa-solid fa-circle-plus"></i>Đăng ký</span>
@@ -89,13 +91,13 @@
 				<span><i class="fa-solid fa-percent"></i>Hoa hồng được hưởng</span>
 			</a>
 		</li>
-		@role('admin')
+		<!-- @role('admin')
 		<li class="menu-item">
 			<a href="{{url('/lich-su-mua-hang')}}" class="@if(\Request::is('lich-su-mua-hang') ) active  @endif">
 				<span><i class="fa-solid fa-clock-rotate-left"></i>Lịch sử mua hàng hệ thống</span>
 			</a>
 		</li>
-		@endrole
+		@endrole -->
 		<!-- <li><hr></li>
 		<li>
 			<hr>

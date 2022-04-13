@@ -9,7 +9,7 @@
   
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Laravel 8 CRUD Example </h2>
+                <!-- <h2>Laravel 8 CRUD Example </h2> -->
             </div>
             <div class="pull-right pb-3">
                 <a class="btn btn-success" title="Create a product" href="{{route('products.create')}}">Thêm mới</a>
@@ -27,13 +27,13 @@
     <table class="table table-bordered table-responsive-lg">
         <tr>
             <th>Mã sản phẩm</th>
-            <th>Name</th>
+            <th>Tên</th>
             
-            <th>Image</th>
-            <th>Price</th>
-            <th>Description</th>
+            <th>Hình ảnh</th>
+            <th>Giá</th>
+            <th>Mô tả</th>
             <!-- <th>Date Created</th> -->
-            <th>Actions</th>
+            <th>Hành động</th>    
         </tr>
         @foreach ($products as $product) 
             <tr>
@@ -58,9 +58,10 @@
                         @csrf
                         @method('DELETE')
 
-                        <a class="btn btn-danger btn-icon-split" title="delete">
+                        <button type="submit" class="btn btn-danger btn-icon-split" title="delete">
                             <i class="fas fa-trash fa-lg text-danger" style="color:#fff !important"></i>
-                        </a>
+                        </button>
+                      
                     </form>
                 </td>
             </tr>

@@ -52,4 +52,7 @@ class User extends Authenticatable
     public function getChild() {
         return $this->hasMany(User::class, 'id_dad', 'id')->with('getChild.getPoint');
     }
+    public function get_user_id() {
+        return $this->hasMany(Order_products::class,'user_id','id');
+    }
 }
