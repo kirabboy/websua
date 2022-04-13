@@ -75,11 +75,9 @@ class OrderController extends Controller
         $orders->full_name = $request->input('full_name');
         $orders->status = $request->input('status');
         if ($orders->status == 2) {
-            $id = auth()->user()->id;
+         
             $ct = new CongThucController;
-            $ct->hoahongtructiep($id, $sum, 2);
-            // dd($value->id);
-
+            $ct->hoahongtructiep($orders->users_id, $sum, 2);
         }
         //   dd( $orders->status);
         $orders->update();
