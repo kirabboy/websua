@@ -27,8 +27,9 @@ class CheckOutController extends Controller
   }
   public function addOrder(Request $request)
   {
-    $ct = new CongThucController;
+   
     $id = auth()->user()->id;
+  
     $hd = new Order();
     $hd->users_id = $id;
     $hd->full_name = $request->full_name;
@@ -40,8 +41,8 @@ class CheckOutController extends Controller
     $hd->street_address = $request->street_address;
     $hd->save();
     //  dd($hd);
-    $total = Cart::total();
-    $ct->hoahongtructiep($id, $total, 2);
+   
+ 
     // $order = Order::create($request->all());
     $carts = Cart::content();
     foreach ($carts as $cart) {

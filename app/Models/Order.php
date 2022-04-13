@@ -26,5 +26,5 @@ class Order extends Model
     public function status_product() {
         return $this->hasMany(Status_product::class,'status','id');
     }
-    
+   
 }

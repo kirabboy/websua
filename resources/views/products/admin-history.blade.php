@@ -36,7 +36,9 @@
             <table class="table table-bordered table-striped table-hover bangthuong text-center ">
                 <thead>
                     <tr>
-                        <th>Thời gian mua hàng</th>
+                        <th style="cursor:pointer" >Thời gian mua hàng
+
+                        </th>
                         <th>Họ tên</th>
                         <th>Số tiền</th>
                         <th>Thời gian cập nhật trạng thái</th>
@@ -78,7 +80,7 @@
                             <a class="" href="#" data-toggle="modal" data-target="#create_sales_{{$order->id}}" id="btn_add">
                                 <i class="fas fa-eye"></i>
                             </a>
-                            @if($order->status==2 or $order->status ==1)
+                            @if( $order->status ==1)
                             <button class="editbtn" href="#" value="{{$order->id}}" data-toggle="modal" data-target="#create_{{$order->id}}" id="btn_add">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </button>
@@ -89,7 +91,7 @@
 
                     </tr>
                     @endforeach
-                   
+
 
                     <!-- <tr>
                         <td class="text-danger">Tổng: </td>
