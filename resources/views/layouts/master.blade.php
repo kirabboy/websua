@@ -107,7 +107,7 @@
                 // console.log(od_id);
                 $.ajax({
                     type: "GET",
-                    url: "edit_order/" +od_id,
+                    url: "edit_order/" + od_id,
                     success: function(response) {
                         console.log(response.order);
                         $('#status').val(response.order.status)
@@ -117,6 +117,7 @@
 
                     }
                 });
+               
             });
         })
     </script>

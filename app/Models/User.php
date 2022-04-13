@@ -56,4 +56,8 @@ class User extends Authenticatable
     public function getDoanhSoTuan() {
         return $this->hasMany(DoanhSoThang::class, 'user_id', 'id')->orderBy('id', 'desc');
     }
+    
+    public function get_user_id() {
+        return $this->hasMany(Order_products::class,'user_id','id');
+    }
 }

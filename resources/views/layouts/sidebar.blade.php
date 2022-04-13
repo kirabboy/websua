@@ -61,11 +61,13 @@
 				<span><i class="fa-solid fa-gift"></i>Đổi điểm </span>
 			</a>
 		</li>
+		@if (Auth::user()->level==3)
 		<li class="menu-item">
 			<a href="{{url('/lich-su-dat-hang')}}" class="@if(\Request::is('lich-su-dat-hang') ) active  @endif">
 				<span><i class="fa-solid fa-table"></i>Lịch sử đặt hàng</span>
 			</a>
 		</li>
+		@endif
 		@role('admin')
 		<li class="menu-item">
 			<a href="{{url('/lich-su')}}" class="@if(\Request::is('lich-su') ) active  @endif">

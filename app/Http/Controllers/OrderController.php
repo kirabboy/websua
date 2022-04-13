@@ -9,6 +9,7 @@ use App\Models\Province;
 use App\Models\Prodcut;
 use App\Models\District;
 use App\Models\Ward;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 
@@ -22,16 +23,35 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $orders = Order::with('order_products')->get();
-
+    { 
+        // $users = User::with('get_user_id')->get();
+        
+       
         // $allBooks = Book::all()->modelKeys();
         $province = Province::all();
         $district = District::all();
+        $user = User::all();
         $ward = Ward::all();
         $get_products = Order_products::with('get_products')->get();
+        $orders = Order::with('order_products')->get();
+
+        // dd($get_products);
+        // foreach ($user as $value) {
+        //     dd($value->id);
+        // }
+        // $get_user_id =Order_products::with('users')->get();
+        // dd($users);
+       
+        // dd($get_user_id);
         $total = 0;
         $status = Status_product::all();
+        // foreach ($users as $user)
+        // // dd($user->id);
+        // foreach ( $get_user_id->where('user_id', $user->id) as $value)
+        // {
+        //     // dd($value);
+        // }
+
         foreach ($orders as $value) {
             $sum = 0;
             $money = $value->order_products;
@@ -41,7 +61,7 @@ class OrderController extends Controller
             $value->test = $sum;
         }
         //dd($orders);
-        return view('products.admin-history', compact('orders', 'province', 'district', 'ward', 'sum', 'get_products', 'total', 'status'));
+        return view('products.admin-history', compact('orders', 'province', 'district', 'ward', 'get_products', 'total', 'status'));
     }
     public function edit($id)
     {
@@ -67,14 +87,25 @@ class OrderController extends Controller
     public function order_his()
     {
         $orders = Order::with('order_products')->get();
+        
+        // $users = User::with('get_user_id')->get();
+
 
         // $allBooks = Book::all()->modelKeys();
         $province = Province::all();
         $district = District::all();
-        $ward = Ward::all();
+        // $ward = Ward::all();
         $get_products = Order_products::with('get_products')->get();
         $total = 0;
         $status = Status_product::all();
+        $user = User::all();
+        $ward = Ward::all();
+        // $get_products = Order_products::with('get_products')->get();
+        // foreach ($user as $value) {
+        //     dd($value->id);
+        // }
+        // $get_user_id =Order_products::with('users')->get();
+        // dd($get_user_id);
 
         //   foreach ($get_products as $get_pd){
         //     // dd($orders);
@@ -98,7 +129,7 @@ class OrderController extends Controller
             $value->test = $sum;
         }
         //dd($orders);
-        return view('products.order-history', compact('orders', 'province', 'district', 'ward', 'sum', 'get_products', 'total', 'status'));
+        return view('products.order-history', compact('orders', 'user', 'province', 'district', 'ward', 'sum', 'get_products', 'total', 'status'));
     }
     public function test($id)
     {
