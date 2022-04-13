@@ -50,7 +50,8 @@
                     <td data-label="Tên trung tâm">{{$tt->tentrungtam}}</td>
                     <td data-label="Người tạo">{{DB::table('users')->where('id',$tt->user_id)->first()->name}}</td>
                     <th class="text-center">
-                        <button type="button" data-target="#suattpp_{{$tt->id}}" data-toggle="modal" class="btn btn-danger">Sửa</button>
+                        <button type="button" data-target="#suattpp_{{$tt->id}}" data-toggle="modal" class="btn btn-outline-success">Sửa</button>
+                        <a href="{{url('/trung-tam-phan-phoi')}}/{{$tt->id}}" type="submit" class="btn btn-danger">Xóa</a>
                     </th>
                 </tr>
                 @endforeach

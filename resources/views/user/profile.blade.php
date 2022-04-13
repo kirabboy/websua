@@ -164,7 +164,7 @@
                 </div>
             </div>
             <div class="text-right">
-                <button type="submit" class="btn btn-primary btn">Cập nhật</button>
+                <button type="submit" class="btn btn-primary">Cập nhật</button>
             </div>
         </form>
     </div>
@@ -199,7 +199,7 @@
             </div>
             <hr>
             <div class="text-right">
-                <button type="submit" class="btn btn-primary btn">Cập nhật</button>
+                <button type="submit" class="btn btn-primary">Cập nhật</button>
             </div>
         </form>
     </div>

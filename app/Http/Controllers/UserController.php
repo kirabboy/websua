@@ -266,6 +266,11 @@ class UserController extends Controller
         $trungtam->save();
         return back()->with('mess', 'Sửa trung tâm thành công!');
     }
+    public function xoaTtpp($id){
+        $trungtam = Trungtampp::find($id);
+        $trungtam->delete();
+        return back()->with('mess', 'Xóa trung tâm thành công!');
+    }
     public function getMa()
     {
         $ma = "milk00001";
