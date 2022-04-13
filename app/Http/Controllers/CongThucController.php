@@ -29,6 +29,13 @@ class CongThucController extends Controller
         $id_dad = $user->getParent;
         $doanh_so_tuan = DoanhSoThang::where('user_id', $user->id)->first();
         
+        if(auth()->user()->id == $id) {
+            $point_user = $user->getPoint;
+            $point_user->doanhso_canhan += $amount;
+            $point_user->doanhso += $amount;
+            $point_user->save();
+        }
+
         if($id_dad != null){
             $doanhso = $id_dad->getPoint->doanhso;
             $point = $id_dad->getPoint->point;
@@ -51,6 +58,7 @@ class CongThucController extends Controller
 
             $id_dad->getPoint->point = $point;
             $id_dad->getPoint->doanhso = $doanhso;
+            
             $id_dad->getPoint->save();
             
             $count -= 1;
@@ -79,22 +87,29 @@ class CongThucController extends Controller
     
     public function test() {
         $id = auth()->user()->id;
-        $user = User::with('getPoint')->get();
-        
-        //$this->hoahongtructiep(4, 10000, 2);
-        foreach ($user as $value) {
-            $doanhso_tuan_truoc = DoanhSoThang::where('user_id', $id)->orderBy('id', 'desc')->first();
-            $doanhso = new DoanhSoThang;
-            
-            $doanhso->doanhso = $value->getPoint->doanhso - $doanhso_tuan_truoc->doanhso;
-            $doanhso->point = $value->getPoint->point - $doanhso_tuan_truoc->point;
-            $doanhso->doanhso_canhan = $value->getPoint->doanhso_canhan - $doanhso_tuan_truoc->doanhso_canhan;
-            $doanhso->user_id = $value->id;
-            // $doanhso->save();
-            
-            // $value->getPoint->save();
-            
-        }
+        $this->hoahongtructiep($id, 10000, 2);
         return view('test');
     }
+
+
+    // public function test() {
+    //     $id = auth()->user()->id;
+    //     $user = User::with('getPoint')->get();
+        
+    //     //$this->hoahongtructiep(4, 10000, 2);
+    //     foreach ($user as $value) {
+    //         $doanhso_tuan_truoc = DoanhSoThang::where('user_id', $id)->orderBy('id', 'desc')->first();
+    //         $doanhso = new DoanhSoThang;
+            
+    //         $doanhso->doanhso = $value->getPoint->doanhso - $doanhso_tuan_truoc->doanhso;
+    //         $doanhso->point = $value->getPoint->point - $doanhso_tuan_truoc->point;
+    //         $doanhso->doanhso_canhan = $value->getPoint->doanhso_canhan - $doanhso_tuan_truoc->doanhso_canhan;
+    //         $doanhso->user_id = $value->id;
+    //         // $doanhso->save();
+            
+    //         // $value->getPoint->save();
+            
+    //     }
+    //     return view('test');
+    // }
 }
