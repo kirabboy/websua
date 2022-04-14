@@ -3,7 +3,7 @@
 @section('title', 'Thông tin cá nhân')
 
 @push('css')
-<link rel="stylesheet" href="{{ asset('public/css/profile.css') }}">
+<link rel="stylesheet" href="{{ asset('/public/css/profile.css') }}">
 @endpush
 
 @section('content')

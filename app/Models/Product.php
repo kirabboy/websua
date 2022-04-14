@@ -13,7 +13,8 @@ class Product extends Model
         'name',
         'image',
         'price',
-        'description'
+        'description',
+        'weight'
     ];
     protected $primary='id';
     public function product_brand() {

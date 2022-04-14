@@ -16,7 +16,7 @@
     <div class="register-content widget mt-3">
         <div class="widget-head">
             <a href="javascript:history.back()">
-                <i style="font-size: 20px;color: #fff;position: absolute;top: 50%; transform: translate(0, -50%);" class="fa-solid fa-circle-arrow-left"></i></a>
+                <i class="fa-solid fa-circle-arrow-left"></i>Trở về</a>
             <h4 class="heading text-center">Đăng ký</h4>
         </div>
         <div class="widget-body">
@@ -38,9 +38,12 @@
                             @enderror
                         </div>
                         <div class="form-group col-md-6">
-                            <label>Mã giới thiệu</label>
+                            <label>Người dùng giới thiệu</label>
                             <input type="checkbox" id="btn-gioithieu" name="btn_gioithieu">
                             <input class="form-control" id="gioithieu" name="gioithieu" disabled="" value="">
+                            @error('gioithieu')
+                            <div class="text-danger gioithieu">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="form-row">

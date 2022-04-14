@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 use App\Models\Province;
 use App\Models\Point;
+use App\Models\DoanhSoThang;
 
 class SignupController extends Controller
 {
@@ -20,10 +21,10 @@ class SignupController extends Controller
     public function getRegisterId($id)
     {
         $user = User::find($id);
-        if($user == null) return redirect('/dang-nhap')->withErrors(['msg' => 'Mã giới thiệu không tồn tại!']);
-        $magioithieu = $user->magioithieu;
+        if($user == null) return redirect('/dang-nhap')->withErrors(['msg' => 'Người dùng giới thiệu không tồn tại!']);
+        $u_name = $user->username;
         $province = Province::select('matinhthanh', 'tentinhthanh')->get();
-        return view('signupwithlink', compact('province','magioithieu'));
+        return view('signupwithlink', compact('province','u_name'));
     }
     public function checkRegister(Request $request)
     {
@@ -35,27 +36,28 @@ class SignupController extends Controller
             're_password.required' => 'Nhập lại mật khẩu không đúng!',
             're_password.same' => 'Nhập lại mật khẩu không đúng!',
             'name.required' => 'Nhập họ tên!',
-            'phone.digits' => 'Số điện thoại chưa đúng!',
+            'phone.digits_between' => 'Số điện thoại từ 7 đến 11 chữ số!',
             'phone.unique' => 'Số điện thoại đã được sử dụng!',
             'address.required' => 'Nhập số nhà!',
             'email.email' => 'Sai định dạng email!',
             'email.unique' => 'Email đã được sử dụng!',
-            'cmttruoc.image' => 'Nhập sai định dạng hình ảnh!',
-            'cmtsau.image' => 'Nhập sai định dạng hình ảnh!',
-            'cmtavt.image' => 'Nhập sai định dạng hình ảnh!',
+            // 'cmttruoc.image' => 'Nhập sai định dạng hình ảnh!',
+            // 'cmtsau.image' => 'Nhập sai định dạng hình ảnh!',
+            // 'cmtavt.image' => 'Nhập sai định dạng hình ảnh!',
         ];
         $request->validate([
             'username' => 'required|unique:users,username',
             'password' => 'required|min:6',
             're_password' => 'required|same:password',
             'name' => 'required',
-            'phone' => 'digits:10|unique:users,phone',
+            'phone' => 'digits_between:7,11|unique:users,phone',
             'address' => 'required',
             'email' => 'email|unique:users,email',
-            'cmttruoc' => 'image',
-            'cmtsau' => 'image',
-            'cmtavt' => 'image',
+            // 'cmttruoc' => 'image',
+            // 'cmtsau' => 'image',
+            // 'cmtavt' => 'image',
         ], $error);
+        /*
         $ma = $this->getMa();
         if ($ma == false) {
             return back()->withErrors(['msg' => 'Số người dùng vượt quá định mức!']);
@@ -63,8 +65,9 @@ class SignupController extends Controller
         if (!$this->ktCmnd($request->cmnd)) {
             return back()->withErrors(['msg' => 'Nhập sai CMND/CCCD!']);
         };
+        */
         if (!$this->ktId_dad($request->gioithieu) && $request->btn_gioithieu ) {
-            return back()->withErrors(['msg' => 'Mã giới thiệu không tồn tại!']);
+            return back()->withErrors(['gioithieu' => 'Người dùng giới thiệu không tồn tại!']);
         };
 
         $user = new User();
@@ -78,6 +81,8 @@ class SignupController extends Controller
         $user->huyen = $request->sel_district;
         $user->xa = $request->sel_ward;
         $user->email = $request->email;
+        $user->level = 3;
+        /*
         $user->cmnd = $request->cmnd;
         $user->ngaycmnd = $request->ngaycmnd;
         $user->noicmnd = $request->noicmnd;
@@ -86,7 +91,6 @@ class SignupController extends Controller
         $user->chuthe = $request->chuthe;
         $user->chinhanh = $request->chinhanh;
         $user->magioithieu = $ma;
-        $user->level = 3;
         if ($request->hasFile('cmttruoc')) {
             $cmndfront = $this->xulyanh($request->cmttruoc);
             $user->cmttruoc = $cmndfront;
@@ -99,15 +103,19 @@ class SignupController extends Controller
             $avatar = $this->xulyanhavt($request->daidien);
             $user->avatar = $avatar;
         }
+        */
         $user->save();
         $this->phanvaitro($user->id, $user->level);
         $point = new Point();
         $point->user_id = $user->id;
         $point->save();
+        $dst = new DoanhSoThang();
+        $dst->user_id = $user->id;
+        $dst->save();
         return back()->with('mess', 'Đăng ký thành công!');
     }
 
-    public function getMa()
+    /*public function getMa()
     {
         $ma = "milk00001";
         $users = User::all();
@@ -122,7 +130,7 @@ class SignupController extends Controller
             return $ma;
         }
         return false;
-    }
+    }*/
     public function phanvaitro($userID, $roleId)
     {
         //add model_has_roles
@@ -130,7 +138,7 @@ class SignupController extends Controller
         $user = User::find($userID);
         $user->syncRoles($role);
     }
-    public function xulyanh($file)
+    /*public function xulyanh($file)
     {
         $file_name = "cmnd" . '_' . time() . '.' . $file->getClientOriginalExtension();
         $destinationPath = public_path('/img_cmnd');
@@ -154,11 +162,8 @@ class SignupController extends Controller
             }
         }
         return false;
-    }
+    }*/
     public function ktId_dad($magt){
-        if (User::where('magioithieu', $magt)->first() != null) {
-            return User::where('magioithieu', $magt)->value('id');
-        }
-        return null;
+        return User::where('username', $magt)->value('id');
     }
 }

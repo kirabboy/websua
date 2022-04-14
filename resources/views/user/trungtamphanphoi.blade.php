@@ -114,7 +114,7 @@
                                 <input class="form-control" name="tenttpp">
                             </div>
                             <div class="form-group col-12 text-center m-0">
-                                <button type="submit" class="btn btn-primary btn">Thêm</button>
+                                <button type="submit" class="btn btn-primary">Thêm</button>
                             </div>
                         </div>
                     </div>
@@ -144,7 +144,7 @@
                                 <input class="form-control" name="tenttpp" value="{{$tt->tentrungtam}}">
                             </div>
                             <div class="form-group col-12 text-center m-0">
-                                <button type="submit" class="btn btn-primary btn">Xác nhận</button>
+                                <button type="submit" class="btn btn-primary">Xác nhận</button>
                             </div>
                         </div>
                     </div>

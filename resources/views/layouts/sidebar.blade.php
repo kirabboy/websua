@@ -66,11 +66,13 @@
 				<span><i class="fa-solid fa-gift"></i>Đổi điểm </span>
 			</a>
 		</li>
+		@if (Auth::user()->level==3)
 		<li class="menu-item">
 			<a href="{{url('/lich-su-dat-hang')}}" class="@if(\Request::is('lich-su-dat-hang') ) active  @endif">
 				<span><i class="fa-solid fa-table"></i>Lịch sử đặt hàng</span>
 			</a>
 		</li>
+		@endif
 		@role('admin')
 		<li class="menu-item">
 			<a href="{{url('/lich-su')}}" class="@if(\Request::is('lich-su') ) active  @endif">
@@ -93,11 +95,11 @@
 				<span><i class="fa-solid fa-building"></i>Trung tâm phân phối</span>
 			</a>
 		</li> -->
-		<li class="menu-item">
+		<!-- <li class="menu-item">
 			<a href="{{url('/hoa-hong-duoc-huong')}}" class="@if(\Request::is('hoa-hong-duoc-huong') ) active  @endif">
 				<span><i class="fa-solid fa-percent"></i>Hoa hồng được hưởng</span>
 			</a>
-		</li>
+		</li> -->
 		@role('admin')
 		<!-- <li class="menu-item">
 			<a href="{{url('/lich-su-mua-hang')}}" class="@if(\Request::is('lich-su-mua-hang') ) active  @endif">
@@ -136,6 +138,17 @@
 			</div>
 		</li>
 
+		<li class="menu-item">
+			<a href="{{route('napDiem')}}" class="@if(\Request::is('nap-diem') ) active  @endif">
+				<span><i class="fa-solid fa-fire"></i>Nạp điểm Users</span>
+			</a>
+		</li>
+
+		<li class="menu-item">
+			<a href="{{route('doanh-so-ban-hang')}}" class="@if(\Request::is('doanh-so-ban-hang') ) active  @endif">
+				<span><i class="fa-solid fa-fire"></i>Doanh số bán hàng</span>
+			</a>
+		</li>
 
 		<li class="nav-item">
 

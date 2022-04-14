@@ -14,6 +14,10 @@ use App\Models\Product;
 
 class HomeController extends Controller
 {
+    public function getHome(){
+        $user = User::with('getPoint')->where('id', auth()->user()->id)->first();
+        return view('user.index', compact('user'));
+    }
     //
     public function document()
     {
@@ -43,17 +47,10 @@ class HomeController extends Controller
     {
         return view('products.product-detail');
     }
-    // public function list_partner()
-    // {
-    //     return view('list-partner');asfasfasfasfafs
-    // }
     
     public function cart()
     {
         return view('products.cart');
-    }
-    public function getHome(){
-        return view('user.index');
     }
     public function getTransactions(){
         return view('transactions');

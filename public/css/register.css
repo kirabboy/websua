@@ -51,6 +51,8 @@ span.ast{
     color: #DB6464;
 }
 
+/* header */
+
 
 /* form content 1 */
 .form-content div.cmt {
@@ -132,6 +134,23 @@ span.ast{
 #signUp {
     background: url('../img/bg_forgotpw.jpg') no-repeat;
     background-size: 100% 100%;
+}
+#signUp .register-content.widget .widget-head>a{
+    font-size: 14px;
+    color: #fff;
+    position: absolute;
+    top: 55%; 
+    transform: translate(0, -50%);
+    align-items: center;
+    display: flex;
+    text-decoration: none;
+}
+#signUp .register-content.widget .widget-head>a i{
+    font-size: 20px;
+    margin-right: 5px;
+}
+#signUp .register-content.widget .widget-head>a:hover i{
+    color: #91EAE4;
 }
 
 /* error */

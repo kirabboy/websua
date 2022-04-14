@@ -47,6 +47,7 @@
                 </thead>
                 <tbody>
                     @foreach ( $orders as $order)
+                    @if($order->users_id == Auth::user()->id)
                     <tr>
 
                         <td>{{$order->created_at}}</td>
@@ -73,6 +74,7 @@
                         </td>
 
                     </tr>
+                    @endif
                     @endforeach
                     <!-- <tr>
                         <td class="text-danger">Tổng: </td>

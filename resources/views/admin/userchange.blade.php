@@ -3,7 +3,7 @@
 @section('title', 'Chỉnh sửa thông tin')
 
 @push('css')
-<link rel="stylesheet" href="{{ asset('public/css/profile.css') }}">
+<link rel="stylesheet" href="{{ asset('/public/css/profile.css') }}">
 @endpush
 
 @section('content')
@@ -181,7 +181,7 @@
         <h4 class="heading">Thay đổi mật khẩu</h4>
     </div>
     <div class="widget-body">
-        <form method="post" action="{{url('/doi-mat-khau')}}/{{$userchange->id}}">
+        <form method="post" action="{{url('/quan-ly-nguoi-dung/doi-mat-khau')}}/{{$userchange->id}}">
             @csrf
             <div class="form-content">
                 <div class="form-group row">
@@ -213,6 +213,6 @@
 @endsection
 @push('scripts')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="{{ asset('public/js/shipping.js') }}"></script>
-<script src="{{ asset('public/js/profile.js') }}"></script>
+<script src="{{ asset('/public/js/shipping.js') }}"></script>
+<script src="{{ asset('/public/js/profile.js') }}"></script>
 @endpush

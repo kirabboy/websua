@@ -5,8 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Trungtampp extends Model
+class DoanhSoThang extends Model
 {
     use HasFactory;
-    protected $table = 'trungtampp';
+    protected $table = 'doanh_so_thang';
+
 }

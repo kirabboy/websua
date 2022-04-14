@@ -15,6 +15,7 @@ use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\CheckOutController;
 use App\Http\Controllers\SignupController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PointController;
 
 Route::post('/dang-nhap', [UserController::class, 'checkLogin']);
 Route::post('/dang-ky', [UserController::class, 'checkRegister']);
@@ -25,12 +26,12 @@ Route::post('/quan-ly-nguoi-dung/{id}', [AdminController::class, 'changeUser']);
 Route::post('/quan-ly-nguoi-dung/doi-mat-khau/{id}', [AdminController::class, 'changePassword']);
 Route::post('/trung-tam-phan-phoi', [UserController::class, 'themTtpp']);
 Route::post('/trung-tam-phan-phoi/{id}', [UserController::class, 'suaTtpp']);
-Route::get('/dang-ki/{id}', [SignupController::class, 'getRegisterID']);
 
 Route::group(['middleware' => ['checklogin']], function () {
     Route::get('/dang-nhap', [UserController::class, 'getLogin'])->name('dangnhap');
     // Route::get('/forgot-password', [UserController::class, 'getForgotpw']);
     Route::get('/dang-ki', [SignupController::class, 'getRegister']);
+    Route::get('/dang-ki/{id}', [SignupController::class, 'getRegisterID']);
 });
 
 Route::group(['middleware' => ['auth']], function () {
@@ -45,9 +46,13 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/setting-banner', [SettingController::class, 'postBanner']);
         Route::get('/setting-banner/delete/{id}', [SettingController::class, 'deleteBanner']);
         Route::get('lich-su', [OrderController::class, 'index']);
-
     });
-    Route::group(['middleware' => ['role:admin|daily']], function () {
+  
+    Route::group(['middleware' => ['role:congtacvien']], function () {
+        Route::get('/lich-su-dat-hang', [OrderController::class, 'order_his']);
+    });
+    
+    Route::group(['middleware' => ['role:admin|agent']], function () {
         Route::get('/trung-tam-phan-phoi', [UserController::class, 'getTtpp']);
         Route::get('/trung-tam-phan-phoi/{id}', [UserController::class, 'xoaTtpp']);
     });
@@ -59,7 +64,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/hoa-hong-duoc-huong', [HomeController::class, 'getTransactions']);
     Route::get('/thong-tin-ca-nhan', [UserController::class, 'getProfile'])->name('profile');
     // Route::get('/',function (){
-    //     return \App\Models\Product::find(19)->get_products;
+    //     return \App\Models\User::find(1)->get_user_id;
     // });
     Route::get('/', [HomeController::class, 'getHome']);
     Route::get('/tai-lieu', [HomeController::class, 'document']);
@@ -67,12 +72,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/danh-sach-doi-tac', [PartnerController::class, 'list_partner']);
     Route::get('/chi-tiet-san-pham', [HomeController::class, 'product_detail']);
     // Route::get('/gio-hang', [HomeController::class, 'cart']);
-    Route::get('/lich-su-dat-hang', [OrderController::class, 'order_his']);
+
     Route::get('/dat-hang', [HomeController::class, 'order']);
     Route::resource('san-pham', ProductController::class);
-    
-    Route::get('edit_order/{id}', [OrderController::class,'edit']);
-    Route::put('update_order', [OrderController::class,'update']);
+
+    Route::get('edit_order/{id}', [OrderController::class, 'edit']);
+    Route::put('update_order', [OrderController::class, 'update']);
     // Route::get('/lich-su-dat-hang', [OrderController::class, 'update'])->name('orders.update');
     Route::prefix('gio-hang')->group(
         function () {
@@ -104,6 +109,9 @@ Route::group(['middleware' => ['auth']], function () {
     // Route::get('/cart', [HomeController::class, 'cart']);
     // Route::get('/order-history', [HomeController::class, 'order_history']);
 
+    Route::get('/nap-diem', [PointController::class, 'napDiem'])->name('napDiem');
+    Route::get('/check-nap-diem', [PointController::class, 'checkNapDiem'])->name('checkNapDiem');
+    Route::post('/nap-diem', [PointController::class, 'postNapDiem']);
 
     Route::get('/hoahong', [CongThucController::class, 'hoahong']);
 
@@ -112,13 +120,16 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::resource('products', ProductController::class);
 
-
+    Route::get('/test', [CongThucController::class, 'test']);
 
     //Doi Nhom Controllers
     Route::get('/list-partner', [PartnerController::class, 'list_partner']);
 
     Route::get('/sales_manager', [HomeController::class, 'getSales_manager']);
     Route::get('/list_manager', [HomeController::class, 'getList_manager']);
+
+    Route::get('/doanh-so-ban-hang', [PointController::class, 'doanhSoBanHang'])->name('doanh-so-ban-hang');
+    Route::get('/doanh-so-ban-hang/{id}', [PointController::class, 'doanhSoBanHangCaNhan']);
 });
 
 Route::get('/lay-phuong-xa-theo-quan-huyen', [ShippingController::class, 'wardOfDistrict']);

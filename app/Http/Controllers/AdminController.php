@@ -29,7 +29,7 @@ class AdminController extends Controller
     {
         $error = [
             'name.required' => 'Nhập họ tên!',
-            'phone.digits' => 'Số điện thoại chưa đúng!',
+            'phone.digits_between' => 'Số điện thoại từ 7 đến 11 chữ số!',
             'address.required' => 'Nhập số nhà!',
             'email.email' => 'Sai định dạng email!',
             'cmttruoc.image' => 'Nhập sai định dạng hình ảnh!',
@@ -38,7 +38,7 @@ class AdminController extends Controller
         ];
         $request->validate([
             'name' => 'required',
-            'phone' => 'digits:10',
+            'phone' => 'digits_between:7,11',
             'address' => 'required',
             'email' => 'email',
             'cmttruoc' => 'image',
@@ -101,12 +101,13 @@ class AdminController extends Controller
         $error = [
             'mkcu.required' => 'Nhập mật khẩu cũ!',
             'mkmoi.required' => 'Nhập mật khẩu mới!',
+            'mkmoi.min' => 'Mật khẩu phải có 6 ký tự trở lên!',
             'nhaplai.required' => 'Nhập lại mật khẩu không đúng!',
             'nhaplai.same' => 'Nhập lại mật khẩu không đúng!',
         ];
         $request->validate([
             'mkcu' => 'required',
-            'mkmoi' => 'required',
+            'mkmoi' => 'required|min:6',
             'nhaplai' => 'required|same:mkmoi',
         ], $error);
         $user = User::find($id);

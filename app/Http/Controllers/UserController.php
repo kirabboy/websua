@@ -16,6 +16,7 @@ use App\Models\Trungtampp;
 use App\Models\District;
 use App\Models\Ward;
 use App\Models\Point;
+use App\Models\DoanhSoThang;
 
 use function PHPUnit\Framework\isNan;
 
@@ -64,34 +65,34 @@ class UserController extends Controller
             're_password.required' => 'Nhập lại mật khẩu không đúng!',
             're_password.same' => 'Nhập lại mật khẩu không đúng!',
             'name.required' => 'Nhập họ tên!',
-            'phone.digits' => 'Số điện thoại chưa đúng!',
+            'phone.digits_between' => 'Số điện thoại từ 7 đến 11 chữ số!',
             'phone.unique' => 'Số điện thoại đã được sử dụng!',
             'address.required' => 'Nhập số nhà!',
             'email.email' => 'Sai định dạng email!',
             'email.unique' => 'Email đã được sử dụng!',
-            'cmttruoc.image' => 'Nhập sai định dạng hình ảnh!',
-            'cmtsau.image' => 'Nhập sai định dạng hình ảnh!',
-            'cmtavt.image' => 'Nhập sai định dạng hình ảnh!',
+            // 'cmttruoc.image' => 'Nhập sai định dạng hình ảnh!',
+            // 'cmtsau.image' => 'Nhập sai định dạng hình ảnh!',
+            // 'cmtavt.image' => 'Nhập sai định dạng hình ảnh!',
         ];
         $request->validate([
             'username' => 'required|unique:users,username',
             'password' => 'required|min:6',
             're_password' => 'required|same:password',
             'name' => 'required',
-            'phone' => 'digits:10|unique:users,phone',
+            'phone' => 'digits_between:7,11|unique:users,phone',
             'address' => 'required',
             'email' => 'email|unique:users,email',
-            'cmttruoc' => 'default|image',
-            'cmtsau' => 'image',
-            'cmtavt' => 'image',
+            // 'cmttruoc' => 'default|image',
+            // 'cmtsau' => 'image',
+            // 'cmtavt' => 'image',
         ], $error);
-        $ma = $this->getMa();
+        /*$ma = $this->getMa();
         if ($ma == false) {
             return back()->withErrors(['msg' => 'Số người dùng vượt quá định mức!']);
         }
         if (!$this->ktCmnd($request->cmnd)) {
             return back()->withErrors(['msg' => 'Nhập sai CMND/CCCD!']);
-        };
+        };*/
 
         $user = new User();
         $user->id_dad = Auth::user()->id;
@@ -104,7 +105,8 @@ class UserController extends Controller
         $user->huyen = $request->sel_district;
         $user->xa = $request->sel_ward;
         $user->email = $request->email;
-        $user->cmnd = $request->cmnd;
+        $user->level = 3;
+        /*$user->cmnd = $request->cmnd;
         $user->ngaycmnd = $request->ngaycmnd;
         $user->noicmnd = $request->noicmnd;
         $user->nganhang = $request->nganhang;
@@ -112,7 +114,6 @@ class UserController extends Controller
         $user->chuthe = $request->chuthe;
         $user->chinhanh = $request->chinhanh;
         $user->magioithieu = $ma;
-        $user->level = 3;
         if ($request->hasFile('cmttruoc')) {
             $cmndfront = $this->xulyanh($request->cmttruoc);
             $user->cmttruoc = $cmndfront;
@@ -124,13 +125,15 @@ class UserController extends Controller
         if ($request->hasFile('daidien')) {
             $avatar = $this->xulyanhavt($request->daidien);
             $user->avatar = $avatar;
-        }
-        // dd($user);
+        }*/
         $user->save();
         $this->phanvaitro($user->id, $user->level);
         $point = new Point();
         $point->user_id = $user->id;
         $point->save();
+        $dst = new DoanhSoThang();
+        $dst->user_id = $user->id;
+        $dst->save();
         return back()->with('mess', 'Đăng ký thành công!');
     }
     public function getProfile()
@@ -143,18 +146,20 @@ class UserController extends Controller
     {
         $error = [
             'name.required' => 'Nhập họ tên!',
-            'phone.digits' => 'Số điện thoại chưa đúng!',
+            'phone.digits_between' => 'Số điện thoại từ 7 đến 11 chữ số!',
+            'phone.unique' => 'Số điện thoại đã được sử dụng!',
             'address.required' => 'Nhập số nhà!',
             'email.email' => 'Sai định dạng email!',
+            'email.unique' => 'Email đã được sử dụng!',
             'cmttruoc.image' => 'Nhập sai định dạng hình ảnh!',
             'cmtsau.image' => 'Nhập sai định dạng hình ảnh!',
             'cmtavt.image' => 'Nhập sai định dạng hình ảnh!',
         ];
         $request->validate([
             'name' => 'required',
-            'phone' => 'digits:10',
+            'phone' => 'digits_between:7,11|unique:users,phone',
             'address' => 'required',
-            'email' => 'email',
+            'email' => 'email|unique:users,email',
             'cmttruoc' => 'image',
             'cmtsau' => 'image',
             'cmtavt' => 'image',
@@ -213,12 +218,13 @@ class UserController extends Controller
         $error = [
             'mkcu.required' => 'Nhập mật khẩu cũ!',
             'mkmoi.required' => 'Nhập mật khẩu mới!',
+            'mkmoi.min' => 'Mật khẩu phải có 6 ký tự trở lên!',
             'nhaplai.required' => 'Nhập lại mật khẩu không đúng!',
             'nhaplai.same' => 'Nhập lại mật khẩu không đúng!',
         ];
         $request->validate([
             'mkcu' => 'required',
-            'mkmoi' => 'required',
+            'mkmoi' => 'required|min:6',
             'nhaplai' => 'required|same:mkmoi',
         ], $error);
         $user = User::find($id);
