@@ -256,7 +256,7 @@
 
                                         </input> -->
                                         <select id="status" name="status" class="form-control select2" data-placeholder=" Cấp tỉnh " required>
-                                            <option value=""> Trạng thái </option>
+                                          
                                             @foreach ($status as $value)
                                             {{$value->id}}
                                             <option value="{{ $value->id }}">
@@ -271,7 +271,7 @@
                                         </li> -->
                                 </ul>
                                 <div class="col-xs-12 col-sm-12 col-md-12 text-center pt-3 pb-4">
-                                    <button type="submit" class="btn btn-primary test-form">Sửa</button>
+                                    <button type="submit" class="btn btn-primary test-form">Hoàn Thành</button>
                                 </div>
                             </div>
                         </form>

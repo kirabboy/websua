@@ -46,6 +46,7 @@
                     </tr>
                 </thead>
                 <tbody>
+
                     @foreach ( $orders as $order)
                     @if($order->users_id == Auth::user()->id)
                     <tr>
@@ -129,6 +130,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                @if ($order->id==null)
                                     @foreach ( $get_products->where('id_order', $order->id) as $value )
                                     <tr>
                                         <td class="cart-item clearfix">
@@ -162,6 +164,13 @@
                                         </td>
                                     </tr>
                                     @endforeach;
+                                    @else
+                                    <div>
+                                        
+                                    </div>
+                               
+                                   
+                                    @endif
                                     <tr style="background-color: #f9f9fa">
                                         <td>
                                             <b style="font-size: 16px; font-weight: 700" class="color-red">Tổng tiền (DS)</b><br>

@@ -40,7 +40,7 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required',
             'price' => 'required',
-            'description'=>'required'
+        
         ]);
         // $input = $request->all();
   
@@ -96,7 +96,7 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required',
             'price' => 'required',
-            'description'=>'required'
+           
         ]);
         // $product= Product::find($id);
         if ($request->has('file_upload')) {

@@ -10,7 +10,7 @@
   <div class="container wow fadeIn">
 
     <!-- Heading -->
-    <h2 class="my-5 h2 text-center">Thanh Toán</h2>
+    <h2 class="my-5 h2 text-center">GỬI ĐƠN HÀNG</h2>
 
     <!--Grid row-->
     <div class="row">
@@ -74,7 +74,7 @@
             <div class="row">
             </div>
             <hr class="mb-4">
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Thanh toán</button>
+            <button class="btn btn-primary btn-lg btn-block" type="submit">GỬI ĐƠN HÀNG</button>
 
           </form>
 
