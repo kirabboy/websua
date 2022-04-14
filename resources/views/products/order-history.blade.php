@@ -130,19 +130,19 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @if ($order->id==null)
+                         
                                     @foreach ( $get_products->where('id_order', $order->id) as $value )
                                     <tr>
                                         <td class="cart-item clearfix">
                                             <div class="img">
                                                 <a href="/thuc-duong-giam-can-800gr" title="Thực Dưỡng Giảm Cân 800gr" class="img-cover">
-                                                    <img src=" {{url('/public/image')}}/{{ DB::table('products') ->where('id', $value->id_product)->first()->image}}" alt="Thực Dưỡng Giảm Cân 800gr" title="Thực Dưỡng Giảm Cân 800gr" style="width:30px">
+                                                    <img src=" {{url('/public/image')}}/{{ DB::table('products') ->where('id', $value->id_product)->first()->image  ?? 'Sản phẩm đã bị xóa'}}"  style="width:30px">
                                                 </a>
                                             </div>
                                             <div class="desc">
                                                 <h3 class="name">
                                                     <a href="/thuc-duong-giam-can-800gr" title="Thực Dưỡng Giảm Cân 800gr">
-                                                        {{ DB::table('products') ->where('id', $value->id_product)->first()->name}}
+                                                        {{ DB::table('products') ->where('id', $value->id_product)->first()->name  ?? 'Sản phẩm đã bị xóa'}}
                                                     </a>
                                                 </h3>
                                             </div>
@@ -164,13 +164,7 @@
                                         </td>
                                     </tr>
                                     @endforeach;
-                                    @else
-                                    <div>
-                                        
-                                    </div>
-                               
-                                   
-                                    @endif
+                                 
                                     <tr style="background-color: #f9f9fa">
                                         <td>
                                             <b style="font-size: 16px; font-weight: 700" class="color-red">Tổng tiền (DS)</b><br>
@@ -230,3 +224,7 @@
     </div>
 </div>
 @endsection
+@push('scripts')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{{ asset('public/js/product.js') }}"></script>
+@endpush

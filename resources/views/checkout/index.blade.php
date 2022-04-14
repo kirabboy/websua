@@ -34,24 +34,24 @@
 
                 <div class="md-form ">
                   <label for="firstName" class="">Tên</label>
-                  <input type="text" id="firstName" class="form-control" name="full_name" placeholder="">
+                  <input type="text" id="firstName" class="form-control" name="full_name"  placeholder="Nhập tên">
 
                 </div>
 
               </div>
              
+              <div class="md-form mb-5 col-md-6">
+              <label for="address" class="">Địa chỉ</label>
+              <input type="text" id="address" class="form-control" placeholder="Nhập địa chỉ" name="street_address">
+
+            </div>
 
             </div>
             
-            <div class="md-form mb-5">
-              <label for="address" class="">Địa chỉ</label>
-              <input type="text" id="address" class="form-control" placeholder="1234 Main St" name="street_address">
-
-            </div>
-
+         
           
             <div class="form-row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-4">
                         <select name="sel_province" class="form-control select2" data-placeholder=" Cấp tỉnh " required>
                             <option value=""> Cấp tỉnh </option>
                             @foreach ($province as $value)
@@ -60,12 +60,12 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-4">
                         <select class="form-control select2" name="sel_district" data-placeholder=" Cấp huyện " required>
                             <option value=""> Cấp huyện </option>
                         </select>
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-4">
                         <select class="form-control select2" name="sel_ward" data-placeholder=" Cấp xã " required>
                             <option value=""> Cấp xã </option>
                         </select>
