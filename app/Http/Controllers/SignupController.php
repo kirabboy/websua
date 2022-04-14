@@ -99,7 +99,6 @@ class SignupController extends Controller
             $avatar = $this->xulyanhavt($request->daidien);
             $user->avatar = $avatar;
         }
-        dd($user);
         $user->save();
         $this->phanvaitro($user->id, $user->level);
         $point = new Point();

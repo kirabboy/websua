@@ -48,10 +48,10 @@ Route::group(['middleware' => ['auth']], function () {
 
     });
     Route::group(['middleware' => ['role:admin|daily']], function () {
-        Route::get('/dang-ky', [UserController::class, 'getRegister']);
         Route::get('/trung-tam-phan-phoi', [UserController::class, 'getTtpp']);
         Route::get('/trung-tam-phan-phoi/{id}', [UserController::class, 'xoaTtpp']);
     });
+    Route::get('/dang-ky', [UserController::class, 'getRegister']);
     Route::get('/dat-hang/{id}', [ShopController::class, 'show']);
     Route::get('/logout', [UserController::class, 'getLogout']);
     Route::get('/support', [HomeController::class, 'getSupport']);

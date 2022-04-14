@@ -21,7 +21,6 @@ class AdminController extends Controller
     public function getUserChange($id)
     {
         $userchange = User::find($id);
-        if($userchange->level == 1) return redirect('/quan-ly-nguoi-dung');
         $province = Province::select('matinhthanh', 'tentinhthanh')->get();
         $nganhang = Nganhang::select('id','tennganhang')->get();
         return view('admin.userchange', compact('userchange', 'province','nganhang'));

@@ -25,6 +25,11 @@
 				<span><i class="fa-solid fa-table"></i>Bảng điều khiển</span>
 			</a>
 		</li>
+		<li class="menu-item">
+			<a href="{{url('/thong-tin-ca-nhan')}}" class="@if(\Request::is('thong-tin-ca-nhan') ) active  @endif">
+				<span><i class="fa-solid fa-id-card"></i>Thông tin cá nhân</span>
+			</a>
+		</li>
 		@role('admin')
 		<li class="menu-item">
 			<a href="{{url('/quan-ly-nguoi-dung')}}" class="@if(\Request::is('quan-ly-nguoi-dung*') ) active  @endif">
@@ -78,13 +83,11 @@
 				<span><i class="fa-solid fa-table"></i>Danh sách đối tác</span>
 			</a>
 		</li>
-		@hasanyrole('admin|daily')
 		<li class="menu-item">
 			<a href="{{url('/dang-ky')}}" class="@if(\Request::is('dang-ky') ) active  @endif">
 				<span><i class="fa-solid fa-circle-plus"></i>Đăng ký</span>
 			</a>
 		</li>
-		@endhasanyrole
 		<!-- <li class="menu-item">
 			<a href="{{url('/trung-tam-phan-phoi')}}" class="@if(\Request::is('trung-tam-phan-phoi') ) active  @endif">
 				<span><i class="fa-solid fa-building"></i>Trung tâm phân phối</span>
