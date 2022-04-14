@@ -61,7 +61,7 @@
                                             <div class="mg-30">
                                                 <p><b>Giá: {{$products->price}} ₫</b></p>
 
-                                                <b>Mô tả:{{$products->description}}</b>
+                                                <!-- <b>Mô tả:{{$products->description}}</b> -->
 
                                             </div>
                                             <div class="mg-10">

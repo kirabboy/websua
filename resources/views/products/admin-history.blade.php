@@ -147,7 +147,8 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ( $get_products->where('id_order', $order->id) as $value )
+                                @if ($order->id==null)
+                                    @foreach ( $get_products->where('id_order', $order->id) as $value )    
                                     <tr>
                                         <td class="cart-item clearfix">
                                             <div class="img">
@@ -179,7 +180,15 @@
                                             <div class="wrap"> ₫</div>
                                         </td>
                                     </tr>
-                                    @endforeach;
+                                    @endforeach
+                                @else
+                                    <div>
+                                        
+                                    </div>
+                               
+                                   
+                                    @endif
+                                  
                                     <tr style="background-color: #f9f9fa">
                                         <td>
                                             <b style="font-size: 16px; font-weight: 700" class="color-red">Tổng tiền (DS)</b><br>

@@ -32,6 +32,11 @@
                         </svg><!-- <i class="fa fa-shopping-cart" aria-hidden="true"></i> --> Thêm </a>
                 </div>
             </div>
+            <div class="p-4 text-dark">
+                <p class=" text-dark">
+                {{strip_tags($product->description)}}
+                </p>
+            </div>
         </div>
     </div>
 </div>
