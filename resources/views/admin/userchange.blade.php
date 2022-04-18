@@ -181,7 +181,7 @@
         <h4 class="heading">Thay đổi mật khẩu</h4>
     </div>
     <div class="widget-body">
-        <form method="post" action="{{url('/doi-mat-khau')}}/{{$userchange->id}}">
+        <form method="post" action="{{url('/quan-ly-nguoi-dung/doi-mat-khau')}}/{{$userchange->id}}">
             @csrf
             <div class="form-content">
                 <div class="form-group row">

@@ -26,12 +26,12 @@ Route::post('/quan-ly-nguoi-dung/{id}', [AdminController::class, 'changeUser']);
 Route::post('/quan-ly-nguoi-dung/doi-mat-khau/{id}', [AdminController::class, 'changePassword']);
 Route::post('/trung-tam-phan-phoi', [UserController::class, 'themTtpp']);
 Route::post('/trung-tam-phan-phoi/{id}', [UserController::class, 'suaTtpp']);
-Route::get('/dang-ki/{id}', [SignupController::class, 'getRegisterID']);
 
 Route::group(['middleware' => ['checklogin']], function () {
     Route::get('/dang-nhap', [UserController::class, 'getLogin'])->name('dangnhap');
     // Route::get('/forgot-password', [UserController::class, 'getForgotpw']);
     Route::get('/dang-ki', [SignupController::class, 'getRegister']);
+    Route::get('/dang-ki/{id}', [SignupController::class, 'getRegisterID']);
 });
 
 Route::group(['middleware' => ['auth']], function () {
@@ -53,10 +53,10 @@ Route::group(['middleware' => ['auth']], function () {
     });
     
     Route::group(['middleware' => ['role:admin|agent']], function () {
-        Route::get('/dang-ky', [UserController::class, 'getRegister']);
         Route::get('/trung-tam-phan-phoi', [UserController::class, 'getTtpp']);
         Route::get('/trung-tam-phan-phoi/{id}', [UserController::class, 'xoaTtpp']);
     });
+    Route::get('/dang-ky', [UserController::class, 'getRegister']);
     Route::get('/dat-hang/{id}', [ShopController::class, 'show']);
     Route::get('/logout', [UserController::class, 'getLogout']);
     Route::get('/support', [HomeController::class, 'getSupport']);

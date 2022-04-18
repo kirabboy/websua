@@ -16,7 +16,7 @@
     <div class="register-content widget mt-3">
         <div class="widget-head">
             <a href="javascript:history.back()">
-                <i style="font-size: 20px;color: #fff;position: absolute;top: 50%; transform: translate(0, -50%);" class="fa-solid fa-circle-arrow-left"></i></a>
+                <i class="fa-solid fa-circle-arrow-left"></i>Trở về</a>
             <h4 class="heading text-center">Đăng ký</h4>
         </div>
         <div class="widget-body">
@@ -38,8 +38,8 @@
                             @enderror
                         </div>
                         <div class="form-group col-md-6">
-                            <label>Mã giới thiệu</label>
-                            <input class="form-control" name="gioithieu" value="{{$magioithieu}}" readonly>
+                            <label>Người dùng giới thiệu</label>
+                            <input class="form-control" name="gioithieu" value="{{$u_name}}" readonly>
                         </div>
                     </div>
                     <div class="form-row">
