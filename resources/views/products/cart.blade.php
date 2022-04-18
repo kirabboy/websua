@@ -79,36 +79,7 @@
                         </td>
                     </tr>
                     @endforeach
-                    <tr style="background-color: #f9f9fa" class="tr_total c-bg">
-                        <td class="">
-                            <b style="font-size: 16px; font-weight: 700" class="">Tổng (DS)</b><br>
-                        </td>
-                        <td> Số lượng: {{Cart::count()}}</td>
-                        <td class="hidden-xs"></td>
-
-                        <td style="vertical-align: middle">
-                            <b class="right-mobile" style="font-size: 17px; white-space: nowrap">
-                                {{$total}}₫
-                            </b>
-                        </td>
-                        <td class=""></td>
-
-                    </tr>
-                    <tr style="background-color: #f9f9fa" class="tr_total c-bg">
-                        <td class="">
-                            <b style="font-size: 16px; font-weight: 700" class="">Tích doanh số</b><br>
-                        </td>
-                        <td> -20% </td>
-                        <td class="hidden-xs"></td>
-
-                        <td style="vertical-align: middle">
-                            <b class="right-mobile" style="font-size: 17px; white-space: nowrap">
-                                160,000 ₫
-                            </b>
-                        </td>
-                        <td class=""></td>
-
-                    </tr>
+                    
                     <tr style="background-color: #f9f9fa" class="tr_total">
                         <td class="">
                             <b style="font-size: 16px; font-weight: 700" class="">Tổng tiền (TT)</b><br>
@@ -176,7 +147,7 @@
 
             </div>
             <div>
-                <a href="#" id="btnPay" class="btn btn-danger" style="font-size: 16px; font-weight: 500; padding: 8px 15px ;margin:10px auto;display:block;width: 200px;color:yellow">Gửi đơn hàng</a>
+                <a href="{{url('/thanh-toan')}}" id="btnPay" class="btn btn-danger" style="font-size: 16px; font-weight: 500; padding: 8px 15px ;margin:10px auto;display:block;width: 200px;color:yellow">GỬI ĐƠN HÀNG</a>
             </div>
 
 
