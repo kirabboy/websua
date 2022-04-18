@@ -66,12 +66,12 @@
                     <textarea type="text" name="description" class="form-control"  id="ckeditor_des"   placeholder="Nhập mô tả:"></textarea>
                
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 pb-4">
-             
-             <strong>Mô tả ngắn :</strong>
-             <textarea type="text" name="short_description" class="form-control" id="ckeditor_short_des" placeholder="Nhập mô tả ngắn:"></textarea>
-        
-     </div>
+
+            <!-- <div class="col-xs-12 col-sm-12 col-md-12 pb-4">
+                <strong>Mô tả ngắn :</strong>
+                <textarea type="text" name="short_description" class="form-control" id="ckeditor_short_des" placeholder="Nhập mô tả ngắn:"></textarea>
+            </div> -->
+
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="btn btn-primary">Tạo sản phẩm</button>
             </div>

@@ -7,9 +7,12 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="url-home" content="{{ URL::to('/') }}" />
     <title>@yield('title')</title>
+    <!-- Custom fonts for this template-->
     <link href="{{ asset('public/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <!-- Custom styles for this template-->
     <link href="{{ asset('public/css/boostrap/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
+    <!-- <link href="{{ asset('/public/vendor/css/sb-admin-2.min.css') }}" rel="stylesheet"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,8 +31,6 @@
     <link href="{{ asset('public/css/cart.css')}}" rel="stylesheet" type="text/css">
     <link href="{{ asset('public/css/list-partner.css')}}" rel="stylesheet" type="text/css">
     <link href="{{ asset('public/css/order-history.css')}}" rel="stylesheet" type="text/css">
-    
-    
     @stack('css')
 </head>
 
@@ -39,11 +40,9 @@
     @yield('content')
 
     @include('layouts.footer')
-
-    <script src="{{ asset('/public/vendor/jquery/jquery.min.js') }}"></script>
+    
     <script src="{{ asset('public/js/bootstrap/bootstrap.bundle.min.js') }}"></script>
-
-
+    @stack('scripts')
 </body>
 
 </html>

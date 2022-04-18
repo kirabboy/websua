@@ -66,12 +66,12 @@
             <textarea type="text" name="description" class="form-control"  id="ckeditor_des" placeholder="Nhập mô tả:">{{$product->description}}</textarea>
 
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
 
+        <!-- <div class="col-xs-12 col-sm-12 col-md-12">
             <strong>Mô tả ngắn :</strong>
             <textarea type="text" name="short_description"class="form-control" id="ckeditor_short_des" placeholder="Nhập mô tả ngắn:">{{$product->short_description}}</textarea>
-
-        </div>
+        </div> -->
+        
         <div class="col-xs-12 col-sm-12 col-md-12 text-center pt-3">
             <button type="submit" class="btn btn-primary">Sửa</button>
         </div>
