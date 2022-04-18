@@ -61,7 +61,7 @@
                                             <div class="mg-30">
                                                 <p><b>Giá: {{$products->price}} ₫</b></p>
 
-                                                <b>Mô tả:{{$products->description}}</b>
+                                                <!-- <b>Mô tả:{{$products->description}}</b> -->
 
                                             </div>
                                             <div class="mg-10">
@@ -86,3 +86,7 @@
     </div>
     <!-- /.container-fluid -->
     @endsection
+    @push('scripts')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{{ asset('public/js/product.js') }}"></script>
+@endpush

@@ -129,7 +129,7 @@
                 </tbody>
             </table>
             <div>
-                <a href="{{url('/thanh-toan')}}" id="btnPay" class="btn btn-primary" style="font-size: 16px; font-weight: 500; padding: 8px 15px ;margin:10px auto;display:block;width: 200px;color:white">THANH TOÁN</a>
+                <a href="{{url('/thanh-toan')}}" id="btnPay" class="btn btn-primary" style="font-size: 16px; font-weight: 500; padding: 8px 15px ;margin:10px auto;display:block;width: 200px;color:white">GỬI ĐƠN HÀNG</a>
             </div>
             <div style="margin: 10px 0" class="c-txt">
                 <textarea rows="5" name="content" class="form-control" placeholder="ghi chú"></textarea>
@@ -191,3 +191,7 @@
 
 
 @endsection
+@push('scripts')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{{ asset('public/js/product.js') }}"></script>
+@endpush

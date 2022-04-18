@@ -33,19 +33,14 @@
     @method('PUT')
 
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="col-xs-6 col-sm-6  col-md-6">
             <div class="form-group">
                 <strong>Tên sản phẩm:</strong>
                 <input type="text" name="name" value="{{ $product->name }}" class="form-control" placeholder="Name">
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Thương hiệu:</strong>
-                <input type="text" name="brand" value="{{$product->brand}}" class="form-control" placeholder="" >
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
+       
+        <div class="col-xs-6 col-sm-6  col-md-6">
             <div class="form-group">
                 <strong>Ảnh sản phẩm:</strong>
                 <input type="file" name="file_upload" onchange="readURL(this);"  class="form-control" placeholder="image">
@@ -53,13 +48,13 @@
             </div>
         </div>
 
-        <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="col-xs-6 col-sm-6  col-md-6">
             <div class="form-group">
                 <strong>Giá</strong>
                 <input type="number" name="price" class="form-control" placeholder="" value="{{$product->price}}">
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="col-xs-6 col-sm-6  col-md-6">
                 <div class="form-group">
                     <strong>Trọng lượng:</strong>
                     <input type="number" name="weight" class="form-control" placeholder="" value="{{$product->weight}}">
@@ -85,3 +80,10 @@
 </form>
 </section>
 @endsection
+@push('scripts')
+<script src="//cdn.ckeditor.com/4.17.2/standard/ckeditor.js"></script>
+<script type="text/javascript">
+        CKEDITOR.replace('ckeditor_des');
+        CKEDITOR.replace('ckeditor_short_des');
+    </script>
+@endpush

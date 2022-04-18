@@ -36,7 +36,7 @@
             <table class="table table-bordered table-striped table-hover bangthuong text-center ">
                 <thead>
                     <tr>
-                        <th style="cursor:pointer" >Thời gian mua hàng
+                        <th style="cursor:pointer">Thời gian mua hàng
 
                         </th>
                         <th>Họ tên</th>
@@ -119,7 +119,7 @@
                                         </span></p>
                                 </li>
                                 <li>
-                                    <p><b>Địa chỉ nhận: {{$order->street_address}}</b><span id="address"></span></p>
+                                    <p><b>Địa chỉ nhận:</b> {{$order->street_address}}<span id="address"></span></p>
                                 </li>
                                 <!-- <li>
                                             <p><b>Email:</b> <span id="email">ngocdep@gmail.com</span></p>
@@ -147,18 +147,22 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+
                                     @foreach ( $get_products->where('id_order', $order->id) as $value )
+
+
+
                                     <tr>
                                         <td class="cart-item clearfix">
                                             <div class="img">
                                                 <a href="/thuc-duong-giam-can-800gr" title="Thực Dưỡng Giảm Cân 800gr" class="img-cover">
-                                                    <img src=" {{url('/public/image')}}/{{ DB::table('products') ->where('id', $value->id_product)->first()->image}}" alt="Thực Dưỡng Giảm Cân 800gr" title="Thực Dưỡng Giảm Cân 800gr" style="width:30px">
+                                                    <img src=" {{url('/public/image')}}/{{ DB::table('products') ->where('id', $value->id_product)->first()->image ?? 'Sản phẩm đã bị xóa'}}" style="width:30px">
                                                 </a>
                                             </div>
                                             <div class="desc">
                                                 <h3 class="name">
-                                                    <a href="/thuc-duong-giam-can-800gr" title="Thực Dưỡng Giảm Cân 800gr">
-                                                        {{ DB::table('products') ->where('id', $value->id_product)->first()->name}}
+                                                    <a>
+                                                        {{ DB::table('products') ->where('id', $value->id_product)->first()->name ?? 'Sản phẩm đã bị xóa'}}
                                                     </a>
                                                 </h3>
                                             </div>
@@ -166,7 +170,7 @@
 
                                         <td class="td-responsive" data-title="Giá:" style="white-space: nowrap">
                                             <div class="wrap price">
-                                                {{$value->total}} ₫
+                                                {{$value->amount}} ₫
                                             </div>
                                         </td>
                                         <td class="td-responsive" data-title="Số lượng:">
@@ -176,10 +180,14 @@
                                             </div>
                                         </td>
                                         <td class="td-responsive price" data-title="Thành tiền:" style="white-space: nowrap;">
-                                            <div class="wrap"> ₫</div>
+                                            <div class="wrap">   {{$value->total}} ₫</div>
                                         </td>
                                     </tr>
-                                    @endforeach;
+
+
+                                    @endforeach
+
+
                                     <tr style="background-color: #f9f9fa">
                                         <td>
                                             <b style="font-size: 16px; font-weight: 700" class="color-red">Tổng tiền (DS)</b><br>
@@ -222,11 +230,12 @@
 
                                 <ul class="list-ifod clearfix">
                                     <li>
-                                        <input value="{{$order->full_name}}" type="text" name="full_name" id="full_name" required>
-                                        </input>
+                                        <p><b>Họ tên:</b> <span id="name">{{$order->full_name}}</span></p>
+                                        <!-- <input value="{{$order->full_name}}" class="form-control" type="text" name="full_name" id="full_name" required>
+                                        </input> -->
                                     </li>
                                     <li>
-                                        <p><b>Địa chỉ nhận: {{$order->street_address}}</b><span id="address"></span></p>
+                                        <p><b>Địa chỉ nhận:</b> {{$order->street_address}}<span id="address"></span></p>
                                     </li>
                                     <!-- <li>
                                             <p><b>Email:</b> <span id="email">ngocdep@gmail.com</span></p>
@@ -247,7 +256,7 @@
 
                                         </input> -->
                                         <select id="status" name="status" class="form-control select2" data-placeholder=" Cấp tỉnh " required>
-                                            <option value=""> Trạng thái </option>
+
                                             @foreach ($status as $value)
                                             {{$value->id}}
                                             <option value="{{ $value->id }}">
@@ -262,7 +271,7 @@
                                         </li> -->
                                 </ul>
                                 <div class="col-xs-12 col-sm-12 col-md-12 text-center pt-3 pb-4">
-                                    <button type="submit" class="btn btn-primary test-form">Sửa</button>
+                                    <button type="submit" class="btn btn-primary test-form">Hoàn Thành</button>
                                 </div>
                             </div>
                         </form>
@@ -301,3 +310,7 @@
     </div>
 </div>
 @endsection
+@push('scripts')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{{ asset('public/js/product.js') }}"></script>
+@endpush
