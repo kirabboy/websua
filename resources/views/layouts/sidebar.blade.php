@@ -80,7 +80,7 @@
 				<span><i class="fa-solid fa-table"></i>Danh sách đối tác</span>
 			</a>
 		</li>
-		@hasanyrole('admin|daily')
+		@hasanyrole('admin|daily|')
 		<li class="menu-item">
 			<a href="{{url('/dang-ky')}}" class="@if(\Request::is('dang-ky') ) active  @endif">
 				<span><i class="fa-solid fa-circle-plus"></i>Đăng ký</span>
