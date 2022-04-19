@@ -32,7 +32,7 @@
 
                         <td>{{$order->created_at->format('Y-m-d')}}</td>
                         <td>{{$order->full_name}}
-                        <td>{{number_format($order->test)}}
+                        <td>{{number_format($order->test)}} 
                         </td>
                         <td>{{DB::table('trungtampp')->where('id',$order->trungtam_pp)->first()->tentrungtam}}</td>
                         <td>

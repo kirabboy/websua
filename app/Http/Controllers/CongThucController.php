@@ -33,12 +33,19 @@ class CongThucController extends Controller
             $point_user = $user->getPoint;
             $point_user->doanhso_canhan += $amount;
             $point_user->doanhso += $amount;
+
+            $point_user->point += $amount;
             $point_user->save();
+
+            $doanh_so_tuan->doanhso += $amount;
+            $doanh_so_tuan->doanhso_canhan += $amount;
+            $doanh_so_tuan->point += $amount;
+            $doanh_so_tuan->save();
         }
 
         if($id_dad != null){
             $doanhso = $id_dad->getPoint->doanhso;
-            $point = $id_dad->getPoint->point;
+            $point = 0;
             $setting = SettingHoaHong::first();
             $doanhso += $amount;
             
@@ -55,10 +62,15 @@ class CongThucController extends Controller
             } elseif ($count == 0) {
                 $point += $amount*0.02;
             }
-
-            $id_dad->getPoint->point = $point;
+            
+            $id_dad->getPoint->point += $point;
             $id_dad->getPoint->doanhso = $doanhso;
             
+            $doanhso_tuan_id_dad = DoanhSoThang::where('user_id', $id_dad->id)->first();
+            $doanhso_tuan_id_dad->point += $point;
+            $doanhso_tuan_id_dad->doanhso += $amount;
+            $doanh_so_tuan->save();
+
             $id_dad->getPoint->save();
             
             $count -= 1;

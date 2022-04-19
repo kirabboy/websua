@@ -46,8 +46,17 @@ class PartnerController extends Controller
                 $listOrders[] = $value_order;
             }
         }
+        
         $get_products = Order_products::with('get_products')->get();
         $status = Status_product::all();
+        foreach ($listOrders as $value) {
+            $sum = 0;
+            $money = $value->order_products;
+            foreach ($money as $k) {
+                $sum = $sum + $k->total;
+            }
+            $value->test = $sum;
+        }
         return view('system.sales_manager', compact('listOrders','get_products','status'));
     }
 }
