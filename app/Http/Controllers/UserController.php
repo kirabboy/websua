@@ -147,19 +147,17 @@ class UserController extends Controller
         $error = [
             'name.required' => 'Nhập họ tên!',
             'phone.digits_between' => 'Số điện thoại từ 7 đến 11 chữ số!',
-            'phone.unique' => 'Số điện thoại đã được sử dụng!',
             'address.required' => 'Nhập số nhà!',
             'email.email' => 'Sai định dạng email!',
-            'email.unique' => 'Email đã được sử dụng!',
             'cmttruoc.image' => 'Nhập sai định dạng hình ảnh!',
             'cmtsau.image' => 'Nhập sai định dạng hình ảnh!',
             'cmtavt.image' => 'Nhập sai định dạng hình ảnh!',
         ];
         $request->validate([
             'name' => 'required',
-            'phone' => 'digits_between:7,11|unique:users,phone',
+            'phone' => 'digits_between:7,11',
             'address' => 'required',
-            'email' => 'email|unique:users,email',
+            'email' => 'email',
             'cmttruoc' => 'image',
             'cmtsau' => 'image',
             'cmtavt' => 'image',
