@@ -17,7 +17,7 @@ class PartnerController extends Controller
         $this->getAllChild($listChild, $user_id);
         $listChild = collect($listChild)->sortBy('id');
         
-        return view('list-partner', compact('listChild'));
+        return view('doitac.list-partner', compact('listChild'));
     }
 
     public function getAllChild(&$listChild = [], $id) {

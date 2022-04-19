@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use Cart;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Trungtampp;
+
 
 class CartController extends Controller
 {
-    //
     public function add($id)
     {
         $product = Product::findOrFail($id);
@@ -22,7 +23,7 @@ class CartController extends Controller
                 'options' => [
                     'image' => $product->image,
                 ],
-
+ 
             ]
         );
         // dd(Cart::content());
@@ -52,7 +53,9 @@ class CartController extends Controller
         $carts = Cart::content();
         $total = Cart::total();
         $subtotal = Cart::subtotal();
-        return view('products.cart', compact('carts', 'total', 'subtotal'));
+        $trungtam_phanphoi = Trungtampp::all();
+        return view('products.cart', 
+            compact('carts', 'total', 'subtotal', 'trungtam_phanphoi'));
     }
     public function delete($rowId)
     {

@@ -1,7 +1,5 @@
 @extends('layouts.master')
-
 @section('title', 'Doanh số bán hàng')
-
 @section('content')
 
 <style>

@@ -100,52 +100,22 @@
                 </tbody>
             </table>
             <div>
-                <a href="{{url('/thanh-toan')}}" id="btnPay" class="btn btn-primary" style="font-size: 16px; font-weight: 500; padding: 8px 15px ;margin:10px auto;display:block;width: 200px;color:white">GỬI ĐƠN HÀNG</a>
+                <!-- <a href="{{url('/thanh-toan')}}" id="btnPay" class="btn btn-primary" style="font-size: 16px; font-weight: 500; padding: 8px 15px ;margin:10px auto;display:block;width: 200px;color:white">GỬI ĐƠN HÀNG</a> -->
             </div>
-            <div style="margin: 10px 0" class="c-txt">
+<!--             <div style="margin: 10px 0" class="c-txt">
                 <textarea rows="5" name="content" class="form-control" placeholder="ghi chú"></textarea>
-            </div>
-            <div class="c-txt">
+            </div> -->
+<!--             <div class="c-txt">
                 <b style="font-size: 16px; font-weight: 700" class="">Chọn trung tâm cần chuyển khoản </b>
                 <select id="AgencyId" name="AgencyId" class="form-control">
                     <option value="0">Chọn trung tâm</option>
-                    <option value="1">Tổng Công Ty</option>
-                    <option value="2">Trung Tâm Phân Phối Hà Nội 01</option>
-                    <option value="3">Trung Tâm Phân Phối Sài Gòn 01</option>
-                    <option value="4"> Trung Tâm Phân Phối Bắc Giang 01</option>
-                    <option value="5">Trung Tâm Phân Phối Hải Dương 01</option>
-                    <option value="6">Trung tâm Phân Phối Vĩnh Phúc 01</option>
-                    <option value="7">Trung Tâm Phân Phối Phú Yên 01</option>
-                    <option value="8">Trung Tâm Phân Phối Hà Nam 01</option>
-                    <option value="9">Trung Tâm Phân Phối Phú Thọ 02</option>
-                    <option value="10">Trung Tâm Phân Phối Phú Thọ 03 Thạch Thất 01 </option>
-                    <option value="11">Trung Tâm Phân Phối Ba Vì - Hà Nội 68</option>
-                    <option value="12">Trung Tâm Phân Phối Lâm Đồng 01</option>
-                    <option value="13">Trung Tâm Phân Phối Sài Gòn 02</option>
-                    <option value="14">Trung Tâm Phân Phối Bình Thuận 02</option>
-                    <option value="15">Trung Tâm Phân Phối Đồng Nai 01</option>
-                    <option value="16">Trung Tâm Phân Phối Sài Gòn 03</option>
-                    <option value="17">Trung Tâm Phân Phối Hà Nội 03</option>
-                    <option value="18">Trung Tâm Phân Phối Khánh Hòa 01</option>
-                    <option value="19">Trung Tâm Phân Phối Ninh Bình 01</option>
-                    <option value="20">Trung Tâm Phân Phối Thanh Hóa 03</option>
-                    <option value="21">Trung Tâm Phân Phối Thanh Hóa 02</option>
-                    <option value="22">Trung Tâm Phân Phối Hòa Bình 01</option>
-                    <option value="23">Trung Tâm Phân Phối Sài Gòn 01</option>
-                    <option value="24">Trung Tâm Phân Phối Bình Thuận 01 </option>
-                    <option value="25">Trung Tâm Phân Phối Thanh Hóa 01</option>
-                    <option value="26">Trung Tâm Phân Phối Phú Thọ 01</option>
-                    <option value="27">Trung Tâm Phân Phối Nghê An 01</option>
-                    <option value="28">Trung Tâm Phân Phối Bắc Ninh 01</option>
-                    <option value="29">Trung Tâm Phân Phối Hà Nội 02</option>
-                    <option value="30">Trung Tâm Phân Phối Hà Nội 01</option>
-                    <option value="31">Trung Tâm Phân Phối Vũng Tàu 01</option>
-                    <option value="32">Trung Tâm Phân Phối Bình Phước</option>
+                    @foreach ($trungtam_phanphoi as $value)
+                        <option value="{{$value->id}}">
+                            {{$value->tentrungtam}}</option>
+                    @endforeach
                 </select>
-            </div>
-            <div id="infoBank">
-
-            </div>
+            </div> -->
+            
             <div>
                 <a href="{{url('/thanh-toan')}}" id="btnPay" class="btn btn-danger" style="font-size: 16px; font-weight: 500; padding: 8px 15px ;margin:10px auto;display:block;width: 200px;color:yellow">GỬI ĐƠN HÀNG</a>
             </div>

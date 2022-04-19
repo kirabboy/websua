@@ -168,6 +168,13 @@
                         </label>
                     </div>
                 </div>
+<!-- Chỉnh sửa điểm profile -->
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Điểm user</label>
+                    <div class="col-sm-4">
+                        <input type="text" name="point" class="form-control" value="{{$point->point}}">
+                    </div>
+                </div>
             </div>
             <div class="text-right">
                 <button type="submit" class="btn btn-primary btn">Cập nhật</button>

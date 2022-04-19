@@ -47,9 +47,7 @@
             </div>
 
             </div>
-            
-         
-          
+
             <div class="form-row">
                     <div class="form-group col-md-4">
                         <select name="sel_province" class="form-control select2" data-placeholder=" Cấp tỉnh " required>
@@ -72,22 +70,27 @@
                     </div>
                 </div>
             <div class="row">
+              <div class="form-group col-md-12">
+                <select id="AgencyId" name="trungtam_pp" class="form-control">
+                    <option value="1">Chọn trung tâm</option>
+                    @foreach ($trungtam_phanphoi as $value)
+                        <option value="{{$value->id}}">
+                            {{$value->tentrungtam}}</option>
+                    @endforeach
+                </select>
+              </div>
             </div>
             <hr class="mb-4">
             <button class="btn btn-primary btn-lg btn-block" type="submit">GỬI ĐƠN HÀNG</button>
-
+ 
           </form>
 
         </div>
         <!--/.Card-->
 
       </div>
-      <!--Grid column-->
-
-      <!--Grid column-->
+      
       <div class="col-md-4 mb-4">
-
-        <!-- Heading -->
         <h4 class="d-flex justify-content-between align-items-center mb-3">
           <span class="text-muted">Giỏ hàng của bạn</span>
           <span class="badge badge-secondary badge-pill">{{Cart::count()}}</span>

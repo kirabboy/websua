@@ -9,6 +9,7 @@ use Spatie\Permission\Models\Role;
 use App\Models\User;
 use App\Models\Province;
 use App\Models\Nganhang;
+use App\Models\Point;
 
 class AdminController extends Controller
 {
@@ -23,7 +24,9 @@ class AdminController extends Controller
         $userchange = User::find($id);
         $province = Province::select('matinhthanh', 'tentinhthanh')->get();
         $nganhang = Nganhang::select('id','tennganhang')->get();
-        return view('admin.userchange', compact('userchange', 'province','nganhang'));
+        $point = Point::where('user_id',$id)->first();
+        return view('admin.userchange', 
+            compact('userchange', 'province','nganhang', 'point'));
     }
     public function changeUser(Request $request, $id)
     {
@@ -93,6 +96,11 @@ class AdminController extends Controller
         $user->avatar = $avatar;
         $user->level = $request->level;
         $user->save();
+
+        $point=Point::where('user_id', $id)->first();
+        $point->point = $request->point;
+        $point->save();
+        
         $this->phanvaitro($user->id, $user->level);
         return back()->with('mess', 'Thay đổi thông tin thành công!');
     }

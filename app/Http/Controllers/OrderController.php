@@ -25,10 +25,6 @@ class OrderController extends Controller
      */
     public function index()
     {
-        // $users = User::with('get_user_id')->get();
-
-
-        // $allBooks = Book::all()->modelKeys();
         $province = Province::all();
         $district = District::all();
         $user = User::all();
@@ -37,9 +33,7 @@ class OrderController extends Controller
         $orders = Order::with('order_products')->orderBy('id', 'DESC')->get();
         $total = 0;
         $status = Status_product::all();
-
-        // dd($status);
-
+        
         foreach ($orders as $value) {
             $sum = 0;
             $money = $value->order_products;
@@ -48,9 +42,9 @@ class OrderController extends Controller
             }
             $value->test = $sum;
         }
-
         return view('products.admin-history', compact('orders', 'province', 'district', 'ward', 'get_products', 'total', 'status'));
     }
+    
     public function edit($id)
     {
         $order = Order::find($id);
@@ -58,7 +52,8 @@ class OrderController extends Controller
             'status' => 200,
             'order' => $order,
         ]);
-    }
+    } 
+
     public function update(Request $request)
     {
         $order = Order::with('order_products')->get();

@@ -81,9 +81,9 @@ Route::group(['middleware' => ['auth']], function () {
     // Route::get('/lich-su-dat-hang', [OrderController::class, 'update'])->name('orders.update');
     Route::prefix('gio-hang')->group(
         function () {
+            Route::get('/', [CartController::class, 'index']);
             Route::get('add/{id}', [CartController::class, 'add']);
             Route::get('buynow/{id}', [CartController::class, 'buynow']);
-            Route::get('/', [CartController::class, 'index']);
             Route::get('delete/{rowId}', [CartController::class, 'delete']);
             Route::get('destroy', [CartController::class, 'destroy']);
             Route::get('/update', [CartController::class, 'update']);
