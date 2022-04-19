@@ -9,13 +9,11 @@
 @section('content')
 @if ($errors->any())
 <div class="alert alert-danger" style="margin: 0 15px 15px;">
-    @if ($errors->count() == 1)
+    
     @foreach ($errors->all() as $e)
     <div>{{ $e }}</div>
     @endforeach
-    @else
-    <div>Vui lòng không bỏ trống</div>
-    @endif
+    
 </div>
 @endif
 @if (session('mess'))

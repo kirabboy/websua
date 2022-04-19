@@ -125,7 +125,7 @@ Route::group(['middleware' => ['auth']], function () {
     //Doi Nhom Controllers
     Route::get('/list-partner', [PartnerController::class, 'list_partner']);
 
-    Route::get('/sales_manager', [HomeController::class, 'getSales_manager']);
+    Route::get('/sales_manager', [PartnerController::class, 'getSales_manager']);
     Route::get('/list_manager', [HomeController::class, 'getList_manager']);
 
     Route::get('/doanh-so-ban-hang', [PointController::class, 'doanhSoBanHang'])->name('doanh-so-ban-hang');

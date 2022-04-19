@@ -64,9 +64,6 @@ class HomeController extends Controller
     public function getSupport(){
         return view('support');
     }
-    public function getSales_manager(){
-        return view('system.sales_manager');
-    }
     public function getList_manager(){
         return view('system.list_manager');
     }

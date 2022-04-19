@@ -28,7 +28,7 @@ class CongThucController extends Controller
         $user = User::where('id', $id)->with('getParent','getPoint')->first();
         $id_dad = $user->getParent;
         $doanh_so_tuan = DoanhSoThang::where('user_id', $user->id)->first();
-    
+    // dd($doanh_so_tuan);
         if($count == 2) {
             $point_user = $user->getPoint;
             $point_user->doanhso_canhan += $amount;

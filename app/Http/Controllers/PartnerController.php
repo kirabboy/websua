@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Order;
+use App\Models\Trungtampp;
+use App\Models\Order_products;
+use App\Models\Status_product;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -30,5 +34,20 @@ class PartnerController extends Controller
                 self::getAllChild($listChild, $value->id);
             }
         }
+    }
+    
+    public function getSales_manager(){
+        $trungtam_phanphoi = Trungtampp::where('user_id',auth()->user()->id)->get();
+        $listOrders = [];
+        foreach($trungtam_phanphoi as $value) {
+            $id_trungtam = $value->id;
+            $order = Order::where('trungtam_pp', $id_trungtam)->get();
+            foreach($order as $value_order) {
+                $listOrders[] = $value_order;
+            }
+        }
+        $get_products = Order_products::with('get_products')->get();
+        $status = Status_product::all();
+        return view('system.sales_manager', compact('listOrders','get_products','status'));
     }
 }
