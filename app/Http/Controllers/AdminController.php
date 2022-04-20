@@ -117,24 +117,18 @@ class AdminController extends Controller
     public function changePassword(Request $request, $id)
     {
         $error = [
-            'mkcu.required' => 'Nhập mật khẩu cũ!',
             'mkmoi.required' => 'Nhập mật khẩu mới!',
             'mkmoi.min' => 'Mật khẩu phải có 6 ký tự trở lên!',
-            'nhaplai.required' => 'Nhập lại mật khẩu không đúng!',
             'nhaplai.same' => 'Nhập lại mật khẩu không đúng!',
         ];
         $request->validate([
-            'mkcu' => 'required',
             'mkmoi' => 'required|min:6',
-            'nhaplai' => 'required|same:mkmoi',
+            'nhaplai' => 'same:mkmoi',
         ], $error);
         $user = User::find($id);
-        if (Hash::check($request->mkcu, $user->password)) {
-            $user->password = Hash::make($request->mkmoi);
-            $user->save();
-            return back()->with('mess', 'Đổi mật khẩu thành công!');
-        }
-        return back()->withErrors(['msg' => 'Mật khẩu cũ không đúng!']);
+        $user->password = Hash::make($request->mkmoi);
+        $user->save();
+        return back()->with('mess', 'Đổi mật khẩu thành công!');
     }
     public function xulyanh($file)
     {
