@@ -288,6 +288,7 @@ a.article:hover {
 .nav-link .img-profile, .topbar .nav-item .nav-link .img-profile {
   height: 2rem;
   width: 2rem;
+  max-width: none;
 }
 .rounded-circle {
   border-radius: 50%!important;

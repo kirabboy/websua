@@ -39,7 +39,7 @@
 
                         </div>
                         <div class="col-auto">
-                            <i class="fa-solid fa-globe fa-2x text-light"></i>
+                            <i class="fa-solid fa-award fa-2x text-light"></i>
                         </div>
                     </div>
                 </div>
@@ -79,7 +79,7 @@
 
                         </div>
                         <div class="col-auto mb-4">
-                            <i class="fa-solid fa-globe fa-2x text-light"></i>
+                            <i class="fa-solid fa-atom fa-2x text-light"></i>
                         </div>
                     </div>
                 </div>
@@ -99,7 +99,7 @@
 
                         </div>
                         <div class="col-auto mb-4">
-                            <i class="fa-solid fa-globe fa-2x text-light"></i>
+                            <i class="fa-solid fa-users fa-2x text-light"></i>
                         </div>
                     </div>
                 </div>
@@ -119,7 +119,7 @@
 
                         </div>
                         <div class="col-auto mb-4">
-                            <i class="fa-solid fa-globe fa-2x text-light"></i>
+                            <i class="fa-solid fa-circle-check fa-2x text-light"></i>
                         </div>
                     </div>
                 </div>

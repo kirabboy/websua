@@ -19,7 +19,7 @@
 	<ul class="side-nav">
 		<li class="menu-item">
 			<a href="{{url('/')}}" class="@if(\Request::is('/') ) active  @endif">
-				<span><i class="fa-solid fa-table"></i>Bảng điều khiển</span>
+				<span><i class="fa-solid fa-gamepad"></i>Bảng điều khiển</span>
 			</a>
 		</li>
 		<li class="menu-item">
@@ -43,7 +43,7 @@
 		@endrole
 		<li class="menu-item">
 			<a href="{{url('/tai-lieu')}}" class="@if(\Request::is('tai-lieu') ) active  @endif">
-				<span><i class="fa-solid fa-file"></i>Tài liệu</span>
+				<span><i class="fa-solid fa-floppy-disk"></i>Tài liệu</span>
 			</a>
 		</li>
 		@role('admin')
@@ -73,25 +73,25 @@
 		@role('admin')
 		<li class="menu-item">
 			<a href="{{url('/lich-su')}}" class="@if(\Request::is('lich-su') ) active  @endif">
-				<span><i class="fa-solid fa-table"></i>Quản lý đơn hàng</span>
+				<span><i class="fa-solid fa-list-check"></i>Quản lý đơn hàng</span>
 			</a>
 		</li>
 		@endrole
 		<li class="menu-item">
 			<a href="{{url('/danh-sach-doi-tac')}}" class="@if(\Request::is('danh-sach-doi-tac') ) active  @endif">
-				<span><i class="fa-solid fa-table"></i>Danh sách đối tác</span>
+				<span><i class="fa-regular fa-rectangle-list"></i>Danh sách đối tác</span>
 			</a>
 		</li>
 		<li class="menu-item">
 			<a href="{{url('/dang-ky')}}" class="@if(\Request::is('dang-ky') ) active  @endif">
-				<span><i class="fa-solid fa-circle-plus"></i>Đăng ký</span>
+				<span><i class="fa-solid fa-user-plus"></i>Đăng ký</span>
 			</a>
 		</li>
 		
 		@role('admin')
 		<li class="menu-item">
 			<a href="{{url('/setting-hoa-hong-truc-tiep')}}" class="@if(\Request::is('setting-hoa-hong-truc-tiep') ) active  @endif">
-				<span><i class="fa-solid fa-fire"></i>Cài đặt hoa hồng trực tiếp</span>
+				<span><i class="fa-solid fa-fan"></i>Cài đặt hoa hồng trực tiếp</span>
 			</a>
 		</li>
 		@endrole
@@ -105,26 +105,26 @@
 
 		<li class="menu-item">
 			<a href="{{url('/sales_manager')}}" class="@if(\Request::is('sales_manager') ) active  @endif">
-				<span><i class="fa-solid fa-fire"></i>Quản lý bán hàng</span>
+				<span><i class="fa-solid fa-bars-progress"></i>Quản lý bán hàng</span>
 			</a>
 		</li>
 		
 		<li class="menu-item">
 			<a href="{{route('napDiem')}}" class="@if(\Request::is('nap-diem') ) active  @endif">
-				<span><i class="fa-solid fa-fire"></i>Nạp điểm Users</span>
+				<span><i class="fa-solid fa-plus-minus"></i>Nạp điểm Users</span>
 			</a>
 		</li>
 
 		<li class="menu-item">
 			<a href="{{route('doanh-so-ban-hang')}}" class="@if(\Request::is('doanh-so-ban-hang') ) active  @endif">
-				<span><i class="fa-solid fa-fire"></i>Doanh số bán hàng</span>
+				<span><i class="fa-solid fa-trophy"></i>Doanh số bán hàng</span>
 			</a>
 		</li>
 
 		<li>
 			<div class="support">
-				<p><i class="fa-solid fa-envelope"></i>: 0969979400</p>
-				<p><i class="fa-solid fa-phone"></i>: forvietvn@gmail.com</p>
+				<p><i class="fa-solid fa-phone"></i>: 0969979400</p>
+				<p><i class="fa-solid fa-envelope"></i>: forvietvn@gmail.com</p>
 				<p><a class="p-0" href="{{url('/logout')}}"><i class="fa-solid fa-arrow-right-from-bracket"></i>: Đăng xuất</a></p>
 			</div>
 		</li>

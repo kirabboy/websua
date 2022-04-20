@@ -185,18 +185,12 @@
 <p></p>
 <div class="profile-content widget">
     <div class="widget-head">
-        <h4 class="heading">Thay đổi mật khẩu</h4>
+        <h4 class="heading">Cấp lại mật khẩu</h4>
     </div>
     <div class="widget-body">
         <form method="post" action="{{url('/quan-ly-nguoi-dung/doi-mat-khau')}}/{{$userchange->id}}">
             @csrf
             <div class="form-content">
-                <div class="form-group row">
-                    <label class="col-sm-4 col-form-label">Mật khẩu cũ</label>
-                    <div class="col-sm-8">
-                        <input type="password" name="mkcu" class="form-control">
-                    </div>
-                </div>
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">Mật khẩu mới</label>
                     <div class="col-sm-8">
@@ -204,7 +198,7 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-4 col-form-label">Nhập lại mật khẩu</label>
+                    <label class="col-sm-4 col-form-label">Nhập lại mật khẩu mới</label>
                     <div class="col-sm-8">
                         <input type="password" name="nhaplai" class="form-control">
                     </div>
