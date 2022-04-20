@@ -46,6 +46,7 @@
 
     @include('layouts.footer')
     <script src="{{ asset('public/js/bootstrap/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('public/js/product.js') }}"></script>
     @stack('scripts')
 </body>
 

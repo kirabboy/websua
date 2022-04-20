@@ -125,6 +125,7 @@
 			<div class="support">
 				<p><i class="fa-solid fa-envelope"></i>: 0969979400</p>
 				<p><i class="fa-solid fa-phone"></i>: forvietvn@gmail.com</p>
+				<p><a class="p-0" href="{{url('/logout')}}"><i class="fa-solid fa-arrow-right-from-bracket"></i>: Đăng xuất</a></p>
 			</div>
 		</li>
 	</ul>
