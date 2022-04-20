@@ -34,14 +34,15 @@ class HomeController extends Controller
         $points= Promotion::where('points','>',0)->latest()->get();
         $diem_user = Point::find(auth()->user()->id);
         $history = PromotionHistory::where('user_id',auth()->user()->id)->get();
-
+        
         return view('user.index', compact(
             'user', 
             'soluong_f1',
             'so_nhom_du_dieu_kien_doi_thuong',
             'points',
             'diem_user',
-            'history'
+            'history',
+            'list_doanhso'
         ));
     }
     //

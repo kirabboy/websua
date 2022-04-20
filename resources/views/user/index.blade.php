@@ -132,48 +132,66 @@
 <!----------------------------- Đổi thưởng lấy xe máy ---------------->    
     <div class="row">
         <div class="col-12">
-            <div class="box-document">
-                <div class="body-document">
-                    <div class="product-items">
+            <div class="product-items">
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <h3 class="text-dark text-uppercase text-center">
+                            <i class="fa fa-star ic_star"></i>
+                            <span>Top điểm nhóm</span>
+                            <i class="fa fa-star ic_star"></i>
+                        </h3>
+                        @foreach ($list_doanhso as $list)
+                        <div class="row" style="border: 1px solid #ff6a6a; border-radius: 5px; padding: 10px; margin: 0;">  
+                            <div class="col-6">
+                                <p class="text-dark text-left m-0"
+                                    style="font-size: 20px">
+                                    Nhóm: {{ DB::table('users')->where('id',$list->user_id)->first()->username }}
+                                </p>
+                            </div>
+                            <div class="col-6">
+                                <p class="text-dark text-right m-0"
+                                    style="font-size: 20px">
+                                    {{number_format($list->doanhso)}} VND</p>
+                            </div>
+                        </div>
+                        <p> </p>
+                        @endforeach
+                    </div>
+
+                    <div class="col-12 col-md-6">
                         <div class="row">
                         @foreach ( $points as $point)
-                            <div class=" col-12 col-md-6 ">
-                                <div class="box-product">
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <a title="{{$point->name}}" href="{{url('/product-detail')}}">
-                                            <img src="{{$point->image}}" ></a>
+                        <div class=" col-12 col-md-12 ">
+                            <div class="box-product">
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <a title="{{$point->name}}">
+                                        <img src="{{url('public/',$point->image)}}" ></a>
+                                    </div>
+                                    <div class="col-lg-4 text-lg-left mt-lg-0 mt-md-4 ">
+                                        <h2 class="text-center m-0 text-uppercase"><a>{{$point->name}}</a></h2>
+                                        <div class="mg-30" style="margin-top: 5px">
+                                            <p class="text-center">
+                                                <span class="label label-success" style="font-size: 14px" name="point">
+                                                    {{number_format($point->points)}} điểm</span>
+                                            </p>
                                         </div>
-                                        <div class="col-lg-6 text-center text-lg-left mt-lg-0 mt-md-4 ">
-                                            <h3>
-                                                <a title="Phôi Mầm Đậu Nành SOYGERM 60 viên" href="/phoi-mam-dau-nanh-soygerm-60-vien">{{$point->name}} </a>
-                                            </h3>
-
-
-                                            <div class="mg-30">
-                                             
-
-                                                <p> <span class="label label-success" name="point">{{number_format($point->points)}} điểm</span></p>
-                                            </div>
-                                            <div class="mg-10">
-
-                                                <a href="{{url('/promotion')}}/{{$point->points}}" class="btn btn-primary btn-sm">Đổi điểm</a>
-                    
-                                            </div>
+                                        <div class="mg-10">
+                                            <a href="{{url('/promotion')}}/{{$point->points}}"
+                                                class="btn btn-primary btn-sm" style="width:100%">Đổi điểm</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            @endforeach
-                
+                        </div>
+                        @endforeach
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
-
+<!----------------------------- End Đổi thưởng lấy xe máy ---------------->    
 </div>
 <!-- /.container-fluid -->
 @endsection

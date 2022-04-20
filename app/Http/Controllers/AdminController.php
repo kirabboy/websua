@@ -97,10 +97,20 @@ class AdminController extends Controller
         $user->level = $request->level;
         $user->save();
 
-        $point=Point::where('user_id', $id)->first();
-        $point->point = $request->point;
-        $point->save();
-        
+        if($request->point > 0 && $user->id != 1){
+            $point=Point::where('user_id', $id)->first();
+            $point_admin = Point::where('user_id',auth()->user()->id)->first();
+
+            if($request->point > $point_admin->point) {
+                return back()->withErrors(['msg' => 'Tài khoản admin không đủ điểm để đổi!']);
+            }
+            $point->point += $request->point;
+            $point->save();
+
+            $point_admin->point -= $request->point;
+            $point_admin->save();
+        }
+
         $this->phanvaitro($user->id, $user->level);
         return back()->with('mess', 'Thay đổi thông tin thành công!');
     }
@@ -153,7 +163,6 @@ class AdminController extends Controller
     }
     public function phanvaitro($userID, $roleId)
     {
-        //add model_has_roles
         $role = Role::find($roleId);
         $user = User::find($userID);
         $user->syncRoles($role);

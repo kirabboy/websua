@@ -1,9 +1,11 @@
-.box-product{
-  border: 1px solid #5d570b;
+.box-product {
+  border: 1px solid #ff6877;
   padding: 15px;
   min-height: 240px;
   overflow: auto;
   margin-bottom: 14px;
+  border-radius: 5px;
+  background: white;
 }
 
 .box-product h3 a{
@@ -68,4 +70,12 @@ h3 {
 }
 .box-product img{
 max-height: 200px;
+}
+
+i.fa.fa-star.ic_star {
+  font-size: 14px;
+  border: 2px solid orange;
+  border-radius: 99px;
+  color: orange;
+  padding: 5px;
 }
