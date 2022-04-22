@@ -111,7 +111,7 @@
 		
 		<li class="menu-item">
 			<a href="{{route('napDiem')}}" class="@if(\Request::is('nap-diem') ) active  @endif">
-				<span><i class="fa-solid fa-plus-minus"></i>Nạp điểm Users</span>
+				<span><i class="fa-solid fa-plus-minus"></i>Nạp điểm cho tài khoản admin</span>
 			</a>
 		</li>
 
@@ -121,6 +121,12 @@
 			</a>
 		</li>
 
+		<li class="menu-item">
+			<a href="{{route('lich-su-chuyen-diem')}}" class="@if(\Request::is('lich-su-chuyen-diem') ) active @endif">
+				<span><i class="fa-solid fa-trophy"></i>Lịch sử chuyển điểm</span>
+			</a>
+		</li>
+		
 		<li>
 			<div class="support">
 				<p><i class="fa-solid fa-phone"></i>: 0969979400</p>

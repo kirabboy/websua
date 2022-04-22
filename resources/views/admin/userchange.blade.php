@@ -47,13 +47,6 @@
                     </div>
                     <label class="col-sm-2 col-form-label">Cấp bậc</label>
                     <div class="col-sm-4">
-                        <!-- <h3 class="heading">
-                            @if ($userchange->hasRole('admin')) Quản trị
-                            @elseif ($userchange->hasRole('distribution')) Trung tâm phân phối
-                            @elseif ($userchange->hasRole('agent')) Đại lý bán buôn
-                            @else Cộng tác viên
-                            @endif
-                        </h3> -->
                         <select name="level" id="" class="form-control">
                             <option value="1" @if($userchange->level == 1) selected @endif>Quản trị</option>
                             <option value="2" @if($userchange->level == 2) selected @endif>Đại lý bán buôn</option>
@@ -172,7 +165,10 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Điểm user</label>
                     <div class="col-sm-4">
-                        <input type="text" name="point" class="form-control" value="{{$point->point}}">
+                        <input type="text" name="point" class="form-control" value="" placeholder="Nhập số điểm muốn nạp">
+                        <p class="text-danger m-0" style="font-size: 14px ">Hiện tại {{$userchange->username}} đang có {{number_format($point->point)}} điểm.</p>
+                        <p class="text-danger m-0" style="font-size: 14px ">Tài khoản admin đang có 
+                            {{number_format(DB::table('point')->where('user_id', 1)->first()->point)}} điểm.</p>
                     </div>
                 </div>
             </div>

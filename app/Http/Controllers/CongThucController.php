@@ -1,14 +1,13 @@
 <?php
-
-
 namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Province;
-use App\Models\District;
-use App\Models\Ward;
+use App\Models\Point;
 use App\Models\SettingHoaHong;
 use App\Models\DoanhSoThang;
+use App\Models\HistoryChuyendiem;
+use App\Models\Trungtampp;
 use Carbon\Carbon;
 
 use Illuminate\Http\Request;
@@ -20,16 +19,33 @@ class CongThucController extends Controller
         $province = Province::select('matinhthanh', 'tentinhthanh')->get();
         $id = auth()->user()->id;
         // $this->hoahongdoinhom($id);
-        // $this->hoahongtructiep(4, 10000, 2);
+        // $this->hoahongtructiep(4, 10000, 2, 1);
         return view('hoahong',compact('province'));
     }
 
-    public function hoahongtructiep($id, $amount, $count) {
+    public function hoahongtructiep($id, $amount, $count, $orders) {
         $user = User::where('id', $id)->with('getParent','getPoint')->first();
         $id_dad = $user->getParent;
         $doanh_so_tuan = DoanhSoThang::where('user_id', $user->id)->first();
-    // dd($doanh_so_tuan);
+        dd($amount);
         if($count == 2) {
+            $nguoi_chuyen_diem = Point::where('user_id', auth()->user()->id)->first();
+            if($nguoi_chuyen_diem->point >= $amount + ($amount * 0.16)) {
+                $trungtam_pp = Trungtampp::where('id',$orders->trungtam_pp)->first();
+                // dd($trungtam_pp->tentrungtam);
+
+                $nguoi_chuyen_diem->point -= $amount;
+                $nguoi_chuyen_diem->save();
+
+                $lichsu_chuyendiem = new HistoryChuyendiem;
+                $lichsu_chuyendiem->point = $amount;
+                $lichsu_chuyendiem->user_id = $id;
+                $lichsu_chuyendiem->id_chuyen = auth()->user()->id;
+                $lichsu_chuyendiem->note = $trungtam_pp->tentrungtam.' gửi cho bạn '.
+                    number_format($amount).' điểm tiền hàng.';
+                $lichsu_chuyendiem->save();
+            }
+
             $point_user = $user->getPoint;
             $point_user->doanhso_canhan += $amount;
             $point_user->doanhso += $amount;
@@ -48,6 +64,8 @@ class CongThucController extends Controller
             $point = 0;
             $setting = SettingHoaHong::first();
             $doanhso += $amount;
+            $id_trungtam_pp = Trungtampp::where('id',$orders->trungtam_pp)->first()->user_id;
+            $point_user_chuyendiem = Point::where('id', $id_trungtam_pp)->first();
             
             if($count == 2) {
                 if($amount >= $setting->moc0 && $amount < $setting->moc1) {
@@ -63,19 +81,30 @@ class CongThucController extends Controller
                 $point += $amount*0.02;
             }
             
+            $point_user_chuyendiem->point -= $point;
+            
             $id_dad->getPoint->point += $point;
             $id_dad->getPoint->doanhso = $doanhso;
+            
             
             $doanhso_tuan_id_dad = DoanhSoThang::where('user_id', $id_dad->id)->first();
             $doanhso_tuan_id_dad->point += $point;
             $doanhso_tuan_id_dad->doanhso += $amount;
-            $doanh_so_tuan->save();
 
-            $id_dad->getPoint->save();
+            $lichsu_chuyendiem_hoahong = new HistoryChuyendiem;
+            $lichsu_chuyendiem_hoahong->point = $point;
+            $lichsu_chuyendiem_hoahong->user_id = $id_dad->id;
+            $lichsu_chuyendiem_hoahong->id_chuyen = auth()->user()->id;
+            $lichsu_chuyendiem_hoahong->note = 'Nhận thưởng hoa hồng '.number_format($point).' điểm';
             
+            $doanh_so_tuan->save();
+            $point_user_chuyendiem->save();
+            $id_dad->getPoint->save();
+            $lichsu_chuyendiem_hoahong->save();
+
             $count -= 1;
             if($count > 0) {
-                self::hoahongtructiep($id_dad->id, $amount, $count);
+                self::hoahongtructiep($id_dad->id, $amount, $count, $orders);
             }
         }
     }

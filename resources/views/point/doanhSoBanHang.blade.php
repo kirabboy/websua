@@ -35,7 +35,11 @@
     </table>
 <script>
     $(document).ready(function() {
-        $('#doanh-so-ban-hang').DataTable();
+        $('#doanh-so-ban-hang').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.11.5/i18n/vi.json"
+            },
+        });
     } );
 </script>
 

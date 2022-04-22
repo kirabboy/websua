@@ -95,23 +95,11 @@ Route::group(['middleware' => ['auth']], function () {
             Route::post('/', [CheckOutController::class, 'addOrder']);
         }
     );
-    // Route::get('t',function(){
-    //     Cart::add('293ad','Product 1', 1, 9.99, 550, ['size' => 'large']);
-    // });
-    // Route::get('test',function(){
-    //     return Cart::content();
-    // });
-    // Route::resource('san-pham', ProductController::class);
-    // Route::get('/document', [HomeController::class, 'document']);
-
-    // Route::get('/list-partner', [HomeController::class, 'list_partner']);
-    // Route::get('/product-detail', [HomeController::class, 'product_detail']);
-    // Route::get('/cart', [HomeController::class, 'cart']);
-    // Route::get('/order-history', [HomeController::class, 'order_history']);
-
+    
     Route::get('/nap-diem', [PointController::class, 'napDiem'])->name('napDiem');
     Route::get('/check-nap-diem', [PointController::class, 'checkNapDiem'])->name('checkNapDiem');
     Route::post('/nap-diem', [PointController::class, 'postNapDiem']);
+    Route::get('/lich-su-chuyen-diem', [PointController::class, 'getLichsuchuyendiem'])->name('lich-su-chuyen-diem');
 
     Route::get('/hoahong', [CongThucController::class, 'hoahong']);
 

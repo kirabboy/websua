@@ -63,9 +63,10 @@ class OrderController extends Controller
         // $orders->full_name = $request->input('full_name');
         $orders->status = $request->input('status');
         if ($orders->status == 2) {
-         
+            
+            $id_trungtam_pp = $orders->trungtam_pp;
             $ct = new CongThucController;
-            $ct->hoahongtructiep($orders->users_id, $sum, 2);
+            $ct->hoahongtructiep($orders->users_id, $sum, 2, $orders);
         }
         // dd( $orders);
         $orders->update();

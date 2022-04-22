@@ -27,4 +27,7 @@ class Order extends Model
         return $this->hasMany(Status_product::class,'status','id');
     }
    
+    public function getTrungTamPP() {
+        return $this->hasMany(TrungTamPP::class, 'trungtam_pp', 'id');
+    }
 }

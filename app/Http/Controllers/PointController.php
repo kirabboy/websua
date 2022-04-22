@@ -8,18 +8,27 @@ use App\Models\User;
 use App\Models\Banner;
 use App\Models\Point;
 use App\Models\Product;
+use App\Models\HistoryNapdiem;
+use App\Models\HistoryChuyendiem;
 
 class PointController extends Controller
 {
     public function napDiem() {
-        return view('point.napDiem');
+        $point_admin = Point::where('user_id', 1)->first()->point;
+        $lichsu_napdiem = HistoryNapdiem::all();
+        return view('point.napDiem', compact('point_admin', 'lichsu_napdiem'));
     }
 
     public function postNapDiem(Request $request) {
-        $id = User::where('username', '=',$request->username)->first();
+        $id = User::where('id', '=',$request->username)->first();
         $point = Point::where('user_id', $id->id)->first();
         $point->point += $request->point;
         $point->save();
+
+        $history_napdiem = new HistoryNapdiem;
+        $history_napdiem->point = $request->point;
+        $history_napdiem->save();
+        
         return redirect()->back();
     }
 
@@ -50,7 +59,8 @@ class PointController extends Controller
         return view('point.doanhSoBanHangCaNhan', compact('doanhso','user'));
     }
 
-    public function getDailySendPoints() {
-        
+    public function getLichsuchuyendiem() {
+        $lichsuchuyendiem = HistoryChuyendiem::where('id_chuyen', auth()->user()->id)->get();
+        return view('point.lichsuchuyendiem', compact('lichsuchuyendiem'));
     }
 }

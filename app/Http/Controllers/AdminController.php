@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Province;
 use App\Models\Nganhang;
 use App\Models\Point;
+use App\Models\HistoryChuyendiem;
 
 class AdminController extends Controller
 {
@@ -109,6 +110,13 @@ class AdminController extends Controller
 
             $point_admin->point -= $request->point;
             $point_admin->save();
+
+            $lichsu_chuyendiem = new HistoryChuyendiem;
+            $lichsu_chuyendiem->user_id = $point->user_id;
+            $lichsu_chuyendiem->id_chuyen = auth()->user()->id;
+            $lichsu_chuyendiem->point = $request->point;
+            $lichsu_chuyendiem->note = 'Admin chuyển điểm';
+            $lichsu_chuyendiem->save();
         }
 
         $this->phanvaitro($user->id, $user->level);

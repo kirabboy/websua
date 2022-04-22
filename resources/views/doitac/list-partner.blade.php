@@ -56,18 +56,18 @@
                                                     <td>{{$value->phone}}</td>
                                                     <td>
                                                         @if ($value->level == 1)
-                                                            <span class="label-color c-label" style="background:#dc3545">Admin</span>
+                                                            <span class="label-color c-label" style="background:orange">Admin</span>
                                                         @elseif ($value->level == 2)
-                                                            <span class="label-color c-label" style="background:#28a745">T.T phân phối</span>
+                                                            <span class="label-color c-label" style="background:#28a745">Đại lý bán lẻ</span>
                                                         @elseif ($value->level == 3)
-                                                            <span class="label-color c-label" style="background:#5294e2">Đại lý bán lẻ</span>
+                                                            <span class="label-color c-label" style="background:#dc3545">Cộng tác viên</span>
                                                         @else
-                                                            <span class="label-color c-label" style="background:#ffc107">Cộng tác viên</span>
+                                                            <span class="label-color c-label" style="background:#dc3545">Cộng tác viên</span>
                                                         @endif
                                                     </td>
                                                     <td>{{$value->created_at->format('d/m/Y')}}</td>
                                                     <td>
-                                                        @if ($value->level == 4)
+                                                        @if ($value->level == 3 || $value->level == 4)
                                                         <span class="label-color" style="background:crimson;">
                                                             <svg class="svg-inline--fa fa-times-circle fa-w-16" aria-hidden="true" data-prefix="fa" data-icon="times-circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
                                                                 <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"></path>
