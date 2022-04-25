@@ -61,7 +61,7 @@
                     <button type="submit" class="btn btn-danger btn-icon-split" title="delete">
                         <i class="fas fa-trash fa-lg text-danger" style="color:#fff !important"></i>
                     </button>
-                    <select id="cars" name="status_product" wire:change > 
+                    <select id="cars" name="status_product" wire:change="changeStatus()" > 
                         <option value="1" {{($product->status_pd===1) ? 'selected' :''}}>Đang bán</option>
                         <option value="2"{{($product->status_pd===2) ? 'selected' :''}}>Ngừng bán</option>
 

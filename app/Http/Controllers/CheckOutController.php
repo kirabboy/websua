@@ -27,14 +27,15 @@ class CheckOutController extends Controller
   }
   public function addOrder(Request $request)
   {
-   
+    $subtotal = Cart::subtotal();
+
     $id = auth()->user()->id;
   
     $hd = new Order();
     $hd->users_id = $id;
     $hd->full_name = $request->full_name;
     $hd->sel_province = $request->sel_province;
-    //  $hd->subtotal=$request->subtotal;
+    $hd->tong_tien=$subtotal;
     //  $hd->total=$request->total;
     $hd->sel_ward = $request->sel_ward;
     $hd->sel_district = $request->sel_district;
@@ -44,6 +45,8 @@ class CheckOutController extends Controller
    
  
     // $order = Order::create($request->all());
+   
+   
     $carts = Cart::content();
     foreach ($carts as $cart) {
       $data = [
@@ -52,11 +55,8 @@ class CheckOutController extends Controller
         'qty' => $cart->qty,
         'amount' => $cart->price,
         'total' => $cart->price * $cart->qty,
-
-
-
       ];
-
+     
       Order_products::create($data);
     }
     Cart::destroy();

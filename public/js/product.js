@@ -16,46 +16,7 @@ function readURL(input) {
         reader.readAsDataURL(input.files[0]);
     }
 }
-var proQty = $('.pro-qty');
-proQty.prepend('<span class="dec qtybtn">-</span>');
-proQty.append('<span class="inc qtybtn">+</span>');
-proQty.on('click', '.qtybtn', function() {
-    var $button = $(this);
-    var oldValue = $button.parent().find('input').val();
-    if ($button.hasClass('inc')) {
-        var newVal = parseFloat(oldValue) + 1;
-    } else {
-        if (oldValue > 0) {
-            var newVal = parseFloat(oldValue) - 1;
-        } else {
-            newVal = 0;
-        }
-    }
-    $button.parent().find('input').val(newVal)
-    const rowId = $button.parent().find('input').data('rowid');
-    updateCart(rowId, newVal);
-})
-//<![CDATA[
-function updateCart(rowId, qty) {
-    $.ajax({
-        type: "GET",
-        url: "gio-hang/update",
-        data: {
-            rowId: rowId,
-            qty: qty
-        },
-        success: function(response) {
 
-            console.log(response);
-            location.reload();
-        },
-        error: function(error) {
-            alert('Lỗi')
-            console.log(error);
-        }
-
-    })
-}
 $(document).ready(function() {
     $(document).on('click', '.editbtn', function() {
         var od_id = $(this).val();

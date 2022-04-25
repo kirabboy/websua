@@ -47,7 +47,10 @@ class OrderController extends Controller
                 $sum = $sum + $k->total;
             }
             $value->test = $sum;
+            // dd( $value->test);
         }
+    
+       
 
         return view('products.admin-history', compact('orders', 'province', 'district', 'ward', 'get_products', 'total', 'status'));
     }
@@ -60,29 +63,30 @@ class OrderController extends Controller
         ]);
     }
     public function update(Request $request)
-    {
+    { 
         $order = Order::with('order_products')->get();
-        foreach ($order as $value) {
-            $sum = 0;
-            $money = $value->order_products;
-            foreach ($money as $k) {
-                $sum = $sum + $k->total;
-            }
-            $value->test = $sum;
-        }
+        // foreach ($order as $value) {
+        //     $sum = 0;
+        //     $money = $value->order_products;
+        //     foreach ($money as $k) {
+        //         $sum = $sum + $k->total;
+        //     }
+        //     $value->test = $sum;       
+        // }
         $od_id = $request->input('od_id');
         $orders = Order::find($od_id);
+        // dd($orders);
         $orders->full_name = $request->input('full_name');
         $orders->status = $request->input('status');
         if ($orders->status == 2) {
          
             $ct = new CongThucController;
-            $ct->hoahongtructiep($orders->users_id, $sum, 2);
+            $ct->hoahongtructiep($orders->users_id, $orders->tong_tien, 2);
         }
-        //   dd( $orders->status);
+          dd($orders->tong_tien);
         $orders->update();
+        dd($order);
         // $orders->update($request->all());
-
         return redirect()->back()
             ->with('success', 'Product updated successfully');
     }
