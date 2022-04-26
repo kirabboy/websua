@@ -66,11 +66,17 @@ class OrderController extends Controller
             $point_cua_trung_tam_pp = Point::where('user_id',$id_trungtam_pp)->first()->point;
             if($point_cua_trung_tam_pp >= $sum + ($sum*0.16)) {
                 $check_level_user = User::where('id', $orders->users_id)->first();
-                dd($check_level_user);
+                if($check_level_user->level == 3) {
+                    $phanvaitro = new SignupController;
+                    $phanvaitro->phanvaitro($check_level_user->id, 2);
+                    $check_level_user->level = 2;
+                    $check_level_user->save();
+                }
+                
                 $ct = new CongThucController;
                 $ct->hoahongtructiep($orders->users_id, $sum, 2, $orders);
 
-        //----- Gửi email -----//
+                //----- Gửi email -----//
                 $congratulation = 'Web Sữa';
                 Mail::send('email.dat-hang-thanh-cong', compact('congratulation'),
                  function($email) use($congratulation) {

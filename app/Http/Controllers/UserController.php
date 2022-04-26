@@ -70,9 +70,6 @@ class UserController extends Controller
             'address.required' => 'Nhập số nhà!',
             'email.email' => 'Sai định dạng email!',
             'email.unique' => 'Email đã được sử dụng!',
-            // 'cmttruoc.image' => 'Nhập sai định dạng hình ảnh!',
-            // 'cmtsau.image' => 'Nhập sai định dạng hình ảnh!',
-            // 'cmtavt.image' => 'Nhập sai định dạng hình ảnh!',
         ];
         $request->validate([
             'username' => 'required|unique:users,username',
@@ -82,17 +79,7 @@ class UserController extends Controller
             'phone' => 'digits_between:7,11|unique:users,phone',
             'address' => 'required',
             'email' => 'email|unique:users,email',
-            // 'cmttruoc' => 'default|image',
-            // 'cmtsau' => 'image',
-            // 'cmtavt' => 'image',
         ], $error);
-        /*$ma = $this->getMa();
-        if ($ma == false) {
-            return back()->withErrors(['msg' => 'Số người dùng vượt quá định mức!']);
-        }
-        if (!$this->ktCmnd($request->cmnd)) {
-            return back()->withErrors(['msg' => 'Nhập sai CMND/CCCD!']);
-        };*/
 
         $user = new User();
         $user->id_dad = Auth::user()->id;
@@ -106,26 +93,6 @@ class UserController extends Controller
         $user->xa = $request->sel_ward;
         $user->email = $request->email;
         $user->level = 3;
-        /*$user->cmnd = $request->cmnd;
-        $user->ngaycmnd = $request->ngaycmnd;
-        $user->noicmnd = $request->noicmnd;
-        $user->nganhang = $request->nganhang;
-        $user->taikhoannh = $request->taikhoannh;
-        $user->chuthe = $request->chuthe;
-        $user->chinhanh = $request->chinhanh;
-        $user->magioithieu = $ma;
-        if ($request->hasFile('cmttruoc')) {
-            $cmndfront = $this->xulyanh($request->cmttruoc);
-            $user->cmttruoc = $cmndfront;
-        }
-        if ($request->hasFile('cmtsau')) {
-            $cmndback = $this->xulyanh($request->cmtsau);
-            $user->cmtsau = $cmndback;
-        }
-        if ($request->hasFile('daidien')) {
-            $avatar = $this->xulyanhavt($request->daidien);
-            $user->avatar = $avatar;
-        }*/
         $user->save();
         $this->phanvaitro($user->id, $user->level);
         $point = new Point();
