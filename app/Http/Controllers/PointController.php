@@ -58,9 +58,4 @@ class PointController extends Controller
         $doanhso = $user->getDoanhSoTuan;
         return view('point.doanhSoBanHangCaNhan', compact('doanhso','user'));
     }
-
-    public function getLichsuchuyendiem() {
-        $lichsuchuyendiem = HistoryChuyendiem::where('id_chuyen', auth()->user()->id)->get();
-        return view('point.lichsuchuyendiem', compact('lichsuchuyendiem'));
-    }
 }

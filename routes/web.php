@@ -16,6 +16,7 @@ use App\Http\Controllers\CheckOutController;
 use App\Http\Controllers\SignupController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PointController;
+use App\Http\Controllers\HistoryController;
 
 Route::post('/dang-nhap', [UserController::class, 'checkLogin']);
 Route::post('/dang-ky', [UserController::class, 'checkRegister']);
@@ -52,17 +53,14 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/doanh-so-ban-hang', [PointController::class, 'doanhSoBanHang'])->name('doanh-so-ban-hang');
         Route::get('/doanh-so-ban-hang/{id}', [PointController::class, 'doanhSoBanHangCaNhan']);
     });
-  
-    Route::group(['middleware' => ['role:congtacvien']], function () {
-        Route::get('/lich-su-dat-hang', [OrderController::class, 'order_his']);
-    });
     
     Route::group(['middleware' => ['role:admin|daily']], function () {
         Route::get('/trung-tam-phan-phoi', [UserController::class, 'getTtpp']);
         Route::get('/trung-tam-phan-phoi/{id}', [UserController::class, 'xoaTtpp']);
         Route::get('lich-su', [OrderController::class, 'index']);
-        Route::get('/lich-su-chuyen-diem', [PointController::class, 'getLichsuchuyendiem'])->name('lich-su-chuyen-diem');
+        Route::get('/lich-su-chuyen-diem', [HistoryController::class, 'getLichsuchuyendiem'])->name('lich-su-chuyen-diem');
     });
+    Route::get('/lich-su-dat-hang', [OrderController::class, 'order_his']);
     Route::get('/dang-ky', [UserController::class, 'getRegister']);
     Route::get('/dat-hang/{id}', [ShopController::class, 'show']);
     Route::get('/logout', [UserController::class, 'getLogout']);
@@ -119,6 +117,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/doanh-so-ban-hang', [PointController::class, 'doanhSoBanHang'])->name('doanh-so-ban-hang');
     Route::get('/doanh-so-ban-hang/{id}', [PointController::class, 'doanhSoBanHangCaNhan']);
+
+    Route::get('/lich-su-nhan-diem', [HistoryController::class, 'getLichsunhandiem'])->name('lich-su-nhan-diem');
 
     Route::get('/test-email',[HomeController::class, 'testEmail']);
 });

@@ -63,13 +63,11 @@
 				<span><i class="fa-solid fa-gift"></i>Đổi điểm </span>
 			</a>
 		</li>
-		@if (Auth::user()->level==3)
 		<li class="menu-item">
 			<a href="{{url('/lich-su-dat-hang')}}" class="@if(\Request::is('lich-su-dat-hang') ) active  @endif">
-				<span><i class="fa-solid fa-table"></i>Lịch sử đặt hàng</span>
+				<span><i class="fa-solid fa-clock-rotate-left"></i>Lịch sử đặt hàng</span>
 			</a>
 		</li>
-		@endif
 		@role('admin|daily')
 		<li class="menu-item">
 			<a href="{{url('/lich-su')}}" class="@if(\Request::is('lich-su') ) active  @endif">
@@ -127,6 +125,13 @@
 			</a>
 		</li>
 		@endrole
+
+		<li class="menu-item">
+			<a href="{{route('lich-su-nhan-diem')}}" class="@if(\Request::is('lich-su-nhan-diem') ) active @endif">
+				<span><i class="fa-solid fa-trophy"></i>Lịch sử nhận điểm</span>
+			</a>
+		</li>
+
 		<li>
 			<div class="support">
 				<p><i class="fa-solid fa-phone"></i>: 0969979400</p>

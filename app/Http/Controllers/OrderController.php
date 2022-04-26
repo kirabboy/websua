@@ -65,6 +65,8 @@ class OrderController extends Controller
             $id_trungtam_pp = $orders->trungtam_pp;
             $point_cua_trung_tam_pp = Point::where('user_id',$id_trungtam_pp)->first()->point;
             if($point_cua_trung_tam_pp >= $sum + ($sum*0.16)) {
+                $check_level_user = User::where('id', $orders->users_id)->first();
+                dd($check_level_user);
                 $ct = new CongThucController;
                 $ct->hoahongtructiep($orders->users_id, $sum, 2, $orders);
 
