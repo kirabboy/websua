@@ -97,10 +97,11 @@ class HomeController extends Controller
     }
 
     public function testEmail() {
-        $name = 'Riddler Here ';
-        Mail::send('email.email', compact('name'), function($email) {
-            $email->subject('Gửi ku Trí');
-            $email->to('ngocctrii47@gmail.com', 'Web sua');
+        $congratulation = 'Web Sữa';
+        Mail::send('email.dat-hang-thanh-cong', compact('congratulation'),
+         function($email) use($congratulation) {
+            $email->subject('Đặt hàng thành công');
+            $email->to('thinhnguyen01165@gmail.com', $congratulation);
         });
     }
 }

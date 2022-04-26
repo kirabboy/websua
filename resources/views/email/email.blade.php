@@ -1,1 +1,0 @@
-<h2>Đây là web sữa {{$name}}</h2>

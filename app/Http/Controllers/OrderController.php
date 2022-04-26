@@ -13,7 +13,7 @@ use App\Models\User;
 use App\Models\Point;
 use Illuminate\Http\Request;
 use Cart;
-
+use Mail;
 
 class OrderController extends Controller
 {
@@ -67,6 +67,14 @@ class OrderController extends Controller
             if($point_cua_trung_tam_pp >= $sum + ($sum*0.16)) {
                 $ct = new CongThucController;
                 $ct->hoahongtructiep($orders->users_id, $sum, 2, $orders);
+
+        //----- Gửi email -----//
+                $congratulation = 'Web Sữa';
+                Mail::send('email.dat-hang-thanh-cong', compact('congratulation'),
+                 function($email) use($congratulation) {
+                    $email->subject('Đặt hàng thành công');
+                    $email->to('thinhnguyen01165@gmail.com', $congratulation);
+                });
             } else {
                 return redirect()->back()->with('error','Số điểm của bạn không đủ để chuyển cho user');
             }

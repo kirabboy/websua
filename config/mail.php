@@ -93,7 +93,7 @@ return [
 
     'from' => [
         'address' => 'thinhnguyen01165@gmail.com',
-        'name' => 'Admin Websua',
+        'name' => 'Công ty bán sữa',
     ],
 
     /*
