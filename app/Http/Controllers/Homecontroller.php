@@ -13,6 +13,7 @@ use App\Models\Point;
 use App\Models\Product;
 use App\Models\Promotion;
 use App\Models\PromotionHistory;
+use Mail;
 
 class HomeController extends Controller
 {
@@ -93,5 +94,13 @@ class HomeController extends Controller
     }
     public function getList_manager(){
         return view('system.list_manager');
+    }
+
+    public function testEmail() {
+        $name = 'Riddler Here ';
+        Mail::send('email.email', compact('name'), function($email) {
+            $email->subject('Gửi ku Trí');
+            $email->to('ngocctrii47@gmail.com', 'Web sua');
+        });
     }
 }

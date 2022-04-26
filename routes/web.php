@@ -118,6 +118,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/doanh-so-ban-hang', [PointController::class, 'doanhSoBanHang'])->name('doanh-so-ban-hang');
     Route::get('/doanh-so-ban-hang/{id}', [PointController::class, 'doanhSoBanHangCaNhan']);
+
+    Route::get('/test-email',[HomeController::class, 'testEmail']);
 });
 
 Route::get('/lay-phuong-xa-theo-quan-huyen', [ShippingController::class, 'wardOfDistrict']);
