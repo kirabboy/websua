@@ -14,7 +14,6 @@ use App\Models\HistoryChuyendiem;
 
 class AdminController extends Controller
 {
-    //
     public function getUserManagement()
     {
         $users = User::all();

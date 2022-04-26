@@ -8,6 +8,11 @@
         {{ session()->get('message') }}
     </div>
     @endif
+    @if(session()->has('error'))
+    <div class="alert alert-danger">
+        {{ session()->get('error') }}
+    </div>
+    @endif
     <div class="transactions-content widget">
         <div class="widget-head">
             <h4 class="heading">Lịch sử đặt hàng</h4>
@@ -22,7 +27,7 @@
                         <th>Nơi phân phối</th>
                         <th>Trạng thái</th>
                         <th>Địa chỉ</th>
-                        <th>Hành động123</th>
+                        <th>Hành động</th>
                     </tr>
                 </thead>
                 <tbody>

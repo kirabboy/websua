@@ -10,6 +10,7 @@ use App\Models\Prodcut;
 use App\Models\District;
 use App\Models\Ward;
 use App\Models\User;
+use App\Models\Point;
 use Illuminate\Http\Request;
 use Cart;
 
@@ -49,30 +50,32 @@ class OrderController extends Controller
 
     public function update(Request $request)
     {
-        $order = Order::with('order_products')->get();
-        foreach ($order as $value) {
-            $sum = 0;
-            $money = $value->order_products;
-            foreach ($money as $k) {
-                $sum = $sum + $k->total;
-            }
-            $value->test = $sum;
-        }
-        $od_id = $request->input('od_id');
+        $od_id = $request->od_id;
         $orders = Order::find($od_id);
-        // $orders->full_name = $request->input('full_name');
-        $orders->status = $request->input('status');
-        if ($orders->status == 2) {
-            
-            $id_trungtam_pp = $orders->trungtam_pp;
-            $ct = new CongThucController;
-            $ct->hoahongtructiep($orders->users_id, $sum, 2, $orders);
+
+        $total = Order_products::where('id_order', $od_id)->get();
+
+        $sum = 0;
+        foreach ($total as $value) {
+            $sum += $value->total;
         }
-        // dd( $orders);
+        
+        $orders->status = $request->status;
+        if ($orders->status == 2) {
+            $id_trungtam_pp = $orders->trungtam_pp;
+            $point_cua_trung_tam_pp = Point::where('user_id',$id_trungtam_pp)->first()->point;
+            if($point_cua_trung_tam_pp >= $sum + ($sum*0.16)) {
+                $ct = new CongThucController;
+                $ct->hoahongtructiep($orders->users_id, $sum, 2, $orders);
+            } else {
+                return redirect()->back()->with('error','Số điểm của bạn không đủ để chuyển cho user');
+            }
+        }
         $orders->update();
         return redirect()->back()
-            ->with('success', 'Product updated successfully');
+            ->with('message', 'Đã hoàn thành đơn hàng. Điểm thưởng đã được chuyển cho người đặt hàng!');
     }
+
     public function order_his()
     {
         $orders = Order::with('order_products')->orderBy('id', 'DESC')->get();
@@ -94,13 +97,5 @@ class OrderController extends Controller
             $value->test = $sum;
         }
         return view('products.order-history', compact('orders', 'user', 'province', 'district', 'ward', 'get_products', 'total', 'status'));
-    }
-    public function test($id)
-    {
-        $test2 = Order::where('id', $id)->with('order_products')->first();
-    }
-    public function sortBy($clname)
-    {
-        dd('heiu');
     }
 }

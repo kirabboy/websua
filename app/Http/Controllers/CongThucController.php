@@ -25,9 +25,8 @@ class CongThucController extends Controller
 
     public function hoahongtructiep($id, $amount, $count, $orders) {
         $user = User::where('id', $id)->with('getParent','getPoint')->first();
-        $id_dad = $user->getParent;
         $doanh_so_tuan = DoanhSoThang::where('user_id', $user->id)->first();
-        dd($amount);
+        
         if($count == 2) {
             $nguoi_chuyen_diem = Point::where('user_id', auth()->user()->id)->first();
             if($nguoi_chuyen_diem->point >= $amount + ($amount * 0.16)) {
@@ -36,7 +35,7 @@ class CongThucController extends Controller
 
                 $nguoi_chuyen_diem->point -= $amount;
                 $nguoi_chuyen_diem->save();
-
+                
                 $lichsu_chuyendiem = new HistoryChuyendiem;
                 $lichsu_chuyendiem->point = $amount;
                 $lichsu_chuyendiem->user_id = $id;
@@ -59,11 +58,13 @@ class CongThucController extends Controller
             $doanh_so_tuan->save();
         }
 
+        $user = User::where('id', $id)->with('getParent','getPoint')->first();
+        $id_dad = $user->getParent;
+        
         if($id_dad != null){
             $doanhso = $id_dad->getPoint->doanhso;
             $point = 0;
             $setting = SettingHoaHong::first();
-            $doanhso += $amount;
             $id_trungtam_pp = Trungtampp::where('id',$orders->trungtam_pp)->first()->user_id;
             $point_user_chuyendiem = Point::where('id', $id_trungtam_pp)->first();
             
@@ -81,16 +82,20 @@ class CongThucController extends Controller
                 $point += $amount*0.02;
             }
             
-            $point_user_chuyendiem->point -= $point;
-            
-            $id_dad->getPoint->point += $point;
-            $id_dad->getPoint->doanhso = $doanhso;
+            $diem_father = $id_dad->getPoint;
+            if($point_user_chuyendiem != $id_dad->getPoint){
+                $point_user_chuyendiem->point -= $point;
+                $point_user_chuyendiem->save();
+                $diem_father->point += $point;
+            }
+            $diem_father->doanhso += $amount;
+            $diem_father->save();
             
             
             $doanhso_tuan_id_dad = DoanhSoThang::where('user_id', $id_dad->id)->first();
             $doanhso_tuan_id_dad->point += $point;
             $doanhso_tuan_id_dad->doanhso += $amount;
-
+            
             $lichsu_chuyendiem_hoahong = new HistoryChuyendiem;
             $lichsu_chuyendiem_hoahong->point = $point;
             $lichsu_chuyendiem_hoahong->user_id = $id_dad->id;
@@ -98,59 +103,18 @@ class CongThucController extends Controller
             $lichsu_chuyendiem_hoahong->note = 'Nhận thưởng hoa hồng '.number_format($point).' điểm';
             
             $doanh_so_tuan->save();
-            $point_user_chuyendiem->save();
-            $id_dad->getPoint->save();
             $lichsu_chuyendiem_hoahong->save();
-
             $count -= 1;
+            
             if($count > 0) {
                 self::hoahongtructiep($id_dad->id, $amount, $count, $orders);
             }
         }
     }
-
-    // public function hoahongdoinhom($id) {
-    //     $user = User::find($id)->with('getChild','getPoint')->first();
-    //     $user_child = $user->getChild;
-        
-    //     $listChild = [];
-    //     (new PartnerController)->getAllChild($listChild, $user->id);
-
-    //     $sum = 0;
-    //     foreach ($user_child as $value) {
-    //         $child = User::find($value->id)->with('getChild','getPoint')->first();
-    //         dd($child);
-    //         $point_child = $value->getPoint->point;
-    //         $sum += $point_child;
-    //     }
-    //     dd($listChild);
-    // }
     
     public function test() {
         $id = auth()->user()->id;
         $this->hoahongtructiep($id, 10000, 2);
         return view('test');
     }
-
-
-    // public function test() {
-    //     $id = auth()->user()->id;
-    //     $user = User::with('getPoint')->get();
-        
-    //     //$this->hoahongtructiep(4, 10000, 2);
-    //     foreach ($user as $value) {
-    //         $doanhso_tuan_truoc = DoanhSoThang::where('user_id', $id)->orderBy('id', 'desc')->first();
-    //         $doanhso = new DoanhSoThang;
-            
-    //         $doanhso->doanhso = $value->getPoint->doanhso - $doanhso_tuan_truoc->doanhso;
-    //         $doanhso->point = $value->getPoint->point - $doanhso_tuan_truoc->point;
-    //         $doanhso->doanhso_canhan = $value->getPoint->doanhso_canhan - $doanhso_tuan_truoc->doanhso_canhan;
-    //         $doanhso->user_id = $value->id;
-    //         // $doanhso->save();
-            
-    //         // $value->getPoint->save();
-            
-    //     }
-    //     return view('test');
-    // }
 }
