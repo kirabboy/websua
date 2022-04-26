@@ -45,16 +45,23 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/setting-banner', [SettingController::class, 'getBanner'])->name('setBannerAds');
         Route::post('/setting-banner', [SettingController::class, 'postBanner']);
         Route::get('/setting-banner/delete/{id}', [SettingController::class, 'deleteBanner']);
-        Route::get('lich-su', [OrderController::class, 'index']);
+        Route::get('/sales_manager', [PartnerController::class, 'getSales_manager']);
+        Route::get('/nap-diem', [PointController::class, 'napDiem'])->name('napDiem');
+        Route::get('/check-nap-diem', [PointController::class, 'checkNapDiem'])->name('checkNapDiem');
+        Route::post('/nap-diem', [PointController::class, 'postNapDiem']);
+        Route::get('/doanh-so-ban-hang', [PointController::class, 'doanhSoBanHang'])->name('doanh-so-ban-hang');
+        Route::get('/doanh-so-ban-hang/{id}', [PointController::class, 'doanhSoBanHangCaNhan']);
     });
   
     Route::group(['middleware' => ['role:congtacvien']], function () {
         Route::get('/lich-su-dat-hang', [OrderController::class, 'order_his']);
     });
     
-    Route::group(['middleware' => ['role:admin|agent']], function () {
+    Route::group(['middleware' => ['role:admin|daily']], function () {
         Route::get('/trung-tam-phan-phoi', [UserController::class, 'getTtpp']);
         Route::get('/trung-tam-phan-phoi/{id}', [UserController::class, 'xoaTtpp']);
+        Route::get('lich-su', [OrderController::class, 'index']);
+        Route::get('/lich-su-chuyen-diem', [PointController::class, 'getLichsuchuyendiem'])->name('lich-su-chuyen-diem');
     });
     Route::get('/dang-ky', [UserController::class, 'getRegister']);
     Route::get('/dat-hang/{id}', [ShopController::class, 'show']);
@@ -96,11 +103,6 @@ Route::group(['middleware' => ['auth']], function () {
         }
     );
     
-    Route::get('/nap-diem', [PointController::class, 'napDiem'])->name('napDiem');
-    Route::get('/check-nap-diem', [PointController::class, 'checkNapDiem'])->name('checkNapDiem');
-    Route::post('/nap-diem', [PointController::class, 'postNapDiem']);
-    Route::get('/lich-su-chuyen-diem', [PointController::class, 'getLichsuchuyendiem'])->name('lich-su-chuyen-diem');
-
     Route::get('/hoahong', [CongThucController::class, 'hoahong']);
 
     Route::get('/promotion', [PromotionController::class, 'promotion'])->name('promotion');
@@ -113,7 +115,6 @@ Route::group(['middleware' => ['auth']], function () {
     //Doi Nhom Controllers
     Route::get('/list-partner', [PartnerController::class, 'list_partner']);
 
-    Route::get('/sales_manager', [PartnerController::class, 'getSales_manager']);
     Route::get('/list_manager', [HomeController::class, 'getList_manager']);
 
     Route::get('/doanh-so-ban-hang', [PointController::class, 'doanhSoBanHang'])->name('doanh-so-ban-hang');

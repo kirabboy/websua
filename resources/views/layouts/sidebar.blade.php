@@ -70,7 +70,7 @@
 			</a>
 		</li>
 		@endif
-		@role('admin')
+		@role('admin|daily')
 		<li class="menu-item">
 			<a href="{{url('/lich-su')}}" class="@if(\Request::is('lich-su') ) active  @endif">
 				<span><i class="fa-solid fa-list-check"></i>Quản lý đơn hàng</span>
@@ -94,14 +94,12 @@
 				<span><i class="fa-solid fa-fan"></i>Cài đặt hoa hồng trực tiếp</span>
 			</a>
 		</li>
-		@endrole
-		@role('admin')
+
 		<li class="menu-item">
 			<a href="{{url('/setting-banner')}}" class="@if(\Request::is('setting-banner') ) active  @endif">
 				<span><i class="fa-solid fa-image"></i>Cài đặt ảnh banner</span>
 			</a>
 		</li>
-		@endrole
 
 		<li class="menu-item">
 			<a href="{{url('/sales_manager')}}" class="@if(\Request::is('sales_manager') ) active  @endif">
@@ -120,13 +118,15 @@
 				<span><i class="fa-solid fa-trophy"></i>Doanh số bán hàng</span>
 			</a>
 		</li>
+		@endrole
 
+		@role('admin|daily')
 		<li class="menu-item">
 			<a href="{{route('lich-su-chuyen-diem')}}" class="@if(\Request::is('lich-su-chuyen-diem') ) active @endif">
 				<span><i class="fa-solid fa-trophy"></i>Lịch sử chuyển điểm</span>
 			</a>
 		</li>
-		
+		@endrole
 		<li>
 			<div class="support">
 				<p><i class="fa-solid fa-phone"></i>: 0969979400</p>
