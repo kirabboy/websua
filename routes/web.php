@@ -52,10 +52,6 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/doanh-so-ban-hang', [PointController::class, 'doanhSoBanHang'])->name('doanh-so-ban-hang');
         Route::get('/doanh-so-ban-hang/{id}', [PointController::class, 'doanhSoBanHangCaNhan']);
     });
-  
-    Route::group(['middleware' => ['role:congtacvien']], function () {
-        Route::get('/lich-su-dat-hang', [OrderController::class, 'order_his']);
-    });
     
     Route::group(['middleware' => ['role:admin|daily']], function () {
         Route::get('/trung-tam-phan-phoi', [UserController::class, 'getTtpp']);
@@ -63,6 +59,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('lich-su', [OrderController::class, 'index']);
         Route::get('/lich-su-chuyen-diem', [PointController::class, 'getLichsuchuyendiem'])->name('lich-su-chuyen-diem');
     });
+    Route::get('/lich-su-dat-hang', [OrderController::class, 'order_his']);
     Route::get('/dang-ky', [UserController::class, 'getRegister']);
     Route::get('/dat-hang/{id}', [ShopController::class, 'show']);
     Route::get('/logout', [UserController::class, 'getLogout']);
