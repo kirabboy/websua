@@ -28,6 +28,7 @@ class Order extends Model
     }
    
     public function getTrungTamPP() {
-        return $this->hasMany(TrungTamPP::class, 'trungtam_pp', 'id');
+        return $this->hasMany(TrungTamPP::class, 'id', 'trungtam_pp');
     }
+
 }

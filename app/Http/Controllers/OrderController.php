@@ -11,6 +11,7 @@ use App\Models\District;
 use App\Models\Ward;
 use App\Models\User;
 use App\Models\Point;
+use App\Models\Trungtampp;
 use Illuminate\Http\Request;
 use Cart;
 use Mail;
@@ -24,9 +25,21 @@ class OrderController extends Controller
         $user = User::all();
         $ward = Ward::all();
         $get_products = Order_products::with('get_products')->get();
-        $orders = Order::with('order_products')->orderBy('id', 'DESC')->get();
         $total = 0;
         $status = Status_product::all();
+        
+        if (auth()->user()->level == 1 || auth()->user()->level == 2) {
+            $id_trung_tam_pp = Trungtampp::where('user_id', auth()->user()->id)->get();
+            $order = Order::with('order_products','getTrungTamPP')->orderBy('id', 'DESC')->get();
+            $orders = [];
+            foreach ($id_trung_tam_pp as $value) {
+                foreach ($order as $data) {
+                    if($value->id == $data->trungtam_pp) {
+                        $orders[] = $data;
+                    }
+                }
+            }
+        }
         
         foreach ($orders as $value) {
             $sum = 0;
@@ -36,7 +49,10 @@ class OrderController extends Controller
             }
             $value->test = $sum;
         }
-        return view('products.admin-history', compact('orders', 'province', 'district', 'ward', 'get_products', 'total', 'status'));
+        return view('products.admin-history', compact(
+            'orders', 'province', 'district', 
+            'ward', 'get_products', 'total', 
+            'status'));
     }
     
     public function edit($id)
@@ -63,8 +79,10 @@ class OrderController extends Controller
         $orders->status = $request->status;
         if ($orders->status == 2) {
             $id_trungtam_pp = $orders->trungtam_pp;
-            $point_cua_trung_tam_pp = Point::where('user_id',$id_trungtam_pp)->first()->point;
-            if($point_cua_trung_tam_pp >= $sum + ($sum*0.16)) {
+            $user_trungtam_pp = Trungtampp::where('id', $id_trungtam_pp)->first()->user_id;
+            $point_cua_trung_tam_pp = Point::where('user_id',$user_trungtam_pp)->first()->point;
+            
+            if($point_cua_trung_tam_pp >= $sum*0.16) {
                 $check_level_user = User::where('id', $orders->users_id)->first();
                 if($check_level_user->level == 3) {
                     $phanvaitro = new SignupController;

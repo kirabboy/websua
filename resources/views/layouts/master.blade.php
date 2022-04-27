@@ -47,6 +47,12 @@
     @include('layouts.footer')
     <script src="{{ asset('public/js/bootstrap/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('public/js/product.js') }}"></script>
+    <script>
+        $("form").submit(function(){
+            $(this).find("button[type='submit']").attr("disabled", "disabled");
+            $(this).find("button[type='submit']").html('<span class="spinner-grow spinner-grow-sm"></span> Đang xử lý..');
+        });
+    </script>
     @stack('scripts')
 </body>
 

@@ -15,7 +15,7 @@
     @endif
     <div class="transactions-content widget">
         <div class="widget-head">
-            <h4 class="heading">Lịch sử đặt hàng</h4>
+            <h4 class="heading">Quản lý đơn hàng</h4>
         </div>
         <div class="widget-body">
             <table class="table table-bordered table-striped table-hover bangthuong text-center ">

@@ -18,8 +18,6 @@ class CongThucController extends Controller
     public function hoahong() {
         $province = Province::select('matinhthanh', 'tentinhthanh')->get();
         $id = auth()->user()->id;
-        // $this->hoahongdoinhom($id);
-        // $this->hoahongtructiep(4, 10000, 2, 1);
         return view('hoahong',compact('province'));
     }
 
@@ -28,33 +26,11 @@ class CongThucController extends Controller
         $doanh_so_tuan = DoanhSoThang::where('user_id', $user->id)->first();
         
         if($count == 2) {
-            $nguoi_chuyen_diem = Point::where('user_id', auth()->user()->id)->first();
-            if($nguoi_chuyen_diem->point >= $amount + ($amount * 0.16)) {
-                $trungtam_pp = Trungtampp::where('id',$orders->trungtam_pp)->first();
-                // dd($trungtam_pp->tentrungtam);
-
-                $nguoi_chuyen_diem->point -= $amount;
-                $nguoi_chuyen_diem->save();
-                
-                $lichsu_chuyendiem = new HistoryChuyendiem;
-                $lichsu_chuyendiem->point = $amount;
-                $lichsu_chuyendiem->user_id = $id;
-                $lichsu_chuyendiem->id_chuyen = auth()->user()->id;
-                $lichsu_chuyendiem->note = $trungtam_pp->tentrungtam.' gửi cho bạn '.
-                    number_format($amount).' điểm tiền hàng.';
-                $lichsu_chuyendiem->save();
-            }
-
             $point_user = $user->getPoint;
             $point_user->doanhso_canhan += $amount;
-            $point_user->doanhso += $amount;
-
-            $point_user->point += $amount;
             $point_user->save();
 
-            $doanh_so_tuan->doanhso += $amount;
             $doanh_so_tuan->doanhso_canhan += $amount;
-            $doanh_so_tuan->point += $amount;
             $doanh_so_tuan->save();
         }
 
@@ -77,9 +53,13 @@ class CongThucController extends Controller
                     $point += $amount * $setting->moc3;
                 }
             } elseif ($count == 1) {
-                $point += $amount*0.03;
+                if($amount >= $setting->moc0) {
+                    $point += $amount*0.03;
+                }
             } elseif ($count == 0) {
-                $point += $amount*0.02;
+                if($amount >= $setting->moc0) {
+                    $point += $amount*0.02;
+                }
             }
             
             $diem_father = $id_dad->getPoint;
@@ -90,7 +70,6 @@ class CongThucController extends Controller
             }
             $diem_father->doanhso += $amount;
             $diem_father->save();
-            
             
             $doanhso_tuan_id_dad = DoanhSoThang::where('user_id', $id_dad->id)->first();
             $doanhso_tuan_id_dad->point += $point;
@@ -103,15 +82,38 @@ class CongThucController extends Controller
             $lichsu_chuyendiem_hoahong->note = 'Nhận thưởng hoa hồng '.number_format($point).' điểm';
             
             $doanh_so_tuan->save();
-            $lichsu_chuyendiem_hoahong->save();
+            $doanhso_tuan_id_dad->save();
+            
+            if ($amount >= $setting->moc0) {
+                $lichsu_chuyendiem_hoahong->save();
+            }
             $count -= 1;
             
-            if($count > 0) {
+            if($count >= 0) {
                 self::hoahongtructiep($id_dad->id, $amount, $count, $orders);
+            } else {
+                $this->congDoanhSoNhom($id_dad->id_dad, $amount);
             }
         }
     }
     
+    public function congDoanhSoNhom($id, $amount) {
+        $user = User::where('id', $id)->with('getParent','getPoint')->first();
+        $doanh_so_tuan = DoanhSoThang::where('user_id', $user->id)->first();
+        $doanh_so_tuan->doanhso += $amount;
+        $doanh_so_tuan->save();
+
+        $id_dad = $user->getParent;
+        
+        $diem_father = $user->getPoint;
+        $diem_father->doanhso += $amount;
+        $diem_father->save();
+        
+        if($id_dad != null) {
+            self::congDoanhSoNhom($id_dad->id, $amount);
+        }
+    }
+
     public function test() {
         $id = auth()->user()->id;
         $this->hoahongtructiep($id, 10000, 2);

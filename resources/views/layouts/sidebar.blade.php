@@ -59,11 +59,6 @@
 			</a>
 		</li>
 		<li class="menu-item">
-			<a href="{{url('/promotion')}}" class="@if(\Request::is('promotion') ) active  @endif">
-				<span><i class="fa-solid fa-gift"></i>Đổi điểm </span>
-			</a>
-		</li>
-		<li class="menu-item">
 			<a href="{{url('/lich-su-dat-hang')}}" class="@if(\Request::is('lich-su-dat-hang') ) active  @endif">
 				<span><i class="fa-solid fa-clock-rotate-left"></i>Lịch sử đặt hàng</span>
 			</a>
@@ -82,7 +77,7 @@
 		</li>
 		<li class="menu-item">
 			<a href="{{url('/dang-ky')}}" class="@if(\Request::is('dang-ky') ) active  @endif">
-				<span><i class="fa-solid fa-user-plus"></i>Đăng ký</span>
+				<span><i class="fa-solid fa-user-plus"></i>Đăng ký thành viên</span>
 			</a>
 		</li>
 		
@@ -99,11 +94,11 @@
 			</a>
 		</li>
 
-		<li class="menu-item">
+		<!-- <li class="menu-item">
 			<a href="{{url('/sales_manager')}}" class="@if(\Request::is('sales_manager') ) active  @endif">
 				<span><i class="fa-solid fa-bars-progress"></i>Quản lý bán hàng</span>
 			</a>
-		</li>
+		</li> -->
 		
 		<li class="menu-item">
 			<a href="{{route('napDiem')}}" class="@if(\Request::is('nap-diem') ) active  @endif">
@@ -121,14 +116,14 @@
 		@role('admin|daily')
 		<li class="menu-item">
 			<a href="{{route('lich-su-chuyen-diem')}}" class="@if(\Request::is('lich-su-chuyen-diem') ) active @endif">
-				<span><i class="fa-solid fa-trophy"></i>Lịch sử chuyển điểm</span>
+				<span><i class="fa-solid fa-trophy"></i>Lịch sử chuyển điểm hoa hồng</span>
 			</a>
 		</li>
 		@endrole
 
 		<li class="menu-item">
 			<a href="{{route('lich-su-nhan-diem')}}" class="@if(\Request::is('lich-su-nhan-diem') ) active @endif">
-				<span><i class="fa-solid fa-trophy"></i>Lịch sử nhận điểm</span>
+				<span><i class="fa-solid fa-trophy"></i>Lịch sử hoa hồng được hưởng</span>
 			</a>
 		</li>
 
@@ -136,7 +131,7 @@
 			<div class="support">
 				<p><i class="fa-solid fa-phone"></i>: 0969979400</p>
 				<p><i class="fa-solid fa-envelope"></i>: forvietvn@gmail.com</p>
-				<p><a class="p-0" href="{{url('/logout')}}"><i class="fa-solid fa-arrow-right-from-bracket"></i>: Đăng xuất</a></p>
+				<p><a class="p-2 btn" href="{{url('/logout')}}"><i class="fa-solid fa-arrow-right-from-bracket"></i>: Đăng xuất</a></p>
 			</div>
 		</li>
 	</ul>

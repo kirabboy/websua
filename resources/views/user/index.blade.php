@@ -73,8 +73,8 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col">
                             <div class=" font-weight-bold text-white text-uppercase mb-1">
-                                <h5> POINT</h5>
-                                <p class="ms-card-change pb-3">{{number_format($user->getPoint->point)}} point</p>
+                                <h5> Hoa hồng được hưởng</h5>
+                                <p class="ms-card-change pb-3">{{number_format($user->getPoint->point)}} điểm</p>
                             </div>
 
                         </div>
@@ -137,7 +137,7 @@
                     <div class="col-12 col-md-6">
                         <h3 class="text-dark text-uppercase text-center">
                             <i class="fa fa-star ic_star"></i>
-                            <span>Top điểm nhóm</span>
+                            <span>Top doanh số nhóm</span>
                             <i class="fa fa-star ic_star"></i>
                         </h3>
                         @foreach ($list_doanhso as $list)
