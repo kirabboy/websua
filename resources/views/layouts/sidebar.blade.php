@@ -129,8 +129,8 @@
 
 		<li>
 			<div class="support">
-				<p><i class="fa-solid fa-phone"></i>: 0969979400</p>
-				<p><i class="fa-solid fa-envelope"></i>: forvietvn@gmail.com</p>
+				<p><i class="fa-solid fa-phone"></i>: 0329385699 </p>
+				<p><i class="fa-solid fa-envelope"></i>: luckymilk42@gmail.com </p>
 				<p><a class="p-2 btn" href="{{url('/logout')}}"><i class="fa-solid fa-arrow-right-from-bracket"></i>: Đăng xuất</a></p>
 			</div>
 		</li>

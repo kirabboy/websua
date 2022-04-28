@@ -14,25 +14,8 @@
         <div class="widget-head">
             <h4 class="heading">Lịch sử đặt hàng</h4>
         </div>
+        
         <div class="widget-body">
-            <!-- <table class="table table-bordered table-striped bangtimkiem">
-                <tbody>
-                    <tr>
-                        <td>Từ thời gian</td>
-                        <td><input type="date" class="form-control" value="date"></td>
-                    </tr>
-                    <tr>
-                        <td>Đến thời gian</td>
-                        <td><input type="date" class="form-control"></td>
-                    </tr>
-                    <tr class="text-center">
-                        <td colspan="2">
-                            <a class="btn btn-primary">Tìm kiếm</a>
-                            <a class="btn btn-primary">Xuất file</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table> -->
             <table class="table table-bordered table-striped table-hover bangthuong text-center ">
                 <thead>
                     <tr>
@@ -46,44 +29,48 @@
                     </tr>
                 </thead>
                 <tbody>
-
                     @foreach ( $orders as $order)
                     @if($order->users_id == Auth::user()->id)
                     <tr>
-
                         <td>{{$order->created_at}}</td>
                         <td>{{$order->test}}
                         </td>
                         <td>
-                            <a href="" class="update_record" data-name="firstname" data-type="text" data-pk="{{ $order->status }}" data-title="Enter Firstname"> {{ DB::table('status_product') ->where('id',$order->status)->first()->status_name}}</a>
-
+                            <a href="" class="update_record" data-name="firstname" data-type="text" data-pk="{{ $order->status }}" data-title="Enter Firstname"> 
+                                {{ DB::table('status_product')->where('id',$order->status)
+                                    ->first()->status_name}}</a>
                         </td>
                         <td>
-                            {{ DB::table('province') ->where('matinhthanh',$order->sel_province)->first()->tentinhthanh}}
+                            {{ DB::table('province') ->where('matinhthanh',
+                                $order->sel_province)->first()->tentinhthanh}}
                         </td>
                         <td>
-                            {{ DB::table('district')->where('maquanhuyen',$order->sel_district)->first()->tenquanhuyen}}
+                            {{ DB::table('district')->where('maquanhuyen',
+                                $order->sel_district)->first()->tenquanhuyen}}
                         </td>
                         <td>
-                            {{ DB::table('ward')->where('maphuongxa',$order->sel_ward)->first()->tenphuongxa}}
+                            {{ DB::table('ward')->where('maphuongxa',
+                                $order->sel_ward)->first()->tenphuongxa}}
                         </td>
                         <td>
                             <a class=" " href="#" data-toggle="modal" data-target="#create_sales_{{$order->id}}" id="btn_add">
                                 <i class="fas fa-eye"></i>
                             </a>
-
                         </td>
-
                     </tr>
+                    @else
+                        <style>
+                            thead {
+                                display: none;
+                            }
+                        </style>
+                        <h3 class="text-danger text-center">Hiện tại bạn chưa có đơn đặt hàng nào!</h3>
+                        <div class="text-center">
+                            <a class="btn btn-danger text-white" href="{{url('dat-hang')}}">Đặt hàng ngay !</a>
+                        </div>
                     @endif
                     @endforeach
-                    <!-- <tr>
-                        <td class="text-danger">Tổng: </td>
-                        <td colspan="1" class="text-danger">
-                            <span></span>
-
-                        </td>
-                    </tr> -->
+                    
                 </tbody>
             </table>
 
@@ -97,33 +84,25 @@
 
                             <ul class="list-ifod clearfix">
                                 <li>
-                                    <p><b>Họ và tên: {{$order->full_name}}</b><span id="fullName">
-
-                                        </span></p>
+                                    <p>
+                                        <b>Họ và tên: {{$order->full_name}}</b>
+                                        <span id="fullName"></span>
+                                    </p>
                                 </li>
                                 <li>
-                                    <p><b>Địa chỉ nhận: {{$order->street_address}}</b><span id="address"></span></p>
+                                    <p><b>Địa chỉ nhận: {{$order->street_address}}</b>
+                                    <span id="address"></span></p>
                                 </li>
-                                <!-- <li>
-                                            <p><b>Email:</b> <span id="email">ngocdep@gmail.com</span></p>
-                                        </li>
-                                        <li>
-                                            <p><b>Số điện thoại:</b><span id="mobile">0373066558.</span></p>
-                                        </li> -->
-
                                 <li>
-                                    <p><b>Ngày tạo:</b> <span id="date">{{$order->created_at}}</span></p>
+                                    <p><b>Ngày tạo:</b> 
+                                    <span id="date">{{$order->created_at}}</span></p>
                                 </li>
-                                <!-- <li>
-                                            <p><b>Ghi chú:</b> <span id="note"></span></p>
-                                        </li> -->
                             </ul>
 
                             <table class="table table-bordered table-order" style="border-collapse:collapse;width:100%;">
                                 <thead>
                                     <tr>
                                         <td style="width:55%">Tên sản phẩm</td>
-
                                         <td style="width:15%">Giá</td>
                                         <td style="width:15%">Số lượng</td>
                                         <td style="width:15%">Thành tiền</td>
@@ -163,30 +142,17 @@
                                             <div class="wrap"> ₫</div>
                                         </td>
                                     </tr>
-                                    @endforeach;
+                                    @endforeach
                                  
                                     <tr style="background-color: #f9f9fa">
                                         <td>
                                             <b style="font-size: 16px; font-weight: 700" class="color-red">Tổng tiền (DS)</b><br>
                                         </td>
                                         <td colspan="2"></td>
-
-
                                         <td style="vertical-align: middle">
                                             <b class="color-red" style="font-size: 17px; white-space: nowrap"> {{$order->test}} ₫</b>
                                         </td>
                                     </tr>
-                                    <!-- <tr style="background-color: #f9f9fa">
-                                                <td>
-                                                    <b style="font-size: 16px; font-weight: 700" class="color-red">Tổng tiền (TT)</b><br>
-                                                </td>
-
-                                                <td colspan="2">5% VAT(21,000 ₫)</td>
-
-                                                <td style="vertical-align: middle">
-                                                    <b class="color-red" style="font-size: 17px; white-space: nowrap">441,000 ₫</b>
-                                                </td>
-                                            </tr> -->
                                 </tbody>
                             </table>
                         </div>
@@ -194,33 +160,8 @@
                 </div>
             </div>
             @endforeach
-
-            <!-- End Model Here -->
-            <div class="pagination">
-                <div class="left">
-                    <a href="#" class="back0"></a>
-                    <a href="#" class="back1"></a>
-                    <div style="margin-top: 2px;">
-                        <span>Page</span>
-                        <input type="text" name="page" value="1">
-                        <input type="hidden" value="1">
-                        <span>/2</span>
-                    </div>
-                    <a href="#" class="next1"></a>
-                    <a href="#" class="next0"></a>
-                </div>
-                <div class="right">
-                    <span>Amount results per page:</span>
-                    <select name="RowPerPage">
-                        <option value="5" selected="">5</option>
-                        <option value="10">10</option>
-                        <option value="15">15</option>
-                        <option value="20">20</option>
-                    </select>
-                    <span>/ Totally: 6</span>
-                </div>
-            </div>
         </div>
+        
     </div>
 </div>
 @endsection

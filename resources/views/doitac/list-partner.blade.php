@@ -31,10 +31,9 @@
 
                                                 <tr>
                                                     <!-- <th style="width: 4.51%;">#</th> -->
-                                                    <th data-col-seq="3" style="width: 10.72%;">Người giới thiệu</th>
-                                                    <th data-col-seq="2" style="width: 10.8%;"><a href="javascript:void(0)" data-sort="username">ID Đại lý</a></th>
+                                                    <th data-col-seq="3" style="width: 10.72%;">TK giới thiệu</th>
+                                                    <th style="width: 8.58%;">Tên Tài khoản</th>
                                                     <th data-col-seq="3" style="width: 12.21%;">Họ tên</th>
-                                                    <th style="width: 8.58%;">Tài khoản</th>
                                                     <th data-col-seq="4" style="width: 10.83%;">Điện thoại</th>
                                                     <th data-col-seq="5" style="width: 8.31%;" class="text-center"><a href="javascript:void(0)" data-sort="level">Cấp</a></th>
                                                     <th data-col-seq="6" style="width: 11.85%;"><a href="javascript:void(0)" data-sort="created_at">Thời gian đăng ký</a></th>
@@ -49,10 +48,9 @@
                                             <tbody>
                                                 @foreach ($listChild as $value)
                                                 <tr>
-                                                    <td>{{DB::table('users')->where('id', $value->id_dad)->first()->name}}</td>
-                                                    <td>{{$value->magioithieu}}</td>
-                                                    <td>{{$value->name}}</td>
+                                                    <td>{{DB::table('users')->where('id', $value->id_dad)->first()->username}}</td>
                                                     <td>{{$value->username}}</td>
+                                                    <td>{{$value->name}}</td>
                                                     <td>{{$value->phone}}</td>
                                                     <td>
                                                         @if ($value->level == 1)

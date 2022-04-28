@@ -151,7 +151,7 @@
                             <div class="col-6">
                                 <p class="text-dark text-right m-0"
                                     style="font-size: 20px">
-                                    {{number_format($list->doanhso)}} VND</p>
+                                    {{number_format($list->doanhso+$list->doanhso_canhan)}} VND</p>
                             </div>
                         </div>
                         <p> </p>

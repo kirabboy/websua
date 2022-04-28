@@ -99,18 +99,20 @@ class CongThucController extends Controller
     
     public function congDoanhSoNhom($id, $amount) {
         $user = User::where('id', $id)->with('getParent','getPoint')->first();
-        $doanh_so_tuan = DoanhSoThang::where('user_id', $user->id)->first();
-        $doanh_so_tuan->doanhso += $amount;
-        $doanh_so_tuan->save();
+        if($user != null) {
+            $doanh_so_tuan = DoanhSoThang::where('user_id', $user->id)->first();
+            $doanh_so_tuan->doanhso += $amount;
+            $doanh_so_tuan->save();
 
-        $id_dad = $user->getParent;
-        
-        $diem_father = $user->getPoint;
-        $diem_father->doanhso += $amount;
-        $diem_father->save();
-        
-        if($id_dad != null) {
-            self::congDoanhSoNhom($id_dad->id, $amount);
+            $id_dad = $user->getParent;
+            
+            $diem_father = $user->getPoint;
+            $diem_father->doanhso += $amount;
+            $diem_father->save();
+            
+            if($id_dad != null) {
+                self::congDoanhSoNhom($id_dad->id, $amount);
+            }
         }
     }
 

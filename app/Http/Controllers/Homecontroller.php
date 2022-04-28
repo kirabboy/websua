@@ -35,7 +35,6 @@ class HomeController extends Controller
         $points= Promotion::where('points','>',0)->latest()->get();
         $diem_user = Point::find(auth()->user()->id);
         $history = PromotionHistory::where('user_id',auth()->user()->id)->get();
-        
         return view('user.index', compact(
             'user', 
             'soluong_f1',

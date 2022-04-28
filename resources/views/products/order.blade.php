@@ -25,30 +25,13 @@
 
                 </div>
                 <div class="body-document">
-                    <form id="frmSearch">
-                        <table class="table table-bordered table-striped" id="searchTable">
-                            <tbody>
-                                <tr>
-                                    <td>Từ khóa </td>
-                                    <td><input type="text" id="Keyword" class="form-control" name="Keyword" placeholder="Từ khóa"></td>
-                                </tr>
-                                <tr class="text-center">
-                                    <td colspan="2">
-                                        <a class="btn btn-primary text-light" id="btnFill">Tìm kiếm</a>
-                                        <a class="btn btn-primary  text-light" id="btnExport">Xuất file</a>
-                                    </td>
-                                </tr>
-
-                            </tbody>
-                        </table>
-                    </form>
                     <div class="product-items">
                         <div class="row">
                             @foreach ( $product as $products)
                             <div class=" col-12 col-md-6 ">
                                 <div class="box-product">
                                     <div class="row">
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-6 text-center">
                                             <a title="{{$products->name}}" href="{{url('/dat-hang')}}/{{$products->id}}">
                                                 <img src="{{url('/public/image')}}/{{$products->image}}"></a>
                                         </div>
