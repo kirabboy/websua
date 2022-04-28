@@ -56,6 +56,11 @@
 .sidebar-main .side-nav li .support p i {
   padding-right: 5px;
 }
+.sidebar-main .side-nav li .support a:hover,
+.sidebar-main .side-nav li .support a:focus{
+  background: none !important;
+  color: #878793 !important;
+}
 
 .logo-brand {
   background-color: #fff;

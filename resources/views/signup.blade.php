@@ -119,66 +119,40 @@
                             @enderror
                         </div>
                     </div>
-                    <!-- thông tin cmnd -->
-                    <!-- <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label>Số CMND/CCCD</label>
-                            <input type="text" name="cmnd" class="form-control">
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label>Ngày cấp</label>
-                            <input type="date" class="form-control" name="ngaycmnd" value="2020-01-01">
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label>Nơi cấp</label>
-                            <input type="text" name="noicmnd" class="form-control">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label>Ảnh CMT mặt trước</label>
-                            <div class="cmt">
-                                <input id="cmttruoc" type="file" name="cmttruoc" class="form-control">
-                                <img id="anhcmttruoc" src="{{ asset('public/img/img_nogr.jpg') }}" alt="">
-                            </div>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label>Ảnh CMT mặt sau</label>
-                            <div class="cmt">
-                                <input id="cmtsau" type="file" name="cmtsau" class="form-control">
-                                <img id="anhcmtsau" src="{{ asset('public/img/img_nogr.jpg') }}" alt="">
-                            </div>
-                        </div>
-                    </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputState">Tên ngân hàng</label>
-                            <input type="text" class="form-control text-capitalize" name="nganhang" placeholder="Vd: Sacombank">
+                            <select class="form-control" name="nganhang" required>
+                                <option value=""> -- Chọn ngân hàng -- </option>
+                                @foreach (DB::table('nganhang')->get() as $value)
+                                <option value="{{ $value->id }}">{{ $value->tennganhang }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group col-md-6">
                             <label>Tài khoản ngân hàng</label>
-                            <input type="text" class="form-control" name="taikhoannh">
+                            <input id="taikhoannh" type="text" onkeyup="HienThi('taikhoannh')" class="form-control @error('taikhoannh') border-danger @enderror" name="taikhoannh" value="{{ old('taikhoannh') }}">
+                            @error('taikhoannh')
+                            <div class="text-danger taikhoannh">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label>Chủ thẻ</label>
-                            <input type="text" class="form-control text-uppercase" name="chuthe">
+                            <input id="chuthe" type="text" onkeyup="HienThi('chuthe')" class="form-control text-uppercase @error('chuthe') border-danger @enderror" name="chuthe" value="{{ old('chuthe') }}">
+                            @error('chuthe')
+                            <div class="text-danger chuthe">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group col-md-6">
                             <label>Chi nhánh</label>
-                            <input type="text" class="form-control" name="chinhanh">
+                            <input id="chinhanh" type="text" onkeyup="HienThi('chinhanh')" class="form-control @error('chinhanh') border-danger @enderror" name="chinhanh" value="{{ old('chinhanh') }}">
+                            @error('chinhanh')
+                            <div class="text-danger chinhanh">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label>Ảnh đại diện</label>
-                            <div class="cmt">
-                                <input id="daidien" type="file" name="daidien" class="form-control">
-                                <img id="anhdaidien" src="{{ asset('public/img/img_nogr.jpg') }}" alt="">
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
 
                 <!-- ĐIỀU KHOẢN CỘNG TÁC VIÊN -->
@@ -200,7 +174,7 @@
                                                         - Được hưởng tiền thù lao cộng tác viên theo quy định.
                                                     </li>
                                                     <li>
-                                                        - Được cung cấp tài khoản, mật khẩu tài khoản trên hệ thống bán hàng; chủ động tổ chức thực hiện các công việc cần thiết để tiếp xúc, trao đổi, đàm phán tư vấn, giới thiệu sản phẩm của Forviet với khách hàng.
+                                                        - Được cung cấp tài khoản, mật khẩu tài khoản trên hệ thống bán hàng; chủ động tổ chức thực hiện các công việc cần thiết để tiếp xúc, trao đổi, đàm phán tư vấn, giới thiệu sản phẩm của LuckymilkVN với khách hàng.
                                                     </li>
                                                     <li>
                                                         - Được tra cứu số liệu đối soát hàng tháng của mình trên hệ thống.
@@ -209,7 +183,7 @@
                                                         - Được quyền chủ động về thời gian, địa điểm và cách thức thực hiện công việc phù hợp với quy định của pháp luật.
                                                     </li>
                                                     <li>
-                                                        - Được yêu cầu Forviet hướng dẫn, đào tạo các kỹ năng, nghiệp vụ cần thiết, cung cấp các thông tin, tài liệu, văn bản, các chương trình khuyến mại, thay đổi giá và các quy trình, nghiệp vụ,... liên quan đến các sản phẩm mà Cộng tác viên làm cộng tác viên để cung cấp cho khách hàng.
+                                                        - Được yêu cầu LuckymilkVN hướng dẫn, đào tạo các kỹ năng, nghiệp vụ cần thiết, cung cấp các thông tin, tài liệu, văn bản, các chương trình khuyến mại, thay đổi giá và các quy trình, nghiệp vụ,... liên quan đến các sản phẩm mà Cộng tác viên làm cộng tác viên để cung cấp cho khách hàng.
                                                     </li>
                                                 </ul>
                                             </li>
@@ -220,28 +194,28 @@
                                                         - Tự chịu trách nhiệm về pháp lý trong mọi hoạt động của mình.
                                                     </li>
                                                     <li>
-                                                        - Cam kết cung cấp chính xác các thông tin của mình cho Forviet để phục vụ cho việc kiểm tra, đối chiếu và thanh toán.
+                                                        - Cam kết cung cấp chính xác các thông tin của mình cho LuckymilkVN để phục vụ cho việc kiểm tra, đối chiếu và thanh toán.
                                                     </li>
                                                     <li>
-                                                        - Thực hiện việc tìm kiếm khách hàng, tư vấn, chăm sóc, giới thiệu sản phẩm, dịch vụ và các hoạt động khác trung thực, rõ ràng, minh bạch và theo đúng các quy định của Forviet. Hướng dẫn khách hàng mua các sản phẩm của Forviet.
+                                                        - Thực hiện việc tìm kiếm khách hàng, tư vấn, chăm sóc, giới thiệu sản phẩm, dịch vụ và các hoạt động khác trung thực, rõ ràng, minh bạch và theo đúng các quy định của LuckymilkVN. Hướng dẫn khách hàng mua các sản phẩm của LuckymilkVN.
                                                     </li>
                                                     <li>
-                                                        - Bảo mật bí mật kinh doanh của Forviet; cam kết sử dụng tài khoản, các vật dụng, tài liệu và các tài sản khác do Forviet cung cấp (nếu có) theo đúng các mục đích và yêu cầu của Forviet trong việc chăm sóc khách hàng, quảng bá, giới thiệu sản phẩm, dịch vụ và hình ảnh của Forviet.
+                                                        - Bảo mật bí mật kinh doanh của LuckymilkVN; cam kết sử dụng tài khoản, các vật dụng, tài liệu và các tài sản khác do LuckymilkVN cung cấp (nếu có) theo đúng các mục đích và yêu cầu của LuckymilkVN trong việc chăm sóc khách hàng, quảng bá, giới thiệu sản phẩm, dịch vụ và hình ảnh của LuckymilkVN.
                                                     </li>
                                                     <li>
                                                         - Không tiến hành quảng bá, kinh doanh, phân phối sản phẩm, dịch vụ bằng hình thức quấy rối, gian lận,...; Không quảng bá sản phẩm, dịch vụ trên các kênh vi phạm pháp luật, trái với thuần phong mỹ tục, kênh bị tranh chấp và/hoặc các hình thức không được pháp luật cho phép hoặc chưa quy định rõ ràng,…
                                                     </li>
                                                     <li>
-                                                        - Đảm bảo thái độ làm việc tích cực, đúng quy định, giao tiếp lịch sự, không làm tổn hại đến uy tín, hình ảnh và sản phẩm, dịch vụ của Forviet.
+                                                        - Đảm bảo thái độ làm việc tích cực, đúng quy định, giao tiếp lịch sự, không làm tổn hại đến uy tín, hình ảnh và sản phẩm, dịch vụ của LuckymilkVN.
                                                     </li>
                                                     <li>
-                                                        - Tổng hợp, thông báo và cung cấp cho Forviet các yêu cầu, ý kiến, góp ý của khách hàng về sản phẩm, dịch vụ của Forviet (nếu có).
+                                                        - Tổng hợp, thông báo và cung cấp cho LuckymilkVN các yêu cầu, ý kiến, góp ý của khách hàng về sản phẩm, dịch vụ của LuckymilkVN (nếu có).
                                                     </li>
                                                     <li>
-                                                        - Không tiết lộ cho bất kỳ bên thứ ba nào khác các thông tin về bí mật kinh doanh, thông tin về dịch vụ của Forviet, thông tin về khách hàng sử dụng dịch vụ của Forviet và các thông tin liên quan khi chưa nhận được sự đồng ý của Forviet.
+                                                        - Không tiết lộ cho bất kỳ bên thứ ba nào khác các thông tin về bí mật kinh doanh, thông tin về dịch vụ của LuckymilkVN, thông tin về khách hàng sử dụng dịch vụ của LuckymilkVN và các thông tin liên quan khi chưa nhận được sự đồng ý của LuckymilkVN.
                                                     </li>
                                                     <li>
-                                                        - Không được chuyển giao một phần hoặc toàn bộ quyền, nghĩa vụ của mình cho người khác dưới bất kỳ hình thức nào nếu không được sự chấp thuận của Forviet.
+                                                        - Không được chuyển giao một phần hoặc toàn bộ quyền, nghĩa vụ của mình cho người khác dưới bất kỳ hình thức nào nếu không được sự chấp thuận của LuckymilkVN.
                                                     </li>
                                                     <li>
                                                         - Thực hiện các nghĩa vụ về thuế, phí và các chi phí khác liên quan (nếu có) đến quá trình thực hiện thỏa thuận này.
@@ -269,7 +243,7 @@
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="checkbtn_dk">
                                 <label class="custom-control-label" for="checkbtn_dk" style="font-weight: 500;">Tôi đã Đọc và đồng ý với các
-                                    <a href="#" data-toggle="modal" style="color: #007bff;" data-target="#ruleId">Quy định và Điều khoản</a> của Forviet, cam kết thực hiện đầy đủ các nội dung nêu trên.</label>
+                                    <a href="#" data-toggle="modal" style="color: #007bff;" data-target="#ruleId">Quy định và Điều khoản</a> của LuckymilkVN, cam kết thực hiện đầy đủ các nội dung nêu trên.</label>
                             </div>
                         </div>
                     </div>

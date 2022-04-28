@@ -70,6 +70,9 @@ class UserController extends Controller
             'address.required' => 'Nhập số nhà!',
             'email.email' => 'Sai định dạng email!',
             'email.unique' => 'Email đã được sử dụng!',
+            'taikhoannh.required' => 'Nhập tài khoản ngân hàng!',
+            'chuthe.required' => 'Nhập chủ thẻ ngân hàng!',
+            'chinhanh.required' => 'Nhập chi nhánh ngân hàng!',
         ];
         $request->validate([
             'username' => 'required|unique:users,username',
@@ -79,6 +82,9 @@ class UserController extends Controller
             'phone' => 'digits_between:7,11|unique:users,phone',
             'address' => 'required',
             'email' => 'email|unique:users,email',
+            'taikhoannh' => 'required',
+            'chuthe' => 'required',
+            'chinhanh' => 'required',
         ], $error);
 
         $user = new User();
@@ -93,6 +99,10 @@ class UserController extends Controller
         $user->xa = $request->sel_ward;
         $user->email = $request->email;
         $user->level = 3;
+        $user->nganhang = $request->nganhang;
+        $user->taikhoannh = $request->taikhoannh;
+        $user->chuthe = $request->chuthe;
+        $user->chinhanh = $request->chinhanh;
         $user->save();
         $this->phanvaitro($user->id, $user->level);
         $point = new Point();
