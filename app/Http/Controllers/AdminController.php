@@ -123,7 +123,7 @@ class AdminController extends Controller
         }
 
         $this->phanvaitro($user->id, $user->level);
-        return back()->with('mess', 'Thay đổi thông tin thành công!');
+        return back()->with('mess', 'Cập nhật thành công!');
     }
     public function changePassword(Request $request, $id)
     {

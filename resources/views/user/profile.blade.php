@@ -102,7 +102,17 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Tên ngân hàng</label>
                     <div class="col-sm-4">
-                        <input class="form-control" name="nganhang" type="text" value="{{DB::table('nganhang')->where('id',Auth::user()->nganhang)->first()->tennganhang}}" @if(Auth::user()->status == 1) disabled @endif>
+                        @if(Auth::user()->status == 1)
+                        <input class="form-control" name="nganhang" type="text" value="{{DB::table('nganhang')->where('id',Auth::user()->nganhang)->first()->tennganhang}}" disabled>
+                        @else
+                        <select class="form-control" name="nganhang" required>
+                            <option value="0"> -- Chọn ngân hàng -- </option>
+                            @foreach ($nganhang as $value)
+                            <option value="{{ $value->id }} " @if($value->id == Auth::user()->nganhang) selected @endif>{{ $value->tennganhang }}
+                            </option>
+                            @endforeach
+                        </select>
+                        @endif
                     </div>
                     <label class="col-sm-2 col-form-label">Tài khoản NH</label>
                     <div class="col-sm-4">
