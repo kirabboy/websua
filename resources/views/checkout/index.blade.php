@@ -6,7 +6,7 @@
 @section('content')
 
 <!--Main layout-->
-<main class="mt-5 pt-4">
+<main class="mt-5">
   <div class="container wow fadeIn">
 
     <!-- Heading -->
@@ -28,23 +28,19 @@
             <!--Grid row-->
             <div class="row">
               <!--Grid column-->
-              <div class="col-md-6 mb-2">
-
-                <!--firstName-->
-
-                <div class="md-form ">
-                  <label for="firstName" class="">Tên</label>
+              <div class="col-md-6 mb-3">
+                  <label for="firstName" class="">Tên người nhận</label>
                   <input type="text" id="firstName" class="form-control" name="full_name"  placeholder="Nhập tên">
-
-                </div>
-
               </div>
              
-              <div class="md-form mb-5 col-md-6">
-              <label for="address" class="">Địa chỉ</label>
-              <input type="text" id="address" class="form-control" placeholder="Nhập địa chỉ" name="street_address">
-
-            </div>
+              <div class="md-form col-md-6 mb-3">
+                <label for="address" class="">Số điện thoại nhận hàng</label>
+                <input type="text" id="phone" class="form-control" placeholder="Nhập số điện thoại nhận hàng" name="phone">
+              </div>
+              <div class="md-form mb-3 col-md-12">
+                <label for="address" class="">Địa chỉ giao hàng</label>
+                <input type="text" id="address" class="form-control" placeholder="Nhập số nhà, tên dường" name="street_address">
+              </div>
 
             </div>
 
@@ -101,12 +97,10 @@
           @foreach ($carts as $cart)
           <li class="list-group-item d-flex justify-content-between lh-condensed">
             <div>
-              <h6 class="my-0">{{$cart->name}} x {{$cart->qty}}
-
-              </h6>
+              <h6 class="my-0">{{$cart->name}} x {{$cart->qty}}</h6>
 
             </div>
-            <span class="text-muted">{{$cart->price * $cart->qty}} VNĐ</span>
+            <span class="text-muted">{{number_format($cart->price * $cart->qty)}} VNĐ</span>
           </li>
           @endforeach
           <li class="list-group-item d-flex justify-content-between">

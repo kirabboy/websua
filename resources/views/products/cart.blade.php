@@ -12,7 +12,7 @@
                         <th>Tên sản phẩm</th>
 
                         <th style="white-space: nowrap" class="hidden-xs">Giá</th>
-                        <th style="white-space: nowrap" class="text-center"> <span class="c-visible" style="color:black">Giá/</span>Số lượng</th>
+                        <th style="white-space: nowrap" class="text-center">Số lượng</th>
                         <th style="white-space: nowrap">Thành tiền</th>
                         <th style="white-space: nowrap"><span class="hidden-xs">Hành động</span></th>
                     </tr>
@@ -33,46 +33,35 @@
                             </div>
                         </td>
                         <td class="td-responsive  hidden-xs" data-title="Giá:" style="white-space: nowrap">
-                            <div class="tlt_left hidden-xs">
+                            <!-- <div class="tlt_left hidden-xs">
                                 <span>Giá</span>
-                            </div>
+                            </div> -->
                             <div class="wrap price right-mobile">
-                                {{$cart->price}}₫
+                                {{number_format($cart->price)}} ₫
                             </div>
 
                         </td>
-                        <td class="td-responsive text-center" data-title="Số lượng:">
-                            <div class="wrap price right-mobile visible-xs">
+                        <td class="td-responsive text-center pl-0 pr-0" data-title="Số lượng:">
+                            <!-- <div class="wrap price right-mobile visible-xs">
                                 {{$cart->price}} ₫
-                            </div>
-                            <div class="tlt_left">
+                            </div> -->
+                            <!-- <div class="tlt_left">
                                 <span>Số lượng</span>
-                            </div>
+                            </div> -->
                             <div class="wrap number wan-spinner wan-spinner-detail-pro right-mobile">
-                                <!-- <div class="buttons_added">
-                                    <input class="minus is-form" type="button" value="-">
-                                    <input aria-label="quantity" class="input-qty" max="100" min="1" name="" type="text" value="{{$cart->qty}}" data-rowid={{$cart->rowId}}>
-                                    <input class="plus is-form" type="button" value="+">
-                                </div> -->
                                 <div class="quantity">
                                     <div class="pro-qty">
-                                    <input aria-label="quantity" class="input-qty"  name="" type="text" value="{{$cart->qty}}" data-rowId={{$cart->rowId}}>
+                                        <input aria-label="quantity" class="input-qty"
+                                        type="text" value="{{$cart->qty}}" data-rowId="{{$cart->rowId}}">
                                     </div>
                                 </div>
-
-
-                                <!-- onchange="updateCart('15','1','Phôi Mầm Đậu Nành SOYGERM 60 viên')" data-price="200000" data-namesub="soy - Phôi Mầm Đậu Nành SOYGERM 60 viên"  -->
-                                <!-- <a href="#" class="minus">-</a>
-                                <input aria-label="quantity" class="input-qty" name="" type="text" value="{{$cart->qty}}" data-class="total-mask form-control bfh-number">
-                                <a href="#" class="plus">+</a> -->
-
                             </div>
                         </td>
                         <td class="td-responsive price " data-title="Thành tiền:" style="white-space: nowrap;">
-                            <div class="tlt_left hidden-xs">
+                            <!-- <div class="tlt_left hidden-xs">
                                 <span>Thành tiền </span>
-                            </div>
-                            <div class="wrap right-mobile"> {{$cart->price*$cart->qty}} ₫</div>
+                            </div> -->
+                            <div class="wrap right-mobile"> {{number_format($cart->price*$cart->qty)}} ₫</div>
                         </td>
                         <td class="td-responsive price" data-title="Thành tiền:" style="white-space: nowrap;">
                             <a href="./gio-hang/delete/{{$cart->rowId}}" class="btn btn-danger btn-icon-split">Xóa</a>
@@ -123,8 +112,9 @@
 
         </div>
         @else
-        <div class="col-12">
-            <h3>Giỏ hàng trống</h3>
+        <div class="col-12 text-center">
+            <h3>Giỏ hàng hiện tại của bạn đang trống</h3>
+            <a class="btn btn-danger text-white" href="{{url('/dat-hang')}}">Đặt hàng ngay</a>
         </div>
         @endif
     </div>
@@ -132,7 +122,3 @@
 
 
 @endsection
-@push('scripts')
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="{{ asset('public/js/product.js') }}"></script>
-@endpush

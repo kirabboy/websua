@@ -17,6 +17,8 @@
         
         <div class="widget-body">
             <table class="table table-bordered table-striped table-hover bangthuong text-center ">
+
+            @if($orders!= null)
                 <thead>
                     <tr>
                         <th>Thời gian mua hàng</th>
@@ -30,7 +32,6 @@
                 </thead>
                 <tbody>
                     @foreach ( $orders as $order)
-                    @if($order->users_id == Auth::user()->id)
                     <tr>
                         <td>{{$order->created_at}}</td>
                         <td>{{$order->test}}
@@ -58,22 +59,23 @@
                             </a>
                         </td>
                     </tr>
-                    @else
-                        <style>
-                            thead {
-                                display: none;
-                            }
-                        </style>
-                        <h3 class="text-danger text-center">Hiện tại bạn chưa có đơn đặt hàng nào!</h3>
-                        <div class="text-center">
-                            <a class="btn btn-danger text-white" href="{{url('dat-hang')}}">Đặt hàng ngay !</a>
-                        </div>
-                    @endif
                     @endforeach
                     
                 </tbody>
             </table>
 
+            @else
+            <style>
+                thead {
+                    display: none;
+                }
+                </style>
+                <h3 class="text-danger text-center">Hiện tại bạn chưa có đơn đặt hàng nào!</h3>
+                
+                <div class="text-center">
+                    <a class="btn btn-danger text-white" href="{{url('dat-hang')}}">Đặt hàng ngay !</a>
+                </div>
+            @endif
             <!-- Model here -->
             @foreach ( $orders as $order)
             <div class="modal fade" id="create_sales_{{$order->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
