@@ -104,13 +104,12 @@
                     <label class="col-sm-2 col-form-label">Tên ngân hàng</label>
                     <div class="col-sm-4">
                         <select class="form-control" name="nganhang" required>
-                            <option value="0"> -- Chọn ngân hàng -- </option>
+                            <option value=""> -- Chọn ngân hàng -- </option>
                             @foreach ($nganhang as $value)
                             <option value="{{ $value->id }} " @if($value->id == $userchange->nganhang) selected @endif>{{ $value->tennganhang }}
                             </option>
                             @endforeach
                         </select>
-                        <!-- <input type="text" name="nganhang" class="form-control text-capitalize" placeholder="Vd: Sacombank" value="{{$userchange->nganhang}}"> -->
                     </div>
                     <label class="col-sm-2 col-form-label">Tài khoản NH</label>
                     <div class="col-sm-4">
@@ -169,6 +168,13 @@
                         <p class="text-danger m-0" style="font-size: 14px ">Hiện tại {{$userchange->username}} đang có {{number_format($point->point)}} điểm.</p>
                         <p class="text-danger m-0" style="font-size: 14px ">Tài khoản admin đang có 
                             {{number_format(DB::table('point')->where('user_id', 1)->first()->point)}} điểm.</p>
+                    </div>
+                    <label class="col-sm-2 col-form-label">Cấp quyền</label>
+                    <div class="col-sm-4">
+                        <div class="form-control">
+                            <input type="checkbox" name="chinhsua" style="width:16px;height:16px" @if($userchange->status == 2) checked @endif> Được thay đổi thông tin <br/>
+                            <input type="checkbox" name="lamttpp" style="width:16px;height:16px" @if($userchange->status_trungtampp == 2) checked @endif> Được cấp quyền làm trung tâm phân phối
+                        </div>
                     </div>
                 </div>
             </div>

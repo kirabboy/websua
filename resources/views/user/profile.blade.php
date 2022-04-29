@@ -60,7 +60,7 @@
                     </div>
                     <label class="col-sm-2 col-form-label">Điện thoại</label>
                     <div class="col-sm-4">
-                        <input type="text" name="phone" class="form-control" value="{{Auth::user()->phone}}">
+                        <input type="text" name="phone" class="form-control" value="{{Auth::user()->phone}}" @if(Auth::user()->status == 1) disabled @endif>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -102,28 +102,21 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Tên ngân hàng</label>
                     <div class="col-sm-4">
-                        <select class="form-control" name="nganhang" required>
-                            <option value="0"> -- Chọn ngân hàng -- </option>
-                            @foreach ($nganhang as $value)
-                            <option value="{{ $value->id }} " @if($value->id == Auth::user()->nganhang) selected @endif>{{ $value->tennganhang }}
-                            </option>
-                            @endforeach
-                        </select>
-                        <!-- <input type="text" name="nganhang" class="form-control text-capitalize" placeholder="Vd: Sacombank" value="{{Auth::user()->nganhang}}"> -->
+                        <input class="form-control" name="nganhang" type="text" value="{{DB::table('nganhang')->where('id',Auth::user()->nganhang)->first()->tennganhang}}" @if(Auth::user()->status == 1) disabled @endif>
                     </div>
                     <label class="col-sm-2 col-form-label">Tài khoản NH</label>
                     <div class="col-sm-4">
-                        <input type="text" name="taikhoannh" class="form-control" value="{{Auth::user()->taikhoannh}}">
+                        <input type="text" name="taikhoannh" class="form-control" value="{{Auth::user()->taikhoannh}}" @if(Auth::user()->status == 1) disabled @endif>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Chủ thẻ</label>
                     <div class="col-sm-4">
-                        <input type="text" name="chuthe" class="form-control text-uppercase" value="{{Auth::user()->chuthe}}">
+                        <input type="text" name="chuthe" class="form-control text-uppercase" value="{{Auth::user()->chuthe}}" @if(Auth::user()->status == 1) disabled @endif>
                     </div>
                     <label class="col-sm-2 col-form-label">Chi nhánh</label>
                     <div class="col-sm-4">
-                        <input type="text" name="chinhanh" class="form-control" value="{{Auth::user()->chinhanh}}">
+                        <input type="text" name="chinhanh" class="form-control" value="{{Auth::user()->chinhanh}}" @if(Auth::user()->status == 1) disabled @endif>
                     </div>
                 </div>
                 <div class="form-group row">

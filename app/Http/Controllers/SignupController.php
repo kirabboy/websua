@@ -41,6 +41,9 @@ class SignupController extends Controller
             'address.required' => 'Nhập số nhà!',
             'email.email' => 'Sai định dạng email!',
             'email.unique' => 'Email đã được sử dụng!',
+            'taikhoannh.required' => 'Nhập tài khoản ngân hàng!',
+            'chuthe.required' => 'Nhập chủ thẻ ngân hàng!',
+            'chinhanh.required' => 'Nhập chi nhánh ngân hàng!',
         ];
         
         $request->validate([
@@ -51,6 +54,9 @@ class SignupController extends Controller
             'phone' => 'digits_between:7,11|unique:users,phone',
             'address' => 'required',
             'email' => 'email|unique:users,email',
+            'taikhoannh' => 'required',
+            'chuthe' => 'required',
+            'chinhanh' => 'required',
         ], $error);
         
         if (!$this->ktId_dad($request->gioithieu) && $request->btn_gioithieu ) {
@@ -58,7 +64,9 @@ class SignupController extends Controller
         };
 
         $user = new User();
-        $user->id_dad = $this->ktId_dad($request->gioithieu);
+        if($this->ktId_dad($request->gioithieu)){
+            $user->id_dad = $this->ktId_dad($request->gioithieu);
+        }
         $user->username = $request->username;
         $user->password = Hash::make($request->password);
         $user->name = $request->name;
@@ -69,6 +77,10 @@ class SignupController extends Controller
         $user->xa = $request->sel_ward;
         $user->email = $request->email;
         $user->level = 3;
+        $user->nganhang = $request->nganhang;
+        $user->taikhoannh = $request->taikhoannh;
+        $user->chuthe = $request->chuthe;
+        $user->chinhanh = $request->chinhanh;
         $user->save();
 
         $this->phanvaitro($user->id, $user->level);

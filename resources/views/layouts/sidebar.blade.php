@@ -135,9 +135,9 @@
 
 		<li>
 			<div class="support">
-				<p><i class="fa-solid fa-phone"></i>: 0329385699 </p>
-				<p><i class="fa-solid fa-envelope"></i>: luckymilk42@gmail.com </p>
-				<p><a class="p-2 btn" href="{{url('/logout')}}"><i class="fa-solid fa-arrow-right-from-bracket"></i>: Đăng xuất</a></p>
+				<p><a class="p-0" href="tel:0329385699"><i class="fa-solid fa-phone"></i>: 032.938.5699 </a></p>
+				<p><a class="p-0" href="mailto:luckymilk42@gmail.com"><i class="fa-solid fa-envelope"></i>: luckymilk42@gmail.com </a></p>
+				<p><a class="p-0" href="{{url('/logout')}}"><i class="fa-solid fa-arrow-right-from-bracket"></i>: Đăng xuất</a></p>
 			</div>
 		</li>
 	</ul>

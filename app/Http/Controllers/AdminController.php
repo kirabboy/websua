@@ -78,6 +78,10 @@ class AdminController extends Controller
             }
             else return back()->withErrors(['msg' => 'Email đã được sử dụng!']);
         }
+        if($request->chinhsua) $user->status = 2;
+        else $user->status = 1;
+        if($request->lamttpp) $user->status_trungtampp = 2;
+        else $user->status_trungtampp = 1;
 
         $user->name = $request->name;
         $user->address = $request->address;
