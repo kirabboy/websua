@@ -172,12 +172,12 @@
                                         <div class="mg-30" style="margin-top: 5px">
                                             <p class="text-center">
                                                 <span class="label label-success" style="font-size: 14px" name="point">
-                                                    {{number_format($point->points)}} điểm</span>
+                                                    {{number_format($point->points)}} VNĐ</span>
                                             </p>
                                         </div>
                                         <div class="mg-10">
                                             <a href="{{url('/promotion')}}/{{$point->points}}"
-                                                class="btn btn-primary btn-sm" style="width:100%">Đổi điểm</a>
+                                                class="btn btn-primary btn-sm text-uppercase" style="width:100%">Đổi {{$point->name}}</a>
                                         </div>
                                     </div>
                                 </div>

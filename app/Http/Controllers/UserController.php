@@ -169,6 +169,7 @@ class UserController extends Controller
             }
             else return back()->withErrors(['msg' => 'Email đã được sử dụng!']);
         }
+        if($user->status == 2) $user->status = 1;
 
         $user->name = $request->name;
         $user->address = $request->address;
