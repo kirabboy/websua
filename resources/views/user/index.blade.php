@@ -36,7 +36,6 @@
                                 <h5> DOANH SỐ CÁ NHÂN</h5>
                                 <p class="ms-card-change">{{number_format($user->getPoint->doanhso_canhan)}} VNĐ</p>
                             </div>
-
                         </div>
                         <div class="col-auto">
                             <i class="fa-solid fa-award fa-2x text-light"></i>
@@ -69,6 +68,7 @@
         <!-- Số điểm hiện tại của user -->
         <div class="col-xl-4 col-12 card-table ">
             <div class="card card-gradient-primary shadow h-100 py-2">
+                <a data-toggle="modal" data-target="#model_hoa_hong_duoc_huong">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col">
@@ -83,6 +83,7 @@
                         </div>
                     </div>
                 </div>
+                </a>
             </div>
         </div>
 
@@ -126,8 +127,6 @@
             </div>
         </div>
     </div>
-
-
 
 <!----------------------------- Đổi thưởng lấy xe máy ---------------->    
     <div class="row">
@@ -192,6 +191,28 @@
         </div>
     </div>
 <!----------------------------- End Đổi thưởng lấy xe máy ---------------->    
+</div>
+
+<!-- Modal show tiền hoa hồng đã được chuyển khoản -->
+<div class="modal fade" id="model_hoa_hong_duoc_huong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document" style="margin-top: 200px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-uppercase" id="exampleModalLabel">Hoa hồng được hưởng</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="text-dark m-0">Bạn có <span class="text-danger">
+                {{number_format($user->getPoint->point)}} </span> điểm hoa hồng</p>
+                <p class="text-dark m-0">Đã nhận <span class="text-danger">
+                {{number_format($user->getPoint->chuyenkhoan_hoahong)}} </span> VNĐ</p>
+                <p class="text-dark m-0">Chưa nhận <span class="text-danger">
+                {{number_format($user->getPoint->point-$user->getPoint->chuyenkhoan_hoahong)}} </span> VNĐ</p>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- /.container-fluid -->
 @endsection

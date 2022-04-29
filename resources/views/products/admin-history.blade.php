@@ -21,8 +21,9 @@
             <table class="table table-bordered table-striped table-hover bangthuong text-center ">
                 <thead>
                     <tr>
-                        <th style="cursor:pointer">Thời gian đặt</th>
+                        <th style="cursor:pointer">Thời gian </th>
                         <th>Khách hàng</th>
+                        <th>Số ĐT</th>
                         <th>Số tiền</th>
                         <th>Nơi phân phối</th>
                         <th>Trạng thái</th>
@@ -35,8 +36,9 @@
                     @foreach ( $orders as $order)
                     <tr>
 
-                        <td>{{$order->created_at->format('Y-m-d')}}</td>
-                        <td>{{$order->full_name}}
+                        <td>{{$order->created_at->format('Y/m/d')}}</td>
+                        <td>{{$order->full_name}}</td>
+                        <td>{{$order->phone}}</td>
                         <td>{{number_format($order->test)}} 
                         </td>
                         <td>{{DB::table('trungtampp')->where('id',$order->trungtam_pp)->first()->tentrungtam}}</td>
@@ -76,38 +78,42 @@
 
                         <div id="orderdetailprint" class="modal-content">
                             <h2 style="text-align:center;">Đơn Đặt Hàng</h2>
+                                <div class="p-3">
+                                    <p class="text-dark m-0"><strong>Tên người nhận hàng:</strong> 
+                                        <span>{{$order->full_name}}</span></p>
 
-                            <ul class="list-ifod clearfix">
-                                <li>
-                                    <p><b>Họ và tên: {{$order->full_name}}</b><span id="fullName">
+                                    <p class="text-dark m-0"><strong>Địa chỉ nhận:</strong> 
+                                        <span>{{$order->street_address}}</span></p>
 
-                                        </span></p>
-                                </li>
-                                <li>
-                                    <p><b>Địa chỉ nhận:</b> {{$order->street_address}}<span id="address"></span></p>
-                                </li>
+                                    <p class="text-dark m-0"><strong>Số điện thoại nhận hàng:</strong> 
+                                        <span>{{$order->phone}}</span></p>
 
-                                <li>
-                                    <p><b>Ngày tạo:</b> <span id="date">{{$order->created_at}}</span></p>
-                                </li>
-                            </ul>
+                                    <p class="text-dark m-0"><strong>Ngày gửi đơn hàng:</strong> 
+                                        <span>{{$order->created_at}}</span></p>
 
+                                    <p class="text-dark"><strong>Trạng thái hiện tại:</strong> 
+                                        <span>
+                                            @if ($order->status == 1)
+                                                Đang chờ được duyệt
+                                            @elseif ($order->status == 2)
+                                                Đã hoàn thành đơn hàng
+                                            @else
+                                                Đơn hàng đã bị hủy
+                                            @endif
+                                        </span>
+                                    </p>
+                                </div>
                             <table class="table table-bordered table-order" style="border-collapse:collapse;width:100%;">
                                 <thead>
                                     <tr>
                                         <td style="width:55%">Tên sản phẩm</td>
-
                                         <td style="width:15%">Giá</td>
                                         <td style="width:15%">Số lượng</td>
                                         <td style="width:15%">Thành tiền</td>
                                     </tr>
                                 </thead>
                                 <tbody>
-
                                     @foreach ( $get_products->where('id_order', $order->id) as $value )
-
-
-
                                     <tr>
                                         <td class="cart-item clearfix">
                                             <div class="img">
@@ -126,17 +132,14 @@
 
                                         <td class="td-responsive" data-title="Giá:" style="white-space: nowrap">
                                             <div class="wrap price">
-                                                {{$value->amount}} ₫
+                                                {{number_format($value->amount)}} ₫
                                             </div>
                                         </td>
                                         <td class="td-responsive" data-title="Số lượng:">
-
-                                            <div class="wrap number wan-spinner wan-spinner-detail-pro">
-                                                {{$value->qty}}
-                                            </div>
+                                            {{$value->qty}}
                                         </td>
                                         <td class="td-responsive price" data-title="Thành tiền:" style="white-space: nowrap;">
-                                            <div class="wrap">   {{$value->total}} ₫</div>
+                                            <div class="wrap">{{number_format($value->total)}} ₫</div>
                                         </td>
                                     </tr>
 
@@ -185,37 +188,39 @@
                                 <h2 style="text-align:center;">Đơn Đặt Hàng</h2>
 
                                 <ul class="list-ifod clearfix">
-                                    <li>
-                                        <p><b>Họ tên:</b> <span id="name">{{$order->full_name}}</span></p>
-                                        <!-- <input value="{{$order->full_name}}" class="form-control" type="text" name="full_name" id="full_name" required>
-                                        </input> -->
-                                    </li>
-                                    <li>
-                                        <p><b>Địa chỉ nhận:</b> {{$order->street_address}}<span id="address"></span></p>
-                                    </li>
+                                    <p class="text-dark m-0"><strong>Tên người nhận hàng:</strong> 
+                                        <span>{{$order->full_name}}</span></p>
 
-                                    <li>
-                                        <p><b>Ngày tạo:</b> <span id="date">{{$order->created_at}}</span></p>
-                                    </li>
-                                    <li>
+                                    <p class="text-dark m-0"><strong>Địa chỉ nhận:</strong> 
+                                        <span>{{$order->street_address}}</span></p>
 
-                                        <!-- <input type="text" name="status" id="status" required>
+                                    <p class="text-dark m-0"><strong>Số điện thoại nhận hàng:</strong> 
+                                        <span>{{$order->phone}}</span></p>
 
-                                        </input> -->
-                                        <select id="status" name="status" class="form-control select2" data-placeholder=" Cấp tỉnh " required>
+                                    <p class="text-dark m-0"><strong>Ngày gửi đơn hàng:</strong> 
+                                        <span>{{$order->created_at}}</span></p>
 
-                                            @foreach ($status as $value)
-                                            {{$value->id}}
-                                            <option value="{{ $value->id }}">
-                                                {{ $value->status_name }}
-                                            </option>
+                                    <p class="text-dark"><strong>Trạng thái hiện tại:</strong> 
+                                        <span>
+                                            @if ($order->status == 1)
+                                                Đang chờ được duyệt
+                                            @elseif ($order->status == 2)
+                                                Đã hoàn thành đơn hàng
+                                            @else
+                                                Đơn hàng đã bị hủy
+                                            @endif
+                                        </span>
+                                    </p>
 
-                                            @endforeach
-                                        </select>
-                                    </li>
-                                    <!-- <li>
-                                            <p><b>Ghi chú:</b> <span id="note"></span></p>
-                                        </li> -->
+                                    <select id="status" name="status" class="form-control select2" 
+                                        data-placeholder=" Cấp tỉnh " required>
+                                        @foreach ($status as $value)
+                                        {{$value->id}}
+                                        <option value="{{ $value->id }}">
+                                            {{ $value->status_name }}
+                                        </option>
+                                        @endforeach
+                                    </select>
                                 </ul>
                                 <div class="col-xs-12 col-sm-12 col-md-12 text-center pt-3 pb-4">
                                     <button type="submit" class="btn btn-primary test-form">Hoàn Thành</button>

@@ -211,10 +211,16 @@ class UserController extends Controller
         return back()->withErrors(['msg' => 'Mật khẩu cũ không đúng!']);
     }
     public function getTtpp(){
-        $trungtam = Trungtampp::select('id', 'user_id', 'tentrungtam')->get();
-        $trungtamcanhan = Trungtampp::select('id', 'user_id', 'tentrungtam')->where('user_id', Auth::user()->id)->get();
-        return view('user.trungtamphanphoi', compact('trungtam','trungtamcanhan'));
+        $status_trungtampp = auth()->user()->status_trungtampp;
+        if($status_trungtampp != 1) {
+            $trungtam = Trungtampp::select('id', 'user_id', 'tentrungtam')->get();
+            $trungtamcanhan = Trungtampp::select('id', 'user_id', 'tentrungtam')->where('user_id', Auth::user()->id)->get();
+            return view('user.trungtamphanphoi', compact('trungtam','trungtamcanhan'));
+        } else {
+            return redirect()->back();
+        }
     }
+    
     public function themTtpp(Request $request){
         $error = [
             'tenttpp.required' => 'Nhập tên trung tâm!',

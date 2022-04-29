@@ -35,11 +35,13 @@
 		</li>
 		@endrole
 		@role('admin|daily')
-		<li class="menu-item">
-			<a href="{{url('/trung-tam-phan-phoi')}}" class="@if(\Request::is('trung-tam-phan-phoi')) active  @endif">
-				<span><i class="fa-solid fa-landmark"></i>Trung tâm phân phối</span>
-			</a>
-		</li>
+			@if(auth()->user()->status_trungtampp != 1)
+			<li class="menu-item">
+				<a href="{{url('/trung-tam-phan-phoi')}}" class="@if(\Request::is('trung-tam-phan-phoi')) active  @endif">
+					<span><i class="fa-solid fa-landmark"></i>Trung tâm phân phối</span>
+				</a>
+			</li>
+			@endif
 		@endrole
 		<li class="menu-item">
 			<a href="{{url('/tai-lieu')}}" class="@if(\Request::is('tai-lieu') ) active  @endif">
@@ -64,11 +66,13 @@
 			</a>
 		</li>
 		@role('admin|daily')
-		<li class="menu-item">
-			<a href="{{url('/lich-su')}}" class="@if(\Request::is('lich-su') ) active  @endif">
-				<span><i class="fa-solid fa-list-check"></i>Quản lý đơn hàng</span>
-			</a>
-		</li>
+			@if(auth()->user()->status_trungtampp != 1)
+			<li class="menu-item">
+				<a href="{{url('/lich-su')}}" class="@if(\Request::is('lich-su') ) active  @endif">
+					<span><i class="fa-solid fa-list-check"></i>Quản lý đơn hàng</span>
+				</a>
+			</li>
+			@endif
 		@endrole
 		<li class="menu-item">
 			<a href="{{url('/danh-sach-doi-tac')}}" class="@if(\Request::is('danh-sach-doi-tac') ) active  @endif">
@@ -114,11 +118,13 @@
 		@endrole
 
 		@role('admin|daily')
-		<li class="menu-item">
-			<a href="{{route('lich-su-chuyen-diem')}}" class="@if(\Request::is('lich-su-chuyen-diem') ) active @endif">
-				<span><i class="fa-solid fa-trophy"></i>Lịch sử chuyển điểm hoa hồng</span>
-			</a>
-		</li>
+			@if(auth()->user()->status_trungtampp != 1)
+			<li class="menu-item">
+				<a href="{{route('lich-su-chuyen-diem')}}" class="@if(\Request::is('lich-su-chuyen-diem') ) active @endif">
+					<span><i class="fa-solid fa-trophy"></i>Lịch sử chuyển điểm hoa hồng</span>
+				</a>
+			</li>
+			@endif
 		@endrole
 
 		<li class="menu-item">

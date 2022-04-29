@@ -20,39 +20,45 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $province = Province::all();
-        $district = District::all();
-        $user = User::all();
-        $ward = Ward::all();
-        $get_products = Order_products::with('get_products')->get();
-        $total = 0;
-        $status = Status_product::all();
-        
-        if (auth()->user()->level == 1 || auth()->user()->level == 2) {
-            $id_trung_tam_pp = Trungtampp::where('user_id', auth()->user()->id)->get();
-            $order = Order::with('order_products','getTrungTamPP')->orderBy('id', 'DESC')->get();
-            $orders = [];
-            foreach ($id_trung_tam_pp as $value) {
-                foreach ($order as $data) {
-                    if($value->id == $data->trungtam_pp) {
-                        $orders[] = $data;
+        if (auth()->user()->status_trungtampp != 1) {
+            $province = Province::all();
+            $district = District::all();
+            $user = User::all();
+            $ward = Ward::all();
+            $get_products = Order_products::with('get_products')->get();
+            $total = 0;
+            $status = Status_product::all();
+            
+            if (auth()->user()->level == 1 || auth()->user()->level == 2) {
+                $id_trung_tam_pp = Trungtampp::where('user_id', auth()->user()->id)->get();
+                $order = Order::with('order_products','getTrungTamPP')->orderBy('id', 'DESC')->get();
+                $orders = [];
+                foreach ($id_trung_tam_pp as $value) {
+                    foreach ($order as $data) {
+                        if($value->id == $data->trungtam_pp) {
+                            $orders[] = $data;
+                        }
                     }
                 }
             }
-        }
-        
-        foreach ($orders as $value) {
-            $sum = 0;
-            $money = $value->order_products;
-            foreach ($money as $k) {
-                $sum = $sum + $k->total;
+            
+            foreach ($orders as $value) {
+                $sum = 0;
+                $money = $value->order_products;
+                foreach ($money as $k) {
+                    $sum = $sum + $k->total;
+                }
+                $value->test = $sum;
             }
-            $value->test = $sum;
+            return view('products.admin-history', compact(
+                'orders', 'province', 'district', 
+                'ward', 'get_products', 'total', 
+                'status'));
         }
-        return view('products.admin-history', compact(
-            'orders', 'province', 'district', 
-            'ward', 'get_products', 'total', 
-            'status'));
+
+        else {
+            return redirect()->back();
+        }
     }
     
     public function edit($id)
