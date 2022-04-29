@@ -157,19 +157,25 @@ class UserController extends Controller
         if (!$this->ktCmnd($request->cmnd)) {
             return back()->withErrors(['msg' => 'Nhập sai CMND/CCCD!']);
         }
-        if ($request->phone != $user->phone){
-            if (User::where('phone', $request->phone)->first() == null){
-                $user->phone = $request->phone;
-            }
-            else return back()->withErrors(['msg' => 'Số điện thoại đã được sử dụng!']);
-        }
         if ($request->email != $user->email){
             if (User::where('email', $request->email)->first() == null){
                 $user->email = $request->email;
             }
             else return back()->withErrors(['msg' => 'Email đã được sử dụng!']);
         }
-        if($user->status == 2) $user->status = 1;
+        if($user->status == 2){
+            $user->status = 1;
+            $user->nganhang = $request->nganhang;
+            $user->taikhoannh = $request->taikhoannh;
+            $user->chuthe = $request->chuthe;
+            $user->chinhanh = $request->chinhanh;
+            if ($request->phone != $user->phone){
+                if (User::where('phone', $request->phone)->first() == null){
+                    $user->phone = $request->phone;
+                }
+                else return back()->withErrors(['msg' => 'Số điện thoại đã được sử dụng!']);
+            }
+        }
 
         $user->name = $request->name;
         $user->address = $request->address;
@@ -181,10 +187,6 @@ class UserController extends Controller
         $user->noicmnd = $request->noicmnd;
         $user->cmttruoc = $cmndfront;
         $user->cmtsau = $cmndback;
-        $user->nganhang = $request->nganhang;
-        $user->taikhoannh = $request->taikhoannh;
-        $user->chuthe = $request->chuthe;
-        $user->chinhanh = $request->chinhanh;
         $user->avatar = $avatar;
         $user->save();
         return back()->with('mess', 'Thay đổi thông tin thành công!');
