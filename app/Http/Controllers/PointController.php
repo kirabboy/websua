@@ -55,7 +55,18 @@ class PointController extends Controller
 
     public function doanhSoBanHangCaNhan($id) {
         $user = User::where('id', $id)->with('getDoanhSoTuan')->first();
+        $point = Point::where('user_id', $id)->first();
         $doanhso = $user->getDoanhSoTuan;
-        return view('point.doanhSoBanHangCaNhan', compact('doanhso','user'));
+        return view('point.doanhSoBanHangCaNhan', compact('doanhso','user','point'));
+    }
+
+    public function postDoanhSoBanHangCaNhan(Request $request, $id) {
+        $point = Point::where('user_id', $id)->first();
+        if($point->point >= $request->amount) {
+            $point->point -= $request->amount;
+            $point->chuyenkhoan_hoahong += $request->amount;
+            $point->save();
+        }
+        return redirect()->back();
     }
 }

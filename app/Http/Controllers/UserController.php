@@ -66,10 +66,10 @@ class UserController extends Controller
             're_password.same' => 'Nhập lại mật khẩu không đúng!',
             'name.required' => 'Nhập họ tên!',
             'phone.digits_between' => 'Số điện thoại từ 7 đến 11 chữ số!',
-            'phone.unique' => 'Số điện thoại đã được sử dụng!',
+            // 'phone.unique' => 'Số điện thoại đã được sử dụng!',
             'address.required' => 'Nhập số nhà!',
             'email.email' => 'Sai định dạng email!',
-            'email.unique' => 'Email đã được sử dụng!',
+            // 'email.unique' => 'Email đã được sử dụng!',
             'taikhoannh.required' => 'Nhập tài khoản ngân hàng!',
             'chuthe.required' => 'Nhập chủ thẻ ngân hàng!',
             'chinhanh.required' => 'Nhập chi nhánh ngân hàng!',
@@ -79,9 +79,11 @@ class UserController extends Controller
             'password' => 'required|min:6',
             're_password' => 'required|same:password',
             'name' => 'required',
-            'phone' => 'digits_between:7,11|unique:users,phone',
+            // 'phone' => 'digits_between:7,11|unique:users,phone',
+            'phone' => 'digits_between:7,11',
             'address' => 'required',
-            'email' => 'email|unique:users,email',
+            // 'email' => 'email|unique:users,email',
+            'email' => 'email',
             'taikhoannh' => 'required',
             'chuthe' => 'required',
             'chinhanh' => 'required',
@@ -157,24 +159,26 @@ class UserController extends Controller
         if (!$this->ktCmnd($request->cmnd)) {
             return back()->withErrors(['msg' => 'Nhập sai CMND/CCCD!']);
         }
-        if ($request->email != $user->email){
-            if (User::where('email', $request->email)->first() == null){
-                $user->email = $request->email;
-            }
-            else return back()->withErrors(['msg' => 'Email đã được sử dụng!']);
-        }
+        // if ($request->email != $user->email){
+        //     if (User::where('email', $request->email)->first() == null){
+        //         $user->email = $request->email;
+        //     }
+        //     else return back()->withErrors(['msg' => 'Email đã được sử dụng!']);
+        // }
+        $user->email = $request->email;
         if($user->status == 2){
             $user->status = 1;
             $user->nganhang = $request->nganhang;
             $user->taikhoannh = $request->taikhoannh;
             $user->chuthe = $request->chuthe;
             $user->chinhanh = $request->chinhanh;
-            if ($request->phone != $user->phone){
-                if (User::where('phone', $request->phone)->first() == null){
-                    $user->phone = $request->phone;
-                }
-                else return back()->withErrors(['msg' => 'Số điện thoại đã được sử dụng!']);
-            }
+            // if ($request->phone != $user->phone){
+            //     if (User::where('phone', $request->phone)->first() == null){
+            //         $user->phone = $request->phone;
+            //     }
+            //     else return back()->withErrors(['msg' => 'Số điện thoại đã được sử dụng!']);
+            // }
+            $user->phone = $request->phone;
         }
 
         $user->name = $request->name;

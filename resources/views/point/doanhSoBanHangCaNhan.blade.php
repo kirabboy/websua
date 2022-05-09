@@ -11,15 +11,42 @@
 </style>
 <div class="container">
     <div class="row">
-        <div class="col-12 text-center"> 
-            <h2 class="text-uppercase text-center">Lịch sử doanh số {{$user->name}}</h2>
+        <div class="col-12"> 
+            <h2 class="text-uppercase text-center">Lịch sử doanh số {{$user->username}}</h2>
             @if($user->taikhoannh != null && $user->nganhang != null)
-                <p class="text-dark m-0">Tên tài khoản ngân hàng của {{$user->name}}: {{$user->chuthe}}</p>
-                <p class="text-dark m-0">Số tài khoản ngân hàng: {{$user->taikhoannh}}</p>
-                <p class="text-dark">Ngân hàng: {{DB::table('nganhang')->where('id', $user->nganhang)->first()->tennganhang}}</p>
+            <div class="row">
+                <div class="col-12 col-md-6">
+                        <p class="text-dark m-0">Tên tài khoản ngân hàng của {{$user->name}}: {{$user->chuthe}}</p>
+                        <p class="text-dark m-0">Số tài khoản ngân hàng: {{$user->taikhoannh}}</p>
+                        <p class="text-dark m-0">Chi nhánh: {{$user->chinhanh}}</p>
+                        <p class="text-dark">Ngân hàng: {{DB::table('nganhang')->where('id', $user->nganhang)->first()->tennganhang}}</p>
+                </div>
+
+                <div class="col-12 col-md-6 text-right pb-2">
+                    <form action="{{url('doanh-so-ban-hang')}}/{{$user->id}}" method="POST">
+                        <div class="row">
+                            <div class="col-12 col-md-8 pb-2">
+                                <input class="form-control" name="amount" placeholder="Nhập số tiền chuyển khoản cho {{$user->username}}">
+                            </div>
+                            <div class="col-12 col-md-4 pb-2">
+                                <button class="btn btn-dark" style="width:100%" type="submit">Chuyển tiền</button>
+                            </div>
+                        </div>
+                    @csrf
+                    </form>
+                    <p class="text-dark m-0">Hoa hồng được hưởng: {{number_format($point->point)}} VNĐ</p>
+                    <p class="text-dark m-0">Hoa hồng đã nhận: {{number_format($point->chuyenkhoan_hoahong)}} VNĐ</p>
+                    <p class="text-dark m-0">Hoa hồng chưa nhận: {{number_format($point->point - $point->chuyenkhoan_hoahong)}} VNĐ</p>
+                </div>
+            </div>
             @else
                 <p class="text-danger">{{$user->name}} chưa cập nhật thông tin tài khoản ngân hàng lên hệ thống</p>
             @endif
+        </div>
+        <div class="col-3"></div>
+
+        
+        <div class="col-12 text-center"> 
             <table id="doanh-so-ban-hang" class="display" style="width:100%">
                 <thead>
                     <tr>

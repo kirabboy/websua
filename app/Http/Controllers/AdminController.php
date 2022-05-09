@@ -66,18 +66,20 @@ class AdminController extends Controller
         if (!$this->ktCmnd($request->cmnd)) {
             return back()->withErrors(['msg' => 'Nhập sai CMND/CCCD!']);
         }
-        if ($request->phone != $user->phone){
-            if (User::where('phone', $request->phone)->first() == null){
-                $user->phone = $request->phone;
-            }
-            else return back()->withErrors(['msg' => 'Số điện thoại đã được sử dụng!']);
-        }
-        if ($request->email != $user->email){
-            if (User::where('email', $request->email)->first() == null){
-                $user->email = $request->email;
-            }
-            else return back()->withErrors(['msg' => 'Email đã được sử dụng!']);
-        }
+        // if ($request->phone != $user->phone){
+        //     if (User::where('phone', $request->phone)->first() == null){
+        //         $user->phone = $request->phone;
+        //     }
+        //     else return back()->withErrors(['msg' => 'Số điện thoại đã được sử dụng!']);
+        // }
+        $user->phone = $request->phone;
+        // if ($request->email != $user->email){
+        //     if (User::where('email', $request->email)->first() == null){
+        //         $user->email = $request->email;
+        //     }
+        //     else return back()->withErrors(['msg' => 'Email đã được sử dụng!']);
+        // }
+        $user->email = $request->email;
         if($request->chinhsua) $user->status = 2;
         else $user->status = 1;
         if($request->lamttpp) $user->status_trungtampp = 2;

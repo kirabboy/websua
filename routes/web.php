@@ -117,6 +117,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/doanh-so-ban-hang', [PointController::class, 'doanhSoBanHang'])->name('doanh-so-ban-hang');
     Route::get('/doanh-so-ban-hang/{id}', [PointController::class, 'doanhSoBanHangCaNhan']);
+    Route::post('/doanh-so-ban-hang/{id}', [PointController::class, 'postDoanhSoBanHangCaNhan']);
 
     Route::get('/lich-su-nhan-diem', [HistoryController::class, 'getLichsunhandiem'])->name('lich-su-nhan-diem');
 
