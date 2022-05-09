@@ -124,6 +124,11 @@ class AdminController extends Controller
             $lichsu_chuyendiem->save();
         }
 
+        if($request->chinh_diem != null) {
+            $point=Point::where('user_id', $id)->first();
+            $point->point = $request->chinh_diem;
+            $point->save();
+        }
         $this->phanvaitro($user->id, $user->level);
         return back()->with('mess', 'Cập nhật thành công!');
     }
