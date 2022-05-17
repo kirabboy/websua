@@ -98,7 +98,7 @@ class OrderController extends Controller
                 }
                 
                 $ct = new CongThucController;
-                $ct->hoahongtructiep($orders->users_id, $sum, 2, $orders);
+                $ct->hoahongtructiep($orders->users_id, $sum, 2, $orders, $orders->users_id);
 
                 //----- Gửi email -----//
                 $congratulation = 'Web Sữa';
@@ -118,7 +118,7 @@ class OrderController extends Controller
 
     public function order_his()
     {
-        $orders = Order::with('order_products')->orderBy('id', 'DESC')->get();
+        $orders = Order::where('users_id',auth()->user()->id)->with('order_products')->orderBy('id', 'DESC')->get();
         $province = Province::all();
         $district = District::all();
         // $ward = Ward::all();

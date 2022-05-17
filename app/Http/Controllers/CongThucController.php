@@ -21,10 +21,10 @@ class CongThucController extends Controller
         return view('hoahong',compact('province'));
     }
 
-    public function hoahongtructiep($id, $amount, $count, $orders) {
+    public function hoahongtructiep($id, $amount, $count, $orders, $id_mess) {
         $user = User::where('id', $id)->with('getParent','getPoint')->first();
         $doanh_so_tuan = DoanhSoThang::where('user_id', $user->id)->first();
-        
+        $name_mess = User::where('id', $id_mess)->with('getParent','getPoint')->first()->username;
         if($count == 2) {
             $point_user = $user->getPoint;
             $point_user->doanhso_canhan += $amount;
@@ -44,13 +44,17 @@ class CongThucController extends Controller
             $id_trungtam_pp = Trungtampp::where('id',$orders->trungtam_pp)->first()->user_id;
             $point_user_chuyendiem = Point::where('id', $id_trungtam_pp)->first();
             
+            $doanhso_canhan_id_dad = $id_dad->getPoint->doanhso_canhan;
+            
             if($count == 2) {
-                if($amount >= $setting->moc0 && $amount < $setting->moc1) {
+                if($doanhso_canhan_id_dad >= $setting->moc0 
+                    && $doanhso_canhan_id_dad < $setting->moc1) {
                     $point += $amount * $setting->hoahong1;
-                } else if($amount >= $setting->moc1 && $amount < $setting->moc2) {
+                } else if($doanhso_canhan_id_dad >= $setting->moc1 
+                    && $doanhso_canhan_id_dad < $setting->moc2) {
                     $point += $amount * $setting->hoahong2;
-                } else if($amount >= $setting->moc2 && $amount < $setting->moc3) {
-                    $point += $amount * $setting->moc3;
+                } else if($doanhso_canhan_id_dad >= $setting->moc2) {
+                    $point += $amount * $setting->hoahong3;
                 }
             } elseif ($count == 1) {
                 if($amount >= $setting->moc0) {
@@ -79,7 +83,7 @@ class CongThucController extends Controller
             $lichsu_chuyendiem_hoahong->point = $point;
             $lichsu_chuyendiem_hoahong->user_id = $id_dad->id;
             $lichsu_chuyendiem_hoahong->id_chuyen = auth()->user()->id;
-            $lichsu_chuyendiem_hoahong->note = 'Nhận thưởng hoa hồng '.number_format($point).' điểm';
+            $lichsu_chuyendiem_hoahong->note = 'Nhận thưởng hoa hồng từ user '.$name_mess.' '.number_format($point).' VNĐ';
             
             $doanh_so_tuan->save();
             $doanhso_tuan_id_dad->save();
@@ -90,7 +94,7 @@ class CongThucController extends Controller
             $count -= 1;
             
             if($count >= 0) {
-                self::hoahongtructiep($id_dad->id, $amount, $count, $orders);
+                self::hoahongtructiep($id_dad->id, $amount, $count, $orders, $id_mess);
             } else {
                 $this->congDoanhSoNhom($id_dad->id_dad, $amount);
             }

@@ -63,7 +63,7 @@ class PointController extends Controller
     public function postDoanhSoBanHangCaNhan(Request $request, $id) {
         $point = Point::where('user_id', $id)->first();
         if($point->point >= $request->amount) {
-            $point->point -= $request->amount;
+            // $point->point -= $request->amount;
             $point->chuyenkhoan_hoahong += $request->amount;
             $point->save();
         }

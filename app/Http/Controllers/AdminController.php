@@ -11,6 +11,7 @@ use App\Models\Province;
 use App\Models\Nganhang;
 use App\Models\Point;
 use App\Models\HistoryChuyendiem;
+use App\Models\DoanhSoThang;
 
 class AdminController extends Controller
 {
@@ -123,12 +124,26 @@ class AdminController extends Controller
             $lichsu_chuyendiem->note = 'Admin chuyển điểm';
             $lichsu_chuyendiem->save();
         }
-
-        if($request->chinh_diem != null) {
-            $point=Point::where('user_id', $id)->first();
-            $point->point = $request->chinh_diem;
+        
+        if($request->chinh_doanh_so != null) {
+            $point = Point::where('user_id', $id)->first();
+            $point->doanhso_canhan -= $request->chinh_doanh_so;
+            $point->doanhso -= $request->chinh_doanh_so;
             $point->save();
+
+            $doanh_so_tuan = DoanhSoThang::where('user_id', $id)->first();
+            $doanh_so_tuan->doanhso -= $request->chinh_doanh_so;
+            $doanh_so_tuan->doanhso_canhan -= $request->chinh_doanh_so;
+            $doanh_so_tuan->save();
+
+            $this->fix_doanhso_ca_nhan($id, $request->chinh_doanh_so);
         }
+
+        // if($request->chinh_diem != null) {
+        //     $point=Point::where('user_id', $id)->first();
+        //     $point->point = $request->chinh_diem;
+        //     $point->save();
+        // }
         $this->phanvaitro($user->id, $user->level);
         return back()->with('mess', 'Cập nhật thành công!');
     }
@@ -178,5 +193,24 @@ class AdminController extends Controller
         $role = Role::find($roleId);
         $user = User::find($userID);
         $user->syncRoles($role);
+    }
+
+    public function fix_doanhso_ca_nhan($id, $amount) {
+        $user = User::where('id', $id)->with('getParent','getPoint')->first();
+        if($user != null) {
+            $doanh_so_tuan = DoanhSoThang::where('user_id', $user->id)->first();
+            $doanh_so_tuan->doanhso -= $amount;
+            $doanh_so_tuan->save();
+
+            $id_dad = $user->getParent;
+            
+            $diem_father = $user->getPoint;
+            $diem_father->doanhso -= $amount;
+            $diem_father->save();
+            
+            if($id_dad != null) {
+                self::fix_doanhso_ca_nhan($id_dad->id, $amount);
+            }
+        }
     }
 }

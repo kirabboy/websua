@@ -176,10 +176,10 @@
                             <input type="checkbox" name="lamttpp" style="width:16px;height:16px" @if($userchange->status_trungtampp == 2) checked @endif> Được cấp quyền làm trung tâm phân phối
                         </div>
                     </div>
-                    <label class="col-sm-2 col-form-label">Chỉnh điểm user</label>
+                    <label class="col-sm-2 col-form-label">Trừ doanh số cá nhân</label>
                     <div class="col-sm-4">
-                        <input type="text" name="chinh_diem" class="form-control" value="" placeholder="Nhập số điểm muốn thay đổi">
-                        <p class="text-danger m-0" style="font-size: 14px ">Hiện tại {{$userchange->username}} đang có {{number_format($point->point)}} điểm.</p>
+                        <input type="text" name="chinh_doanh_so" class="form-control" value="" placeholder="Nhập doanh số cá nhân muốn trừ">
+                        <p class="text-danger m-0" style="font-size: 14px ">Hiện tại {{$userchange->username}} đang có {{number_format($point->doanhso_canhan)}} VNĐ.</p>
                     </div>
                 </div>
             </div>

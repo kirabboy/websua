@@ -20,13 +20,12 @@ class PromotionController extends Controller
     }
 
     public function postPromotion($point) {
-        return redirect()->back();
         $user = User::where('id', auth()->user()->id)->with('getChild.getPoint')->first();
         $doanhso_user = Point::find(auth()->user()->id);
         $type_promo = Promotion::where('points',$point)->first();
         $history = PromotionHistory::where('user_id', auth()->user()->id)->get();
         $check_history = $history->where('promotion_id', $type_promo->id);
-        
+
         $list_child_du_dieu_kien = [];
         foreach($user->getChild as $value){
             $doanhso_doinhom = $value->getPoint->doanhso + 
@@ -42,39 +41,46 @@ class PromotionController extends Controller
             $user->promo_xemay < 2 && $type_promo->id == 1) {
             foreach ($list_child_du_dieu_kien as $do_work) {
                 $this->tru_diem_doanh_so_nhom($do_work->id, $type_promo->points);
-                $do_work->promo_xemay += 1;
-                $do_work->save();
             }
+            $user->promo_xemay += 1;
+            $user->save();
+            $this->tru_diem_doanh_so_nhom_cua_DAD($user->id_dad, $type_promo->points);
+
+            //Tru diểm user đổi phần thưởng xe máy
+            $doanhso_user->doanhso -= $type_promo->points;
+            $doanhso_user->save();
         } 
-        // Dieu kien đổi xe máy phải đủ  4 user có 3000tr điểm
+        // Dieu kien đổi xe máy phải đủ  4 user có 3 tỉ điểm
         else if (count($list_child_du_dieu_kien) >= 4 && 
             $user->promo_xehoi == 0 && $type_promo->id == 2) {
-                dd(2);
-        }
-        dd('end');
+            foreach ($list_child_du_dieu_kien as $do_work) {
+                $this->tru_diem_doanh_so_nhom($do_work->id, $type_promo->points);
+            }
+            $user->promo_xehoi += 1;
+            $user->save();
+            $this->tru_diem_doanh_so_nhom_cua_DAD($user->id_dad, $type_promo->points);
 
-        // if($diem_user->point >= $point) {
-        //     $type_promo = Promotion::where('points',$point)->first();
-        //     $check_history = PromotionHistory::where('user_id', auth()->user()->id)->get();
-        //     $check_history = $check_history->where('promotion_id', $type_promo->id)->count();
-        //     if($check_history < 2) {
-        //         $this->tru_diem_doanh_so_nhom(auth()->user()->id, $type_promo->points);
-        //     }
-        //     dd($check_history);
-            
-        //     return redirect()->back();
-        // } else {
-        //     return redirect()->back()->with('Khong du diem de doi phan thuong nay');
-        // }
+            //Tru diểm user đổi phần thưởng xe máy
+            $doanhso_user->doanhso -= $type_promo->points;
+            $doanhso_user->save();
+        }
+        return redirect()->back();
     }
 
     public function tru_diem_doanh_so_nhom ($id, $amount) {
         $user = User::where('id', $id)->with('getChild.getPoint')->first();
         $user_doanhso_nhom = Point::where('id', $id)->first();
-        $user_doanhso_nhom->doanhso == $amount - $user_doanhso_nhom->doanhso;
-        
-        
-        dd($user_doanhso_nhom);
-        self::tru_diem_doanh_so_nhom($id, $amount);
+        $user_doanhso_nhom->doanhso = $user_doanhso_nhom->doanhso - $amount;
+        $user_doanhso_nhom->save();
+    }
+
+    public function tru_diem_doanh_so_nhom_cua_DAD ($id, $amount) {
+        $user = User::where('id', $id)->with('getChild.getPoint')->first();
+        $user_doanhso_nhom = Point::where('id', $id)->first();
+        $user_doanhso_nhom->doanhso = $user_doanhso_nhom->doanhso - $amount;
+        $user_doanhso_nhom->save();
+        if ($user->id_dad != null) {
+            $this->tru_diem_doanh_so_nhom_cua_DAD ($user->id_dad, $amount);
+        }
     }
 }

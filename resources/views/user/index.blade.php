@@ -74,7 +74,7 @@
                         <div class="col">
                             <div class=" font-weight-bold text-white text-uppercase mb-1">
                                 <h5> Hoa hồng được hưởng</h5>
-                                <p class="ms-card-change pb-3">{{number_format($user->getPoint->point)}} điểm</p>
+                                <p class="ms-card-change pb-3">{{number_format($user->getPoint->point)}} VNĐ</p>
                             </div>
 
                         </div>
@@ -204,11 +204,11 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p class="text-dark m-0">Bạn có <span class="text-danger">
-                {{number_format($user->getPoint->point)}} </span> điểm hoa hồng</p>
+                <p class="text-dark m-0">Tổng hoa hồng <span class="text-danger">
+                {{number_format($user->getPoint->point)}} </span>VNĐ</p>
                 <p class="text-dark m-0">Đã nhận <span class="text-danger">
                 {{number_format($user->getPoint->chuyenkhoan_hoahong)}} </span> VNĐ</p>
-                <p class="text-dark m-0">Chưa nhận <span class="text-danger">
+                <p class="text-dark m-0">Còn lại <span class="text-danger">
                 {{number_format($user->getPoint->point-$user->getPoint->chuyenkhoan_hoahong)}} </span> VNĐ</p>
             </div>
         </div>
