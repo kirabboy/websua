@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -17,6 +18,9 @@ use App\Models\District;
 use App\Models\Ward;
 use App\Models\Point;
 use App\Models\DoanhSoThang;
+use App\Models\NgayThanhToan;
+use Carbon\Carbon;
+
 
 use function PHPUnit\Framework\isNan;
 
@@ -39,6 +43,30 @@ class UserController extends Controller
         if (Auth::attempt($credentials, $request->input('remember'))) {
             $request->session()->regenerate();
             return redirect()->intended('/');
+        }
+        $today = now();
+        $day_create_table =  NgayThanhToan::first();
+        if($today > $day_create_table->day) {
+            $get_old_day = $day_create_table->day;
+            $day_create_table->day = Carbon::parse($get_old_day)->addDays(7)->startOfDay()->format('Y-m-d H:i:s');
+
+            $user = User::all();
+            foreach ($user as $value) {
+                $doanhso_tuannay = new DoanhSoThang;
+                $doanhso_tuannay->user_id = $value->id;
+                $doanhso_tuannay->save();
+            }
+        }
+        
+        $user = User::with('getPoint')->get();
+        foreach ($user as $value) {
+            $doanhso_tuan_truoc = DoanhSoThang::where('user_id', $value->id)->orderBy('id', 'desc')->first();
+            $doanhso = new DoanhSoThang;
+            $doanhso->doanhso = $value->getPoint->doanhso - $doanhso_tuan_truoc->doanhso;
+            $doanhso->point = $value->getPoint->point - $doanhso_tuan_truoc->point;
+            $doanhso->doanhso_canhan = $value->getPoint->doanhso_canhan - $doanhso_tuan_truoc->doanhso_canhan;
+            $doanhso->user_id = $value->id;
+            $doanhso->save();
         }
         return back()->with('mess', 'Tài khoản hoặc mật khẩu không đúng!',);
     }

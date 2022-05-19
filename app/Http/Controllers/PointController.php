@@ -49,7 +49,7 @@ class PointController extends Controller
     }
     
     public function doanhSoBanHang() {
-        $user = User::with('getDoanhSoTuan')->get();
+        $user = User::with('getDoanhSoTuan')->get(); 
         return view('point.doanhSoBanHang', compact('user'));
     }
 
